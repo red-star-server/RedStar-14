@@ -42,7 +42,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Server._CorvaxGoob.Skills;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
@@ -101,7 +101,7 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SkillsSystem _skillsSystem = default!; // CorvaxGoob-Skills
+    [Dependency] private readonly SkillsSystem _skillsSystem = default!; // RS14
     [Dependency] private readonly GhostSystem _ghost = default!; // CorvaxGoob-GhostBarMoreFeatures
 
     private uint _nextRoleIdentifier;
@@ -800,7 +800,10 @@ public sealed class GhostRoleSystem : EntitySystem
             _roleSystem.MindAddJobRole(args.Mind, args.Mind, silent:false,ghostRole.JobProto);
         }
 
-        _skillsSystem.GrantSkill(uid, ghostRole.Skills, true); // CorvaxGoob-Skills
+        if (ghostRole.GrantAllSkills) // RS14
+            _skillsSystem.GrantAllSkills(uid, true);
+        else
+            _skillsSystem.GrantSkill(uid, ghostRole.Skills, true); // RS14
 
         ghostRole.Taken = true;
         UnregisterGhostRole((uid, ghostRole));

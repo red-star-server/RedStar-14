@@ -89,7 +89,12 @@
   icon: "JobIconChef"
   supervisors: job-supervisors-hop
   #goobcoins: 15 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   - Butchering
   guides: # goobstation
   - Chef

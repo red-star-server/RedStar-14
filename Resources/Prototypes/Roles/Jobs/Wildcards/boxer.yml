@@ -62,6 +62,12 @@
   startingGear: BoxerGear
   icon: "JobIconBoxer"
   supervisors: job-supervisors-hop
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   #goobcoins: 10 #Goob content Corvax-Goob-coins
   access:
   - Service

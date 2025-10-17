@@ -85,6 +85,12 @@
   startingGear: ServiceWorkerGear
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-service
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   #goobcoins: 10 #Goob content Corvax-Goob-coins
   guides: [ Service ] # goobstation
   access:

@@ -11,8 +11,15 @@
   icon: "JobIconVirologist"
   supervisors: job-supervisors-cmo
   goobcoins: 20 #Goob content
-  skills: # CorvaxGoob-Skills
-  - MedicalEquipment
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Pharmacology
+  - Stasis
+  - Virology
   guides:
   - MedicalDoctor
   - Medical

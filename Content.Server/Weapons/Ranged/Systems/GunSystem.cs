@@ -120,7 +120,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Common.Projectiles; // Goobstation
-using Content.Server._CorvaxGoob.Skills;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Atmos.Components;
 using Content.Shared.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -149,7 +149,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Containers;
 using Content.Server.PowerCell;
 using Content.Shared._Lavaland.Weapons.Ranged.Events; // Lavaland Change
-using Content.Shared._CorvaxGoob.Skills;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Goobstation.Common.Weapons.NoWieldNeeded;
 using Content.Shared._Lavaland.Weapons.Ranged.Events;
 using Robust.Server.GameObjects; // Goobstation
@@ -168,7 +168,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly SkillsSystem _skills = default!; // CorvaxGoob-Skills
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
     [Dependency] private readonly SharedMapSystem _map = default!;
 
     // Goobstation
@@ -180,7 +180,8 @@ public sealed partial class GunSystem : SharedGunSystem
     private const float DamagePitchVariation = 0.05f;
     private float _crawlHitzoneSize; // Goobstation
 
-    private const float SpreadWithoutSkill = MathHelper.PiOver6; // CorvaxGoob-Skills
+    private const float SpreadWithoutSkill = MathHelper.PiOver6; // RS14
+    private static readonly ProtoId<SkillPrototype> ShootingSkill = "Shooting"; // RS14
 
     public override void Initialize()
     {
@@ -227,15 +228,15 @@ public sealed partial class GunSystem : SharedGunSystem
         var mapAngle = mapDirection.ToAngle();
         var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle(), user);  // Goobstation user
 
-        // CorvaxGoob-Skills-Start
-        if (gun.RequiresSkill && user is not null && !_skills.HasSkill(user!.Value, Skills.Shooting) && !HasComp<NoWieldNeededComponent>(user!.Value))
+        // RS14-start
+        if (gun.RequiresSkill && user is not null && !_skills.HasSkill(user!.Value, ShootingSkill) && !HasComp<NoWieldNeededComponent>(user!.Value))
         {
             var spread = -SpreadWithoutSkill / 2 + Random.NextFloat() * SpreadWithoutSkill;
 
             mapAngle += spread;
             angle += spread;
         }
-        // CorvaxGoob-Skills-End
+        // RS14-end
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)

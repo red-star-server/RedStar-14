@@ -1,10 +1,13 @@
 using Content.Goobstation.Shared.Xenobiology.Components;
 using Content.Goobstation.Shared.Xenobiology.Components.Equipment;
+using Content.Server._RedStar.Skills; // RS14
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random; // RS14
 using Robust.Shared.Utility;
 using System.Linq;
 using System.Text;
@@ -14,6 +17,13 @@ public sealed partial class SlimeScannerSystem : EntitySystem
 {
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly IPrototypeManager _prot = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+    [Dependency] private readonly IRobustRandom _random = default!; // RS14
+
+    // RS14-start
+    private const float SlimeScannerMishapChance = 0.50f;
+    private static readonly ProtoId<SkillPrototype> XenobiologySkill = "Xenobiology";
+    // RS14-end
 
     public override void Initialize()
     {
@@ -28,6 +38,14 @@ public sealed partial class SlimeScannerSystem : EntitySystem
         if (!CanSendTooltip(args))
             return;
 
+        // RS14-start
+        if (TryXenobiologyMishap(args.User, ent))
+        {
+            args.Handled = true;
+            return;
+        }
+        // RS14-end
+
         TrySendTooltip(args.User, ent, GenerateSlimeMarkup(ent));
         args.Handled = true;
     }
@@ -37,10 +55,29 @@ public sealed partial class SlimeScannerSystem : EntitySystem
         if (!CanSendTooltip(args))
             return;
 
+        // RS14-start
+        if (TryXenobiologyMishap(args.User, ent))
+        {
+            args.Handled = true;
+            return;
+        }
+        // RS14-end
+
         var loc = Loc.GetString("slime-scanner-examine-extract", ("reagents", GenerateExtractMarkup(ent)));
         TrySendTooltip(args.User, ent, loc);
         args.Handled = true;
     }
+
+    // RS14-start
+    private bool TryXenobiologyMishap(EntityUid user, EntityUid target)
+    {
+        if (_skills.HasSkill(user, XenobiologySkill) || !_random.Prob(SlimeScannerMishapChance))
+            return false;
+
+        TrySendTooltip(user, target, Loc.GetString("slime-scanner-skill-mishap"));
+        return true;
+    }
+    // RS14-end
 
     private bool CanSendTooltip(AfterInteractUsingEvent args)
         => !args.Handled && args.Target != null && args.CanReach && HasComp<SlimeScannerComponent>(args.Used);

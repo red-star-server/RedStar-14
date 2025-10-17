@@ -15,6 +15,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Administration.Logs;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
@@ -41,6 +42,7 @@ using Content.Shared.Tools.Systems;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes; // RS14
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
@@ -66,6 +68,12 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ReactiveSystem _reactive = default!;
     [Dependency] private readonly SleepingSystem _sleep = default!; // Goob shitmed
+    [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
+
+    // RS14-start
+    private const float StasisDelayModifierWithoutSkill = 1.8f;
+    private static readonly ProtoId<SkillPrototype> StasisSkill = "Stasis";
+    // RS14-end
 
     private EntityQuery<BloodstreamComponent> _bloodstreamQuery;
     private EntityQuery<ItemSlotsComponent> _itemSlotsQuery;
@@ -137,7 +145,13 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         if (ent.Comp.BodyContainer.ContainedEntity != null)
             return;
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.EntryDelay, new CryoPodDragFinished(), ent, target: args.Dragged, used: ent)
+        // RS14-start
+        var delay = ent.Comp.EntryDelay;
+        if (!_skills.HasSkill(args.User, StasisSkill))
+            delay *= StasisDelayModifierWithoutSkill;
+        // RS14-end
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, delay, new CryoPodDragFinished(), ent, target: args.Dragged, used: ent) // RS14
         {
             BreakOnDamage = true,
             BreakOnMove = true,

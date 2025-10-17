@@ -86,18 +86,23 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Components;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Singularity.Components;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Popups; // RS14
 using Content.Shared.Radiation.Events;
 using Content.Shared.Singularity.Components;
 using Content.Shared.Timing;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes; // RS14
+using Robust.Shared.Random; // RS14
 using Robust.Shared.Timing;
 
 namespace Content.Server.Singularity.EntitySystems;
@@ -109,8 +114,14 @@ public sealed class RadiationCollectorSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+    [Dependency] private readonly IRobustRandom _random = default!; // RS14
 
     private const string GasTankContainer = "gas_tank";
+    // RS14-start
+    private const float RadiationCollectorMishapChance = 0.50f;
+    private static readonly ProtoId<SkillPrototype> AdvancedEnginesSkill = "AdvancedEngines";
+    // RS14-end
 
     public override void Initialize()
     {
@@ -157,6 +168,13 @@ public sealed class RadiationCollectorSystem : EntitySystem
 
         if (TryComp(uid, out UseDelayComponent? useDelay) && !_useDelay.TryResetDelay((uid, useDelay), true))
             return;
+
+        // RS14-start
+        if (!_skills.HasSkill(args.User, AdvancedEnginesSkill) && _random.Prob(RadiationCollectorMishapChance))
+        {
+            return;
+        }
+        // RS14-end
 
         ToggleCollector(uid, args.User, component);
     }

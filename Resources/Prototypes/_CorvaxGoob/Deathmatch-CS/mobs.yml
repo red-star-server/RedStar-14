@@ -54,7 +54,7 @@
     name: боец команды Синдиката
     description: "Ликвидируйте бойцов NanoTrasen"
     skills:
-      - ShuttleControl
+      - Piloting
       - Shooting
   - type: Loadout
     prototypes: [ SyndicateTDMGear ]
@@ -96,7 +96,7 @@
     name: боец команды NanoTrasen
     description: "Ликвидируйте Синдикат"
     skills:
-      - ShuttleControl
+      - Piloting
       - Shooting
   - type: Loadout
     prototypes: [ NanoTrasenTDMGear ]

@@ -62,6 +62,12 @@
   startingGear: ZookeeperGear
   icon: "JobIconZookeeper"
   supervisors: job-supervisors-hop
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   #goobcoins: 15 #Goob content Corvax-Goob-coins
   access:
   - Service

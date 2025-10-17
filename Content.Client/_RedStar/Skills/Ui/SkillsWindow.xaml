@@ -1,0 +1,10 @@
+<controls:FancyWindow xmlns="https://spacestation14.io" xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    MinSize="340 420" Title="{Loc 'skill-window'}" Margin="5 5">
+    <BoxContainer Orientation="Vertical" Name="SkillsContainer" HorizontalExpand="True" VerticalExpand="True" Margin="6 4">
+        <PanelContainer Name="ListPanel" HorizontalExpand="True" VerticalExpand="True">
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" Margin="1 1">
+                <BoxContainer Orientation="Vertical" Name="SkillsList" HorizontalExpand="True"/>
+            </ScrollContainer>
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>

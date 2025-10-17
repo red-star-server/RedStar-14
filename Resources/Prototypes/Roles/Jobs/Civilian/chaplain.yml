@@ -74,6 +74,13 @@
   startingGear: ChaplainGear
   icon: "JobIconChaplain"
   supervisors: job-supervisors-hop
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Magic
   #goobcoins: 25 #Goob content Corvax-Goob-coins
   guides: [ Chaplain ] # goobstation
   access:

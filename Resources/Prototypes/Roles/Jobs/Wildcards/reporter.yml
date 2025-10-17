@@ -62,6 +62,12 @@
   icon: "JobIconReporter"
   #goobcoins: 15 #Goob content Corvax-Goob-coins
   supervisors: job-supervisors-hop
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   access:
   - Service
   - Maintenance

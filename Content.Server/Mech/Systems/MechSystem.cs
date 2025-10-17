@@ -36,6 +36,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Mech.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
@@ -75,8 +76,13 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
+    // RS14-start
+    private const float ExosuitDelayModifierWithoutSkill = 1.8f;
+    private static readonly ProtoId<SkillPrototype> ExosuitsSkill = "Exosuits";
+    // RS14-end
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -221,7 +227,13 @@ public sealed partial class MechSystem : SharedMechSystem
                 Text = Loc.GetString("mech-verb-enter"),
                 Act = () =>
                 {
-                    var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, component.EntryDelay, new MechEntryEvent(), uid, target: uid)
+                    // RS14-start
+                    var delay = component.EntryDelay;
+                    if (!_skills.HasSkill(args.User, ExosuitsSkill))
+                        delay *= ExosuitDelayModifierWithoutSkill;
+                    // RS14-end
+
+                    var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, delay, new MechEntryEvent(), uid, target: uid) // RS14
                     {
                         BreakOnMove = true,
                         MultiplyDelay = false, // Goobstation

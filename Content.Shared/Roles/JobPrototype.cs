@@ -96,7 +96,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Shared._CorvaxGoob.Skills;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Access;
 using Content.Shared.Guidebook;
 using Content.Shared.Players.PlayTimeTracking;
@@ -263,7 +263,13 @@ namespace Content.Shared.Roles
         /// CorvaxGoob: Skills that will be given on joining job.
         /// </summary>
         [DataField]
-        public HashSet<Skills> Skills = [];
+        public HashSet<ProtoId<SkillPrototype>> Skills = []; // RS14
+
+        /// <summary>
+        /// CorvaxGoob: Grant every registered skill prototype on joining job.
+        /// </summary>
+        [DataField]
+        public bool GrantAllSkills; // RS14
     }
 
     /// <summary>

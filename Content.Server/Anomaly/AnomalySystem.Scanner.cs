@@ -15,10 +15,12 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Anomaly.Components;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
+using Robust.Shared.Prototypes; // RS14
 using Robust.Shared.Utility;
 
 namespace Content.Server.Anomaly;
@@ -28,6 +30,12 @@ namespace Content.Server.Anomaly;
 /// </summary>
 public sealed partial class AnomalySystem
 {
+    // RS14-start
+    [Dependency] private readonly SharedSkillsSystem _skills = default!;
+    private const float AnomalyScanDelayModifierWithoutSkill = 1.8f;
+    private static readonly ProtoId<SkillPrototype> AnomalySkill = "Anomaly";
+    // RS14-end
+
     private void InitializeScanner()
     {
         SubscribeLocalEvent<AnomalyScannerComponent, BoundUIOpenedEvent>(OnScannerUiOpened);
@@ -109,7 +117,13 @@ public sealed partial class AnomalySystem
         if (!args.CanReach)
             return;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.ScanDoAfterDuration, new ScannerDoAfterEvent(), uid, target: target, used: uid)
+        // RS14-start
+        var delay = component.ScanDoAfterDuration;
+        if (!_skills.HasSkill(args.User, AnomalySkill))
+            delay *= AnomalyScanDelayModifierWithoutSkill;
+        // RS14-end
+
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, delay, new ScannerDoAfterEvent(), uid, target: target, used: uid) // RS14
         {
             DistanceThreshold = 2f
         });

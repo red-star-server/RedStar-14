@@ -94,12 +94,11 @@
 
 using Content.Goobstation.Common.Changeling;
 using Content.Goobstation.Shared.Changeling.Components;
-using Content.Server._CorvaxGoob.Skills;
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
 using Content.Server.Kitchen.Components;
 using Content.Server.Popups;
-using Content.Shared._CorvaxGoob.Skills;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Database;
@@ -119,6 +118,7 @@ using Content.Shared.Storage;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes; // RS14
 using Robust.Shared.Random;
 using static Content.Shared.Kitchen.Components.KitchenSpikeComponent;
 
@@ -139,9 +139,12 @@ namespace Content.Server.Kitchen.EntitySystems
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
         [Dependency] private readonly SharedSuicideSystem _suicide = default!;
-        [Dependency] private readonly SkillsSystem _skills = default!; // CorvaxGoob-Skills
+        [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
 
-        private const float ButcherDelayModifierWithoutSkill = 5; // CorvaxGoob-Skills
+        // RS14-start
+        private const float ButcheringDelayModifierWithoutSkill = 1.8f;
+        private static readonly ProtoId<SkillPrototype> ButcheringSkill = "Butchering";
+        // RS14-end
 
         public override void Initialize()
         {
@@ -392,7 +395,13 @@ namespace Content.Server.Kitchen.EntitySystems
             butcherable.BeingButchered = true;
             component.InUse = true;
 
-            var doAfterArgs = new DoAfterArgs(EntityManager, userUid, (component.SpikeDelay + butcherable.ButcherDelay) * (!_skills.HasSkill(userUid, Skills.Butchering) ? ButcherDelayModifierWithoutSkill : 1), new SpikeDoAfterEvent(), uid, target: victimUid, used: uid) // CorvaxGoob-Skills
+            // RS14-start
+            var delay = component.SpikeDelay + butcherable.ButcherDelay;
+            if (!_skills.HasSkill(userUid, ButcheringSkill))
+                delay *= ButcheringDelayModifierWithoutSkill;
+            // RS14-end
+
+            var doAfterArgs = new DoAfterArgs(EntityManager, userUid, delay, new SpikeDoAfterEvent(), uid, target: victimUid, used: uid) // RS14
             {
                 BreakOnDamage = true,
                 BreakOnMove = true,

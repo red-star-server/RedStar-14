@@ -1030,6 +1030,11 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
             return;
         }
 
+        // RS14-start
+        if (!CanUseSolutionScanner(args.User))
+            return;
+        // RS14-end
+
         if (!TryGetSolution(args.Target, entity.Comp.Solution, out _, out var solutionHolder))
         {
             return;
@@ -1055,6 +1060,13 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
 
         args.Verbs.Add(verb);
     }
+
+    // RS14-start
+    protected virtual bool CanUseSolutionScanner(EntityUid user)
+    {
+        return true;
+    }
+    // RS14-end
 
     private FormattedMessage GetSolutionExamine(Solution solution)
     {

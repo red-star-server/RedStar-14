@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using Content.Shared._CorvaxGoob.CCCVars;
@@ -52,10 +53,10 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         if (!_mind.TryGetMind(entity, out _, out var mind))
             return false;
 
-        if (mind.Skills.Contains(SkillTypes.All))
+        if (mind.CorvaxSkills.Contains(SkillTypes.All))
             return true;
 
-        return mind.Skills.Contains(skill);
+        return mind.CorvaxSkills.Contains(skill);
     }
 
     private void OnImplantImplanted(ref ImplantImplantedEvent ev)
@@ -92,10 +93,10 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             return;
         }
 
-        HashSet<SkillTypes> oldSkills = new HashSet<SkillTypes>(mindComp.Skills);
+        HashSet<SkillTypes> oldSkills = new HashSet<SkillTypes>(mindComp.CorvaxSkills);
 
         if (clearSkills)
-            mindComp.Skills.Clear();
+            mindComp.CorvaxSkills.Clear();
 
         if (skills.Count < 1)
         {
@@ -105,13 +106,13 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
         if (skills.Contains(SkillTypes.All))
         {
-            mindComp.Skills.Clear();
-            mindComp.Skills.Add(SkillTypes.All);
+            mindComp.CorvaxSkills.Clear();
+            mindComp.CorvaxSkills.Add(SkillTypes.All);
         }
         else
-            mindComp.Skills.UnionWith(skills);
+            mindComp.CorvaxSkills.UnionWith(skills);
 
-        HashSet<SkillTypes> newSkills = new HashSet<SkillTypes>(mindComp.Skills);
+        HashSet<SkillTypes> newSkills = new HashSet<SkillTypes>(mindComp.CorvaxSkills);
         newSkills.ExceptWith(oldSkills);
 
         if (newSkills.Count < 1)
@@ -166,20 +167,20 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             return;
         }
 
-        HashSet<SkillTypes> oldSkills = new HashSet<SkillTypes>(mindComp.Skills);
+        HashSet<SkillTypes> oldSkills = new HashSet<SkillTypes>(mindComp.CorvaxSkills);
 
         if (skills.Contains(SkillTypes.All))
-            mindComp.Skills.Clear();
+            mindComp.CorvaxSkills.Clear();
         else
         {
             foreach (var skill in skills)
             {
-                mindComp.Skills.Remove(skill);
+                mindComp.CorvaxSkills.Remove(skill);
             }
         }
 
         HashSet<SkillTypes> revokedSkills = new HashSet<SkillTypes>(oldSkills);
-        revokedSkills.ExceptWith(mindComp.Skills);
+        revokedSkills.ExceptWith(mindComp.CorvaxSkills);
 
         if (revokedSkills.Count < 1)
         {

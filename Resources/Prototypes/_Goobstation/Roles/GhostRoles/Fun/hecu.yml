@@ -14,6 +14,10 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  skills: # RS14
+  - Medical
+  - Construction
+  - Shooting
   accessGroups:
   - AllAccess
   access:

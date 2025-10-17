@@ -104,8 +104,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Administration.Logs;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Popups;
 using Content.Server.Singularity.Events;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -117,6 +119,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Prototypes; // RS14
+using Robust.Shared.Random; // RS14
 
 namespace Content.Server.Singularity.EntitySystems;
 
@@ -129,6 +133,13 @@ public sealed class ContainmentFieldGeneratorSystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+    [Dependency] private readonly IRobustRandom _random = default!; // RS14
+
+    // RS14-start
+    private const float ContainmentFieldGeneratorMishapChance = 0.50f;
+    private static readonly ProtoId<SkillPrototype> AdvancedEnginesSkill = "AdvancedEngines";
+    // RS14-end
 
     public override void Initialize()
     {
@@ -202,6 +213,14 @@ public sealed class ContainmentFieldGeneratorSystem : EntitySystem
 
         if (TryComp(generator, out TransformComponent? transformComp) && transformComp.Anchored)
         {
+            // RS14-start
+            if (!_skills.HasSkill(args.User, AdvancedEnginesSkill) && _random.Prob(ContainmentFieldGeneratorMishapChance))
+            {
+                args.Handled = true;
+                return;
+            }
+            // RS14-end
+
             if (!generator.Comp.Enabled)
                 TurnOn(generator);
             else if (generator.Comp.Enabled && generator.Comp.IsConnected)

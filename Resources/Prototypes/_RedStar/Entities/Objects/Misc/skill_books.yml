@@ -1,0 +1,329 @@
+- type: entity
+  id: BaseSkillBook
+  parent: BaseItem
+  abstract: true
+  name: skill book
+  description: A practical manual for learning a skill.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: cooking
+  - type: Item
+    size: Small
+  - type: UseDelay
+    delay: 1
+  - type: Tag
+    tags:
+    - Book
+    - Paper
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/book_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/book_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/book_drop.ogg
+      params:
+        volume: -4
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    damage:
+      types:
+        Blunt: 1
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 1
+
+- type: entity
+  id: SkillBookCooking
+  parent: BaseSkillBook
+  name: cooking skill book
+  description: A training manual. Read it in hand to learn cooking.
+  components:
+  - type: Sprite
+    state: cooking
+  - type: SkillLearningBook
+    skill: Cooking
+
+- type: entity
+  id: SkillBookDrinks
+  parent: BaseSkillBook
+  name: bartending skill book
+  description: A training manual. Read it in hand to learn bartending.
+  components:
+  - type: Sprite
+    state: drinks
+  - type: SkillLearningBook
+    skill: Drinks
+
+- type: entity
+  id: SkillBookHydroponics
+  parent: BaseSkillBook
+  name: hydroponics skill book
+  description: A training manual. Read it in hand to learn hydroponics.
+  components:
+  - type: Sprite
+    state: hydroponics
+  - type: SkillLearningBook
+    skill: Hydroponics
+
+- type: entity
+  id: SkillBookButchering
+  parent: BaseSkillBook
+  name: butchering skill book
+  description: A training manual. Read it in hand to learn butchering.
+  components:
+  - type: Sprite
+    state: butchering
+  - type: SkillLearningBook
+    skill: Butchering
+
+- type: entity
+  id: SkillBookMedical
+  parent: BaseSkillBook
+  name: basic medical skill book
+  description: A training manual. Read it in hand to learn basic medical care.
+  components:
+  - type: Sprite
+    state: medical
+  - type: SkillLearningBook
+    skill: Medical
+
+- type: entity
+  id: SkillBookConstruction
+  parent: BaseSkillBook
+  name: construction skill book
+  description: A training manual. Read it in hand to learn construction.
+  components:
+  - type: Sprite
+    state: construction
+  - type: SkillLearningBook
+    skill: Construction
+
+- type: entity
+  id: SkillBookShooting
+  parent: BaseSkillBook
+  name: shooting skill book
+  description: A training manual. Read it in hand to learn shooting.
+  components:
+  - type: Sprite
+    state: shooting
+  - type: SkillLearningBook
+    skill: Shooting
+
+- type: entity
+  id: SkillBookExosuits
+  parent: BaseSkillBook
+  name: exosuits skill book
+  description: A training manual. Read it in hand to learn exosuit operation.
+  components:
+  - type: Sprite
+    state: exosuits
+  - type: SkillLearningBook
+    skill: Exosuits
+
+- type: entity
+  id: SkillBookPharmacology
+  parent: BaseSkillBook
+  name: pharmacology skill book
+  description: A training manual. Read it in hand to learn pharmacology.
+  components:
+  - type: Sprite
+    state: pharmacology
+  - type: SkillLearningBook
+    skill: Pharmacology
+
+- type: entity
+  id: SkillBookChemistry
+  parent: BaseSkillBook
+  name: chemistry skill book
+  description: A training manual. Read it in hand to learn chemistry.
+  components:
+  - type: Sprite
+    state: chemistry
+  - type: SkillLearningBook
+    skill: Chemistry
+
+- type: entity
+  id: SkillBookStasis
+  parent: BaseSkillBook
+  name: stasis skill book
+  description: A training manual. Read it in hand to learn stasis systems.
+  components:
+  - type: Sprite
+    state: stasis
+  - type: SkillLearningBook
+    skill: Stasis
+
+- type: entity
+  id: SkillBookEngineering
+  parent: BaseSkillBook
+  name: engineering skill book
+  description: A training manual. Read it in hand to learn engineering.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: SkillLearningBook
+    skill: Engineering
+
+- type: entity
+  id: SkillBookAtmos
+  parent: BaseSkillBook
+  name: atmospherics skill book
+  description: A training manual. Read it in hand to learn atmospherics.
+  components:
+  - type: Sprite
+    state: atmos
+  - type: SkillLearningBook
+    skill: Atmos
+
+- type: entity
+  id: SkillBookEngines
+  parent: BaseSkillBook
+  name: engines skill book
+  description: A training manual. Read it in hand to learn engine operation.
+  components:
+  - type: Sprite
+    state: engines
+  - type: SkillLearningBook
+    skill: Engines
+
+- type: entity
+  id: SkillBookDetective
+  parent: BaseSkillBook
+  name: detective skill book
+  description: A training manual. Read it in hand to learn detective work.
+  components:
+  - type: Sprite
+    state: detective
+  - type: SkillLearningBook
+    skill: Detective
+
+- type: entity
+  id: SkillBookRobotics
+  parent: BaseSkillBook
+  name: robotics skill book
+  description: A training manual. Read it in hand to learn robotics.
+  components:
+  - type: Sprite
+    state: robotics
+  - type: SkillLearningBook
+    skill: Robotics
+
+- type: entity
+  id: SkillBookPlantMutation
+  parent: BaseSkillBook
+  name: plant mutations skill book
+  description: A training manual. Read it in hand to learn plant mutations.
+  components:
+  - type: Sprite
+    state: plants_mutation
+  - type: SkillLearningBook
+    skill: PlantMutation
+
+- type: entity
+  id: SkillBookVirology
+  parent: BaseSkillBook
+  name: virology skill book
+  description: A training manual. Read it in hand to learn virology.
+  components:
+  - type: Sprite
+    state: virology
+  - type: SkillLearningBook
+    skill: Virology
+
+- type: entity
+  id: SkillBookSurgery
+  parent: BaseSkillBook
+  name: surgery skill book
+  description: A training manual. Read it in hand to learn surgery.
+  components:
+  - type: Sprite
+    state: surgery
+  - type: SkillLearningBook
+    skill: Surgery
+
+- type: entity
+  id: SkillBookAdvancedEngines
+  parent: BaseSkillBook
+  name: advanced engines skill book
+  description: A training manual. Read it in hand to learn advanced engine systems.
+  components:
+  - type: Sprite
+    state: advanced_engines
+  - type: SkillLearningBook
+    skill: AdvancedEngines
+
+- type: entity
+  id: SkillBookSupermatter
+  parent: BaseSkillBook
+  name: supermatter skill book
+  description: A training manual. Read it in hand to learn supermatter systems.
+  components:
+  - type: Sprite
+    state: supermatter
+  - type: SkillLearningBook
+    skill: Supermatter
+
+- type: entity
+  id: SkillBookPiloting
+  parent: BaseSkillBook
+  name: piloting skill book
+  description: A training manual. Read it in hand to learn piloting.
+  components:
+  - type: Sprite
+    state: piloting
+  - type: SkillLearningBook
+    skill: Piloting
+
+- type: entity
+  id: SkillBookXenobiology
+  parent: BaseSkillBook
+  name: xenobiology skill book
+  description: A training manual. Read it in hand to learn xenobiology.
+  components:
+  - type: Sprite
+    state: xenobiology
+  - type: SkillLearningBook
+    skill: Xenobiology
+
+- type: entity
+  id: SkillBookAnomaly
+  parent: BaseSkillBook
+  name: anomaly skill book
+  description: A training manual. Read it in hand to learn anomaly work.
+  components:
+  - type: Sprite
+    state: anomaly
+  - type: SkillLearningBook
+    skill: Anomaly
+
+- type: entity
+  id: SkillBookArtifacts
+  parent: BaseSkillBook
+  name: artifacts skill book
+  description: A training manual. Read it in hand to learn artifact work.
+  components:
+  - type: Sprite
+    state: artifacts
+  - type: SkillLearningBook
+    skill: Artifacts
+
+- type: entity
+  id: SkillBookMagic
+  parent: BaseSkillBook
+  name: occult knowledge skill book
+  description: A training manual. Read it in hand to learn occult knowledge.
+  components:
+  - type: Sprite
+    state: magic
+  - type: SkillLearningBook
+    skill: Magic

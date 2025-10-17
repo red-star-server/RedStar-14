@@ -41,9 +41,11 @@
 
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Botany.Components;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Hands.Systems;
 using Content.Server.Kitchen.Components;
 using Content.Server.Popups;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Botany;
@@ -88,12 +90,14 @@ public sealed class PlantHolderSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
 
     public const float HydroponicsSpeedMultiplier = 1f;
     public const float HydroponicsConsumptionMultiplier = 2f;
 
     private static readonly ProtoId<TagPrototype> HoeTag = "Hoe";
     private static readonly ProtoId<TagPrototype> PlantSampleTakerTag = "PlantSampleTaker";
+    private static readonly ProtoId<SkillPrototype> PlantMutationSkill = "PlantMutation"; // RS14
 
     public override void Initialize()
     {
@@ -329,7 +333,13 @@ public sealed class PlantHolderSystem : EntitySystem
                 return;
             }
 
-            component.Health -= (_random.Next(3, 5) * 10);
+            // RS14-start
+            var sampleDamage = _random.Next(3, 5) * 10;
+            if (!_skills.HasSkill(args.User, PlantMutationSkill))
+                sampleDamage *= 2;
+
+            component.Health -= sampleDamage;
+            // RS14-end
 
             float? healthOverride;
             if (component.Harvest)
@@ -349,7 +359,8 @@ public sealed class PlantHolderSystem : EntitySystem
 
             DoScream(entity.Owner, component.Seed);
 
-            if (_random.Prob(0.3f))
+            // RS14
+            if (_random.Prob(_skills.HasSkill(args.User, PlantMutationSkill) ? 0.3f : 0.75f))
                 component.Sampled = true;
 
             // Just in case.

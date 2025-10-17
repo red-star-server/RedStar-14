@@ -97,13 +97,25 @@ public abstract class AbstractAnalyzerSystem<TAnalyzerComponent, TAnalyzerDoAfte
         if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
+        var target = args.Target.Value; // RS14
+
         if (!uid.Comp.Silent)
             _audio.PlayPredicted(uid.Comp.ScanningEndSound, uid, null);
 
+        // RS14-start
+        OnScanComplete(uid, target, args);
+        // RS14-end
+
         OpenUserInterface(args.User, uid);
-        BeginAnalyzingEntity(uid, args.Target.Value);
+        BeginAnalyzingEntity(uid, target);
         args.Handled = true;
     }
+
+    // RS14-start
+    protected virtual void OnScanComplete(Entity<TAnalyzerComponent> uid, EntityUid target, TAnalyzerDoAfterEvent args)
+    {
+    }
+    // RS14-end
 
     /// <summary>
     /// Turn off when placed into a storage item or moved between slots/hands

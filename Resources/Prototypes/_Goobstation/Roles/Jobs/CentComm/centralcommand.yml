@@ -21,8 +21,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-commander
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - All
+  grantAllSkills: true # RS14
   accessGroups:
   - AllAccess
   access:
@@ -60,8 +59,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-null
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - All
+  grantAllSkills: true # RS14
   requirements:
     - !type:AgeRequirement
       requiredAge: 21
@@ -103,8 +101,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-commander
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - All
+  grantAllSkills: true # RS14
   requirements:
     - !type:AgeRequirement
       requiredAge: 21
@@ -147,8 +144,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-commander
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - All
+  grantAllSkills: true # RS14
   requirements:
     - !type:AgeRequirement
       requiredAge: 21
@@ -191,8 +187,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-commander
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - All
+  grantAllSkills: true # RS14
   requirements:
   - !type:AgeRequirement
     requiredAge: 21
@@ -231,8 +226,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-commander
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - All
+  grantAllSkills: true # RS14
   requirements:
   - !type:AgeRequirement
     requiredAge: 21
@@ -286,6 +280,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-commander
   canBeAntag: false
+  grantAllSkills: true # RS14
   requirements:
     - !type:AgeRequirement
       requiredAge: 21

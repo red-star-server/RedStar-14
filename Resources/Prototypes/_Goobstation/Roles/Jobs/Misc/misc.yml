@@ -10,6 +10,12 @@
   id: Overall
   name: job-name-overall
   playTimeTracker: Overall
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
 
 # Conquest
 
@@ -22,6 +28,7 @@
   startingGear: ConquestGear
   supervisors: job-supervisors-null
   canBeAntag: false
+  grantAllSkills: true # RS14
   requirements:
   - !type:AgeRequirement
     requiredAge: 21
@@ -57,6 +64,7 @@
   icon: "JobIconLambda"
   supervisors: job-supervisors-null
   canBeAntag: false
+  grantAllSkills: true # RS14
   requirements:
   - !type:AgeRequirement
     requiredAge: 21
@@ -102,6 +110,7 @@
   icon: "JobIconSyndicate"
   supervisors: job-supervisors-syndicate
   canBeAntag: true
+  grantAllSkills: true # RS14
   requirements:
   - !type:AgeRequirement
     requiredAge: 21
@@ -154,6 +163,7 @@
   icon: "JobIconSyndicate"
   supervisors: job-supervisors-credits
   canBeAntag: true
+  grantAllSkills: true # RS14
   requirements:
   - !type:AgeRequirement
     requiredAge: 21

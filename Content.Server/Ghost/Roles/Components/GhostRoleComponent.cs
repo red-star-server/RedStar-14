@@ -33,7 +33,7 @@
 
 using Content.Server.Ghost.Roles.Raffles;
 using Content.Server.Mind.Commands;
-using Content.Shared._CorvaxGoob.Skills;
+using Content.Shared._RedStar.Skills;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
@@ -52,7 +52,7 @@ public sealed partial class GhostRoleComponent : Component
     /// <summary>
     /// Whether the <see cref="MakeSentientCommand"/> should run on the mob.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)] [DataField("makeSentient")]
+    [ViewVariables(VVAccess.ReadWrite)] [DataField]
     public bool MakeSentient = true;
 
     /// <summary>
@@ -139,12 +139,18 @@ public sealed partial class GhostRoleComponent : Component
     [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // also FIXME Friends
     public ProtoId<JobPrototype>? JobProto = null;
 
-    // CorvaxGoob-Skills-Start
+    // RS14-start
     /// <summary>
     /// Skills that will be given on joining ghostrole.
     /// </summary>
-    [DataField("skills")]
-    public HashSet<Skills> Skills = [];
-    // CorvaxGoob-Skills-End
+    [DataField]
+    public HashSet<ProtoId<SkillPrototype>> Skills = []; // RS14
+
+    /// <summary>
+    /// Grant every registered skill prototype on joining ghostrole.
+    /// </summary>
+    [DataField]
+    public bool GrantAllSkills; // RS14
+    // RS14-end
 }
 

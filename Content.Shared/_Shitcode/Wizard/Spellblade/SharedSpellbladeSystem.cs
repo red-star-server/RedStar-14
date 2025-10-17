@@ -11,6 +11,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared._White.Blink;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
@@ -34,6 +35,11 @@ public abstract class SharedSpellbladeSystem : EntitySystem
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] private   readonly IPrototypeManager _protoManager = default!;
     [Dependency] private   readonly SharedHandsSystem _hands = default!;
+    [Dependency] private   readonly SharedSkillsSystem _skills = default!; // RS14
+
+    // RS14-start
+    private static readonly ProtoId<SkillPrototype> MagicSkill = "Magic";
+    // RS14-end
 
     public override void Initialize()
     {
@@ -169,6 +175,11 @@ public abstract class SharedSpellbladeSystem : EntitySystem
         if (comp.EnchantmentName != null)
             return;
 
+        // RS14-start
+        if (!CanUseSpellbladeEnchanting(args.Actor))
+            return;
+        // RS14-end
+
         if (!_protoManager.TryIndex(args.ProtoId, out var proto))
             return;
 
@@ -180,6 +191,15 @@ public abstract class SharedSpellbladeSystem : EntitySystem
         if (proto.Event != null)
             RaiseLocalEvent(uid, proto.Event);
     }
+
+    // RS14-start
+    private bool CanUseSpellbladeEnchanting(EntityUid user)
+    {
+        return _skills.HasSkill(user, MagicSkill)
+            || HasComp<WizardComponent>(user)
+            || HasComp<ApprenticeComponent>(user);
+    }
+    // RS14-end
 
     public bool IsHoldingItemWithComponent<T>(EntityUid user) where T : Component
     {

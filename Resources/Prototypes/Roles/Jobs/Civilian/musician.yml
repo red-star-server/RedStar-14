@@ -63,6 +63,12 @@
   startingGear: MusicianGear
   icon: "JobIconMusician"
   supervisors: job-supervisors-hire
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   #goobcoins: 10 #Goob content Corvax-Goob-coins
   access:
   - Maintenance # TODO Remove maint access for all gimmick jobs once access work is completed

@@ -7,6 +7,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Xenobiology.Components.Equipment;
+using Content.Server._RedStar.Skills; // RS14
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Server.NPC.HTN;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Coordinates;
@@ -25,6 +27,8 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes; // RS14
+using Robust.Shared.Random; // RS14
 using Content.Shared.Storage.Components;
 
 namespace Content.Goobstation.Server.Xenobiology;
@@ -45,9 +49,13 @@ public sealed partial class XenoVacuumSystem : EntitySystem
     [Dependency] private readonly HTNSystem _htn = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityStorageSystem _entStorage = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+    [Dependency] private readonly IRobustRandom _random = default!; // RS14
 
     private const string ReleaseDelayId = "release";
     private const string SuctionDelayId = "suction";
+    private const float XenoVacuumMishapChance = 0.50f; // RS14
+    private static readonly ProtoId<SkillPrototype> XenobiologySkill = "Xenobiology"; // RS14
 
     public override void Initialize()
     {
@@ -114,6 +122,14 @@ public sealed partial class XenoVacuumSystem : EntitySystem
 
         if (args is { Target: { } target, CanReach: true } && HasComp<MobStateComponent>(target))
         {
+            // RS14-start
+            if (TryXenobiologyMishap(ent, args.User))
+            {
+                if (ud != null) _useDelay.TryResetDelay((ent, ud), false, SuctionDelayId);
+                return;
+            }
+            // RS14-end
+
             TryDoSuction(args.User, target, ent);
             if (ud != null) _useDelay.TryResetDelay((ent, ud), false, SuctionDelayId);
             return;
@@ -125,6 +141,14 @@ public sealed partial class XenoVacuumSystem : EntitySystem
             return;
 
         var tankComp = tank!.Value.Comp;
+
+        // RS14-start
+        if (TryXenobiologyMishap(ent, args.User))
+        {
+            if (ud != null) _useDelay.TryResetDelay((ent, ud), false, ReleaseDelayId);
+            return;
+        }
+        // RS14-end
 
         foreach (var removedEnt in _containerSystem.EmptyContainer(tankComp.StorageTank))
         {
@@ -143,6 +167,17 @@ public sealed partial class XenoVacuumSystem : EntitySystem
 
         _audio.PlayEntity(ent.Comp.ClearSound, ent, args.User, AudioParams.Default.WithVolume(-2f));
     }
+
+    // RS14-start
+    private bool TryXenobiologyMishap(Entity<XenoVacuumComponent> ent, EntityUid user)
+    {
+        if (_skills.HasSkill(user, XenobiologySkill) || !_random.Prob(XenoVacuumMishapChance))
+            return false;
+
+        _popup.PopupEntity(Loc.GetString("xeno-vacuum-skill-mishap"), ent, user, PopupType.MediumCaution);
+        return true;
+    }
+    // RS14-end
 
     #region Helpers
 

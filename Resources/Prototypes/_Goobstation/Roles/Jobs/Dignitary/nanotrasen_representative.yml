@@ -142,8 +142,12 @@
   - Cargo
   - Theatre
   - NanotrasenRepresentative
-  skills: # CorvaxGoob-Skills
-  - ShuttleControl
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

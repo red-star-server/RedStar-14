@@ -91,7 +91,7 @@ using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Construction.Components;
 using Content.Server.Temperature.Components;
-using Content.Shared._CorvaxGoob.Skills;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
@@ -105,6 +105,7 @@ using Content.Shared.Stacks;
 using Content.Shared.Temperature;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 #if EXCEPTION_TOLERANCE
 // ReSharper disable once RedundantUsingDirective
@@ -122,6 +123,7 @@ namespace Content.Server.Construction
 
         private readonly Queue<EntityUid> _constructionUpdateQueue = new();
         private readonly HashSet<EntityUid> _queuedUpdates = new();
+        private static readonly ProtoId<SkillPrototype> EngineeringSkill = "Engineering"; // RS14
 
         private void InitializeInteractions()
         {
@@ -378,10 +380,9 @@ namespace Content.Server.Construction
                     if (doAfterState == DoAfterState.None && insertStep.DoAfter > 0)
                     {
                         var doAfterEv = new ConstructionInteractDoAfterEvent(EntityManager, interactUsing);
+                        var delay = insertStep.DoAfter; // RS14
 
-                        var delay = step.DoAfter * (user is not null && !_skills.HasSkill(user.Value, Skills.AdvancedBuilding) && IsAdvancedMaterial(insert) ? DelayModifierWithoutSkill : 1); // CorvaxGoob-Skills
-
-                        var doAfterEventArgs = new DoAfterArgs(EntityManager, interactUsing.User, delay, doAfterEv, uid, uid, interactUsing.Used) // CorvaxGoob-Skills
+                        var doAfterEventArgs = new DoAfterArgs(EntityManager, interactUsing.User, delay, doAfterEv, uid, uid, interactUsing.Used) // RS14
                         {
                             BreakOnDamage = false,
                             BreakOnMove = true,
@@ -456,20 +457,31 @@ namespace Content.Server.Construction
 
                     // If we're handling an event after its DoAfter finished...
                     if (doAfterState == DoAfterState.Completed)
-                        return  HandleResult.True;
+                    {
+                        if (user is not null
+                            && !_skills.HasSkill(user.Value, EngineeringSkill)
+                            && IsAdvancedConstruction(uid)
+                            && TryAdvancedConstructionMishap(user.Value, uid)) // RS14
+                        {
+                            ResetEdge(uid, construction);
+                            return HandleResult.False;
+                        }
 
-                    // CorvaxGoob-Skills-Start
+                        return  HandleResult.True;
+                    }
+
+                    // RS14-start
                     var delay = toolInsertStep.DoAfter;
 
-                    if (user is not null && !_skills.HasSkill(user.Value, Skills.AdvancedBuilding) && IsAdvancedConstruction(uid))
+                    if (user is not null && !_skills.HasSkill(user.Value, EngineeringSkill) && IsAdvancedConstruction(uid))
                         delay = Math.Max(DelayModifierWithoutSkill, delay * DelayModifierWithoutSkill);
-                    // CorvaxGoob-Skills-End
+                    // RS14-end
 
                     var result  = _toolSystem.UseTool(
                         interactUsing.Used,
                         interactUsing.User,
                         uid,
-                        TimeSpan.FromSeconds(delay), // CorvaxGoob-Skills
+                        TimeSpan.FromSeconds(delay), // RS14
                         new [] { toolInsertStep.Tool },
                         new ConstructionInteractDoAfterEvent(EntityManager, interactUsing),
                         out var doAfter,

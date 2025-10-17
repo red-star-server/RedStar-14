@@ -1,0 +1,14 @@
+<Control xmlns="https://spacestation14.io">
+    <BoxContainer Orientation="Horizontal" Margin="0 3" HorizontalExpand="True">
+        <PanelContainer Name="ColorPanel" VerticalExpand="True" MinWidth="4" Margin="0 0 7 0"/>
+        <PanelContainer Name="IconPanel" SetSize="36 36" Margin="0 0 8 0" VerticalAlignment="Top">
+            <TextureRect Name="SkillIcon" SetSize="32 32" Margin="3 3" Stretch="KeepAspectCentered"/>
+        </PanelContainer>
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center">
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <Label Name="SkillNameLabel" HorizontalExpand="True" />
+            </BoxContainer>
+        </BoxContainer>
+        <Button Name="ToggleButton" SetSize="28 28" Margin="8 0 0 0" Visible="False"/>
+    </BoxContainer>
+</Control>

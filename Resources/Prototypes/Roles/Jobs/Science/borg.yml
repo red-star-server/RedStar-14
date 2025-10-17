@@ -39,9 +39,34 @@
     role: JobBorg
     time: 18000  # 5 hrs
   canBeAntag: false
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Butchering
+  - Medical
+  - Pharmacology
+  - Chemistry
+  - Stasis
+  - Virology
+  - Surgery
+  - Engineering
+  - Construction
+  - Atmos
+  - Engines
+  - AdvancedEngines
+  - Supermatter
+  - Piloting
+  - Detective
+  - Shooting
+  - Xenobiology
+  - Exosuits
+  - Robotics
+  - Anomaly
+  - Artifacts
+  - PlantMutation
+  - Magic
   #goobcoins: 40 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - All
   weight: 10 # Goob Edit
   icon: JobIconStationAi
   supervisors: job-supervisors-rd
@@ -58,9 +83,34 @@
     - !type:OverallPlaytimeRequirement
       time: 36000 # 10 hrs
   canBeAntag: false
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Butchering
+  - Medical
+  - Pharmacology
+  - Chemistry
+  - Stasis
+  - Virology
+  - Surgery
+  - Engineering
+  - Construction
+  - Atmos
+  - Engines
+  - AdvancedEngines
+  - Supermatter
+  - Piloting
+  - Detective
+  - Shooting
+  - Xenobiology
+  - Exosuits
+  - Robotics
+  - Anomaly
+  - Artifacts
+  - PlantMutation
+  - Magic
   #goobcoins: 20 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - All
   icon: JobIconBorg
   supervisors: job-supervisors-rd
   jobEntity: PlayerBorgBattery

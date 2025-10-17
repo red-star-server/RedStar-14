@@ -73,6 +73,7 @@ using Content.Shared.Body.Events;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.PowerCell;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared._CorvaxNext.Silicons.Borgs.Components;
 using Content.Shared.Alert;
 using Content.Shared.Containers.ItemSlots;
@@ -132,8 +133,13 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
 
     public static readonly ProtoId<JobPrototype> BorgJobId = "Borg";
+    // RS14-start
+    private const float BorgAssemblyFailureChanceWithoutSkill = 0.35f;
+    private static readonly ProtoId<SkillPrototype> RoboticsSkill = "Robotics";
+    // RS14-end
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -189,6 +195,15 @@ public sealed partial class BorgSystem : SharedBorgSystem
         if (component.BrainEntity == null && brain != null &&
             _whitelistSystem.IsWhitelistPassOrNull(component.BrainWhitelist, used))
         {
+            // RS14-start
+            if (!_skills.HasSkill(args.User, RoboticsSkill)
+                && _random.Prob(BorgAssemblyFailureChanceWithoutSkill))
+            {
+                args.Handled = true;
+                return;
+            }
+            // RS14-end
+
             if (_mind.TryGetMind(used, out _, out var mind) &&
                 _player.TryGetSessionById(mind.UserId, out var session))
             {
@@ -208,6 +223,15 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         if (module != null && CanInsertModule(uid, used, component, module, args.User))
         {
+            // RS14-start
+            if (!_skills.HasSkill(args.User, RoboticsSkill)
+                && _random.Prob(BorgAssemblyFailureChanceWithoutSkill))
+            {
+                args.Handled = true;
+                return;
+            }
+            // RS14-end
+
             InsertModule((uid, component), used);
             _adminLog.Add(LogType.Action, LogImpact.Low,
                 $"{ToPrettyString(args.User):player} installed module {ToPrettyString(used)} into borg {ToPrettyString(uid)}");

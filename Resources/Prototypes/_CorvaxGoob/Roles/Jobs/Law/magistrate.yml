@@ -17,6 +17,12 @@
   icon: "JobIconMagistrate"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   access:
   - Command
   - Brig

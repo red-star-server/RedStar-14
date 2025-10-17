@@ -73,9 +73,13 @@
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-engineering
   #goobcoins: 20 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - ShuttleControl
-  - AdvancedBuilding
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Piloting
   guides: # goobstation
   - Construction
   - Power

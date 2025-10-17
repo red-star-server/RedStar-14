@@ -13,6 +13,12 @@
   icon: "JobIconCommandMaid"
   supervisors: job-supervisors-command
   setPreference: false
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   access:
   - Service
   - Janitor

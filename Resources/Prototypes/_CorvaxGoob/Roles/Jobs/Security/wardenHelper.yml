@@ -16,7 +16,12 @@
   supervisors: job-supervisors-hos
   weight: 5
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   - Shooting
   access:
   - Security

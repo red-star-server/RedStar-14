@@ -170,9 +170,16 @@
   supervisors: job-supervisors-captain
   canBeAntag: false
   #goobcoins: 45 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - ShuttleControl
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Piloting
+  - Detective
   - Shooting
+  - Exosuits
   guides: # goobstation
   - Security
   # - SpaceLaw Hidden by CorvaxGoob

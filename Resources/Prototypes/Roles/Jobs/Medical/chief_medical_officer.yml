@@ -161,9 +161,17 @@
   supervisors: job-supervisors-captain
   canBeAntag: false
   #goobcoins: 40 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Pharmacology
+  - Chemistry
+  - Stasis
+  - Virology
   - Surgery
-  - MedicalEquipment
   guides: # goobstation
   - Medical
   # - ChiefMedicalOfficer SOP Hidden by CorvaxGoob

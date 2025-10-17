@@ -8,11 +8,14 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Mech.Components;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Content.Shared.Tools.Systems;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes; // RS14
+using Robust.Shared.Random; // RS14
 
 namespace Content.Server.Mech.Systems;
 
@@ -25,6 +28,13 @@ public sealed class MechAssemblySystem : EntitySystem
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
+    [Dependency] private readonly IRobustRandom _random = default!; // RS14
+
+    // RS14-start
+    private const float RoboticsAssemblyFailureChanceWithoutSkill = 0.35f;
+    private static readonly ProtoId<SkillPrototype> RoboticsSkill = "Robotics";
+    // RS14-end
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -57,6 +67,15 @@ public sealed class MechAssemblySystem : EntitySystem
         {
             if (!val && _tag.HasTag(tagComp, tag))
             {
+                // RS14-start
+                if (!_skills.HasSkill(args.User, RoboticsSkill)
+                    && _random.Prob(RoboticsAssemblyFailureChanceWithoutSkill))
+                {
+                    args.Handled = true;
+                    return;
+                }
+                // RS14-end
+
                 component.RequiredParts[tag] = true;
                 _container.Insert(args.Used, component.PartsContainer);
                 break;

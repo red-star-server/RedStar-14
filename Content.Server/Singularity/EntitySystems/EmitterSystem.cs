@@ -58,10 +58,12 @@
 using System.Numerics;
 using System.Threading;
 using Content.Server.Administration.Logs;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Projectiles;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Database;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Interaction;
@@ -91,6 +93,12 @@ namespace Content.Server.Singularity.EntitySystems
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly ProjectileSystem _projectile = default!;
         [Dependency] private readonly GunSystem _gun = default!;
+        [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+
+        // RS14-start
+        private const float EmitterMishapChance = 0.50f;
+        private static readonly ProtoId<SkillPrototype> AdvancedEnginesSkill = "AdvancedEngines";
+        // RS14-end
 
         public override void Initialize()
         {
@@ -125,6 +133,14 @@ namespace Content.Server.Singularity.EntitySystems
 
             if (TryComp(uid, out PhysicsComponent? phys) && phys.BodyType == BodyType.Static)
             {
+                // RS14-start
+                if (!_skills.HasSkill(args.User, AdvancedEnginesSkill) && _random.Prob(EmitterMishapChance))
+                {
+                    args.Handled = true;
+                    return;
+                }
+                // RS14-end
+
                 if (!component.IsOn)
                 {
                     SwitchOn(uid, component);
