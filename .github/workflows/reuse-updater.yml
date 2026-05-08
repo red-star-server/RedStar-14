@@ -103,13 +103,27 @@ jobs:
             --pr-head-sha ${{ github.event.pull_request.head.sha }}
         working-directory: ${{ github.workspace }}
 
+      - name: Set commit author
+        run: |
+          if [ -n "${{ vars.CHANGELOG_USER }}" ]; then
+            echo "COMMIT_USER=${{ vars.CHANGELOG_USER }}" >> $GITHUB_ENV
+          else
+            echo "COMMIT_USER=github-actions[bot]" >> $GITHUB_ENV
+          fi
+          
+          if [ -n "${{ vars.CHANGELOG_EMAIL }}" ]; then
+            echo "COMMIT_EMAIL=${{ vars.CHANGELOG_EMAIL }}" >> $GITHUB_ENV
+          else
+            echo "COMMIT_EMAIL=github-actions[bot]@users.noreply.github.com" >> $GITHUB_ENV
+          fi
+
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: Automatically update REUSE headers"
-          commit_user_name: ${{ vars.CHANGELOG_USER || 'github-actions[bot]' }}
-          commit_user_email: ${{ vars.CHANGELOG_EMAIL || 'github-actions[bot]@users.noreply.github.com' }}
-          commit_author: ${{ vars.CHANGELOG_USER || 'github-actions[bot]' }} <${{ vars.CHANGELOG_EMAIL || 'github-actions[bot]@users.noreply.github.com' }}>
+          commit_user_name: ${{ env.COMMIT_USER }}
+          commit_user_email: ${{ env.COMMIT_EMAIL }}
+          commit_author: ${{ env.COMMIT_USER }} <${{ env.COMMIT_EMAIL }}>
           skip_dirty_check: false
           skip_fetch: true
 
