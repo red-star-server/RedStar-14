@@ -250,15 +250,27 @@ public partial class SharedBodySystem
     /// <summary>
     /// Removes the organ if it is inside of a body part.
     /// </summary>
-    public bool RemoveOrgan(EntityUid organId, OrganComponent? organ = null)
+    public bool RemoveOrgan(EntityUid organId, OrganComponent? organ = null, bool reparent = true)
     {
         if (!Containers.TryGetContainingContainer((organId, null, null), out var container))
             return false;
 
         var parent = container.Owner;
 
-        return HasComp<BodyPartComponent>(parent)
-            && Containers.Remove(organId, container);
+        if (!HasComp<BodyPartComponent>(parent))
+            return false;
+
+        // If the parent body-part has no valid world/map context (e.g. severed during cleanup),
+        // avoid auto-attaching the organ to map/grid, which emits transform warnings.
+        if (reparent
+            && TryComp<TransformComponent>(parent, out var parentXform)
+            && parentXform.MapUid != null
+            && parentXform.ParentUid.IsValid())
+        {
+            return Containers.Remove(organId, container, destination: parentXform.Coordinates);
+        }
+
+        return Containers.Remove(organId, container, reparent: false);
     }
 
     /// <summary>

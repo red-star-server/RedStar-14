@@ -1020,7 +1020,7 @@ public sealed partial class WoundSystem
             if (organ.Component.OrganSeverity == OrganSeverity.Normal)
             {
                 // TODO: SFX for organs getting not destroyed, but thrown out
-                _body.RemoveOrgan(organ.Id, organ.Component);
+                _body.RemoveOrgan(organ.Id, organ.Component, reparent: false);
                 var direction = _random.NextAngle().ToWorldVec();
                 var dropAngle = _random.NextFloat(0.8f, 1.2f);
                 var worldRotation = _transform.GetWorldRotation(organ.Id).ToVec();
