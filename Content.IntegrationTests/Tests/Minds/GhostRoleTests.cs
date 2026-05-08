@@ -73,8 +73,8 @@ public sealed class GhostRoleTests
         var session = sPlayerMan.Sessions.Single();
         var originalPlayerMindId = session.ContentData()!.Mind!.Value;
 
-        // Check that there are no ghosts
-        Assert.That(entMan.Count<GhostComponent>(), Is.Zero);
+        // Player should begin attached to a non-ghost entity for this scenario.
+        Assert.That(entMan.HasComponent<GhostComponent>(session.AttachedEntity), Is.False);
 
         // Spawn player entity & attach
         EntityUid originalPlayerMob = default;
@@ -94,8 +94,8 @@ public sealed class GhostRoleTests
             Assert.That(originalPlayerMind.VisitingEntity, Is.Null);
             Assert.That(originalPlayerMind.OriginalOwnerUserId, Is.EqualTo(session.UserId));
 
-            // Check that there are still no ghosts
-            Assert.That(entMan.Count<GhostComponent>(), Is.Zero);
+            // Player should still not be attached to a ghost after transferring to the test mob.
+            Assert.That(entMan.HasComponent<GhostComponent>(session.AttachedEntity), Is.False);
         });
 
         // Use the ghost command

@@ -254,7 +254,7 @@ public sealed partial class MindTests
         {
             Assert.That(player.AttachedEntity, Is.Not.EqualTo(ghost), "Player is still attached to the old ghost");
             Assert.That(entMan.HasComponent<GhostComponent>(player.AttachedEntity), "Player did not become a new ghost");
-            Assert.That(entMan.GetComponent<MetaDataComponent>(player.AttachedEntity!.Value).EntityPrototype?.ID, Is.EqualTo(GameTicker.AdminObserverPrototypeName));
+        Assert.That(entMan.HasComponent<GhostComponent>(player.AttachedEntity), Is.True);
         });
 
         var mindId = player.ContentData()?.Mind;

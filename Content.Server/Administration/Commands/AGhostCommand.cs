@@ -37,6 +37,7 @@ using Content.Shared.Mind;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Console;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 
 namespace Content.Server.Administration.Commands;
@@ -122,9 +123,15 @@ public sealed class AGhostCommand : LocalizedCommands
 
         var canReturn = mind.CurrentEntity != null
                         && !_entities.HasComponent<GhostComponent>(mind.CurrentEntity);
-        var coordinates = player!.AttachedEntity != null
-            ? _entities.GetComponent<TransformComponent>(player.AttachedEntity.Value).Coordinates
-            : gameTicker.GetObserverSpawnPoint();
+        var coordinates = gameTicker.GetObserverSpawnPoint();
+        if (player!.AttachedEntity is { } attachedEntity
+            && _entities.TryGetComponent<TransformComponent>(attachedEntity, out var attachedXform)
+            && attachedXform.MapID != MapId.Nullspace
+            && attachedXform.ParentUid.IsValid())
+        {
+            coordinates = attachedXform.Coordinates;
+        }
+
         var ghost = _entities.SpawnEntity(GameTicker.AdminObserverPrototypeName, coordinates);
 
         if (canReturn)
