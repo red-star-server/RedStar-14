@@ -96,7 +96,7 @@
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     pocket2: BookMedicalReferenceBook
-    socks: ClothingUnderwearSocksIntern # RS14
+    socks: ClothingUnderwearSocksMedicalIntern # RS14
   #storage:
     #back:
     #- Stuff

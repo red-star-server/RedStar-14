@@ -217,7 +217,7 @@
     ears: ClothingHeadsetAltCommand
     belt: BoxFolderClipboard
     eyes: ClothingEyesHudCommand
-    socks: ClothingUnderwearSocksHeadofPersonnel # RS14
+    socks: ClothingUnderwearSocksHeadOfPersonnel # RS14
   storage:
     back:
     - Flash
