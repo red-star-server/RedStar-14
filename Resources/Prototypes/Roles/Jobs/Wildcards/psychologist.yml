@@ -121,6 +121,7 @@
     shoes: ClothingShoesLeather
     id: PsychologistPDA
     ears: ClothingHeadsetMedical
+    socks: ClothingUnderwearSocksPsychologist # RS14
   storage:
     back:
     - RubberStampPsychologist
