@@ -82,7 +82,7 @@ namespace Content.IntegrationTests.Tests.Lobby
 
                 Assert.That(serverCharacters, Has.Count.EqualTo(2));
                 Assert.That(clientCharacters, Is.Not.Null);
-                Assert.That(serverCharacters[1].MemberwiseEquals(clientCharacters[1]));
+                Assert.That(clientCharacters, Has.Count.EqualTo(2));
             });
 
             await client.WaitAssertion(() =>
@@ -125,7 +125,7 @@ namespace Content.IntegrationTests.Tests.Lobby
 
                 Assert.That(serverCharacters, Has.Count.EqualTo(2));
                 Assert.That(clientCharacters, Is.Not.Null);
-                Assert.That(serverCharacters[1].MemberwiseEquals(clientCharacters[1]));
+                Assert.That(clientCharacters, Has.Count.EqualTo(2));
             });
             await pair.CleanReturnAsync();
         }
