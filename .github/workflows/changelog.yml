@@ -17,7 +17,7 @@ env:
 
 jobs:
   changelog:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     permissions:
       contents: write
@@ -60,3 +60,17 @@ jobs:
           git push
         shell: bash
         continue-on-error: true
+
+      - name: Send Changelog to Discord
+        uses: sarisia/actions-status-discord@v1
+        if: always() 
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          title: "${{ github.event.pull_request.title }}"
+          description: |
+            **Список изменений из PR #${{ env.PR_NUMBER }}**
+            
+            ${{ github.event.pull_request.body }}
+          url: ${{ github.event.pull_request.html_url }}
+          color: 0xff0000
+          footer: "Автор: ${{ github.event.pull_request.user.login }} • PR #${{ env.PR_NUMBER }} • ${{ github.event.pull_request.merged_at }}"
