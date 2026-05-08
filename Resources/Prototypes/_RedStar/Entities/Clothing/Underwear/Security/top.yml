@@ -27,7 +27,7 @@
 
 - type: entity
   parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopBraHeadofSecurity
+  id: ClothingUnderwearTopBraHeadOfSecurity
   name: head of security's bra
   description: Standard head of security's underwear.
   components:

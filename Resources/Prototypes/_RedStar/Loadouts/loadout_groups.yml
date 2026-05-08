@@ -50,16 +50,6 @@
   - UnderwearTopBraTechnicalAssistant
   - UnderwearBottomPantiesTechnicalAssistant
 
-- type: loadoutGroup
-  id: SeniorEngineerUnderwear
-  name: loadout-group-underwear
-  minLimit: 2
-  hidden: true
-  loadouts:
-  - UnderwearBottomBoxersSeniorEngineer
-  - UnderwearTopBraSeniorEngineer
-  - UnderwearBottomPantiesSeniorEngineer
-
 # Cargo
 - type: loadoutGroup
   id: CargoTechnicianUnderwear
@@ -90,16 +80,6 @@
   - UnderwearBottomBoxersSalvageSpecialist
   - UnderwearTopBraSalvageSpecialist
   - UnderwearBottomPantiesSalvageSpecialist
-
-- type: loadoutGroup
-  id: SeniorCourierUnderwear
-  name: loadout-group-underwear
-  minLimit: 2
-  hidden: true
-  loadouts:
-  - UnderwearBottomBoxersSeniorCourier
-  - UnderwearTopBraSeniorCourier
-  - UnderwearBottomPantiesSeniorCourier
 
 # Civilian
 - type: loadoutGroup
@@ -275,16 +255,6 @@
   - UnderwearTopBraScientist
   - UnderwearBottomPantiesScientist
 
-- type: loadoutGroup
-  id: SeniorResearcherUnderwear
-  name: loadout-group-underwear
-  minLimit: 2
-  hidden: true
-  loadouts:
-  - UnderwearBottomBoxersSeniorResearcher
-  - UnderwearTopBraSeniorResearcher
-  - UnderwearBottomPantiesSeniorResearcher
-
 # Security
 - type: loadoutGroup
   id: BrigmedicUnderwear
@@ -345,16 +315,6 @@
   - UnderwearBottomBoxersWarden
   - UnderwearTopBraWarden
   - UnderwearBottomPantiesWarden
-
-- type: loadoutGroup
-  id: SeniorOfficerUnderwear
-  name: loadout-group-underwear
-  minLimit: 2
-  hidden: true
-  loadouts:
-  - UnderwearBottomBoxersSeniorOfficer
-  - UnderwearTopBraSeniorOfficer
-  - UnderwearBottomPantiesSeniorOfficer
 
 # Dignitary
 - type: loadoutGroup
@@ -446,23 +406,3 @@
   - UnderwearBottomBoxersPsychologist
   - UnderwearTopBraPsychologist
   - UnderwearBottomPantiesPsychologist
-
-- type: loadoutGroup
-  id: SeniorPhysicianUnderwear
-  name: loadout-group-underwear
-  minLimit: 2
-  hidden: true
-  loadouts:
-  - UnderwearBottomBoxersSeniorPhysician
-  - UnderwearTopBraSeniorPhysician
-  - UnderwearBottomPantiesSeniorPhysician
-
-- type: loadoutGroup
-  id: VirologistUnderwear
-  name: loadout-group-underwear
-  minLimit: 2
-  hidden: true
-  loadouts:
-  - UnderwearBottomBoxersVirologist
-  - UnderwearTopBraVirologist
-  - UnderwearBottomPantiesVirologist
