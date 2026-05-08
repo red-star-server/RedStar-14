@@ -112,7 +112,7 @@
   equipment:
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
-    socks: ClothingUnderwearSocksDoctor # RS14
+    socks: ClothingUnderwearSocksMedicalDoctor # RS14
   #storage:
     #back:
     #- Stuff

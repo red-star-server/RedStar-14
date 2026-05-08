@@ -9,7 +9,7 @@
 
 - type: entity
   parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopBraCMO
+  id: ClothingUnderwearTopBraChiefMedicalOfficer
   name: chief medical officer's bra
   description: Standard chief medical officer's underwear.
   components:
@@ -18,7 +18,7 @@
 
 - type: entity
   parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopBraDoctor
+  id: ClothingUnderwearTopBraMedicalDoctor
   name: doctor's bra
   description: Standard doctor's underwear.
   components:
@@ -27,7 +27,7 @@
 
 - type: entity
   parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopBraIntern
+  id: ClothingUnderwearTopBraMedicalIntern
   name: medical intern's bra
   description: Standard medical intern's underwear.
   components:

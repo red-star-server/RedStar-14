@@ -255,6 +255,16 @@
   - UnderwearTopBraScientist
   - UnderwearBottomPantiesScientist
 
+- type: loadoutGroup
+  id: ResearchAssistantUnderwear
+  name: loadout-group-underwear
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - UnderwearBottomBoxersResearchAssistant
+  - UnderwearTopBraResearchAssistant
+  - UnderwearBottomPantiesResearchAssistant
+
 # Security
 - type: loadoutGroup
   id: BrigmedicUnderwear

@@ -54,7 +54,7 @@
 
 - type: entity
   parent: ClothingUnderwearTopBase
-  id: ClothingUnderwearTopBraHeadofPersonnel
+  id: ClothingUnderwearTopBraHeadOfPersonnel
   name: head of personnel's bra
   description: Standard head of personnel's underwear.
   components:

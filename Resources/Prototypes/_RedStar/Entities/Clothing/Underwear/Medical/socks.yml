@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingUnderwearSocksBase
-  id: ClothingUnderwearSocksCMO
+  id: ClothingUnderwearSocksChiefMedicalOfficer
   name: chief medical officer's socks
   description: Standard chief medical officer's socks.
   components:
@@ -18,7 +18,7 @@
 
 - type: entity
   parent: ClothingUnderwearSocksBase
-  id: ClothingUnderwearSocksIntern
+  id: ClothingUnderwearSocksMedicalIntern
   name: medical intern's socks
   description: Standard medical intern's socks.
   components:
@@ -27,7 +27,7 @@
 
 - type: entity
   parent: ClothingUnderwearSocksBase
-  id: ClothingUnderwearSocksDoctor
+  id: ClothingUnderwearSocksMedicalDoctor
   name: doctor's socks
   description: Standard doctor's socks.
   components:

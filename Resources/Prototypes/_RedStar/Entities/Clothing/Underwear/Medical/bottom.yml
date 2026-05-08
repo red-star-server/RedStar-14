@@ -10,7 +10,7 @@
 
 - type: entity
   parent: ClothingUnderwearBottomBase
-  id: ClothingUnderwearBottomBoxersCMO
+  id: ClothingUnderwearBottomBoxersChiefMedicalOfficer
   name: chief medical officer's boxers
   description: Standard chief medical officer's underwear.
   components:
@@ -19,7 +19,7 @@
 
 - type: entity
   parent: ClothingUnderwearBottomBase
-  id: ClothingUnderwearBottomBoxersDoctor
+  id: ClothingUnderwearBottomBoxersMedicalDoctor
   name: doctor's boxers
   description: Standard doctor's underwear.
   components:
@@ -28,7 +28,7 @@
 
 - type: entity
   parent: ClothingUnderwearBottomBase
-  id: ClothingUnderwearBottomBoxersIntern
+  id: ClothingUnderwearBottomBoxersMedicalIntern
   name: medical intern's boxers
   description: Standard medical intern's underwear.
   components:
@@ -74,7 +74,7 @@
 
 - type: entity
   parent: ClothingUnderwearBottomBase
-  id: ClothingUnderwearBottomPantiesCMO
+  id: ClothingUnderwearBottomPantiesChiefMedicalOfficer
   name: chief medical officer's panties
   description: Standard chief medical officer's underwear.
   components:
@@ -83,7 +83,7 @@
 
 - type: entity
   parent: ClothingUnderwearBottomBase
-  id: ClothingUnderwearBottomPantiesDoctor
+  id: ClothingUnderwearBottomPantiesMedicalDoctor
   name: doctor's panties
   description: Standard doctor's underwear.
   components:
@@ -92,7 +92,7 @@
 
 - type: entity
   parent: ClothingUnderwearBottomBase
-  id: ClothingUnderwearBottomPantiesIntern
+  id: ClothingUnderwearBottomPantiesMedicalIntern
   name: medical intern's panties
   description: Standard medical intern's underwear.
   components:

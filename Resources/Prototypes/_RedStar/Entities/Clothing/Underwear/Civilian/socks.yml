@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingUnderwearSocksBase
-  id: ClothingUnderwearSocksHeadofPersonnel
+  id: ClothingUnderwearSocksHeadOfPersonnel
   name: head of personnel's socks
   description: Standard head of personnel's socks.
   components:
