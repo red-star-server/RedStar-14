@@ -96,6 +96,7 @@
     id: TechnicalAssistantPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
+    socks: ClothingUnderwearSocksTechnicalAssistant # RS14
     pocket2: BookEngineersHandbook
   #storage:
     #back:

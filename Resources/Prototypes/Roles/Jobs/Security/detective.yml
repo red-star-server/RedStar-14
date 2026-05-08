@@ -110,6 +110,7 @@
     #gloves: ClothingHandsGlovesForensic - Goobstation, moved to loadouts
     ears: ClothingHeadsetAltSecurityRegular # Goobstation
     belt: ClothingBeltHolsterFilled
+    socks: ClothingUnderwearSocksDetective # RS14
   storage:
     back:
     - Flash

@@ -147,6 +147,7 @@
     id: MimePDA
     pocket1: CrayonMime
     ears: ClothingHeadsetService
+    socks: ClothingUnderwearSocksMime # RS14
   storage:
     back:
     - RubberStampMime

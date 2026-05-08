@@ -42,8 +42,9 @@ namespace Content.Shared.Humanoid.Markings
         Legs,
         Groin, // Shitmed Change
         Wings, // For IPC wings porting from SimpleStation
-        Underwear,
-        Undershirt,
+        // RS14-disabled
+        // Underwear,
+        // Undershirt,
         Tail,
         Overlay
     }
@@ -62,8 +63,9 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.HeadTop => MarkingCategories.HeadTop,
                 HumanoidVisualLayers.HeadSide => MarkingCategories.HeadSide,
                 HumanoidVisualLayers.Snout => MarkingCategories.Snout,
-                HumanoidVisualLayers.Undershirt => MarkingCategories.Undershirt,
-                HumanoidVisualLayers.Underwear => MarkingCategories.Underwear,
+                // RS14-disabled
+                // HumanoidVisualLayers.Undershirt => MarkingCategories.Undershirt,
+                // HumanoidVisualLayers.Underwear => MarkingCategories.Underwear,
                 HumanoidVisualLayers.Chest => MarkingCategories.Chest,
                 HumanoidVisualLayers.Groin => MarkingCategories.Groin, // Shitmed Change
                 HumanoidVisualLayers.RArm => MarkingCategories.RightArm,

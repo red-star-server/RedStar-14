@@ -1,0 +1,127 @@
+# Boxers
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersChemist
+  name: chemist's boxers
+  description: Standard chemist's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/chemist/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersCMO
+  name: chief medical officer's boxers
+  description: Standard chief medical officer's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/cmo/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersDoctor
+  name: doctor's boxers
+  description: Standard doctor's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/doctor/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersIntern
+  name: medical intern's boxers
+  description: Standard medical intern's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/intern/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersParamedic
+  name: paramedic's boxers
+  description: Standard paramedic's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/paramedic/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersPsychologist
+  name: psychologist's boxers
+  description: Standard psychologist's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/psychologist/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersSeniorPhysician
+  name: senior physician's boxers
+  description: Standard senior physician's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/senior_physician/man.rsi
+
+# Panties
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesChemist
+  name: chemist's panties
+  description: Standard chemist's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/chemist/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesCMO
+  name: chief medical officer's panties
+  description: Standard chief medical officer's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/cmo/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesDoctor
+  name: doctor's panties
+  description: Standard doctor's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/doctor/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesIntern
+  name: medical intern's panties
+  description: Standard medical intern's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/intern/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesParamedic
+  name: paramedic's panties
+  description: Standard paramedic's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/paramedic/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesPsychologist
+  name: psychologist's panties
+  description: Standard psychologist's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/psychologist/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesSeniorPhysician
+  name: senior physician's panties
+  description: Standard senior physician's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/senior_physician/women/pants.rsi

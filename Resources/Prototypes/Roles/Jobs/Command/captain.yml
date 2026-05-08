@@ -199,6 +199,7 @@
     #gloves: ClothingHandsGlovesCaptain - Goobstation, moved to loadouts
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand
+    socks: ClothingUnderwearSocksCaptain # RS14
   storage:
     back:
     - Flash

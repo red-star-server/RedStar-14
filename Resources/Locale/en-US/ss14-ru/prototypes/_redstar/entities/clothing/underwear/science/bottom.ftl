@@ -1,0 +1,16 @@
+ent-ClothingUnderwearBottomBoxersResearchAssistant = боксеры младшего научного сотрудника
+    .desc = Cтандартное нижнее бельё младшего научного сотрудника.
+ent-ClothingUnderwearBottomBoxersResearchDirector = боксеры главного научного сотрудника
+    .desc = Cтандартное нижнее бельё главного научного сотрудника.
+ent-ClothingUnderwearBottomBoxersScientist = боксеры научного сотрудника
+    .desc = Cтандартное нижнее бельё научного сотрудника.
+ent-ClothingUnderwearBottomBoxersSeniorResearcher = боксеры ведущего научного сотрудника
+    .desc = Cтандартное нижнее бельё ведущего научного сотрудника.
+ent-ClothingUnderwearBottomPantiesResearchAssistant = стринги младшего научного сотрудника
+    .desc = Cтандартное нижнее бельё младшего научного сотрудника.
+ent-ClothingUnderwearBottomPantiesResearchDirector = стринги главного научного сотрудника
+    .desc = Cтандартное нижнее бельё главного научного сотрудника.
+ent-ClothingUnderwearBottomPantiesScientist = стринги научного сотрудника
+    .desc = Cтандартное нижнее бельё научного сотрудника.
+ent-ClothingUnderwearBottomPantiesSeniorResearcher = стринги ведущего научного сотрудника
+    .desc = Cтандартное нижнее бельё ведущего научного сотрудника.

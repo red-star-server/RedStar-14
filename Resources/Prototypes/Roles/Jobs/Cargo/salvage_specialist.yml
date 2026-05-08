@@ -99,6 +99,7 @@
     id: SalvagePDA
 ## Goob comment out - jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     ears: ClothingHeadsetCargo
+    socks: ClothingUnderwearSocksSalvage # RS14
   storage: # DeltaV: Add mining voucher
     back:
     - MiningVoucher

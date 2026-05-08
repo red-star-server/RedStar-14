@@ -101,6 +101,7 @@
     shoes: ClothingShoesBootsLaceup
     id: LawyerPDA
     ears: ClothingHeadsetLawyer # CorvaxGoob: ClothingHeadsetSecurity > ClothingHeadsetLawyer
+    socks: ClothingUnderwearSockLawyer # RS14
   inhand:
     - BriefcaseBrownFilled
   storage:

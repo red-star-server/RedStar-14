@@ -192,6 +192,7 @@
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetAltEngineering # Goobstation
     belt: ClothingBeltUtilityEngineering
+    socks: ClothingUnderwearSocksChiefEngineer # RS14
   storage:
     back:
     - Flash

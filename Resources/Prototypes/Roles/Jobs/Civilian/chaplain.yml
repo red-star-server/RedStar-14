@@ -94,6 +94,7 @@
     shoes: ClothingShoesColorBlack
     id: ChaplainPDA
     ears: ClothingHeadsetService
+    socks: ClothingUnderwearSocksChaplain # RS14
   storage:
     back:
     - ChaplainUndeterminedBible

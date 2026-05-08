@@ -100,6 +100,7 @@
   equipment:
     id: PassengerPDA
     ears: ClothingHeadsetGrey
+    socks: ClothingUnderwearSocksNormal # RS14
   #storage:
     #back:
     #- Stuff

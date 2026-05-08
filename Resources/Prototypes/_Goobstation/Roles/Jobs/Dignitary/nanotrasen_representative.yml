@@ -159,6 +159,7 @@
     id: NanotrasenRepresentativePDA
     eyes: ClothingEyesGlassesCommand
     ears: ClothingHeadsetAltCentCom
+    socks: ClothingUnderwearSockNanotrasenRepresentative # RS14
     pocket1: UniqueNanorepLockerTeleporter
   storage:
     back:

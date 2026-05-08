@@ -186,6 +186,7 @@
     id: QuartermasterPDA
     ears: ClothingHeadsetAltCargo # Goobstation
     belt: BoxFolderClipboard
+    socks: ClothingUnderwearSocksQuartermaster # RS14
     pocket1: AppraisalTool
   storage:
     back:

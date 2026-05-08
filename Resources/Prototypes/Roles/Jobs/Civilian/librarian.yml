@@ -85,6 +85,7 @@
     shoes: ClothingShoesBootsLaceup
     id: LibrarianPDA
     ears: ClothingHeadsetService
+    socks: ClothingUnderwearSocksLibrarian # RS14
     pocket1: d20Dice
     pocket2: HandLabeler # for making named bestsellers
   storage:

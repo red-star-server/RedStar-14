@@ -118,6 +118,7 @@
     id: ChefPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltChefFilled
+    socks: ClothingUnderwearSocksChef # RS14
   #storage:
     #back:
     #- Stuff

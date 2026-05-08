@@ -1,0 +1,73 @@
+# Boxers
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersResearchAssistant
+  name: research assistant's boxers
+  description: Standard research assistant's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Science/research_assistant/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersResearchDirector
+  name: research director's boxers
+  description: Standard research director's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Science/research_director/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersScientist
+  name: scientist's boxers
+  description: Standard scientist's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Science/scientist/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersSeniorResearcher
+  name: боксеры ведущего научного сотрудника
+  description: Cтандартное нижнее бельё ведущего научного сотрудника.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Science/senior_researcher/man.rsi
+
+# Panties
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesResearchAssistant
+  name: research assistant's panties
+  description: Standard research assistant's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Science/research_assistant/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesResearchDirector
+  name: research director's panties
+  description: Standard research director's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Science/research_director/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesScientist
+  name: scientist's panties
+  description: Standard scientist's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Science/scientist/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesSeniorResearcher
+  name: senior researcher's panties
+  description: Standard senior researcher's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Science/senior_researcher/women/pants.rsi

@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: ClothingUnderwearTopTelnikPolitOtdel
+  name: political department's telnik
+  description: Standard underwear for Political Department staff.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Politruk/Top/politotdel_telnik
+
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: ClothingUnderwearTopBraPolitOtdel
+  name: political department's bra
+  description: Standard underwear for female Political Department staff.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Politruk/Top/politotdelbra.rsi

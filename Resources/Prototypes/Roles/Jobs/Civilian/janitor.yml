@@ -99,6 +99,7 @@
     id: JanitorPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
+    socks: ClothingUnderwearSocksJanitor # RS14
     pocket1: KeyRingJanitor # Goobstation
 
 - type: startingGear
@@ -110,6 +111,7 @@
     head: ClothingHeadHatCatEars
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
+    socks: ClothingUnderwearSocksJanitor # RS14
     pocket1: KeyRingJanitor # Goobstation
 
 

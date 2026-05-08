@@ -200,6 +200,7 @@
     ears: ClothingHeadsetAltMedical # Goobstation
 #   eyes: ClothingEyesGlassesMed # Goobstation # CorvaxGoob-loadouts: replaced on a ChiefMedicalOfficerGlasses loadout
     belt: ClothingBeltMedicalFilled
+    socks: ClothingUnderwearSocksCMO # RS14
   storage:
     back:
     - Flash

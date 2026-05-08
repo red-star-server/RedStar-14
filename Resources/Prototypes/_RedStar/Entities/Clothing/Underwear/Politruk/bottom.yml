@@ -1,0 +1,19 @@
+# Boxers
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersPolitOtdel
+  name: political department's boxers
+  description: Standard underwear for Political Department staff.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Politruk/Bottom/politotdelboxers.rsi 
+
+# Panties
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomStringsolitOtdel
+  name: political department's strings
+  description: Standard underwear for female Political Department staff.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Politruk/Bottom/politotdelstrings.rsi

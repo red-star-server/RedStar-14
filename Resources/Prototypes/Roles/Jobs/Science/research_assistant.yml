@@ -76,6 +76,7 @@
     shoes: ClothingShoesColorWhite
     id: ResearchAssistantPDA
     ears: ClothingHeadsetScience
+    socks: ClothingUnderwearSocksResearchAssistant # RS14
     pocket2: BookScientistsGuidebook
   #storage:
     #back:

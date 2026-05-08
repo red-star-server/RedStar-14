@@ -1,0 +1,16 @@
+ent-ClothingUnderwearBottomBoxersCargoTechnician = боксеры грузчика
+    .desc = Cтандартное нижнее бельё грузчика.
+ent-ClothingUnderwearBottomBoxersQuartermaster = боксеры завхоза
+    .desc = Cтандартное нижнее бельё завхоза.
+ent-ClothingUnderwearBottomBoxersSalvageSpecialist = боксеры шахтёра
+    .desc = Cтандартное нижнее бельё шахтёра.
+ent-ClothingUnderwearBottomBoxersSeniorCourier = боксеры ведущего логиста
+    .desc = Cтандартное нижнее бельё ведущего логиста.
+ent-ClothingUnderwearBottomPantiesCargoTechnician = стринги грузчика
+    .desc = Cтандартное нижнее бельё грузчика.
+ent-ClothingUnderwearBottomPantiesQuartermaster = стринги завхоза
+    .desc = Cтандартное нижнее бельё завхоза.
+ent-ClothingUnderwearBottomPantiesSalvageSpecialist = стринги шахтёра
+    .desc = Cтандартное нижнее бельё шахтёра.
+ent-ClothingUnderwearBottomPantiesSeniorCourier = стринги ведущего логиста
+    .desc = Cтандартное нижнее бельё ведущего логиста.

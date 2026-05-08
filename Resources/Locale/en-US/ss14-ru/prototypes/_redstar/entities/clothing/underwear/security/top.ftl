@@ -1,0 +1,14 @@
+ent-ClothingUnderwearTopBraBrigmedic = бра дежурного врача
+    .desc = Cтандартное нижнее бельё дежурного врача.
+ent-ClothingUnderwearTopBraSecurityCadet = бра младшего милиционера
+    .desc = Cтандартное нижнее бельё младшего милиционера.
+ent-ClothingUnderwearTopBraDetective = бра следователя
+    .desc = Cтандартное нижнее бельё следователя.
+ent-ClothingUnderwearTopBraHeadofSecurity = бра начальника милции
+    .desc = Cтандартное нижнее бельё начальника милции.
+ent-ClothingUnderwearTopBraSecurityOfficer = бра милиционера
+    .desc = Cтандартное нижнее бельё милиционера.
+ent-ClothingUnderwearTopBraSeniorOfficer = бра старшего милиционера
+    .desc = Cтандартное нижнее бельё старшего милиционера.
+ent-ClothingUnderwearTopBraWarden = бра старшего следователя
+    .desc = Cтандартное нижнее бельё старшего следователя.

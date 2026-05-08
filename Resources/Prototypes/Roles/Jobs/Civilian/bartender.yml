@@ -96,6 +96,7 @@
     shoes: ClothingShoesColorBlack
     id: BartenderPDA
     ears: ClothingHeadsetService
+    socks: ClothingUnderwearSocksBartender # RS14
   #storage:
     #back:
     #- Stuff

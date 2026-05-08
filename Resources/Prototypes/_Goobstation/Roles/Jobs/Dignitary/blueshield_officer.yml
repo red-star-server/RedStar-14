@@ -106,6 +106,7 @@
     id: BlueshieldPDA
     ears: ClothingHeadsetAltBlueshield
     belt: ClothingBeltAssaultFilled
+    socks: ClothingUnderwearSocksBlueShieldOfficer # RS14
     pocket1: UniqueBlueshieldOfficerLockerTeleporter
   storage:
     back:

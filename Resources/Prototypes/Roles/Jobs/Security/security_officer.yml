@@ -129,6 +129,7 @@
     eyes: ClothingEyesGlassesSecurity
     ears: ClothingHeadsetAltSecurityRegular # Goobstation
     pocket1: WeaponPistolMk58Empty # CorvaxGoob : поставлен пустой прототип пистолета
+    socks: ClothingUnderwearSocksSecurityOfficer # RS14
   storage:
     back:
     - Flash

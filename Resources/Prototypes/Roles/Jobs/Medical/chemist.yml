@@ -98,6 +98,7 @@
     belt: ChemBagFilled
     pocket1: HandLabeler
     eyes: ClothingEyesGlassesChemical
+    socks: ClothingUnderwearSocksChemist # RS14
   #storage:
     #back:
     #- Stuff

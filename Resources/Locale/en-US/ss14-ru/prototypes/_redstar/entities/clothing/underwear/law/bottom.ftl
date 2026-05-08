@@ -1,0 +1,12 @@
+ent-ClothingUnderwearBottomBoxersIAA = боксеры агента внутренних дел
+    .desc = Cтандартное нижнее бельё агента внутренних дел.
+ent-ClothingUnderwearBottomBoxersLawyer = боксеры юриста
+    .desc = Cтандартное нижнее бельё юриста.
+ent-ClothingUnderwearBottomBoxersMagistrate = боксеры судьи
+    .desc = Cтандартное нижнее бельё судьи.
+ent-ClothingUnderwearBottomPantiesIAA = стринги агента следственного комитета
+    .desc = Cтандартное нижнее бельё агента следственного комитета.
+ent-ClothingUnderwearBottomPantiesLawyer = стринги юриста
+    .desc = Cтандартное нижнее бельё юриста.
+ent-ClothingUnderwearBottomPantiesMagistrate = стринги судьи
+    .desc = Cтандартное нижнее бельё судьи.

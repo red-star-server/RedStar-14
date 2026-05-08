@@ -42,6 +42,7 @@
     eyes: ClothingEyesGlassesCommand
     gloves: ClothingHandsGlovesColorWhite
     ears: ClothingHeadsetMagistrate
+    socks: ClothingUnderwearSockMagistrate # RS14
     pocket1: BoxFolderBlack
   storage:
     back:

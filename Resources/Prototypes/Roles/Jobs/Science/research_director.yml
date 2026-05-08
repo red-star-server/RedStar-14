@@ -187,6 +187,7 @@
   equipment:
     id: RnDPDA
     ears: ClothingHeadsetAltScience # Goobstation
+    socks: ClothingUnderwearSocksResearchDirector # RS14
   storage:
     back:
     - Flash

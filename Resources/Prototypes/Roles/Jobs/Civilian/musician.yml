@@ -79,6 +79,7 @@
     shoes: ClothingShoesBootsLaceup
     id: MusicianPDA
     ears: ClothingHeadsetService
+    socks: ClothingUnderwearSocksMusician
   #storage:
     #back:
     #- Stuff

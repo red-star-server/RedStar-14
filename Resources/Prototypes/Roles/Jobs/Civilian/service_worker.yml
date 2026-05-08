@@ -104,6 +104,7 @@
     shoes: ClothingShoesColorBlack
     id: ServiceWorkerPDA
     ears: ClothingHeadsetService
+    socks: ClothingUnderwearSocksService # RS14
   #storage:
     #back:
     #- Stuff

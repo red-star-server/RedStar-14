@@ -1,0 +1,128 @@
+# Boxers
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersBrigmedic
+  name: brigmedic's boxers
+  description: Standard brigmedic's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/brigmedic/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersSecurityCadet
+  name: security cadet's boxers
+  description: Standard security cadet's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/cadet/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersDetective
+  name: detective's boxers
+  description: Standard detective's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/detective/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersHeadofSecurity
+  name: head of security's boxers
+  description: Standard head of security's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/head_of_security/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersSecurityOfficer
+  name: security officer's boxers
+  description: Standard security officer's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/security_officer/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersSeniorOfficer
+  name: senior officer's boxers
+  description: Standard senior officer's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/senior_officer/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersWarden
+  name: warden's boxers
+  description: Standard warden's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/warden/man.rsi
+
+
+# Panties
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesBrigmedic
+  name: brigmedic's panties
+  description: Standard brigmedic's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/brigmedic/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesSecurityCadet
+  name: security cadet's panties
+  description: Standard security cadet's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/cadet/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesDetective
+  name: detective's panties
+  description: Standard detective's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/detective/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesHeadofSecurity
+  name: head of security's panties
+  description: Standard head of security's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/head_of_security/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesSecurityOfficer
+  name: security officer's panties
+  description: Standard security officer's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/security_officer/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesSeniorOfficer
+  name: senior officer's panties
+  description: Standard senior officer's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/senior_officer/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesWarden
+  name: warden's panties
+  description: Standard warden's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Security/warden/women/pants.rsi

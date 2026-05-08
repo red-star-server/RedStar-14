@@ -47,8 +47,8 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
-    Underwear: MobHumanoidAnyMarking
-    Undershirt: MobHumanoidAnyMarking
+    #Underwear: MobHumanoidAnyMarking
+    #Undershirt: MobHumanoidAnyMarking
     Chest: MobYowieChest
     Groin: MobYowieGroin
     Eyes: MobHumanoidEyes
@@ -87,12 +87,12 @@
     Chest:
       points: 10
       required: false
-    Underwear:
-      points: 1
-      required: false
-    Undershirt:
-      points: 1
-      required: false
+    #Underwear:
+    #  points: 1
+    #  required: false
+    #Undershirt:
+    #  points: 1
+    #  required: false
     RightLeg:
       points: 2
       required: false

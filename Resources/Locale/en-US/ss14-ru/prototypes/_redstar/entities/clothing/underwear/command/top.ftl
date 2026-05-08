@@ -1,0 +1,12 @@
+ent-ClothingUnderwearTopBraCaptain = бра капитана
+    .desc = Cтандартное нижнее бельё капитана.
+ent-ClothingUnderwearTopBraCBURN = бра РХБЗЗ
+    .desc = Cтандартное нижнее бельё РХБЗЗ.
+ent-ClothingUnderwearTopBraCentcomm = бра генерального штаба
+    .desc = Cтандартное нижнее бельё генерального штаба.
+ent-ClothingUnderwearTopBraDeathSquad = бра бойца отряда специального назначения "Дым"
+    .desc = Cтандартное нижнее бельё бойца отряда специального назначения "Дым".
+ent-ClothingUnderwearTopBraERT = бра СОБР
+    .desc = Cтандартное нижнее бельё СОБР.
+ent-ClothingUnderwearTopBraBlueShieldOfficer = бра оперативника КГБ
+    .desc = Cтандартное нижнее бельё оперативника КГБ.

@@ -97,6 +97,7 @@
     id: AtmosPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
+    socks: ClothingUnderwearSocksAtmos # RS14
   #storage:
     #back:
     #- Stuff

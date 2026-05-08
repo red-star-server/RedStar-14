@@ -131,6 +131,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - CaptainUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - CaptainEnvirohelm
   - CaptainEnvirosuit
@@ -152,6 +153,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - HeadOfPersonnelUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - HoPEnvirohelm
   - HoPEnvirosuit
@@ -186,6 +188,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - PassengerUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - AssistantEnvirohelm
   - AssistantEnvirosuit
@@ -205,6 +208,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - BartenderUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - BartenderEnvirohelm
   - BartenderEnvirosuit
@@ -242,6 +246,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - ChefUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ChefEnvirohelm
   - ChefEnvirosuit
@@ -259,6 +264,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - LibrarianUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - LibrarianEnvirohelm
   - LibrarianEnvirosuit
@@ -277,6 +283,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - LawyerUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - LawyerEnvirohelm
   - LawyerEnvirosuit
@@ -298,6 +305,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - ChaplainUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ChaplainEnvirohelm
   - ChaplainEnvirosuit
@@ -319,6 +327,7 @@
   - JanitorPlunger
   - Animals
   - GroupSpeciesBreathTool
+  - JanitorUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - JanitorEnvirohelm
   - JanitorEnvirosuit
@@ -338,6 +347,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - BotanistUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - BotanistEnvirohelm
   - BotanistEnvirosuit
@@ -358,6 +368,7 @@
   - SurvivalClown
   - Trinkets
   - Animals
+  - ClownUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ClownEnvirohelm
   - ClownEnvirosuit
@@ -380,6 +391,7 @@
   - SurvivalMime
   - Trinkets
   - Animals
+  - MimeUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - MimeEnvirohelm
   - MimeEnvirosuit
@@ -400,6 +412,7 @@
   - Instruments
   - Animals
   - GroupSpeciesBreathTool
+  - MusicianUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - MusicianEnvirohelm
   - MusicianEnvirosuit
@@ -422,6 +435,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - QuartermasterUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - QuartermasterEnvirohelm
   - QuartermasterEnvirosuit
@@ -442,6 +456,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - CargoTechnicianUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - CargoTechnicianEnvirohelm
   - CargoTechnicianEnvirosuit
@@ -462,6 +477,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - SalvageSpecialistUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - SalvageEnvirohelm
   - SalvageEnvirosuit
@@ -483,6 +499,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - ChiefEngineerUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ChiefEngineerEnvirohelm
   - ChiefEngineerEnvirosuit
@@ -499,6 +516,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - TechnicalAssistantUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - TechnicalAssistantEnvirohelm
   - TechnicalAssistantEnvirosuit
@@ -520,6 +538,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - StationEngineerUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - StationEngineerEnvirohelm
   - StationEngineerEnvirosuit
@@ -540,6 +559,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - AtmosphericTechnicianUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - AtmosEnvirohelm
   - AtmosEnvirosuit
@@ -563,6 +583,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - ResearchDirectorUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ResearchDirectorEnvirosuit
   - ResearchDirectorEnvirohelm
@@ -586,6 +607,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - ScientistUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ScientistEnvirohelm
   - ScientistEnvirosuit
@@ -603,6 +625,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - SeniorResearcherUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ResearchAssistantEnvirohelm
   - ResearchAssistantEnvirosuit
@@ -627,6 +650,7 @@
   - SecurityStar
   - Animals
   - GroupSpeciesBreathToolSecurity
+  - HeadOfSecurityUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - HeadofSecurityEnvirohelm
   - HeadofSecurityEnvirosuit
@@ -649,6 +673,7 @@
   - SecurityStar
   - Animals
   - GroupSpeciesBreathToolSecurity
+  - WardenUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - WardenEnvirohelm
   - WardenEnvirosuit
@@ -672,6 +697,7 @@
   - SecurityStar
   - Animals
   - GroupSpeciesBreathToolSecurity
+  - SecurityOfficerUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - SecurityOfficerEnvirohelm
   - SecurityOfficerEnvirosuit
@@ -693,6 +719,7 @@
   - SecurityStar
   - Animals
   - GroupSpeciesBreathToolSecurity
+  - DetectiveUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - DetectiveEnvirohelm
   - DetectiveEnvirosuit
@@ -711,6 +738,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathToolSecurity
+  - SecurityCadetUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - SecurityCadetEnvirohelm
   - SecurityCadetEnvirosuit
@@ -735,6 +763,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathToolMedical
+  - ChiefMedicalOfficerUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ChiefMedicalOfficerEnvirohelm
   - ChiefMedicalOfficerEnvirosuit
@@ -758,6 +787,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathToolMedical
+  - MedicalDoctorUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - MedicalDoctorEnvirohelm
   - MedicalDoctorEnvirosuit
@@ -775,6 +805,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathToolMedical
+  - MedicalInternUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - MedicalInternEnvirohelm
   - MedicalInternEnvirosuit
@@ -796,6 +827,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathToolMedical
+  - ChemistUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ChemistEnvirohelm
   - ChemistEnvirosuit
@@ -818,6 +850,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathToolMedical
+  - ParamedicUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ParamedicEnvirohelm
   - ParamedicEnvirosuit
@@ -855,6 +888,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - ReporterUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ReporterEnvirohelm
   - ReporterEnvirosuit
@@ -872,6 +906,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - PsychologistUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - PsychologistEnvirohelm
   - PsychologistEnvirosuit
@@ -890,6 +925,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - BoxerUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - BoxerEnvirohelm
   - BoxerEnvirosuit

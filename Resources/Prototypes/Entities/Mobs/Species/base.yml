@@ -271,8 +271,11 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.Underwear" ] # Goob 3370
-    - map: [ "enum.HumanoidVisualLayers.Undershirt" ] # Goob 3370
+    - map: ["underwearb"] # RS14
+    - map: ["underweart"] # RS14
+    - map: ["socks"] # RS14
+    #- map: [ "enum.HumanoidVisualLayers.Underwear" ]
+    #- map: [ "enum.HumanoidVisualLayers.Undershirt" ]
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
@@ -626,8 +629,11 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.Underwear" ] # Goob 3370
-    - map: [ "enum.HumanoidVisualLayers.Undershirt" ] # Goob 3370
+    - map: ["underwearb"] # RS14
+    - map: ["underweart"] # RS14
+    - map: ["socks"] # RS14
+    #- map: [ "enum.HumanoidVisualLayers.Underwear" ]
+    #- map: [ "enum.HumanoidVisualLayers.Undershirt" ]
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]

@@ -92,6 +92,7 @@
   id: ScientistGear
   equipment:
     ears: ClothingHeadsetScience
+    socks: ClothingUnderwearSocksScientist # RS14
   #storage:
     #back:
     #- Stuff

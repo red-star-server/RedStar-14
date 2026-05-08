@@ -114,6 +114,7 @@
     id: ParamedicPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalEMTFilled
+    socks: ClothingUnderwearSocksParamedic # RS14
   storage:
     back:
     - EmergencyRollerBedSpawnFolded
