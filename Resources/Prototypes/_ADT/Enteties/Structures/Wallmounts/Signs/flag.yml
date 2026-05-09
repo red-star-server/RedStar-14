@@ -1,0 +1,77 @@
+﻿- type: entity
+  parent: BaseFlag
+  id: ADTBlankFlagVertical
+  name: blank flag
+  description: Some piece of white cloth. Definitely not the flag of France.
+  components:
+  - type: Sprite
+    state: blank2_flag
+  - type: Construction
+    graph: ADTBlankFlagVerticalGraph
+    node: flag
+
+- type: entity
+  parent: BaseFlag
+  id: ADTNTFlagVertical
+  name: Nanotrasen flag
+  description: Glory to NT! Wait, they really made a flag for a corporation?
+  components:
+  - type: Sprite
+    state: NT2_flag
+  - type: Construction
+    graph: ADTNTFlagVerticalGraph
+    node: flag
+
+- type: entity
+  parent: BaseFlag
+  id: ADTSyndieFlagVertical
+  name: syndicate flag
+  description: Smells bloody. Death to NT!
+  components:
+  - type: Sprite
+    state: syndie2_flag
+
+- type: entity
+  parent: BaseFlag
+  id: ADTPirateFlagVertical
+  name: pirate flag
+  description: Raise the jolly roger, scallywags!
+  components:
+  - type: Sprite
+    state: pirate2_flag
+
+- type: entity
+  parent: BaseFlag
+  id: ADTUSSPFlag
+  name: USSP flag
+  description: Flag of the Union of Soviet Socialist Planets. Proletarians of all planets, unite!
+  components:
+  - type: Sprite
+    state: ussp_flag
+  - type: Construction
+    graph: ADTUSSPFlagGraph
+    node: flag
+
+- type: entity
+  parent: BaseFlag
+  id: ADTUSSPFlagVertical
+  name: USSP flag
+  description: Flag of the Union of Soviet Socialist Planets. Proletarians of all planets, unite!
+  components:
+  - type: Sprite
+    state: ussp2_flag
+  - type: Construction
+    graph: ADTUSSPFlagVerticalGraph
+    node: flag
+
+- type: entity
+  parent: BaseFlag
+  id: ADTUSSPFlagVertical2
+  name: USSP flag
+  description: Flag of the Union of Soviet Socialist Planets. Proletarians of all planets, unite!
+  components:
+  - type: Sprite
+    state: ussp3_flag
+  - type: Construction
+    graph: ADTUSSPFlagVertical2Graph
+    node: flag

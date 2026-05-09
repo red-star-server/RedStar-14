@@ -82,7 +82,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Wallmounts/flags.rsi
+    sprite: _ADT/Structures/Wallmounts/flags.rsi #ADT-Tweak
 
 - type: entity
   parent: BaseFlag

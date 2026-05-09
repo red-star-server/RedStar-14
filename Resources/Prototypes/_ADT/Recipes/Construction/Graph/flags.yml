@@ -1,0 +1,69 @@
+﻿- type: constructionGraph
+  id: ADTBlankFlagVerticalGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: flag
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 3
+  - node: flag
+    entity: ADTBlankFlagVertical
+
+- type: constructionGraph
+  id: ADTNTFlagVerticalGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: flag
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 3
+  - node: flag
+    entity: ADTNTFlagVertical
+
+- type: constructionGraph
+  id: ADTUSSPFlagGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: flag
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 3
+  - node: flag
+    entity: ADTUSSPFlag
+
+- type: constructionGraph
+  id: ADTUSSPFlagVerticalGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: flag
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 3
+  - node: flag
+    entity: ADTUSSPFlagVertical
+
+- type: constructionGraph
+  id: ADTUSSPFlagVertical2Graph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: flag
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 3
+  - node: flag
+    entity: ADTUSSPFlagVertical2
