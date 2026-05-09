@@ -61,6 +61,21 @@ jobs:
         shell: bash
         continue-on-error: true
 
+      - name: Prepare Discord Description
+        id: prep_discord
+        shell: bash
+        run: |
+          BODY="${{ github.event.pull_request.body }}"
+          if [[ "$BODY" == *":cl:"* ]]; then
+            # Вырезаем всё после :cl:, убираем лишние пробелы и пустые строки в начале
+            CLEAN_CL=$(echo "$BODY" | sed -n '/:cl:/,$p' | sed '1d' | sed -e 's/^[[:space:]]*//')
+            echo "CLEAN_BODY<<EOF" >> $GITHUB_ENV
+            echo "$CLEAN_CL" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+          else
+            echo "CLEAN_BODY=Изменения не указаны в формате :cl:" >> $GITHUB_ENV
+          fi
+
       - name: Send Changelog to Discord
         uses: sarisia/actions-status-discord@v1
         if: always()
@@ -70,7 +85,9 @@ jobs:
           description: |
             **Список изменений из PR #${{ env.PR_NUMBER }}**
 
-            ${{ contains(github.event.pull_request.body, ':cl:') && format('```{0}```', last(split(github.event.pull_request.body, ':cl:'))) || 'Изменения не указаны в формате :cl:' }}
+            ```
+            ${{ env.CLEAN_BODY }}
+            ```
           url: ${{ github.event.pull_request.html_url }}
           color: 0xff0000
           footer: "Автор: ${{ github.event.pull_request.user.login }} • PR #${{ env.PR_NUMBER }} • ${{ github.event.pull_request.merged_at }}"
