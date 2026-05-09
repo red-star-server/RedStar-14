@@ -28,3 +28,6 @@
   - type: Sprite
     sprite: _RedStar/Structures/Decoration/banner.rsi
     state: banner-ussp
+  - type: Construction
+    graph: BannersGraph
+    node: BannerUSSPNode

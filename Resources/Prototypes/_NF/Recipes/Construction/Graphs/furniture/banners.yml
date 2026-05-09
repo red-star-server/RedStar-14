@@ -141,6 +141,18 @@
             - material: Cloth
               amount: 2
               doAfter: 1
+        # RS14-start
+        - to: BannerUSSPNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        # RS14-end
 
     - node: BannerNanotrasenNode
       entity: BannerNanotrasen
@@ -309,6 +321,21 @@
 
     - node: BannerGreenNode
       entity: BannerGreen
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: BannerUSSPNode
+      entity: BannerUSSP
       edges:
         - to: start
           completed:
