@@ -1,5 +1,3 @@
-ent-ADTSofaBase = adt base sofa
-    .desc = It looks comfy.
 ent-ADTSofaBlackLeftSide = sofa left side
     .desc = { ent-ADTSofaBase.desc }
 ent-ADTSofaBlackMiddle = sofa middle

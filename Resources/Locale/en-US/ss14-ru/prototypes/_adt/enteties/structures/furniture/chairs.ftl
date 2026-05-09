@@ -1,5 +1,3 @@
-ent-ADTChairBase = adt chair base
-    .desc = It looks comfy.
 ent-ADTChairPizzeria = pizzeria chair
     .desc = It looks spooky.
 ent-ADTChairRed = red chair

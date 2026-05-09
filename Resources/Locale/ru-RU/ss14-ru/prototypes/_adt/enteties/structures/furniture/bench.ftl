@@ -1,8 +1,9 @@
-ent-ADTBenchBase = adt bench base
-    .desc = Simple, but beautiful.
-ent-ADTBenchChurchLeftSide = church bench left side
-    .desc = { ent-ADTBenchBase.desc }
-ent-ADTBenchChurchMiddle = church bench middle
-    .desc = { ent-ADTBenchBase.desc }
-ent-ADTBenchChurchRightSide = church bench side
-    .desc = { ent-ADTBenchBase.desc }
+ent-ADTBenchChurchLeftSide = церковная скамейка
+    .suffix = Левая часть
+    .desc = Простая, но красивая.
+ent-ADTBenchChurchMiddle = { ent-ADTBenchChurchLeftSide }
+    .suffix = Середина
+    .desc = { ent-ADTBenchChurchLeftSide.desc }
+ent-ADTBenchChurchRightSide = { ent-ADTBenchChurchLeftSide }
+    .suffix = Правая часть
+    .desc = { ent-ADTBenchChurchLeftSide.desc }

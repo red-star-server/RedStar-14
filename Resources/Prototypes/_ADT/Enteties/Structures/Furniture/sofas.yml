@@ -1,8 +1,6 @@
 - type: entity
-  name: adt base sofa
   id: ADTSofaBase
   parent: [SeatBase, BaseStructure]
-  description: It looks comfy.
   abstract: true
   components:
   - type: Transform

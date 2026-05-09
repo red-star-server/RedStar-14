@@ -1,5 +1,3 @@
-ent-ADTTableBase = base for tables
-    .desc = A square piece of metal standing on four metal legs.
 ent-ADTTableFrame = table frame
     .desc = Pieces of metal that make the frame of a table.
 ent-ADTTableRedWood = wood red table

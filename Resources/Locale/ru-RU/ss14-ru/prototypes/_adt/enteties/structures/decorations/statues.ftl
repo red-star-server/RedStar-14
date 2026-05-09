@@ -1,4 +1,4 @@
-ent-ADTStatueLenin = statue of Lenin
-    .desc = Great leader of the proletariat.
-ent-ADTBustLenin = bust of Lenin
-    .desc = A bust of the creator of the Bolshevik Party and one of the organizers and leaders of the October Revolution of 1917 in Russia.
+ent-ADTStatueLenin = статуя Ленина
+    .desc = Без него ни одна площадь колонии СССП не обходится. Товарищи! Рабоче-крестьянская революция, о необходимости которой всё время говорили большевики, свершилась!
+ent-ADTBustLenin = бюст Ленина
+    .desc = Бюст создателя большевистской партии и одного из организаторов и руководителей Октябрьской революции 1917 года в России.

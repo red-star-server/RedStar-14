@@ -2,8 +2,6 @@
 - type: entity
   id: ADTTableBase
   parent: TableBase
-  name: base for tables
-  description: A square piece of metal standing on four metal legs.
   abstract: true
 
 - type: entity

@@ -1,8 +1,6 @@
 ﻿- type: entity
-  name: adt chair base
   id: ADTChairBase
   parent: [SeatBase, BaseStructure] # BaseStructure -- sleep
-  description: It looks comfy.
   abstract: true
   components:
   - type: Transform
