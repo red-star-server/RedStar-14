@@ -64,15 +64,33 @@ jobs:
       - name: Prepare Discord Description
         id: prep_discord
         shell: bash
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: |
-          BODY="${{ github.event.pull_request.body }}"
-          if [[ "$BODY" == *":cl:"* ]]; then
-            CLEAN_CL=$(echo "$BODY" | sed -n '/:cl:/,$p' | sed '1d' | sed -e 's/^[[:space:]]*//')
+          BODY="$PR_BODY"
+
+          BODY_CLEAN=$(echo "$BODY" | sed 's/<!--.*-->//g' | sed '/<!--/,/-->/d')
+
+          if [[ "$BODY_CLEAN" == *":cl:"* ]]; then
+            CL_BLOCK=$(echo "$BODY_CLEAN" | sed -n '/:cl:/,$p' | sed '1d')
+
+            FINAL_TEXT=$(echo "$CL_BLOCK" | \
+              sed 's/^[[:space:]]*- Добавлено:[[:space:]]*/\n➕ **Добавлено**\n• /g' | \
+              sed 's/^[[:space:]]*- Исправлено:[[:space:]]*/\n🐛 **Исправлено**\n• /g' | \
+              sed 's/^[[:space:]]*- Изменено:[[:space:]]*/\n🔧 **Изменено**\n• /g' | \
+              sed 's/^[[:space:]]*- Удалено:[[:space:]]*/\n➖ **Удалено**\n• /g' | \
+              sed 's/^[[:space:]]*- add:[[:space:]]*/\n➕ **Добавлено**\n• /g' | \
+              sed 's/^[[:space:]]*- fix:[[:space:]]*/\n🐛 **Исправлено**\n• /g' | \
+              sed 's/^[[:space:]]*- tweak:[[:space:]]*/\n🔧 **Изменено**\n• /g' | \
+              sed 's/^[[:space:]]*- remove:[[:space:]]*/\n➖ **Удалено**\n• /g')
+
+            FINAL_TEXT=$(echo "$FINAL_TEXT" | sed '/^[[:space:]]*$/d')
+            
             echo "CLEAN_BODY<<EOF" >> $GITHUB_ENV
-            echo "$CLEAN_CL" >> $GITHUB_ENV
+            echo "$FINAL_TEXT" >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
           else
-            echo "CLEAN_BODY=Изменения не указаны в формате :cl:" >> $GITHUB_ENV
+            echo "CLEAN_BODY=Изменения не указаны." >> $GITHUB_ENV
           fi
 
       - name: Send Changelog to Discord
@@ -83,10 +101,6 @@ jobs:
           title: "${{ github.event.pull_request.title }}"
           description: |
             **Список изменений из PR #${{ env.PR_NUMBER }}**
-
-            ```
             ${{ env.CLEAN_BODY }}
-            ```
-          url: ${{ github.event.pull_request.html_url }}
-          color: 0xff0000
+          color: bf0000
           footer: "Автор: ${{ github.event.pull_request.user.login }} • PR #${{ env.PR_NUMBER }} • ${{ github.event.pull_request.merged_at }}"
