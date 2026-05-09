@@ -1,0 +1,168 @@
+﻿# Tables
+- type: construction
+  name: construction-name-plastic-round-table
+  id: ADTTableRoundPlasticRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttableroundplastic
+  category: construction-category-furniture
+  description: construction-desc-plastic-round-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-wood-round-table
+  id: ADTTableRoundWoodRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttableroundwood
+  category: construction-category-furniture
+  description: construction-desc-wood-round-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-glass-round-table
+  id: ADTTableRoundGlassRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttableroundglass
+  category: construction-category-furniture
+  description: construction-desc-glass-round-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-round-table
+  id: ADTTableRoundGenericRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttableroundgeneric
+  category: construction-category-furniture
+  description: construction-desc-round-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-gambling-round-table
+  id: ADTTableRoundCarpetRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttableroundcarpet
+  category: construction-category-furniture
+  description: construction-desc-gambling-round-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-plasma-round-table
+  id: ADTTableRoundPlasmaRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttableroundplasma
+  category: construction-category-furniture
+  description: construction-desc-plasma-round-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-white-wood-table
+  id: ADTTableWhiteWoodRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttablewhitewood
+  category: construction-category-furniture
+  description: construction-desc-white-wood-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-red-wood-table
+  id: ADTTableRedWoodRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttableredwood
+  category: construction-category-furniture
+  description: construction-desc-red-wood-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-plastic-table
+  id: ADTTablePlasticRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttableplastic
+  category: construction-category-furniture
+  description: construction-desc-plastic-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-uranium-glass-table
+  id: ADTTableUraniumGlassRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttableuraniumglass
+  category: construction-category-furniture
+  description: construction-desc-uranium-glass-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-reinforced-plasma-glass-table
+  id: ADTTableReinforcedPlasmaGlassRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttablereinforcedplasmaglass
+  category: construction-category-furniture
+  description: construction-desc-reinforced-plasma-glass-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: construction-name-reinforced-uranium-glass-table
+  id: ADTTableReinforcedUraniumGlassRecipe
+  graph: ADTTable
+  startNode: start
+  targetNode: adttablereinforceduraniumglass
+  category: construction-category-furniture
+  description: construction-desc-reinforced-uranium-glass-table
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
