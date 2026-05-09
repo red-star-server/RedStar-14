@@ -19,8 +19,8 @@
   - type: Anchorable
   - type: Rotatable
   - type: Sprite
-    sprite: _Goobstation/Structures/Specific/barbershop.rsi
-    state: barberchair
+    sprite: _ADT/Structures/Furniture/Chairs/barber_chair.rsi # RS14
+    state: barber_chair # RS14
 
 - type: entity
   parent: BaseSign
