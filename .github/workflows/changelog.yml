@@ -67,7 +67,6 @@ jobs:
         run: |
           BODY="${{ github.event.pull_request.body }}"
           if [[ "$BODY" == *":cl:"* ]]; then
-            # Вырезаем всё после :cl:, убираем лишние пробелы и пустые строки в начале
             CLEAN_CL=$(echo "$BODY" | sed -n '/:cl:/,$p' | sed '1d' | sed -e 's/^[[:space:]]*//')
             echo "CLEAN_BODY<<EOF" >> $GITHUB_ENV
             echo "$CLEAN_CL" >> $GITHUB_ENV
