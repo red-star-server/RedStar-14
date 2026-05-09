@@ -11,7 +11,7 @@
 # Panties
 - type: entity
   parent: ClothingUnderwearBottomBase
-  id: ClothingUnderwearBottomStringsolitOtdel
+  id: ClothingUnderwearBottomStringsPolitOtdel
   name: political department's strings
   description: Standard underwear for female Political Department staff.
   components:

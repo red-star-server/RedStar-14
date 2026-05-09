@@ -12,7 +12,7 @@
   id: BannerDeathsquad
   parent: BannerBase
   name: elite evacuation squad banner
-  suffix: Death Squadron
+  suffix: Death Squad
   description: A terrifying banner of one of the squads. Why does it look so much like a skull?
   components:
   - type: Sprite
