@@ -6,12 +6,15 @@ on:
     branches: [ master, staging, stable ]
   merge_group:
   pull_request:
-    types: [ opened, reopened, synchronize, ready_for_review ]
+    types: [ opened, reopened, synchronize, ready_for_review, labeled ]
     branches: [ master, staging, stable ]
 
 jobs:
   plan-integration-shards:
-    if: github.actor != 'PJBot' && (github.event_name != 'pull_request' || github.event.pull_request.draft == false)
+    if: |
+      github.actor != 'PJBot' && 
+      (github.event_name != 'pull_request' || 
+       (github.event.pull_request.draft == false && contains(github.event.pull_request.labels.*.name, 'Ok-To-Test')))
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.plan.outputs.matrix }}
@@ -30,7 +33,10 @@ jobs:
       run: python3 Tools/integration_test_shards.py --shards 10 --pretty
 
   content-tests:
-    if: github.actor != 'PJBot' && (github.event_name != 'pull_request' || github.event.pull_request.draft == false)
+    if: |
+      github.actor != 'PJBot' && 
+      (github.event_name != 'pull_request' || 
+       (github.event.pull_request.draft == false && contains(github.event.pull_request.labels.*.name, 'Ok-To-Test')))
     runs-on: ubuntu-latest
     name: Content.Tests
 
@@ -78,7 +84,10 @@ jobs:
         if-no-files-found: ignore
 
   integration-tests:
-    if: github.actor != 'PJBot' && (github.event_name != 'pull_request' || github.event.pull_request.draft == false)
+    if: |
+      github.actor != 'PJBot' && 
+      (github.event_name != 'pull_request' || 
+       (github.event.pull_request.draft == false && contains(github.event.pull_request.labels.*.name, 'Ok-To-Test')))
     needs:
       - plan-integration-shards
     strategy:
