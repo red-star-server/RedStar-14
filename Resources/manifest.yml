@@ -7,8 +7,8 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-defaultWindowTitle: Space Station 14 - Corvax Station [RU]
-windowIconSet: /Textures/Logo/icon-ru # Corvax-Theme
-splashLogo: /Textures/Logo/logo-ru.png # Corvax-Theme
+defaultWindowTitle: Kрасная Звезда # RS14-Theme
+windowIconSet: /Textures/Logo/icon-restar # RS14-Theme
+splashLogo: /Textures/Logo/logo-redstar.png # RS14-Theme
 
 # PJB PLEASE
