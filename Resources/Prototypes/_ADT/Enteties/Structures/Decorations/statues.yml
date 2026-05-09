@@ -1,0 +1,71 @@
+﻿- type: entity
+  id: ADTStatueLenin
+  parent: BaseStructure
+  name: statue of Lenin
+  description: Great leader of the proletariat.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _ADT/Structures/Decoration/Statues/lenin.rsi
+    state: lenin
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,1.5"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+
+- type: entity
+  id: ADTBustLenin
+  parent: BaseStructure
+  name: bust of Lenin
+  description: A bust of the creator of the Bolshevik Party and one of the organizers and leaders of the October Revolution of 1917 in Russia.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _ADT/Structures/Decoration/Statues/busts.rsi
+    state: lenin
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.8"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]

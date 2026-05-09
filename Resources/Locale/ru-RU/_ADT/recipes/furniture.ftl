@@ -96,11 +96,7 @@ construction-name-white-office-sofa-right-side = правая сторона б�
 construction-name-white-office-sofa-middle = средняя часть белого офисного дивана
 construction-name-white-office-sofa-left-corner = левый угол белого офисного дивана
 construction-name-white-office-sofa-right-corner = правый угол белого офисного дивана
-construction-name-bar-sign = барная вывеска
-construction-name-statue-lenin = статуя Ленина
-construction-name-bust-lenin = бюст Ленина
 
-# Описания
 construction-desc-sofa-left-side = Выглядит удобно.
 construction-desc-sofa-middle = Выглядит удобно.
 construction-desc-sofa-right-side = Выглядит удобно.
@@ -198,6 +194,3 @@ construction-desc-white-office-sofa-right-side = Выглядит удобно.
 construction-desc-white-office-sofa-middle = Выглядит удобно.
 construction-desc-white-office-sofa-left-corner = Выглядит удобно.
 construction-desc-white-office-sofa-right-corner = Выглядит удобно.
-construction-desc-bar-sign = Светящаяся вывеска для бара.
-construction-desc-statue-lenin = Без него ни одна площадь колонии СССП не обходится. Товарищи! Рабоче-крестьянская революция, о необходимости которой всё время говорили большевики, свершилась!
-construction-desc-bust-lenin = Бюст создателя партии большевиков и одного из организаторов и руководителей Октябрьской революции 1917 года в России.
