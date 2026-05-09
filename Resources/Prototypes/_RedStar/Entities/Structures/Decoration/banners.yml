@@ -1,0 +1,30 @@
+﻿- type: entity
+  id: BannerSpider
+  parent: BannerBase
+  name: знамя клана паука
+  description: Простота и яркость флага подчёркивают устрашающую репутацию клана.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Structures/Decoration/banner.rsi
+    state: banner-spider
+
+- type: entity
+  id: BannerDeathsquad
+  parent: BannerBase
+  name: знамя элитного отряда эвакуации
+  suffix: Эскадрон смерти
+  description: Вселяющее ужас знамя какого то из отрядов. Почему оно так похоже на череп?
+  components:
+  - type: Sprite
+    sprite: _RedStar/Structures/Decoration/banner.rsi
+    state: banner-deathsquad
+
+- type: entity
+  id: BannerUSSP
+  parent: BannerBase
+  name: знамя СССП
+  description: Гордое, золотистое знамя Союза Советских Социалистических Планет, отражающие в себе культуру и волю народов.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Structures/Decoration/banner.rsi
+    state: banner-ussp
