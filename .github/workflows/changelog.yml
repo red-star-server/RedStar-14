@@ -70,4 +70,4 @@ jobs:
           description: |
             **Список изменений из PR #${{ env.PR_NUMBER }}**
             
-            ${{ contains(github.event.pull_request.body, ':cl:') && format('
+            ${{ contains(github.event.pull_request.body || '', ':cl:') && 'Блок :cl: найден' || 'Блок :cl: не найден' }}
