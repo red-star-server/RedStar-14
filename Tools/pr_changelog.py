@@ -253,7 +253,7 @@ def build_parser() -> argparse.ArgumentParser:
     discord_parser.add_argument("--repo", required=True)
     discord_parser.add_argument("--pr-title")
     discord_parser.add_argument("--time", required=True)
-    discord_parser.add_argument("--username", default="Союз-1")
+    discord_parser.add_argument("--username", default="Красная Звезда")
     discord_parser.add_argument("--output-file", required=True)
     discord_parser.set_defaults(func=render_discord)
 
