@@ -1,8 +1,8 @@
-ent-ClothingUnderwearSocksQuartermaster = носки заведующего хозяйством
-    .desc = Стандартные носки заведующего хозяйством.
-ent-ClothingUnderwearSocksCargoTech = носки грузчика
-    .desc = Стандартные носки для почты.
-ent-ClothingUnderwearSocksSalvage = носки шахтёра
-    .desc = Стандартные носки шахтёра.
-ent-ClothingUnderwearSocksSeniorCourier = носки ведущего логиста
-    .desc = Стандартные носки ведущего утилизатора.
+ent-ClothingUnderwearSocksQuartermaster = quartermaster's socks
+    .desc = Standard quartermaster's socks.
+ent-ClothingUnderwearSocksCargoTech = cargo technician's socks
+    .desc = Standard cargo technician's socks.
+ent-ClothingUnderwearSocksSalvage = salvage specialist's socks
+    .desc = Standard salvage specialist's socks.
+ent-ClothingUnderwearSocksSeniorCourier = senior courier's socks
+    .desc = Standard senior courier's socks.

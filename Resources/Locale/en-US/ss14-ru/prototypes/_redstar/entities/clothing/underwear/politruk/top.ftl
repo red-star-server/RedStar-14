@@ -1,4 +1,4 @@
-ent-ClothingUnderwearTopTelnikPolitOtdel = тельняшка политического отдела
-    .desc = Стандартное нижнее белье для персонала Политического Отдела.
-ent-ClothingUnderwearTopBraPolitOtdel = бра политического отдела
-    .desc = Стандартное нижнее белье для женского персонала Политического Отдела.
+ent-ClothingUnderwearTopTelnikPolitOtdel = political department's telnik
+    .desc = Standard underwear for Political Department staff.
+ent-ClothingUnderwearTopBraPolitOtdel = political department's bra
+    .desc = Standard underwear for female Political Department staff.

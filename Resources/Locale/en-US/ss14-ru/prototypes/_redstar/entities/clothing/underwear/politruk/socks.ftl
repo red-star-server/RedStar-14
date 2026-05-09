@@ -1,4 +1,4 @@
-ent-ClothingUnderwearSocksPolitOtdel = носки политического отдела
-    .desc = Приятные алые носки.
-ent-ClothingUnderwearSocksPolitOtdelLong = длинные носки политического отдела
-    .desc = Приятные длинные алые носки.
+ent-ClothingUnderwearSocksPolitOtdel = political department's socks
+    .desc = Pleasant red socks.
+ent-ClothingUnderwearSocksPolitOtdelLong = long political department's socks
+    .desc = Pleasant long red socks.

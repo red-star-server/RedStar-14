@@ -1,5 +1,5 @@
-ent-ClothingUnderwearSockIAA = носки агента следственного комитета
-    .desc = Стандартные носки агента следственного комитета.
+ent-ClothingUnderwearSockNanotrasenRepresentative = носки представителя следственного комитета
+    .desc = Стандартные носки представителя следственного комитета.
 ent-ClothingUnderwearSockLawyer = носки юриста
     .desc = Стандартные носки юриста.
 ent-ClothingUnderwearSockMagistrate = носки судьи

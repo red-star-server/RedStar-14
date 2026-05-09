@@ -1,6 +1,6 @@
-ent-ClothingUnderwearTopBraNuclearOperative = бра ядерного оперативника
-    .desc = Cтандартное нижнее бельё ядерного оперативника.
-ent-ClothingUnderwearTopBraPirate = бра капера
-    .desc = Cтандартное нижнее бельё капера.
-ent-ClothingUnderwearTopBraSyndicateAgent = бра агента синдиката
-    .desc = Cтандартное нижнее бельё агента синдиката.
+ent-ClothingUnderwearTopBraNuclearOperative = nuclear operative's bra
+    .desc = Standard nuclear operative's underwear.
+ent-ClothingUnderwearTopBraPirate = pirate's bra
+    .desc = Standard pirate's underwear.
+ent-ClothingUnderwearTopBraSyndicateAgent = syndicate agent's bra
+    .desc = Standard syndicate agent's underwear.

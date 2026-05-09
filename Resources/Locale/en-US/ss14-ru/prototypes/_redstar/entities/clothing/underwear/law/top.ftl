@@ -1,6 +1,6 @@
-ent-ClothingUnderwearTopBraIAA = бра агента следственного комитета
-    .desc = Cтандартное нижнее бельё агента следственного комитета
-ent-ClothingUnderwearTopBraLawyer = бра юриста
-    .desc = Cтандартное нижнее бельё юриста.
-ent-ClothingUnderwearTopBraMagistrate = бра судьи
-    .desc = Cтандартное нижнее бельё судьи.
+ent-ClothingUnderwearTopBraNanotrasenRepresentative = nanotrasen representative's bra
+    .desc = Standard nanotrasen representative's underwear.
+ent-ClothingUnderwearTopBraLawyer = lawyer's bra
+    .desc = Standard lawyer's underwear.
+ent-ClothingUnderwearTopBraMagistrate = magistrate's bra
+    .desc = Standard magistrate's underwear.

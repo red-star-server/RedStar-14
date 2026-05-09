@@ -1,4 +1,4 @@
-ent-ClothingUnderwearBottomBoxersPolitOtdel = боксеры политического отдела
-    .desc = Стандартное нижнее белье для персонала Политического Отдела.
-ent-ClothingUnderwearBottomStringsolitOtdel = стринги политического отдела
-    .desc = Стандартное нижнее белье для женского персонала Политического Отдела.
+ent-ClothingUnderwearBottomBoxersPolitOtdel = political department's boxers
+    .desc = Standard underwear for Political Department staff.
+ent-ClothingUnderwearBottomStringsolitOtdel = political department's strings
+    .desc = Standard underwear for female Political Department staff.

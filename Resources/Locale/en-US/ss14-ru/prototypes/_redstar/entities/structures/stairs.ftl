@@ -1,0 +1,16 @@
+ent-StairWoodRed = { ent-Stairs }
+    .desc = { ent-Stairs.desc }
+ent-StairStageWoodRed = { ent-Stairs }
+    .desc = { ent-Stairs.desc }
+ent-StairWoodDark = { ent-Stairs }
+    .desc = { ent-Stairs.desc }
+ent-StairStageWoodDark = { ent-Stairs }
+    .desc = { ent-Stairs.desc }
+ent-StairWoodBlack = { ent-Stairs }
+    .desc = { ent-Stairs.desc }
+ent-StairStageWoodBlack = { ent-Stairs }
+    .desc = { ent-Stairs.desc }
+ent-StairWoodLight = { ent-Stairs }
+    .desc = { ent-Stairs.desc }
+ent-StairStageWoodLight = { ent-Stairs }
+    .desc = { ent-Stairs.desc }

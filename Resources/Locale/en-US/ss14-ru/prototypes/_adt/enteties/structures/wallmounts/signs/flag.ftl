@@ -1,0 +1,14 @@
+ent-ADTBlankFlagVertical = blank flag
+    .desc = Some piece of white cloth. Definitely not the flag of France.
+ent-ADTNTFlagVertical = Nanotrasen flag
+    .desc = Glory to NT! Wait, they really made a flag for a corporation?
+ent-ADTSyndieFlagVertical = syndicate flag
+    .desc = Smells bloody. Death to NT!
+ent-ADTPirateFlagVertical = pirate flag
+    .desc = Raise the jolly roger, scallywags!
+ent-ADTUSSPFlag = USSP flag
+    .desc = Flag of the Union of Soviet Socialist Planets. Proletarians of all planets, unite!
+ent-ADTUSSPFlagVertical = USSP flag
+    .desc = Flag of the Union of Soviet Socialist Planets. Proletarians of all planets, unite!
+ent-ADTUSSPFlagVertical2 = USSP flag
+    .desc = Flag of the Union of Soviet Socialist Planets. Proletarians of all planets, unite!

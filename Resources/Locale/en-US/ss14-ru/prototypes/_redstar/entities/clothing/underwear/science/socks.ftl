@@ -1,8 +1,8 @@
-ent-ClothingUnderwearSocksResearchDirector = носки главного научного сотрудника
-    .desc = Стандартные носки главного научного сотрудника.
-ent-ClothingUnderwearSocksScientist = носки научного сотрудника
-    .desc = Стандартные носки научного сотрудника.
-ent-ClothingUnderwearSocksResearchAssistant = носки младшего научного сотрудника
-    .desc = Стандартные носки младшего научного сотрудника.
-ent-ClothingUnderwearSocksSeniorResearcher = носки ведущего научного сотрудника
-    .desc = Стандартные ведущего научного сотрудника.
+ent-ClothingUnderwearSocksResearchDirector = research director's socks
+    .desc = Standard research director's socks.
+ent-ClothingUnderwearSocksScientist = scientist's socks
+    .desc = Standard scientist's socks.
+ent-ClothingUnderwearSocksResearchAssistant = research assistant's socks
+    .desc = Standard research assistant's socks.
+ent-ClothingUnderwearSocksSeniorResearcher = senior researcher's socks
+    .desc = Standard senior researcher's socks.

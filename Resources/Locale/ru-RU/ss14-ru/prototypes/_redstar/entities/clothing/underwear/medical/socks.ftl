@@ -1,11 +1,11 @@
-ent-ClothingUnderwearSocksCMO = носки главного врача
+ent-ClothingUnderwearSocksChiefMedicalOfficer = носки главного врача
     .desc = Стандартные носки главного врача.
+ent-ClothingUnderwearSocksMedicalIntern = носки интерна
+    .desc = Стандартные носки интерна.
+ent-ClothingUnderwearSocksMedicalDoctor = носки врача
+    .desc = Стандартные носки врача.
 ent-ClothingUnderwearSocksChemist = носки химика
     .desc = Стандартные носки химика.
-ent-ClothingUnderwearSocksIntern = носки интерна
-    .desc = Стандартные носки интерна.
-ent-ClothingUnderwearSocksDoctor = носки врача
-    .desc = Стандартные носки врача.
 ent-ClothingUnderwearSocksParamedic = носки фельдшера
     .desc = Стандартные носки фельдшера.
 ent-ClothingUnderwearSocksPsychologist = носки психиатра

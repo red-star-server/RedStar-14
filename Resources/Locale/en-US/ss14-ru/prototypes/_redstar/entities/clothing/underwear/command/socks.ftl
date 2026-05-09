@@ -1,4 +1,4 @@
-ent-ClothingUnderwearSocksCaptain = носки капитана
-    .desc = Стандартные носки капитана.
-ent-ClothingUnderwearSocksBlueShieldOfficer = носки оперативника КГБ
-    .desc = Стандартные носки оперативника КГБ.
+ent-ClothingUnderwearSocksCaptain = captain's socks
+    .desc = Standard captain's socks.
+ent-ClothingUnderwearSocksBlueShieldOfficer = blueshield officer's socks
+    .desc = Standard blueshield officer's socks.

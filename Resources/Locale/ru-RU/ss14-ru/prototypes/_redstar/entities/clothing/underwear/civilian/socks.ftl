@@ -1,4 +1,4 @@
-ent-ClothingUnderwearSocksHeadofPersonnel = носки начальника отдела кадров
+ent-ClothingUnderwearSocksHeadOfPersonnel = носки начальника отдела кадров
     .desc = Стандартные носки начальника отдела кадров.
 ent-ClothingUnderwearSocksService = носки сервисного работника
     .desc = Стандартные носки сервисного работника.
