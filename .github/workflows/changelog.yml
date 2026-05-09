@@ -21,17 +21,19 @@ jobs:
     if: github.event.pull_request.merged == true
     permissions:
       contents: write
+      actions: read
     steps:
       - name: Checkout Master
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          ref: "${{ vars.CHANGELOG_BRANCH }}"
+          ref: "${{ vars.CHANGELOG_BRANCH || 'master' }}"
+          fetch-depth: 0
 
       - name: Setup Git
         run: |
-          git config --global user.name "${{ vars.CHANGELOG_USER }}"
-          git config --global user.email "${{ vars.CHANGELOG_EMAIL }}"
+          git config --global user.name "${{ vars.CHANGELOG_USER || 'Changelog Bot' }}"
+          git config --global user.email "${{ vars.CHANGELOG_EMAIL || 'actions@github.com' }}"
         shell: bash
 
       - name: Setup Node
@@ -39,68 +41,42 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Install Dependencies
+      - name: Install Node Dependencies
         run: |
-          cd "Tools/changelog"
-          npm install
-        shell: bash
-        continue-on-error: true
-
-      - name: Generate Changelog
-        run: |
-          cd "Tools/changelog"
-          node changelog.js
-        shell: bash
-        continue-on-error: true
-
-      - name: Commit Changelog
-        run: |
-          git add *.yml
-          git commit -m "${{ vars.CHANGELOG_MESSAGE }} (#${{ env.PR_NUMBER }})"
-          git push
-        shell: bash
-        continue-on-error: true
-
-      - name: Prepare Discord Description
-        id: prep_discord
-        shell: bash
-        env:
-          PR_BODY: ${{ github.event.pull_request.body }}
-        run: |
-          BODY="$PR_BODY"
-
-          BODY_CLEAN=$(echo "$BODY" | sed 's/<!--.*-->//g' | sed '/<!--/,/-->/d')
-
-          if [[ "$BODY_CLEAN" == *":cl:"* ]]; then
-            CL_BLOCK=$(echo "$BODY_CLEAN" | sed -n '/:cl:/,$p' | sed '1d')
-
-            FINAL_TEXT=$(echo "$CL_BLOCK" | \
-              sed 's/^[[:space:]]*- Добавлено:[[:space:]]*/\n➕ **Добавлено**\n• /g' | \
-              sed 's/^[[:space:]]*- Исправлено:[[:space:]]*/\n🐛 **Исправлено**\n• /g' | \
-              sed 's/^[[:space:]]*- Изменено:[[:space:]]*/\n🔧 **Изменено**\n• /g' | \
-              sed 's/^[[:space:]]*- Удалено:[[:space:]]*/\n➖ **Удалено**\n• /g' | \
-              sed 's/^[[:space:]]*- add:[[:space:]]*/\n➕ **Добавлено**\n• /g' | \
-              sed 's/^[[:space:]]*- fix:[[:space:]]*/\n🐛 **Исправлено**\n• /g' | \
-              sed 's/^[[:space:]]*- tweak:[[:space:]]*/\n🔧 **Изменено**\n• /g' | \
-              sed 's/^[[:space:]]*- remove:[[:space:]]*/\n➖ **Удалено**\n• /g')
-
-            FINAL_TEXT=$(echo "$FINAL_TEXT" | sed '/^[[:space:]]*$/d')
-            
-            echo "CLEAN_BODY<<EOF" >> $GITHUB_ENV
-            echo "$FINAL_TEXT" >> $GITHUB_ENV
-            echo "EOF" >> $GITHUB_ENV
-          else
-            echo "CLEAN_BODY=Изменения не указаны." >> $GITHUB_ENV
+          if [ -d "Tools/changelog" ]; then
+            cd "Tools/changelog"
+            npm install
           fi
+        shell: bash
+        continue-on-error: true
 
-      - name: Send Changelog to Discord
-        uses: sarisia/actions-status-discord@v1
-        if: always()
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          title: "${{ github.event.pull_request.title }}"
-          description: |
-            **Список изменений из PR #${{ env.PR_NUMBER }}**
-            ${{ env.CLEAN_BODY }}
-          color: bf0000
-          footer: "Автор: ${{ github.event.pull_request.user.login }} • PR #${{ env.PR_NUMBER }} • ${{ github.event.pull_request.merged_at }}"
+      - name: Generate Changelog File
+        run: |
+          if [ -f "Tools/changelog/changelog.js" ]; then
+            cd "Tools/changelog"
+            node changelog.js
+          fi
+        shell: bash
+        continue-on-error: true
+
+      - name: Commit Changelog Changes
+        run: |
+          git add *.yml || true
+          git commit -m "${{ vars.CHANGELOG_MESSAGE || 'Update changelog' }} (#${{ env.PR_NUMBER }})" || echo "No changes to commit"
+          git push || echo "No changes to push"
+        shell: bash
+        continue-on-error: true
+
+      - name: Install Python Dependencies
+        run: |
+          pip install requests pyyaml
+        shell: bash
+
+      - name: Send Discord Notification
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          python3 Tools/actions_changelogs_since_last_run.py
+        shell: bash
