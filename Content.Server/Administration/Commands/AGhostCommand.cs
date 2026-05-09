@@ -124,6 +124,7 @@ public sealed class AGhostCommand : LocalizedCommands
         var canReturn = mind.CurrentEntity != null
                         && !_entities.HasComponent<GhostComponent>(mind.CurrentEntity);
         var coordinates = gameTicker.GetObserverSpawnPoint();
+        // RS14-start
         if (player!.AttachedEntity is { } attachedEntity
             && _entities.TryGetComponent<TransformComponent>(attachedEntity, out var attachedXform)
             && attachedXform.MapID != MapId.Nullspace
@@ -131,6 +132,7 @@ public sealed class AGhostCommand : LocalizedCommands
         {
             coordinates = attachedXform.Coordinates;
         }
+        // RS14-end
 
         var ghost = _entities.SpawnEntity(GameTicker.AdminObserverPrototypeName, coordinates);
 

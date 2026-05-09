@@ -250,6 +250,7 @@ public partial class SharedBodySystem
     /// <summary>
     /// Removes the organ if it is inside of a body part.
     /// </summary>
+    // RS14: allow callers to disable reparenting when organ is removed from a container.
     public bool RemoveOrgan(EntityUid organId, OrganComponent? organ = null, bool reparent = true)
     {
         if (!Containers.TryGetContainingContainer((organId, null, null), out var container))
@@ -260,6 +261,7 @@ public partial class SharedBodySystem
         if (!HasComp<BodyPartComponent>(parent))
             return false;
 
+        // RS14-start
         // If the parent body-part has no valid world/map context (e.g. severed during cleanup),
         // avoid auto-attaching the organ to map/grid, which emits transform warnings.
         if (reparent
@@ -270,6 +272,7 @@ public partial class SharedBodySystem
             return Containers.Remove(organId, container, destination: parentXform.Coordinates);
         }
 
+        // RS14-end
         return Containers.Remove(organId, container, reparent: false);
     }
 
