@@ -71,7 +71,6 @@ construction-name-pizza-chair = стул для пиццерии
 construction-name-white-chair = белый стул
 construction-name-red-chair = красный стул
 construction-name-orange-chair = оранжевый стул
-construction-name-oktoberfest-chair = оранжевый деревянный стул
 construction-name-bar-stool = барная табуретка
 construction-name-bar-stool-2 = барная табуретка
 construction-name-comfy-black-chair = чёрное кресло
