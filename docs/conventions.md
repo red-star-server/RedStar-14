@@ -5,7 +5,7 @@
 Этот документ описывает соглашения для `RedStar-14`. Соблюдение этих правил напрямую влияет на скорость ревью и вероятность мерджа.
 
 См. также:
-- [Организация кодовой базы](./codebase-organization.md)
+- [Организация кодовой базы](https://docs.spacestation14.com/en/general-development/codebase-info/codebase-organization.html)
 - [Руководство по Pull Request](./pull-request-guidelines.md)
 - [Предложения фич](./feature-proposals.md)
 - [Git для разработчика SS14](./git-for-the-ss14-developer.md)
@@ -394,7 +394,7 @@ antag-traitor-user-was-traitor-message = ...
 Категории: `Добавлено`, `Исправлено`, `Удалено`, `Изменено`.
 
 По категориям файлов:
-- общий: `Resources/Changelog/GoobChangelog.yml`
+- общий: `Resources/Changelog/Changelog.yml`
 - карты: `Resources/Changelog/Maps.yml` (через `MAPS:`)
 - админские изменения: через `ADMIN:`
 

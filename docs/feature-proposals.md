@@ -13,8 +13,8 @@
 ## Как оформить proposal
 
 1. Скопируйте шаблон proposal из `src/en/templates/proposal.md` (или актуального каталога шаблонов в вашей ветке документации).
-2. Для геймплейных изменений прочитайте [Core Design SS14](../space-station-14/core-design.md).
-3. Напишите proposal (см. [гайд по редактированию документации](../meta/guide-to-editing-docs.md)).
+2. Для геймплейных изменений прочитайте [Core Design SS14](https://docs.spacestation14.com/en/space-station-14/core-design.html).
+3. Напишите proposal (см. [гайд по редактированию документации](https://docs.spacestation14.com/en/meta/guide-to-editing-docs.html)).
 4. Откройте pull request с proposal.
 5. Proposal считается принятым после мерджа мейнтейнером.
 
@@ -59,7 +59,7 @@ Design doc - это описание идеи на уровне дизайна, 
 Критика и доработки - нормальная часть процесса. Это не отклонение идеи, а ее шлифовка до состояния, пригодного для внедрения.
 
 ```admonish tip "Как повысить шанс принятия"
-- Сверьтесь с [Core Design SS14](../space-station-14/core-design.md).
+- Сверьтесь с [Core Design SS14](https://docs.spacestation14.com/en/space-station-14/core-design.html).
 - Покажите влияние на текущий геймплей и роль в экосистеме проекта.
 - Соблюдайте рабочую этику обсуждений и формат PR.
 ```
