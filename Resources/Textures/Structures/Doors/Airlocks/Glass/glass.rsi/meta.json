@@ -11,12 +11,6 @@
       "name": "assembly"
     },
     {
-      "name": "assembly-fill"
-    },
-    {
-      "name": "assembly-glass"
-    },
-    {
       "name": "bolted_unlit"
     },
     {
@@ -27,12 +21,6 @@
     },
     {
       "name": "closed_unlit"
-    },
-    {
-      "name": "closed-fill"
-    },
-    {
-      "name": "closed-glass"
     },
     {
       "name": "open_unlit"
@@ -106,32 +94,6 @@
     },
     {
       "name": "panel_closing",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.07,
-          0.07,
-          0.07,
-          0.2
-        ]
-      ]
-    },
-    {
-      "name": "opening-fill",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.07,
-          0.07,
-          0.07,
-          0.2
-        ]
-      ]
-    },
-    {
-      "name": "opening-glass",
       "delays": [
         [
           0.1,
