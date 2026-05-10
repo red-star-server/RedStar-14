@@ -377,10 +377,10 @@ antag-traitor-user-was-traitor-message = ...
 
 ### Правки upstream-файлов
 
-При правках существующих upstream-файлов оставляйте пометки `RedStar` у измененных мест:
-- `# RedStar` / `// RedStar`
+При правках существующих upstream-файлов оставляйте пометки `RS14` у измененных мест:
+- `# RS14` / `// RS14`
 - `# RedStar-value: OLD -> NEW`
-- `RedStar-start` / `RedStar-end` для крупных блоков
+- `RS14-start` / `RS14-end` для крупных блоков
 
 Для `.ftl`: комментарий должен быть строкой выше ключа.
 

@@ -165,10 +165,10 @@ Never modify `RobustToolbox` as part of gameplay/content PRs. Engine changes mus
 
 When editing existing upstream files (C#, YAML, FTL, etc.), leave markers near modified lines to reduce merge and upstream sync cost.
 
-Use the `RedStar` prefix consistently:
-- Point edit: `# RedStar` or `// RedStar`
-- Value change: `# RedStar-value: OLD -> NEW`
-- Block edit: `# RedStar-start` / `# RedStar-end` or `// RedStar-start` / `// RedStar-end`
+Use the `RS14` prefix consistently:
+- Point edit: `# RS14` or `// RS14`
+- Value change: `# RS14-value: OLD -> NEW`
+- Block edit: `# RS14-start` / `# RS14-end` or `// RS14-start` / `// RS14-end`
 
 For `.ftl`: place comments on the line above the translation key, not on the same line.
 
@@ -236,10 +236,10 @@ AI-generated content (code, sprites, and similar assets) is prohibited for repos
 
 Если вы правите существующие upstream-файлы (C#, YAML, FTL и т.д.), оставляйте пометки у изменённых мест.
 
-Используйте префикс `RedStar`:
-- Точечное изменение: `# RedStar` или `// RedStar`
+Используйте префикс `RS14`:
+- Точечное изменение: `# RS14` или `// RS14`
 - Изменение значения: `# RedStar-value: СТАРОЕ -> НОВОЕ`
-- Блок изменений: `# RedStar-start` / `# RedStar-end` или `// RedStar-start` / `// RedStar-end`
+- Блок изменений: `# RS14-start` / `# RS14-end` или `// RS14-start` / `// RS14-end`
 
 > ⚠️ В `.ftl` не ставьте комментарий в той же строке, что и ключ перевода. Комментарий должен быть строкой выше.
 
