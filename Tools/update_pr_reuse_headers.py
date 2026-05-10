@@ -21,7 +21,7 @@ LICENSE_CONFIG = {
 }
 
 DEFAULT_LICENSE_LABEL = "mit"
-DEFAULT_AUTHOR = "Space Station 14 Contributors"
+DEFAULT_AUTHOR = "RedStar Contributors"
 
 DIRECTORY_RULES = [
     {
