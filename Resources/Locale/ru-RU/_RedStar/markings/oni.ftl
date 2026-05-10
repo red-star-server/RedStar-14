@@ -1,0 +1,9 @@
+﻿marking-OniTail1 = острый конец, хвост
+marking-OniTailLong = длинный и пушистый, хвост
+marking-OniTailUp = длинный и пушистый, хвост (приподнят)
+marking-OniTailColor = хвост
+marking-OniTailAnimated = хвост (движущийся)
+marking-OniTail1Animated =  острый конец, хвост (движущийся)
+marking-OniTailLongAnimated = длинный и пушистый, хвост (движущийся)
+marking-OniTailUpAnimated = длинный и пушистый, хвост (приподнят, движущийся)
+marking-OniTailColorAnimated = хвост (движущийся)

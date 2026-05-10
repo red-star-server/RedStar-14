@@ -22,7 +22,7 @@
   prototype: MobOni
   dollPrototype: MobOniDummy
   markingLimits: MobOniMarkingLimits
-  sprites: MobHumanSprites
+  sprites: MobOniSprites # RS14
   skinColoration: Hues
   maleFirstNames: NamesOniFirstMale
   femaleFirstNames: NamesOniFirstFemale
@@ -60,6 +60,12 @@
     Chest:
       points: 8
       required: false
+    # RS14-start
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ DemonTail1 ]
+    # RS14-end
     RightLeg:
       points: 2
       required: false

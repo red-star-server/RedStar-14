@@ -65,6 +65,7 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Wagging # RS14
   - type: TypingIndicator
     proto: oni
   - type: Tag
@@ -82,3 +83,13 @@
   id: MobOniDummy
   categories: [ HideSpawnMenu ]
   description: A dummy oni meant to be used in character setup.
+  # RS14-start
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _ADT/Mobs/Species/Demon/displacement.rsi
+            state: jumpsuit-female
+  # RS14-end

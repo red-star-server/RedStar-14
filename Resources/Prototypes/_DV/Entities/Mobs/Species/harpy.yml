@@ -88,19 +88,20 @@
       - map: [ "enum.HumanoidVisualLayers.LArm" ]
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - map: ["underwearb"] # RS14
-      - map: ["underweart"] # RS14
-      - map: ["socks"] # RS14
       #- map: [ "enum.HumanoidVisualLayers.Underwear" ]
       #- map: [ "enum.HumanoidVisualLayers.Undershirt" ]
       #- map: [ "underpants" ]
       #- map: [ "undershirt" ]
       #- map: [ "socks" ]
-      - map: [ "jumpsuit" ]
+      #- map: [ "jumpsuit" ]
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["socks"] # RS14
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: ["underwearb"] # RS14
+      - map: ["underweart"] # RS14
+      - map: ["jumpsuit"] # RS14
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
