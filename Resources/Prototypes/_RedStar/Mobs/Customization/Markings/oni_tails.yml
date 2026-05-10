@@ -2,7 +2,7 @@
   id: DemonTail1
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Oni ]
+  speciesRestriction: [Oni]
   sprites:
   - sprite: _ADT/Mobs/Customization/Demon/tails_of_demons.rsi
     state: tail
@@ -13,7 +13,7 @@
   id: DemonTailLong
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Oni ]
+  speciesRestriction: [Oni]
   sprites:
   - sprite: _ADT/Mobs/Customization/Demon/tails_of_demons.rsi
     state: tail
@@ -24,7 +24,7 @@
   id: DemonTailUp
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Oni ]
+  speciesRestriction: [Oni]
   sprites:
   - sprite: _ADT/Mobs/Customization/Demon/tails_of_demons.rsi
     state: tail
@@ -35,7 +35,7 @@
   id: DemonTailColor
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Oni ]
+  speciesRestriction: [Oni]
   sprites:
   - sprite: _ADT/Mobs/Customization/Demon/tails_of_demons.rsi
     state: tail
