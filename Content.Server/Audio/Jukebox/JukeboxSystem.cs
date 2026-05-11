@@ -68,6 +68,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private readonly Dictionary<EntityUid, PlaybackHistoryState> _playbackStates = new();
+    private List<JukeboxPrototype>? _cachedOrderedSongs;
 
     private sealed class PlaybackHistoryState
     {
@@ -94,6 +95,11 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown);
 
         SubscribeLocalEvent<JukeboxComponent, PowerChangedEvent>(OnPowerChanged);
+
+        // RS14-start
+        _protoManager.PrototypesReloaded += OnPrototypesReloaded;
+        RebuildSongCache();
+        // RS14-end
     }
 
     private void OnComponentInit(EntityUid uid, JukeboxComponent component, ComponentInit args)
@@ -253,6 +259,29 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         component.AudioStream = Audio.Stop(component.AudioStream);
         _playbackStates.Remove(uid); // RS14
     }
+
+    // RS14-start
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _protoManager.PrototypesReloaded -= OnPrototypesReloaded;
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs obj)
+    {
+        if (obj.WasModified<JukeboxPrototype>())
+            RebuildSongCache();
+    }
+
+    private List<JukeboxPrototype> RebuildSongCache()
+    {
+        _cachedOrderedSongs = _protoManager
+            .EnumeratePrototypes<JukeboxPrototype>()
+            .OrderBy(p => p.Name, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        return _cachedOrderedSongs;
+    }
+    // RS14-end
 
     private void DirectSetVisualState(EntityUid uid, JukeboxVisualState state)
     {
@@ -414,17 +443,16 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         if (orderedSongs.Count == 1)
             return orderedSongs[0].ID;
 
-        if (currentSongId != null)
-            orderedSongs.RemoveAll(proto => proto.ID == currentSongId.Value);
+        var filtered = currentSongId != null
+            ? orderedSongs.Where(proto => proto.ID != currentSongId.Value).ToList()
+            : orderedSongs;
 
-        return orderedSongs.Count == 0 ? null : _random.Pick(orderedSongs).ID;
+        return filtered.Count == 0 ? null : _random.Pick(filtered).ID;
     }
 
     private List<JukeboxPrototype> GetOrderedSongs()
     {
-        var orderedSongs = _protoManager.EnumeratePrototypes<JukeboxPrototype>().ToList();
-        orderedSongs.Sort(static (left, right) => string.Compare(left.Name, right.Name, StringComparison.OrdinalIgnoreCase));
-        return orderedSongs;
+        return _cachedOrderedSongs ?? RebuildSongCache();
     }
 
     private bool TryGetSongLength(ProtoId<JukeboxPrototype>? songId, out float length)
