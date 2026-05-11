@@ -11,6 +11,9 @@ public static class JukeboxVolume
 
     public static float Clamp(float value)
     {
+        if (float.IsNaN(value) || float.IsInfinity(value))
+            return DefaultValue;
+
         return Math.Clamp(value, MinValue, MaxValue);
     }
 

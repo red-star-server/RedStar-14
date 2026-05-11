@@ -78,7 +78,11 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
     protected override void Dispose(bool disposing)
     {
         if (disposing)
+        {
+            if (_menu != null)
+                _menu.OnClose -= CommitVolumeState;
             CommitVolumeState();
+        }
 
         base.Dispose(disposing);
     }
