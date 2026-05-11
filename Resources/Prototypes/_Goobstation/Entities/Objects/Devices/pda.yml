@@ -272,9 +272,23 @@
   - type: Icon
     sprite: _Goobstation/Objects/Devices/pda.rsi
     state: pda-highcommand
+  # RS14-start
   - type: Sprite
     sprite: _Goobstation/Objects/Devices/pda.rsi
-    state: pda-highcommand
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-highcommand"
+    - state: "light_overlay_syndi"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay_syndi"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "insert_overlay" # Goob
+      map: [ "enum.PdaVisualLayers.Pen" ]
+  # RS14-end
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
