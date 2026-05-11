@@ -57,13 +57,8 @@ public sealed partial class JukeboxMenu : FancyWindow
     private float _volume = JukeboxVolume.DefaultValue;
     private float _lastSentVolume = JukeboxVolume.DefaultValue;
     private float _volumeSendAccumulator;
-    private float _volumeInteractionTimer;
-    private bool _pendingVolumeSend;
-    private bool _awaitingVolumeSync;
-    private bool _updatingVolume;
     private const float VolumeSendInterval = 0.12f;
     private const float VolumeSendTolerance = 0.01f;
-    private const float VolumeInteractionHoldTime = 0.2f;
     private const string PlayIconTexturePath = "/Textures/Interface/AdminActions/play.png";
     private const string PauseIconTexturePath = "/Textures/Interface/AdminActions/pause.png";
     private const string VolumeIconRsiPath = "/Textures/Interface/Actions/actions_borg.rsi";
@@ -121,7 +116,6 @@ public sealed partial class JukeboxMenu : FancyWindow
         if (!_jukeboxSystem.TryGetVolumeOverride(jukebox, out var volume))
             return;
 
-        _awaitingVolumeSync = true;
         SetVolumeSlider(volume, force: true);
     }
     // RS14-end
@@ -129,8 +123,7 @@ public sealed partial class JukeboxMenu : FancyWindow
     {
         _audio = audio;
         // RS14-start
-        if (HasActiveLocalVolumeOverride)
-            TryApplyLocalVolume(_volume);
+        TryApplyLocalVolume(_volume);
         // RS14-end
     }
 
@@ -201,27 +194,13 @@ public sealed partial class JukeboxMenu : FancyWindow
     {
         volume = JukeboxVolume.Clamp(volume);
 
-        if (!force && HasActiveLocalVolumeOverride)
-        {
-            if (_awaitingVolumeSync && Math.Abs(_volume - volume) <= VolumeSendTolerance)
-            {
-                _awaitingVolumeSync = false;
-            }
-            else
-            {
-                return;
-            }
-        }
-
         if (!force && Math.Abs(_volume - volume) <= VolumeSendTolerance)
             return;
 
         _volume = volume;
-        _updatingVolume = true;
         var sliderValue = 1f - volume;
         VolumeSlider.ValueTarget = sliderValue;
         VolumeSlider.SetValueWithoutEvent(sliderValue);
-        _updatingVolume = false;
         UpdateVolumeLabel();
         TryApplyLocalVolume(volume);
     }
@@ -243,17 +222,14 @@ public sealed partial class JukeboxMenu : FancyWindow
             _lockTimer -= args.DeltaSeconds;
         }
         // RS14-start
-        if (_pendingVolumeSend)
+        if (_volumeSendAccumulator > 0f)
         {
-            _volumeSendAccumulator += args.DeltaSeconds;
-            if (_volumeSendAccumulator >= VolumeSendInterval)
+            _volumeSendAccumulator -= args.DeltaSeconds;
+            if (_volumeSendAccumulator <= 0f)
             {
                 FlushPendingVolume();
             }
         }
-
-        if (_volumeInteractionTimer > 0f)
-            _volumeInteractionTimer = Math.Max(0f, _volumeInteractionTimer - args.DeltaSeconds);
         // RS14-end
         PlaybackSlider.Disabled = _lockTimer > 0f;
 
@@ -295,28 +271,16 @@ public sealed partial class JukeboxMenu : FancyWindow
     // RS14-start
     public bool TryGetLocalVolumeOverride(out float volume)
     {
-        if (!HasActiveLocalVolumeOverride)
-        {
-            volume = default;
-            return false;
-        }
-
         volume = _volume;
         return true;
     }
 
     public void CommitVolumeState()
     {
-        if (_pendingVolumeSend)
+        if (_volumeSendAccumulator > 0f)
             FlushPendingVolume();
 
-        if (HasActiveLocalVolumeOverride)
-        {
-            _jukeboxSystem.SetVolumeOverride(_jukebox, _volume);
-            return;
-        }
-
-        _jukeboxSystem.ClearVolumeOverride(_jukebox);
+        _jukeboxSystem.SetVolumeOverride(_jukebox, _volume);
     }
 
     private void RefreshSongList()
@@ -354,10 +318,6 @@ public sealed partial class JukeboxMenu : FancyWindow
 
     private void OnVolumeSliderChanged()
     {
-        if (_updatingVolume)
-            return;
-
-        _volumeInteractionTimer = VolumeInteractionHoldTime;
         _volume = JukeboxVolume.Clamp(1f - VolumeSlider.Value);
         _jukeboxSystem.SetVolumeOverride(_jukebox, _volume);
         UpdateVolumeLabel();
@@ -366,7 +326,7 @@ public sealed partial class JukeboxMenu : FancyWindow
         if (Math.Abs(_volume - _lastSentVolume) <= VolumeSendTolerance)
             return;
 
-        _pendingVolumeSend = true;
+        _volumeSendAccumulator = VolumeSendInterval;
     }
 
     private void FlushPendingVolume()
@@ -374,14 +334,9 @@ public sealed partial class JukeboxMenu : FancyWindow
         _volumeSendAccumulator = 0f;
 
         if (Math.Abs(_volume - _lastSentVolume) <= VolumeSendTolerance)
-        {
-            _pendingVolumeSend = false;
             return;
-        }
 
         _lastSentVolume = _volume;
-        _pendingVolumeSend = false;
-        _awaitingVolumeSync = true;
         SetVolume?.Invoke(_volume);
     }
 
@@ -389,9 +344,6 @@ public sealed partial class JukeboxMenu : FancyWindow
     {
         VolumeValueLabel.Text = $"{(int) MathF.Round(_volume * 100f)}%";
     }
-
-    private bool HasActiveLocalVolumeOverride =>
-        _volumeInteractionTimer > 0f || _pendingVolumeSend || _awaitingVolumeSync;
 
     private void TryApplyLocalVolume(float volume)
     {
