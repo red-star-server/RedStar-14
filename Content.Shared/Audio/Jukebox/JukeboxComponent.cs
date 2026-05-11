@@ -4,6 +4,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+using Content.Shared._RedStar.Audio.Jukebox;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -19,7 +20,16 @@ public sealed partial class JukeboxComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntityUid? AudioStream;
+    // RS14-start
+    [DataField, AutoNetworkedField]
+    public float Volume = JukeboxVolume.DefaultValue;
 
+    [DataField, AutoNetworkedField]
+    public bool ShuffleEnabled;
+
+    [DataField, AutoNetworkedField]
+    public bool RepeatEnabled;
+    // RS14-end
     /// <summary>
     /// RSI state for the jukebox being on.
     /// </summary>
@@ -65,7 +75,31 @@ public sealed class JukeboxSetTimeMessage(float songTime) : BoundUserInterfaceMe
 {
     public float SongTime { get; } = songTime;
 }
+// RS14-start
+[Serializable, NetSerializable]
+public sealed class JukeboxSetVolumeMessage(float volume) : BoundUserInterfaceMessage
+{
+    public float Volume { get; } = volume;
+}
 
+[Serializable, NetSerializable]
+public sealed class JukeboxNextMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class JukeboxPreviousMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class JukeboxShuffleMessage(bool enabled) : BoundUserInterfaceMessage
+{
+    public bool Enabled { get; } = enabled;
+}
+
+[Serializable, NetSerializable]
+public sealed class JukeboxRepeatMessage(bool enabled) : BoundUserInterfaceMessage
+{
+    public bool Enabled { get; } = enabled;
+}
+// RS14-end
 [Serializable, NetSerializable]
 public enum JukeboxVisuals : byte
 {

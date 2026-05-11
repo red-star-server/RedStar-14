@@ -20,6 +20,7 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
     [ViewVariables]
     private JukeboxMenu? _menu;
+    private bool _volumeStateCommitted; // RS14
 
     public JukeboxBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -31,6 +32,8 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
         base.Open();
 
         _menu = this.CreateWindow<JukeboxMenu>();
+        _menu.SetJukebox(Owner); // RS14
+        _menu.OnClose += CommitVolumeState; // RS14
 
         _menu.OnPlayPressed += args =>
         {
@@ -43,19 +46,43 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
                 SendMessage(new JukeboxPauseMessage());
             }
         };
-
-        _menu.OnStopPressed += () =>
+        // RS14-start
+        _menu.OnPreviousPressed += () =>
         {
-            SendMessage(new JukeboxStopMessage());
+            SendMessage(new JukeboxPreviousMessage());
         };
 
+        _menu.OnNextPressed += () =>
+        {
+            SendMessage(new JukeboxNextMessage());
+        };
+
+        _menu.OnShuffleToggled += enabled =>
+        {
+            SendMessage(new JukeboxShuffleMessage(enabled));
+        };
+
+        _menu.OnRepeatToggled += enabled =>
+        {
+            SendMessage(new JukeboxRepeatMessage(enabled));
+        };
+        // RS14-end
         _menu.OnSongSelected += SelectSong;
 
         _menu.SetTime += SetTime;
+        _menu.SetVolume += SetVolume; // RS14
         PopulateMusic();
         Reload();
     }
+    // RS14-start
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+            CommitVolumeState();
 
+        base.Dispose(disposing);
+    }
+    // RS14-end
     /// <summary>
     /// Reloads the attached menu if it exists.
     /// </summary>
@@ -65,15 +92,20 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
             return;
 
         _menu.SetAudioStream(jukebox.AudioStream);
+        // RS14-start
+        _menu.SetShuffleEnabled(jukebox.ShuffleEnabled);
+        _menu.SetRepeatEnabled(jukebox.RepeatEnabled);
+        _menu.SetVolumeSlider(jukebox.Volume);
+        // RS14-end
 
-        if (_protoManager.TryIndex(jukebox.SelectedSongId, out var songProto))
+        if (_protoManager.Resolve(jukebox.SelectedSongId, out var songProto)) // RS14
         {
             var length = EntMan.System<AudioSystem>().GetAudioLength(songProto.Path.Path.ToString());
-            _menu.SetSelectedSong(songProto.Name, (float) length.TotalSeconds);
+            _menu.SetSelectedSong(jukebox.SelectedSongId, songProto.Name, (float) length.TotalSeconds); // RS14
         }
         else
         {
-            _menu.SetSelectedSong(string.Empty, 0f);
+            _menu.SetSelectedSong(null, string.Empty, 0f); // RS14
         }
     }
 
@@ -105,4 +137,28 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
         SendMessage(new JukeboxSetTimeMessage(sentTime));
     }
+    // RS14-start
+    public void SetVolume(float volume)
+    {
+        SendMessage(new JukeboxSetVolumeMessage(volume));
+    }
+
+    public bool TryGetLocalVolumeOverride(out float volume)
+    {
+        if (_menu != null)
+            return _menu.TryGetLocalVolumeOverride(out volume);
+
+        volume = default;
+        return false;
+    }
+
+    private void CommitVolumeState()
+    {
+        if (_volumeStateCommitted || _menu == null)
+            return;
+
+        _volumeStateCommitted = true;
+        _menu.CommitVolumeState();
+    }
+    // RS14-end
 }
