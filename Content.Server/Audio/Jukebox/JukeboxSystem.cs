@@ -303,12 +303,17 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         _appearanceSystem.SetData(uid, JukeboxVisuals.VisualState, finalState);
     }
     // RS14-start
+    private void StopAndDirty(EntityUid uid, JukeboxComponent component)
+    {
+        component.AudioStream = Audio.Stop(component.AudioStream);
+        Dirty(uid, component);
+    }
+
     private void HandleSongFinished(EntityUid uid, JukeboxComponent component)
     {
         if (component.SelectedSongId == null)
         {
-            component.AudioStream = Audio.Stop(component.AudioStream);
-            Dirty(uid, component);
+            StopAndDirty(uid, component);
             return;
         }
 
@@ -321,8 +326,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         var songId = ResolveNextSong(uid, component, out var fromHistory);
         if (songId == null)
         {
-            component.AudioStream = Audio.Stop(component.AudioStream);
-            Dirty(uid, component);
+            StopAndDirty(uid, component);
             return;
         }
 
