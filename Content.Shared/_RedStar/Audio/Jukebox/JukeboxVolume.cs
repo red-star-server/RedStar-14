@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 RedStar Contributors
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 namespace Content.Shared._RedStar.Audio.Jukebox;
 
 public static class JukeboxVolume
