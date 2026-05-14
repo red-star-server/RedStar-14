@@ -41,32 +41,32 @@
   - type: Sprite
     layers:
     - state: icon-base
-      color: "#3c6381"
+      color: "#7e3d4a"
     - state: icon-sling
-      color: "#d6a033"
+      color: "#e0993a"
     - state: icon-clasp
-      color: "#f6d56a"
+      color: "#e0993a"
   - type: Clothing
     clothingVisuals:
       back:
       - state: base-equipped-BACKPACK
-        color: "#3c6381"
+        color: "#7e3d4a"
       - state: sling-equipped-BACKPACK
-        color: "#d6a033"
+        color: "#e0993a"
       - state: clasp-equipped-BACKPACK
-        color: "#f6d56a"
+        color: "#0f0e1c"
   - type: Item
     inhandVisuals:
       left:
       - state: base-inhand-left
-        color: "#3c6381"
+        color: "#e0993a"
       - state: clasp-inhand-left
-        color: "#f6d56a"
+        color: "#0f0e1c"
       right:
       - state: base-inhand-right
-        color: "#3c6381"
+        color: "#e0993a"
       - state: clasp-inhand-right
-        color: "#f6d56a"
+        color: "#0f0e1c"
 
 - type: entity
   parent: [ BaseCentcommContraband , ClothingBackpackMessengerBase ]
