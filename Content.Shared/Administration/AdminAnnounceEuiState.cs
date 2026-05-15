@@ -18,7 +18,7 @@ namespace Content.Shared.Administration
     {
         public const string DefaultColorHex = "#1d8bad";
         public const string ServerColorHex = "#f0973d";
-        public const string DefaultSoundPath = "/Audio/_CorvaxGoob/Announcements/centcomm.ogg";
+        public const string DefaultSoundPath = "/Audio/Announcements/announce.ogg";
 
         public static string GetDefaultColorHex(AdminAnnounceType type)
         {
