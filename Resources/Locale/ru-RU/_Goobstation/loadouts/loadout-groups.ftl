@@ -1,15 +1,15 @@
 # Research Director
-loadout-group-research-director-envirohelm = Экошлем научного руководителя
-loadout-group-research-director-envirosuit = Экокостюм научного руководителя
-loadout-group-research-director-envirogloves = Экоперчатки научного руководителя
+loadout-group-research-director-envirohelm = Экошлем главного научного сотрудника
+loadout-group-research-director-envirosuit = Экокостюм главного научного сотрудника
+loadout-group-research-director-envirogloves = Экоперчатки главного научного сотрудника
 # Scientist
-loadout-group-scientist-envirohelm = Экошлем ученого
-loadout-group-scientist-envirosuit = Экокостюм ученого
-loadout-group-scientist-envirogloves = Экоперчатки ученого
+loadout-group-scientist-envirohelm = Экошлем научного сотрудника
+loadout-group-scientist-envirosuit = Экокостюм научного сотрудника
+loadout-group-scientist-envirogloves = Экоперчатки научного сотрудника
 # Research Assistant
-loadout-group-research-assistant-envirohelm = Экошлем научного ассистента
-loadout-group-research-assistant-envirosuit = Экокостюм научного ассистента
-loadout-group-research-assistant-envirogloves = Экоперчатки научного ассистента
+loadout-group-research-assistant-envirohelm = Экошлем младшего научного сотрудника
+loadout-group-research-assistant-envirosuit = Экокостюм младшего научного сотрудника
+loadout-group-research-assistant-envirogloves = Экоперчатки младшего научного сотрудника
 # Chief Medical Officer
 loadout-group-chief-medical-officer-envirohelm = Экошлем главного врача
 loadout-group-chief-medical-officer-envirosuit = Экокостюм главного врача
@@ -19,17 +19,17 @@ loadout-group-medical-doctor-envirohelm = Экошлем врача
 loadout-group-medical-doctor-envirosuit = Экокостюм врача
 loadout-group-medical-doctor-envirogloves = Экоперчатки врача
 # Medical Intern
-loadout-group-medical-intern-envirohelm = Экошлем интерна
-loadout-group-medical-intern-envirosuit = Экокостюм интерна
-loadout-group-medical-intern-envirogloves = Экоперчатки интерна
+loadout-group-medical-intern-envirohelm = Экошлем практиканта
+loadout-group-medical-intern-envirosuit = Экокостюм практиканта
+loadout-group-medical-intern-envirogloves = Экоперчатки практиканта
 # Paramedic
-loadout-group-paramedic-envirohelm = Экошлем парамедика
-loadout-group-paramedic-envirosuit = Экокостюм парамедика
-loadout-group-paramedic-envirogloves = Экоперчатки парамедика
+loadout-group-paramedic-envirohelm = Экошлем фельдшера
+loadout-group-paramedic-envirosuit = Экокостюм фельдшера
+loadout-group-paramedic-envirogloves = Экоперчатки фельдшера
 # Psychologist
-loadout-group-psychologist-envirohelm = Экошлем психолога
-loadout-group-psychologist-envirosuit = Экокостюм психолога
-loadout-group-psychologist-envirogloves = Экоперчатки психолога
+loadout-group-psychologist-envirohelm = Экошлем психиатра
+loadout-group-psychologist-envirosuit = Экокостюм психиатра
+loadout-group-psychologist-envirogloves = Экоперчатки психиатра
 # Virologist
 loadout-group-virology-envirohelm = Экошлем вирусолога
 loadout-group-virology-envirosuit = Экокостюм вирусолога
@@ -39,17 +39,17 @@ loadout-group-cargo-technician-envirohelm = Экошлем грузчика
 loadout-group-cargo-technician-envirosuit = Экокостюм грузчика
 loadout-group-cargo-technician-envirogloves = Экоперчатки грузчика
 # Quartermaster
-loadout-group-quartermaster-envirohelm = Экошлем квартирмейстера
-loadout-group-quartermaster-envirosuit = Экокостюм квартирмейстера
-loadout-group-quartermaster-envirogloves = Экоперчатки квартирмейстера
+loadout-group-quartermaster-envirohelm = Экошлем заведующего хозяйством
+loadout-group-quartermaster-envirosuit = Экокостюм заведующего хозяйством
+loadout-group-quartermaster-envirogloves = Экоперчатки заведующего хозяйством
 # Station Engineer
 loadout-group-station-engineer-envirohelm = Экошлем инженера
 loadout-group-station-engineer-envirosuit = Экокостюм инженера
 loadout-group-station-engineer-envirogloves = Экоперчатки инженера
 # Technical Assistant
-loadout-group-technical-assistant-envirohelm = Экошлем технического ассистента
-loadout-group-technical-assistant-envirosuit = Экокостюм технического ассистента
-loadout-group-technical-assistant-envirogloves = Экоперчатки технического ассистента
+loadout-group-technical-assistant-envirohelm = Экошлем слесаря
+loadout-group-technical-assistant-envirosuit = Экокостюм слесаря
+loadout-group-technical-assistant-envirogloves = Экоперчатки слесаря
 # Atmospheric Technician
 loadout-group-atmos-envirohelm = Экошлем атмосферного техника
 loadout-group-atmos-envirosuit = Экокостюм атмосферного техника
@@ -59,35 +59,35 @@ loadout-group-chief-engineer-envirohelm = Экошлем старшего инж
 loadout-group-chief-engineer-envirosuit = Экокостюм старшего инженера
 loadout-group-chief-engineer-envirogloves = Экоперчатки старшего инженера
 # Security Officer
-loadout-group-security-officer-envirohelm = Экошлем офицера СБ
-loadout-group-security-officer-envirosuit = Экокостюм офицера СБ
-loadout-group-security-officer-envirogloves = Экоперчатки офицера СБ
+loadout-group-security-officer-envirohelm = Экошлем милиционера
+loadout-group-security-officer-envirosuit = Экокостюм милиционера
+loadout-group-security-officer-envirogloves = Экоперчатки милиционера
 # Security Cadet
-loadout-group-security-cadet-envirohelm = Экошлем кадета
-loadout-group-security-cadet-envirosuit = Экокостюм кадета
-loadout-group-security-cadet-envirogloves = Экоперчатки кадета
+loadout-group-security-cadet-envirohelm = Экошлем курсанта милиции
+loadout-group-security-cadet-envirosuit = Экокостюм курсанта милиции
+loadout-group-security-cadet-envirogloves = Экоперчатки курсанта милиции
 # Detective
-loadout-group-detective-envirohelm = Экошлем детектива
-loadout-group-detective-envirosuit = Экокостюм детектива
-loadout-group-detective-envirogloves = Экоперчатки детектива
-loadout-group-detective-gloves = Детектив, перчатки
+loadout-group-detective-envirohelm = Экошлем следователя
+loadout-group-detective-envirosuit = Экокостюм следователя
+loadout-group-detective-envirogloves = Экоперчатки следователя
+loadout-group-detective-gloves = Следователь, перчатки
 # Warden
-loadout-group-warden-envirohelm = Экошлем смотрителя
-loadout-group-warden-envirosuit = Экокостюм смотрителя
-loadout-group-warden-envirogloves = Экоперчатки смотрителя
+loadout-group-warden-envirohelm = Экошлем старшего следователя
+loadout-group-warden-envirosuit = Экокостюм старшего следователя
+loadout-group-warden-envirogloves = Экоперчатки старшего следователя
 # Head of Personnel
-loadout-group-hop-envirohelm = Экошлем главы персонала
-loadout-group-hop-envirosuit = Экокостюм главы персонала
-loadout-group-hop-envirogloves = Экоперчатки главы персонала
-loadout-group-hop-gloves = Глава персонала, перчатки
+loadout-group-hop-envirohelm = Экошлем начальника отдела кадров
+loadout-group-hop-envirosuit = Экокостюм начальника отдела кадров
+loadout-group-hop-envirogloves = Экоперчатки начальника отдела кадров
+loadout-group-hop-gloves = Начальник отдела кадров, перчатки
 # CentCom Officer
-loadout-group-centcom-officer-envirohelm = Экошлем ОБР
-loadout-group-centcom-officer-envirosuit = Экокостюм ОБР
-loadout-group-centcom-officer-envirogloves = Экоперчатки ОБР
+loadout-group-centcom-officer-envirohelm = Экошлем СОБР
+loadout-group-centcom-officer-envirosuit = Экокостюм СОБР
+loadout-group-centcom-officer-envirogloves = Экоперчатки СОБР
 # Botanist
-loadout-group-botanist-envirohelm = Экошлем ботаника
-loadout-group-botanist-envirosuit = Экокостюм ботаника
-loadout-group-botanist-envirogloves = Экоперчатки ботаника
+loadout-group-botanist-envirohelm = Экошлем агронома
+loadout-group-botanist-envirosuit = Экокостюм агронома
+loadout-group-botanist-envirogloves = Экоперчатки агронома
 # Chaplain
 loadout-group-chaplain-envirohelm = Экошлем священника
 loadout-group-chaplain-envirosuit = Экокостюм священника
@@ -161,20 +161,20 @@ loadout-group-chemist-envirohelm = Экошлем химика
 loadout-group-chemist-envirosuit = Экокостюм химика
 loadout-group-chemist-envirogloves = Экоперчатки химика
 # Head of Security
-loadout-group-head-of-security-envirohelm = Экошлем гсб
-loadout-group-head-of-security-envirosuit = Экокостюм гсб
-loadout-group-head-of-security-envirogloves = Экоперчатки гсб
-loadout-group-head-of-security-gloves = Глава службы безопасности, перчатки
+loadout-group-head-of-security-envirohelm = Экошлем НМ
+loadout-group-head-of-security-envirosuit = Экокостюм НМ
+loadout-group-head-of-security-envirogloves = Экоперчатки НМ
+loadout-group-head-of-security-gloves = Начальник милиции, перчатки
 # Brigmedic
-loadout-group-brigmedic-envirohelm = Экошлем бригмедика
-loadout-group-brigmedic-envirosuit = Экокостюм бригмедика
-loadout-group-brigmedic-envirogloves = Экоперчатки бригмедика
+loadout-group-brigmedic-envirohelm = Экошлем дежурного врача
+loadout-group-brigmedic-envirosuit = Экокостюм дежурного врача
+loadout-group-brigmedic-envirogloves = Экоперчатки дежурного врача
 # Zookeeper
-loadout-group-zookeeper-envirohelm = Экошлем зоотехника
-loadout-group-zookeeper-envirosuit = Экокостюм зоотехника
-loadout-group-zookeeper-envirogloves = Экоперчатки зоотехника
-loadout-group-zookeeper-jumpsuit = Зоотехник, комбинезон
-loadout-group-zookeeper-head = Зоотехник, шляпа
+loadout-group-zookeeper-envirohelm = Экошлем ветеринара
+loadout-group-zookeeper-envirosuit = Экокостюм ветеринара
+loadout-group-zookeeper-envirogloves = Экоперчатки ветеринара
+loadout-group-zookeeper-jumpsuit = Ветеринар, комбинезон
+loadout-group-zookeeper-head = Ветеринар, шляпа
 # Boxer
 loadout-group-boxer-envirohelm = Экошлем боксёра
 loadout-group-boxer-envirosuit = Экокостюм боксёра

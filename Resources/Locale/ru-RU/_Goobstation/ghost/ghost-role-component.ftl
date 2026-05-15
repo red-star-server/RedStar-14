@@ -69,10 +69,10 @@ ghost-role-information-bsd-name = Представитель Синего Щит
 ghost-role-information-bsd-description = Вас вызвал на станцию Представитель NanoTrasen. Подчиняйтесь ему, защищайте командование, следуйте Корпоративному Закону.
 ghost-role-information-bsd-rules = Следуйте приказам, данными вам [color=yellow][bold]Представителем NanoTrasen[/bold][/color], защищайте командование.
 # interns
-ghost-role-intern-name = Стажёр ЦентКом
-ghost-role-nerd-intern-name = Нёрд стажёр ЦентКом
-ghost-role-lead-intern-name = Глава стажёров ЦентКом
-ghost-role-intern-desc = Вы — стажёр ЦентКом, плохо оплачиваемый, голодный, с большой студенческой задолженностью, но других вариантов нет, так что лучше слушайтесь!
+ghost-role-intern-name = Стажёр ГенШтаб
+ghost-role-nerd-intern-name = Нёрд стажёр ГенШтаб
+ghost-role-lead-intern-name = Глава стажёров ГенШтаб
+ghost-role-intern-desc = Вы — стажёр ГенШтаб, плохо оплачиваемый, голодный, с большой студенческой задолженностью, но других вариантов нет, так что лучше слушайтесь!
 ghost-role-intern-rules = Следуйте приказам, данными вами [color=yellow][bold]Представителем NanoTrasen[/bold][/color] и ЦК. Защищайте командование, слушайтесь Главу стажёров.
 ghost-role-lead-intern-rules = Следуйте приказам, данными вами [color=yellow][bold]Представителем NanoTrasen[/bold][/color] и ЦК. Защищай командование, отдавайте приказы другим стажёрам.
 # cargo bingle
@@ -91,7 +91,7 @@ ghost-role-information-conquest-description = Эта станция получи
 ghost-role-information-conquest-rules = Подготовь станцию к прибытию Империи Вилтрумов.
 # Justice Persona Role
 justice-role-name = Человек-правосудие
-justice-role-description = Помогай ГСБ с арестами, выкрикивая фразы пока тот совершает правосудие.
+justice-role-description = Помогай НМ с арестами, выкрикивая фразы пока тот совершает правосудие.
 
 # Ancient Xenos
 

@@ -1,12 +1,12 @@
 ent-ClothingHeadsetAlt = полноразмерная гарнитура
     .desc = Модифицированный модульный интерком, надеваемый на голову. Принимает ключи шифрования.
-ent-ClothingHeadsetAltCentCom = полноразмерная гарнитура Центком
+ent-ClothingHeadsetAltCentCom = полноразмерная гарнитура ГенШтаб
     .desc = { ent-ClothingHeadsetAlt.desc }
 ent-ClothingHeadsetAltCommand = полноразмерная гарнитура командования
     .desc = { ent-ClothingHeadsetAlt.desc }
 ent-ClothingHeadsetAltMedical = полноразмерная гарнитура ГВ
     .desc = { ent-ClothingHeadsetAlt.desc }
-ent-ClothingHeadsetAltSecurity = полноразмерная гарнитура ГСБ
+ent-ClothingHeadsetAltSecurity = полноразмерная гарнитура НМ
     .desc = { ent-ClothingHeadsetAlt.desc }
 ent-ClothingHeadsetAltEngineering = полноразмерная гарнитура СИ
     .desc = { ent-ClothingHeadsetAlt.desc }

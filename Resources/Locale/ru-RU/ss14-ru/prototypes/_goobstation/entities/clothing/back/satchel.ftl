@@ -1,4 +1,4 @@
-ent-ClothingBackpackSatchelCentcomm = сумка Центком
+ent-ClothingBackpackSatchelCentcomm = сумка ГенШтаб
     .desc = Дорогая тёмно-зелёная сумка. Пахнет факсовыми аппаратами.
 ent-ClothingBackpackSatchelBlueshield = сумка Синего Щита
     .desc = Очень защитная сумка, пахнет энергетическим пистолетом.

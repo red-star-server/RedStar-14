@@ -1,6 +1,6 @@
-ent-ClothingHeadHatBeretEliteNavyOfficer = элитный берет офицера ЦентКом
+ent-ClothingHeadHatBeretEliteNavyOfficer = элитный берет офицера ГенШтаб
     .desc = Тёмно-синий берет с серебряным щитом сил безопасности NanoTrasen.
-ent-ClothingHeadHatBeretNavyOfficer = берет офицера ЦентКом
+ent-ClothingHeadHatBeretNavyOfficer = берет офицера ГенШтаб
     .desc = Чёрный берет с серебряным щитом сил безопасности NanoTrasen.
 ent-ClothingHeadHatBeretNavyCaptain = берет капитана военно-космического флота
     .desc = Белый как крахмальная рубашка.
@@ -25,7 +25,7 @@ ent-ClothingHeadBeretTrainer = берет наставника
 ent-ClothingHeadHatBeretHeadOfSecurityAdvanced = парадный берет главы службы безопасности
     .desc = Особенно украшенный берет, предназначенный для начальника службы безопасности.
 ent-ClothingHeadHatBeretSeniorBotanist = ботанический берет
-    .desc = Зелёный берет с маленьким синим цветком для опытных ботаников.
+    .desc = Зелёный берет с маленьким синим цветком для опытных агрономов.
 ent-ClothingHeadSanabi = фуражка генерала бригадира
     .desc = Пахнет сталью.
 ent-ClothingHeadLehmin = топовый головной убор ГВ

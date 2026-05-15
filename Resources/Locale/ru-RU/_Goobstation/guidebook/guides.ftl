@@ -58,7 +58,7 @@ guide-entry-sop-stationdamage = Повреждения станции
 guide-entry-sop-supermatterdelam = Распад Суперматерии
 guide-entry-sop-wardeclaration = Объявление войны
 guide-entry-sop-zombieoutbreak = Вспышка зомби
-guide-entry-sop-emergencyresponseteam = ОБР (Отряд Быстрого Реагирования)
+guide-entry-sop-emergencyresponseteam = СОБР (Отряд Быстрого Реагирования)
 # - Юридическая часть
 guide-entry-sop-execution = Казни
 guide-entry-sop-permabrig = Пермабриг
@@ -72,32 +72,32 @@ guide-entry-sop-shaft-miner = Шахтёр
 guide-entry-sop-ntr = Представитель NanoTrasen
 guide-entry-sop-bso = Офицер Синего Щита
 guide-entry-sop-captain = Капитан
-guide-entry-sop-hop = Глава Персонала
+guide-entry-sop-hop = Начальник отдела кадров
 guide-entry-sop-hos = Глава Службы Безопасности
 guide-entry-sop-rd = Научный Руководитель
 guide-entry-sop-cmo = Главный Врач
 guide-entry-sop-ce = Старший Инженер
-guide-entry-sop-qm = Квартирмейстер
+guide-entry-sop-qm = Заведующий хозяйством
 # - Инженерия
 guide-entry-sop-atmostech = Атмосферный техник
 guide-entry-sop-stationengineer = Инженер станции
 # - Медицина
 guide-entry-sop-chemist = Химик
-guide-entry-sop-doctorintern = Врач/Интерн
+guide-entry-sop-doctorintern = Врач/Практикант
 # - Наука
 guide-entry-sop-roboticist = Робототехник
 guide-entry-sop-scientist = Ученый
 # - Охрана
-guide-entry-sop-brigmedic = Бригмедик
-guide-entry-sop-detective = Детектив
-guide-entry-sop-officercadet = Офицер/Кадет
+guide-entry-sop-brigmedic = Дежурный врач
+guide-entry-sop-detective = Следователь
+guide-entry-sop-officercadet = Милиционер/Курсант
 guide-entry-sop-warden = Смотритель
 # - Служба
 guide-entry-sop-bartender = Бармен
-guide-entry-sop-botanist = Ботаник
+guide-entry-sop-botanist = Агроном
 guide-entry-sop-chef = Повар
 guide-entry-sop-clown = Клоун
 guide-entry-sop-janitor = Уборщик
 guide-entry-sop-librarian = Библиотекарь
 guide-entry-sop-mime = Мим
-guide-entry-sop-reporter = Репортёр
+guide-entry-sop-reporter = Корресподент
