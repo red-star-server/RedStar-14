@@ -206,7 +206,7 @@
   components:
   - type: Sprite #corvaxGoob-Start
     sprite: Clothing/Head/Hardsuits/engineering.rsi
-    layers:
+    layers: 
     - state: icon
     - state: icon-unshaded
       shader: unshaded

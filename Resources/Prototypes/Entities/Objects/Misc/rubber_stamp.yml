@@ -146,7 +146,7 @@
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-captain
-    stampedColor: "#7e3d4a"
+    stampedColor: "#7e3d4a" # RS14
     stampState: "paper_stamp-cap"
   - type: Sprite
     state: stamp-cap
