@@ -183,7 +183,7 @@ selectable-set-security-modsuit-desc =
     Модульный скафандр с керамическими вставками,
     обеспечивающий большую защиту по сравнению с боевым костюмом,
     но меньшей мобильностью.
-selectable-set-headofsecurity-voidsuit-name = скафандр главы службы безопасности
+selectable-set-headofsecurity-voidsuit-name = скафандр начальника милиции
 selectable-set-headofsecurity-voidsuit-desc =
     Лёгкий боевой скафандр с вырезами в неважных местах,
     слегка увеличивающий защиту жизненно важных органов
