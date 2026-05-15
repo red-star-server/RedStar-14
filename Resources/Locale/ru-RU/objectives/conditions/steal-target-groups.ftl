@@ -25,10 +25,10 @@ steal-target-groups-id-cards = ID-карты
 steal-target-groups-lamps = ЛАМПЫ
 # Thief single item
 steal-target-groups-forensic-scanner = криминалистический сканер
-steal-target-groups-flippo-engraved-lighter = гравированная зажигалка флиппо детектива
+steal-target-groups-flippo-engraved-lighter = гравированная зажигалка флиппо следователя
 steal-target-groups-ammo-tech-fab-circuitboard = машинная плата ТехФаба патронов
-steal-target-groups-clothing-head-hat-warden = фуражка смотрителя
-steal-target-groups-clothing-outer-hardsuit-void-paramed = пустотный скафандр парамедика
+steal-target-groups-clothing-head-hat-warden = фуражка старшего следователя
+steal-target-groups-clothing-outer-hardsuit-void-paramed = пустотный скафандр фельдшера
 steal-target-groups-medical-tech-fab-circuitboard = машинная плата медицинского ТехФаба
 steal-target-groups-clothing-headset-alt-medical = полноразмерная гарнитура главного врача
 steal-target-groups-research-and-development-server-machine-circuitboard = машинная плата сервера НИО
@@ -50,7 +50,7 @@ steal-target-groups-fax-machine-captain = факс дальнего действ
 steal-target-groups-chem-dispenser = химический раздатчик
 steal-target-groups-xeno-artifact = инопланетный артефакт
 steal-target-groups-booze-dispenser = раздатчик алкоголя
-steal-target-groups-plant-rd = "комнатное растение научрука"
+steal-target-groups-plant-rd = "комнатное растение главного научного сотрудника"
 steal-target-groups-toilet-golden-dirty-water = золотой унитаз
 # Thief Animal
 steal-target-groups-animal-named-cat = кот главного врача

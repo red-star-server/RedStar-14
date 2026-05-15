@@ -17,15 +17,15 @@ job-name-exec = служебный доступ
 
 # Navy Stuff
 
-job-name-navy-officer = офицер ЦК
-job-name-navyofficer = офицер ЦК
+job-name-navy-officer = офицер ГенШтаба
+job-name-navyofficer = офицер ГенШтаба
 job-name-navy-captain = капитан ВКФ
 job-name-navy-officer-undercover = офицер под прикрытием
 job-name-navycaptain = капитан ВКФ
 job-name-diplomat = дипломат NanoTrasen
 job-name-outercommander = офицер ТСФ
-job-name-inspector = инспектор ЦК
-job-name-nct = наставник ЦК
+job-name-inspector = инспектор ГенШтаба
+job-name-nct = наставник ГенШтаба
 job-name-special-operations-officer = офицер спецопераций
 
 # Syndicate
@@ -47,9 +47,9 @@ job-name-mercenarycaptain = капитан Наёмников
 
 JobBlueshieldOfficer = офицер Синего Щита
 JobNanotrasenRepresentative = представитель NanoTrasen
-JobNanotrasenCareerTrainer = наставник ЦК
+JobNanotrasenCareerTrainer = наставник ГенШтаба
 JobHecuOperative = агент HECU
-JobNavyOfficer = офицер ЦК
+JobNavyOfficer = офицер ГенШтаба
 JobNavyOfficerUndercover = офицер под прикрытием
 JobNavyCaptain = капитан ВКФ
 JobDiplomat = дипломат NanoTrasen
@@ -58,5 +58,5 @@ JobGovernmentMan = G-Man
 JobRadioHost = радиоведущий
 JobVirologist = вирусолог
 JobConquest = конквест
-JobInspector = инспектор ЦК
+JobInspector = инспектор ГенШтаба
 JobMercenaryCaptain = капитан Наёмников
