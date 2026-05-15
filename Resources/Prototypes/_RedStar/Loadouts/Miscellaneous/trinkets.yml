@@ -1,4 +1,8 @@
-﻿# Pins
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Pins
 - type: loadout
   id: ClothingNeckUSSPPin
   storage:
