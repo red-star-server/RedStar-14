@@ -6,5 +6,17 @@ admin-announce-button = Сделать объявление
 admin-announce-type-station = Станция
 admin-announce-type-server = Сервер
 admin-announce-keep-open = Держать открытым
+admin-announce-global = Глобальное
+admin-announce-global-tooltip = тправить всем игрокам на всех картах
+admin-announce-palette-button = Палитра
+admin-announce-hex = HEX
+admin-announce-hex-color = Цвет...
+admin-announce-sound-placeholder = Путь к звуку
+admin-announce-sender-placeholder = Отправитель...
+admin-announce-sender-default = Оператор ГенШтаба
+admin-announce-enable-sender-tooltip = Включить подпись отправителя
+admin-announce-sent-by = Отправитель
+admin-announce-presets = Пресеты
+
 cmd-announceui-desc = Открывает меню объявлений.
 cmd-announceui-help = Использование: announceui

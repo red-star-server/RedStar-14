@@ -1002,6 +1002,7 @@
     color: "#1d8bad"
     canShuttle: false
     global: true
+    sound: /Audio/_CorvaxGoob/Announcements/centcomm.ogg # RS14
   - type: Computer
     board: CentcommCommsComputerCircuitboard
   - type: PointLight
