@@ -39,9 +39,9 @@ SPDX-License-Identifier: MIT
             </BoxContainer>
         </GridContainer>
         <GridContainer Columns="3" HorizontalExpand="True" Margin="0,0,0,4">
-            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="2">
+            <BoxContainer Orientation="Horizontal" Margin="2">
                 <Button Name="ColorPreview" Access="Public" Text=" " MinSize="30, 30" Margin="0,0,4,0" />
-                <Button Name="OpenPaletteButton" Text="{Loc admin-announce-palette-button}" HorizontalExpand="True" MinWidth="135" />
+                <Button Name="OpenPaletteButton" Text="{Loc admin-announce-palette-button}" MinWidth="135" />
             </BoxContainer>
             <!-- CorvaxGoob-TTS-Start -->
             <BoxContainer HorizontalExpand="True" Visible="False" Name="TTSContainer" Margin="2">
