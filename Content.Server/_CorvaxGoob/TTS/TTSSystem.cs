@@ -187,7 +187,7 @@ public sealed partial class TTSSystem : EntitySystem
         return await _ttsManager.ConvertTextToSpeech(speaker, textSsml);
     }
 
-    public void SendTTSAdminAnnouncement(string text, string voice, string announcementPath = ChatSystem.CentComAnnouncementSound)
+    public void SendTTSAdminAnnouncement(string text, string voice, Filter? filter = null, string announcementPath = ChatSystem.CentComAnnouncementSound)
     {
         if (_isPlaying)
             return;
@@ -201,6 +201,6 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_prototypeManager.TryIndex<TTSVoicePrototype>(voice, out var protoVoice))
             return;
 
-        SendTTS(Filter.Broadcast(), text, protoVoice.Speaker, new SoundPathSpecifier(announcementPath));
+        SendTTS(filter ?? Filter.Broadcast(), text, protoVoice.Speaker, new SoundPathSpecifier(announcementPath));
     }
 }

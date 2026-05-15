@@ -124,6 +124,9 @@ namespace Content.Server.Administration.UI
                                 announcementSound: sound,
                                 colorOverride: color
                             );
+
+                            // CorvaxGoob-TTS
+                            _tts.SendTTSAdminAnnouncement(announcement, doAnnounce.Voice, mapFilter);
                         }
                         else
                         {
@@ -140,10 +143,10 @@ namespace Content.Server.Administration.UI
                             playSound: true,
                             announcementSound: sound
                         );
-                    }
 
-                    // CorvaxGoob-TTS
-                    _tts.SendTTSAdminAnnouncement(announcement, doAnnounce.Voice);
+                        // CorvaxGoob-TTS
+                        _tts.SendTTSAdminAnnouncement(announcement, doAnnounce.Voice);
+                    }
 
                     _adminLogger.Add(LogType.Chat, LogImpact.Low,
                         $"{Player.Name} has sent the following {(sentPerMap ? "map" : "global")} announcement as {announcer}: {announcement}");

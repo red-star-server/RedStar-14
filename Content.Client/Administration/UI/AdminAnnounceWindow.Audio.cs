@@ -10,6 +10,14 @@ public sealed partial class AdminAnnounceWindow
 {
     private void TogglePreview()
     {
+        var type = (AdminAnnounceType?) AnnounceMethod.SelectedMetadata;
+        if (type != AdminAnnounceType.Station)
+        {
+            StopPreview();
+            UpdateButtons();
+            return;
+        }
+
         if (IsStreamPlaying(_previewStream))
             StopPreview();
         else
@@ -44,7 +52,13 @@ public sealed partial class AdminAnnounceWindow
 
     private void UpdateButtons()
     {
-        var isPreviewing = IsStreamPlaying(_previewStream);
+        var type = (AdminAnnounceType?) AnnounceMethod.SelectedMetadata;
+        var canPreview = type == AdminAnnounceType.Station;
+
+        if (!canPreview && _previewStream != null)
+            StopPreview();
+
+        var isPreviewing = canPreview && IsStreamPlaying(_previewStream);
 
         if (_previewStream != null && !isPreviewing)
         {
@@ -53,8 +67,7 @@ public sealed partial class AdminAnnounceWindow
         
         AnnounceButton.Disabled = string.IsNullOrWhiteSpace(Rope.Collapse(Announcement.TextRope));
 
-        var type = (AdminAnnounceType?) AnnounceMethod.SelectedMetadata;
-        PlayAudio.Disabled = type != AdminAnnounceType.Station;
+        PlayAudio.Disabled = !canPreview;
         PlayAudio.Text = isPreviewing ? "⏹" : "▶";
     }
 }
