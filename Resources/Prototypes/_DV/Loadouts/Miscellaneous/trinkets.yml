@@ -10,18 +10,21 @@
   storage:
     back:
     - GoldRing
+  groupBy: "rings" # RS14
 
 - type: loadout
   id: SilverRing
   storage:
     back:
     - SilverRing
+  groupBy: "rings" # RS14
 
 - type: loadout
   id: WhiteCane
   storage:
     back:
     - WhiteCane
+  groupBy: "canes" # RS14
 
 - type: loadout
   id: TapeRecorder

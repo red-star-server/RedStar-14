@@ -187,24 +187,24 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
-  - ClothingNeckLGBTPin
-  - ClothingNeckAllyPin
-  - ClothingNeckAromanticPin
-  - ClothingNeckAsexualPin
-  - ClothingNeckAroacePin
-  - ClothingNeckBisexualPin
-  - ClothingNeckGayPin
-  - ClothingNeckIntersexPin
-  - ClothingNeckLesbianPin
-  - ClothingNeckNonBinaryPin
-  - ClothingNeckPansexualPin
-  - ClothingNeckPluralPin
-  - ClothingNeckOmnisexualPin
-  - ClothingNeckGenderqueerPin
-  - ClothingNeckGenderfluidPin
-  - ClothingNeckTransPin
-  - ClothingNeckAutismPin
-  - ClothingNeckGoldAutismPin
+  #- ClothingNeckLGBTPin
+  #- ClothingNeckAllyPin
+  #- ClothingNeckAromanticPin
+  #- ClothingNeckAsexualPin
+  #- ClothingNeckAroacePin
+  #- ClothingNeckBisexualPin
+  #- ClothingNeckGayPin
+  #- ClothingNeckIntersexPin
+  #- ClothingNeckLesbianPin
+  #- ClothingNeckNonBinaryPin
+  #- ClothingNeckPansexualPin
+  #- ClothingNeckPluralPin
+  #- ClothingNeckOmnisexualPin
+  #- ClothingNeckGenderqueerPin
+  #- ClothingNeckGenderfluidPin
+  #- ClothingNeckTransPin
+  #- ClothingNeckAutismPin
+  #- ClothingNeckGoldAutismPin
   - OffsetCane
   - OffsetCaneWood
   - OffsetCaneClown
@@ -235,16 +235,27 @@
   - TowelColorSilver
   - TowelColorWhite
   - TowelColorYellow
+  # RS14-start
+  - ClothingNeckUSSPPin
+  - ClothingNeckEarthPin
+  - ClothingNeckLogistikaPin
+  - ClothingNeckDonkPin
+  - ClothingNeckDeForestPin
+  - ClothingNeckNakamuraPin
+  - ClothingNeckVitezstviPin
+  - ClothingNeckNanoTrasenPin
+  - ClothingNeckSyndicakePin
+  # RS14-end
   # CorvaxGoob-Loadouts-Start
-  - ClothingNeckAtharaPin
-  - ClothingNeckCorvaxPin
-  - ClothingNeckEchoPin
-  - ClothingNeckElysiumPin
-  - ClothingNeckMainPin
-  - ClothingNeckNebulaPin
-  - ClothingNeckNovaPin
-  - ClothingNeckSolarisPin
-  - ClothingNeckWhiteListPin
+  #- ClothingNeckAtharaPin
+  #- ClothingNeckCorvaxPin
+  #- ClothingNeckEchoPin
+  #- ClothingNeckElysiumPin
+  #- ClothingNeckMainPin
+  #- ClothingNeckNebulaPin
+  #- ClothingNeckNovaPin
+  #- ClothingNeckSolarisPin
+  #- ClothingNeckWhiteListPin
   # CorvaxGoob-Loadouts-End
   # Begin DeltaV Additions
   - GoldRing
