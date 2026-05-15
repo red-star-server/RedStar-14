@@ -191,7 +191,7 @@ public sealed partial class TTSSystem : EntitySystem
         return await _ttsManager.ConvertTextToSpeech(speaker, textSsml);
     }
 
-    public void SendTTSAdminAnnouncement(string text, string voice, Filter? filter = null, string announcementPath = ChatSystem.CentComAnnouncementSound)
+    public void SendTTSAdminAnnouncement(string text, string voice, string announcementPath = ChatSystem.CentComAnnouncementSound, Filter? filter = null)
     {
         if (_isPlaying)
             return;

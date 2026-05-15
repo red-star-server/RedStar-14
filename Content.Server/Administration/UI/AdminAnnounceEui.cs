@@ -126,7 +126,7 @@ namespace Content.Server.Administration.UI
                             );
 
                             // CorvaxGoob-TTS
-                            _tts.SendTTSAdminAnnouncement(announcement, doAnnounce.Voice, mapFilter);
+                            _tts.SendTTSAdminAnnouncement(announcement, doAnnounce.Voice, filter: mapFilter);
                         }
                         else
                         {
