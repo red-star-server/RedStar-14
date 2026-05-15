@@ -174,7 +174,7 @@ selectable-set-paramedic-modsuit-name = скафандр MOD "Санитар"
 selectable-set-paramedic-modsuit-desc =
     Модульный скафандр с усиленной защитой,
     способный выдержать хотя бы несколько выстрелов.
-selectable-set-security-voidsuit-name = пустотный скафандр службы безопасности
+selectable-set-security-voidsuit-name = пустотный скафандр милиции
 selectable-set-security-voidsuit-desc =
     Специальный костюм, защищающий от опасной среды с низким давлением. 
     Имеет дополнительный слой брони.

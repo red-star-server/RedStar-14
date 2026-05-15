@@ -58,11 +58,11 @@ loadout-group-atmos-envirogloves = Экоперчатки атмосферног
 loadout-group-chief-engineer-envirohelm = Экошлем старшего инженера
 loadout-group-chief-engineer-envirosuit = Экокостюм старшего инженера
 loadout-group-chief-engineer-envirogloves = Экоперчатки старшего инженера
-# Security Officer
+# Милиционер
 loadout-group-security-officer-envirohelm = Экошлем милиционера
 loadout-group-security-officer-envirosuit = Экокостюм милиционера
 loadout-group-security-officer-envirogloves = Экоперчатки милиционера
-# Security Cadet
+# Курсант милиции
 loadout-group-security-cadet-envirohelm = Экошлем курсанта милиции
 loadout-group-security-cadet-envirosuit = Экокостюм курсанта милиции
 loadout-group-security-cadet-envirogloves = Экоперчатки курсанта милиции
@@ -160,7 +160,7 @@ loadout-group-salvage-specialist-jumpsuit = Комбинезон утилиза�
 loadout-group-chemist-envirohelm = Экошлем химика
 loadout-group-chemist-envirosuit = Экокостюм химика
 loadout-group-chemist-envirogloves = Экоперчатки химика
-# Head of Security
+# Начальник милиции
 loadout-group-head-of-security-envirohelm = Экошлем НМ
 loadout-group-head-of-security-envirosuit = Экокостюм НМ
 loadout-group-head-of-security-envirogloves = Экоперчатки НМ

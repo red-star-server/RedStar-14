@@ -1,2 +1,2 @@
-ent-ClothingHeadHatHoodWinterPilot = капюшон зимней куртки пилота службы безопасности
+ent-ClothingHeadHatHoodWinterPilot = капюшон зимней куртки пилота милиции
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }

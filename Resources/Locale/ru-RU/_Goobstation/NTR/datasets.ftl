@@ -103,7 +103,7 @@ ntr-document-funny-service4-15 = вы прочитали всё это и при
 # SECURITY
 
 # funny verbs SECURITY 1 (Corporate wants you to check some stuff before stamping this document, make sure that)
-ntr-document-funny-sec1-1 = начальник службы безопасности действительно прочитал всё это,
+ntr-document-funny-sec1-1 = начальник милиции действительно прочитал всё это,
 ntr-document-funny-sec1-2 = хотя бы один курсант был повышен до офицера безопасности,
 ntr-document-funny-sec1-3 = охрана успешно применила дубинки до состояния, близкого к смерти,
 ntr-document-funny-sec1-4 = начальник тюрьмы в карцере,

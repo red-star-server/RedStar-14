@@ -55,7 +55,7 @@ ghost-role-information-sentient-shark-name = Разумный акулёнок
 ghost-role-information-plague-mouse-name = Чумная крыса
 ghost-role-information-plague-mouse-description = Голодная и энергичная мышь. Переносит болезни и распространяет их через укусы.
 ghost-role-information-trevor-name = Тревор
-ghost-role-information-trevor-description = Боевой конь Службы Безопасности.
+ghost-role-information-trevor-description = Боевой конь милиции.
 
 # Half Life
 
