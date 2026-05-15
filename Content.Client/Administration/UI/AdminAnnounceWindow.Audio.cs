@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 RedStar Contributors
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Shared.Administration;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
