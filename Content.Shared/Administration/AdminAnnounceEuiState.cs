@@ -69,7 +69,8 @@ namespace Content.Shared.Administration
 
         public static string GetValidatedColorHex(AdminAnnounceType type, string? value)
         {
-            if (Color.TryFromHex(value) is { } color)
+            var normalized = NormalizeText(value);
+            if (Color.TryFromHex(normalized) is { } color)
                 return color.ToHexNoAlpha();
 
             return AdminAnnounceDefaults.GetDefaultColorHex(type);
@@ -77,7 +78,8 @@ namespace Content.Shared.Administration
 
         public static Color GetColor(AdminAnnounceType type, string? value)
         {
-            if (Color.TryFromHex(value) is { } color)
+            var normalized = NormalizeText(value);
+            if (Color.TryFromHex(normalized) is { } color)
                 return color;
 
             return Color.FromHex(AdminAnnounceDefaults.GetDefaultColorHex(type));

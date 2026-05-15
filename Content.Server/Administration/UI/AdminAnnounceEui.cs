@@ -127,11 +127,11 @@ namespace Content.Server.Administration.UI
                         }
                         else
                         {
-                            sentPerMap = false;
+                            return;
                         }
                     }
 
-                    if (!sentPerMap)
+                    if (doAnnounce.Global)
                     {
                         _chatSystem.DispatchGlobalAnnouncement(
                             finalContent,

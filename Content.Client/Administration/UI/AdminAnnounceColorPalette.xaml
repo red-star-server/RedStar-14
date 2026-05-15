@@ -18,10 +18,10 @@
             <Label Text="{Loc admin-announce-presets}" HorizontalAlignment="Center" Margin="0,0,0,4" />
         </BoxContainer>
         <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,4">
-            <Button Name="PresetWizard" MinSize="32,32" Margin="4,0" ToolTip="Wizard" />
-            <Button Name="PresetNukeOp" MinSize="32,32" Margin="4,0" ToolTip="Nuclear Operative" />
-            <Button Name="PresetCentComm" MinSize="32,32" Margin="4,0" ToolTip="Central Command" />
-            <Button Name="PresetStation" MinSize="32,32" Margin="4,0" ToolTip="Station" />
+            <Button Name="PresetWizard" MinSize="32,32" Margin="4,0" ToolTip="{Loc admin-announce-preset-wizard}" />
+            <Button Name="PresetNukeOp" MinSize="32,32" Margin="4,0" ToolTip="{Loc admin-announce-preset-nukeop}" />
+            <Button Name="PresetCentComm" MinSize="32,32" Margin="4,0" ToolTip="{Loc admin-announce-preset-centcomm}" />
+            <Button Name="PresetStation" MinSize="32,32" Margin="4,0" ToolTip="{Loc admin-announce-preset-station}" />
         </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

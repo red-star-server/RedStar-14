@@ -30,9 +30,19 @@ public sealed partial class AdminAnnounceWindow
 
             _paletteWindow.OnHexChanged += hex =>
             {
-                if (string.IsNullOrEmpty(hex) || _currentHex == hex) return;
-                _currentHex = hex;
+                if (string.IsNullOrWhiteSpace(hex))
+                    return;
+
+                if (Color.TryFromHex(hex) is not { } parsed)
+                    return;
+
+                var normalized = parsed.ToHexNoAlpha();
+                if (_currentHex == normalized)
+                    return;
+
+                _currentHex = normalized;
                 UpdateColorPreview();
+                _paletteWindow.UpdateDisplay(GetCurrentColor(), _currentHex);
             };
         }
 
