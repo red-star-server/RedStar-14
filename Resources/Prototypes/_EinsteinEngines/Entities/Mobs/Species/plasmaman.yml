@@ -41,6 +41,7 @@
     - map: ["underweart"] # RS14
     - map: ["socks"] # RS14
     - map: [ "gloves" ]
+    - map: ["finger"] # RS14
     - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "innerBelt" ]
