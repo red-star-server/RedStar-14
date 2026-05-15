@@ -1,4 +1,8 @@
-﻿using Content.Shared.Administration;
+// SPDX-FileCopyrightText: 2026 RedStar Contributors
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared.Administration;
 
 namespace Content.Client.Administration.UI;
 
