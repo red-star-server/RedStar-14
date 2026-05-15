@@ -294,7 +294,10 @@ public sealed partial class GoobCVars
 
     public static readonly CVarDef<int> PatronAskSupport =
         CVarDef.Create("patron.ask_support", 7, CVar.REPLICATED | CVar.SERVER);
-
+    // RS14-start
+    public static readonly CVarDef<bool> PatronSupportEnabled =
+        CVarDef.Create("patron.support_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+    // RS14-end
     #region Xenobiology
 
     public static readonly CVarDef<float> BreedingInterval =

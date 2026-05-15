@@ -17,6 +17,10 @@ public sealed class PatronSupportUIController : UIController, IOnStateEntered<Lo
 
     public void OnStateEntered(LobbyState state)
     {
+        // RS14-start
+        if (!_cfg.GetCVar(GoobCVars.PatronSupportEnabled))
+            return;
+        // RS14-end
         if (_hasShownThisSession)
             return;
 
