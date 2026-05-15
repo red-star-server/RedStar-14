@@ -1695,6 +1695,9 @@
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
       visible: false
+    - map: ["underwearb"] # RS14
+    - map: ["underweart"] # RS14
+    - map: ["socks"] # RS14
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]

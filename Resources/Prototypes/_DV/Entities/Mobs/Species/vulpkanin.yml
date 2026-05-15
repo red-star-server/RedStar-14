@@ -89,7 +89,7 @@
         sprite: _DV/Mobs/Customization/Vulpkanin/masking_helpers.rsi
         state: female_full
         visible: false
-      - map: [ "jumpsuit" ]
+      #- map: [ "jumpsuit" ]
       - map: [ "enum.HumanoidVisualLayers.LHand" ]
       - map: [ "enum.HumanoidVisualLayers.RHand" ]
       - map: [ "enum.HumanoidVisualLayers.LFoot" ]
@@ -99,8 +99,13 @@
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
         visible: false
+      - map: ["underwearb"] # RS14
+      - map: ["underweart"] # RS14
+      - map: ["socks"] # RS14
+      - map: [ "jumpsuit" ] # RS14
       - map: [ "id" ]
       - map: [ "gloves" ]
+      - map: ["finger"] # RS14
       - map: [ "shoes" ]
       - map: [ "ears" ]
       - map: [ "outerClothing" ]

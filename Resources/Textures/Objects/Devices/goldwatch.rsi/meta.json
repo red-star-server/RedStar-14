@@ -93,6 +93,10 @@
     {
       "name": "equipped-HAND",
       "directions": 4
+    },
+    {
+      "name": "equipped-FINGER",
+      "directions": 4
     }
   ]
 }

@@ -109,6 +109,7 @@
         visible: false
       - map: [ "id" ]
       - map: [ "gloves" ]
+      - map: ["finger"] # RS14
       - map: [ "ears" ]
       - map: [ "outerClothing" ]
       - map: [ "eyes" ]
@@ -262,6 +263,7 @@
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "id" ]
       - map: [ "gloves" ]
+      - map: ["finger"] # RS14
       - map: [ "ears" ]
       - map: [ "outerClothing" ]
       - map: [ "eyes" ]

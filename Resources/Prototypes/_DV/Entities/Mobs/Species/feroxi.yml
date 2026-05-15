@@ -73,6 +73,7 @@
       - map: [ "enum.HumanoidVisualLayers.Face" ] # Goob 120
       - map: [ "id" ]
       - map: [ "gloves" ]
+      - map: ["finger"] # RS14
       - map: [ "shoes" ]
       - map: [ "ears" ]
       - map: [ "outerClothing" ]
@@ -170,6 +171,7 @@
     - map: [ "enum.HumanoidVisualLayers.Face" ] # Goob 120
     - map: [ "id" ]
     - map: [ "gloves" ]
+    - map: ["finger"] # RS14
     - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "outerClothing" ]

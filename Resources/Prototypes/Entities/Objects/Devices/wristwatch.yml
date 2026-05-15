@@ -24,6 +24,7 @@
     sprite: Objects/Devices/wristwatch.rsi
     slots:
     - gloves
+    - finger # RS14
   - type: Appearance
   - type: Damageable
     damageContainer: Inorganic

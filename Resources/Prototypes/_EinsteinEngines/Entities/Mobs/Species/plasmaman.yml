@@ -33,6 +33,9 @@
     - map: ["jumpsuit"] # jumpsuit after foot to show envirosuit shoes
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: ["underwearb"] # RS14
+    - map: ["underweart"] # RS14
+    - map: ["socks"] # RS14
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
