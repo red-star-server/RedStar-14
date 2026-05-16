@@ -1,0 +1,12 @@
+ent-RawBSCrystalOre = блюспейс руда
+    .suffix = Полный
+    .desc = { ent-OreBase.desc }
+ent-RawBSCrystalOre1 = { ent-RawBSCrystalOre }
+    .suffix = Один
+    .desc = { ent-RawBSCrystalOre.desc }
+ent-RawRSCrystalOre = редспейс руда
+    .suffix = Полный
+    .desc = { ent-OreBase.desc }
+ent-RawRSCrystalOre1 = { ent-RawRSCrystalOre }
+    .suffix = Один
+    .desc = { ent-RawRSCrystalOre.desc }

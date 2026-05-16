@@ -1,3 +1,5 @@
+ent-ADTSofaBase = { ent-SeatBase }
+    .desc = { ent-SeatBase.desc }
 ent-ADTSofaBlackLeftSide = черный диван
     .suffix = Левая часть
     .desc = Большой диван, с которого не хочется слезать.

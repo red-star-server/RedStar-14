@@ -1,3 +1,5 @@
+ent-ADTBenchBase = adt bench base
+    .desc = Simple, but beautiful.
 ent-ADTBenchChurchLeftSide = церковная скамейка
     .suffix = Левая часть
     .desc = Простая, но красивая.

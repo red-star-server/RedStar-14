@@ -17,11 +17,9 @@ admin-announce-sender-default = Оператор ГенШтаба
 admin-announce-enable-sender-tooltip = Включить подпись отправителя
 admin-announce-sent-by = Отправитель
 admin-announce-presets = Пресеты
-
 admin-announce-preset-wizard = Маг
 admin-announce-preset-nukeop = Ядерные Оперативники
 admin-announce-preset-centcomm = ГенШтаб
 admin-announce-preset-station = Станция
-
 cmd-announceui-desc = Открывает меню объявлений.
 cmd-announceui-help = Использование: announceui

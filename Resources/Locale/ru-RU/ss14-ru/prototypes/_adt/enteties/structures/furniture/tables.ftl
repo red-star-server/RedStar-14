@@ -1,3 +1,5 @@
+ent-ADTTableBase = { ent-TableBase }
+    .desc = { ent-TableBase.desc }
 ent-ADTTableFrame = каркас стола
     .desc = Металлические детали, составляющие каркас стола
 ent-ADTTableRedWood = красный деревянный стол

@@ -1,3 +1,5 @@
+ent-ADTSofaBase = { ent-SeatBase }
+    .desc = { ent-SeatBase.desc }
 ent-ADTSofaBlackLeftSide = sofa left side
     .desc = { ent-ADTSofaBase.desc }
 ent-ADTSofaBlackMiddle = sofa middle

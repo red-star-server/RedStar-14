@@ -1,0 +1,12 @@
+ent-RawBSCrystalOreUnprocessed = необработанная блюспейс руда
+    .suffix = Полный
+    .desc = { ent-RawBSCrystalOre.desc }
+ent-RawBSCrystalOre1Unprocessed = необработанная блюспейс руда
+    .suffix = Один
+    .desc = { ent-RawBSCrystalOreUnprocessed.desc }
+ent-RawRSCrystalOreUnprocessed = необработанная редспейс руда
+    .suffix = Полный
+    .desc = { ent-RawRSCrystalOre.desc }
+ent-RawRSCrystalOre1Unprocessed = необработанная редспейс руда
+    .suffix = Один
+    .desc = { ent-RawRSCrystalOreUnprocessed.desc }

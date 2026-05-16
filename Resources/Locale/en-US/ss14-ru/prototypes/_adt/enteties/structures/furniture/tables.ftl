@@ -1,3 +1,5 @@
+ent-ADTTableBase = { ent-TableBase }
+    .desc = { ent-TableBase.desc }
 ent-ADTTableFrame = table frame
     .desc = Pieces of metal that make the frame of a table.
 ent-ADTTableRedWood = wood red table

@@ -1,3 +1,5 @@
+ent-ADTChairBase = { ent-SeatBase }
+    .desc = { ent-SeatBase.desc }
 ent-ADTChairPizzeria = pizzeria chair
     .desc = It looks spooky.
 ent-ADTChairRed = red chair

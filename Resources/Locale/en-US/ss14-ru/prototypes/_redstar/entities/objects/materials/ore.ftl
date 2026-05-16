@@ -1,0 +1,12 @@
+ent-RawBSCrystalOre = raw bluespace crystal ore
+    .suffix = Full
+    .desc = { ent-OreBase.desc }
+ent-RawBSCrystalOre1 = { ent-RawBSCrystalOre }
+    .suffix = Single
+    .desc = { ent-RawBSCrystalOre.desc }
+ent-RawRSCrystalOre = raw redspace crystal ore
+    .suffix = Full
+    .desc = { ent-OreBase.desc }
+ent-RawRSCrystalOre1 = { ent-RawRSCrystalOre }
+    .suffix = Single
+    .desc = { ent-RawRSCrystalOre.desc }

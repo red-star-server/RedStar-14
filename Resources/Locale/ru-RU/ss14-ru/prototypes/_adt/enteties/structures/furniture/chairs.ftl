@@ -1,9 +1,13 @@
+ent-ADTChairBase = { ent-SeatBase }
+    .desc = { ent-SeatBase.desc }
 ent-ADTChairPizzeria = черный стул для пиццерии
     .desc = Хорошо подойдет для маленького кафе.
 ent-ADTChairRed = красный деревянный стул
     .desc = Комфортный красный стул с красной спинкой и сидалищем.
 ent-ADTChairWhite = белый деревянный стул
     .desc = Комфортный белый стул с белой спинкой и сидалищем.
+ent-ADTChairBarStool = bar stool
+    .desc = This is a chair.
 ent-ADTChairRusty = ржавый стул
     .desc = Вам лучше не сидеть на нём.
 ent-ADTArmchairWhite = белое кресло

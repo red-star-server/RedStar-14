@@ -1,0 +1,12 @@
+ent-RawBSCrystalOreUnprocessed = unprocessed bluespace crystal ore
+    .suffix = Full
+    .desc = { ent-RawBSCrystalOre.desc }
+ent-RawBSCrystalOre1Unprocessed = unprocessed bluespace crystal ore
+    .suffix = Single
+    .desc = { ent-RawBSCrystalOreUnprocessed.desc }
+ent-RawRSCrystalOreUnprocessed = unprocessed redspace crystal ore
+    .suffix = Full
+    .desc = { ent-RawRSCrystalOre.desc }
+ent-RawRSCrystalOre1Unprocessed = unprocessed redspace crystal ore
+    .suffix = Single
+    .desc = { ent-RawRSCrystalOreUnprocessed.desc }
