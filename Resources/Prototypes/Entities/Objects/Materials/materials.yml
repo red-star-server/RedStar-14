@@ -696,9 +696,9 @@
     materialComposition:
       Bananium: 150
   - type: Sprite
-    state: bananium_1
+    state: bananium_3 # RS14
     layers:
-    - state: bananium_1
+    - state: bananium_3 # RS14
       map: ["base"]
   - type: Stack
     stackType: Bananium
@@ -706,12 +706,10 @@
     baseLayer: base
     layerStates:
       - bananium
-      - bananium_1
-  # Goobstation - Custom stack splitting dialog
-  - type: UserInterface
-    interfaces:
-      enum.StackCustomSplitUiKey.Key:
-        type: StackCustomSplitBoundUserInterface
+# RS14-start
+      - bananium_2
+      - bananium_3
+# RS14-end
   - type: FlavorProfile
     flavors:
       - banana
