@@ -1,27 +1,27 @@
 - type: stack
   id: RawBSCrystalOre
   name: stack-bluespace-crystal-ore
-  icon: { sprite: /Textures/_RedStar/Objects/Materials/ore.rsi, state: bluespace_crystal }
+  icon: { sprite: _RedStar/Objects/Materials/ore.rsi, state: bluespace_crystal }
   spawn: RawBSCrystalOre1
   maxCount: 30
 
 - type: stack
   id: RawRSCrystalOre
   name: stack-redspace-crystal-ore
-  icon: { sprite: /Textures/_RedStar/Objects/Materials/ore.rsi, state: redspace_crystal }
+  icon: { sprite: _RedStar/Objects/Materials/ore.rsi, state: redspace_crystal }
   spawn: RawRSCrystalOre1
   maxCount: 30
 
 - type: stack
   id: RawBSCrystalOreUnprocessed
   name: stack-bluespace-crystal-ore-unprocessed
-  icon: { sprite: /Textures/_RedStar/Objects/Materials/ore.rsi, state: bluespace_crystal }
+  icon: { sprite: _RedStar/Objects/Materials/ore.rsi, state: bluespace_crystal }
   spawn: RawBSCrystalOre1Unprocessed
   maxCount: 30
 
 - type: stack
   id: RawRSCrystalOreUnprocessed
   name: stack-redspace-crystal-ore-unprocessed
-  icon: { sprite: /Textures/_RedStar/Objects/Materials/ore.rsi, state: redspace_crystal }
+  icon: { sprite: _RedStar/Objects/Materials/ore.rsi, state: redspace_crystal }
   spawn: RawRSCrystalOre1Unprocessed
   maxCount: 30

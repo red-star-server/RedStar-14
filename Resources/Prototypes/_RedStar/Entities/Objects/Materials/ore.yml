@@ -7,7 +7,7 @@
   - type: Stack
     stackType: RawBSCrystalOre
   - type: Sprite
-    sprite: /Textures/_RedStar/Objects/Materials/ore.rsi
+    sprite: _RedStar/Objects/Materials/ore.rsi
     state: bluespace_crystal
   - type: Material
   - type: PhysicalComposition
@@ -42,7 +42,7 @@
   - type: Stack
     stackType: RawRSCrystalOre
   - type: Sprite
-    sprite: /Textures/_RedStar/Objects/Materials/ore.rsi
+    sprite: _RedStar/Objects/Materials/ore.rsi
     state: redspace_crystal
   - type: Material
   - type: PhysicalComposition

@@ -3,7 +3,7 @@
   stackEntity: RawBSCrystalOre1
   name: materials-raw-bluespace-crystal
   unit: materials-unit-piece
-  icon: { sprite: /Textures/_RedStar/Objects/Materials/ore.rsi, state: bluespace_crystal }
+  icon: { sprite: _RedStar/Objects/Materials/ore.rsi, state: bluespace_crystal }
   color: "#00ccff"
   price: 50
 
@@ -12,7 +12,7 @@
   stackEntity: RawRSCrystalOre1
   name: materials-raw-redspace-crystal
   unit: materials-unit-piece
-  icon: { sprite: /Textures/_RedStar/Objects/Materials/ore.rsi, state: redspace_crystal }
+  icon: { sprite: _RedStar/Objects/Materials/ore.rsi, state: redspace_crystal }
   color: "#ff0000"
   price: 50
 
