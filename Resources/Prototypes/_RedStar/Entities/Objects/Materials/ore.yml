@@ -1,0 +1,69 @@
+- type: entity
+  parent: OreBase
+  id: RawBSCrystalOre
+  name: raw bluespace crystal ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: RawBSCrystalOre
+  - type: Sprite
+    sprite: /Textures/_RedStar/Objects/Materials/ore.rsi
+    state: bluespace_crystal
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawBSCrystal: 500
+  - type: PointLight
+    radius: 1.5
+    energy: 1.0
+    castShadows: false
+    color: "#00ccff"
+  - type: Item
+    heldPrefix: bluespace
+  - type: Tag
+    tags:
+    - Ore
+    - OreBluespace
+
+- type: entity
+  parent: RawBSCrystalOre
+  id: RawBSCrystalOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: OreBase
+  id: RawRSCrystalOre
+  name: raw redspace crystal ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: RawRSCrystalOre
+  - type: Sprite
+    sprite: /Textures/_RedStar/Objects/Materials/ore.rsi
+    state: redspace_crystal
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawRSCrystal: 500
+  - type: PointLight
+    radius: 1.5
+    energy: 1.0
+    castShadows: false
+    color: "#ff0000"
+  - type: Item
+    heldPrefix: redspace
+  - type: Tag
+    tags:
+    - Ore
+    - OreRedSpace
+
+- type: entity
+  parent: RawRSCrystalOre
+  id: RawRSCrystalOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

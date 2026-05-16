@@ -1,0 +1,13 @@
+- type: biomeMarkerLayer
+  id: OreRSCrystal
+  entityMask:
+    AsteroidRock: MeteorRockRSCrystal
+    WallRock: WallRockRSCrystal
+    WallRockBasalt: WallRockBasaltRSCrystal
+    WallRockChromite: WallRockChromiteRSCrystal
+    WallRockSand: WallRockSandRSCrystal
+    WallRockSnow: WallRockSnowRSCrystal
+  maxCount: 6
+  minGroupSize: 1
+  maxGroupSize: 2
+  radius: 3

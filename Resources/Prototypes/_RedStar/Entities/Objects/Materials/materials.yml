@@ -1,0 +1,42 @@
+- type: entity
+  parent: MaterialBase
+  id: MaterialRSCrystal
+  name: redspace crystal
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: RSCrystal
+    baseLayer: base
+    layerStates:
+    - redspace_crystal
+    - redspace_crystal_2
+    - redspace_crystal_3
+  - type: Sprite
+    sprite: _RedStar/Objects/Materials/materials.rsi
+    state: redspace_crystal
+    layers:
+    - state: redspace_crystal
+      map: ["base"]
+  - type: Appearance
+  - type: Item
+    heldPrefix: redspace_crystal
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RSCrystal: 100
+  - type: RandomTeleportOnUse
+    radius:
+      min: 2
+      max: 5
+  - type: Tag
+    tags:
+    - Ore
+    - Ingot
+
+- type: entity
+  parent: MaterialRSCrystal
+  id: MaterialRSCrystal1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

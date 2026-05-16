@@ -3,3 +3,9 @@
 
 - type: Tag
   id: RUranShard
+
+- type: Tag
+  id: OreBluespace
+
+- type: Tag
+  id: OreRedSpace

@@ -1,0 +1,6 @@
+- type: latheRecipe
+  id: MaterialRSCrystal
+  result: MaterialRSCrystal1
+  completetime: 0
+  materials:
+    RawRSCrystal: 100

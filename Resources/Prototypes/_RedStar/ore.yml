@@ -1,0 +1,5 @@
+- type: ore
+  id: OreRSCrystal
+  oreEntity: RawRSCrystalOre1
+  minOreYield: 1
+  maxOreYield: 2

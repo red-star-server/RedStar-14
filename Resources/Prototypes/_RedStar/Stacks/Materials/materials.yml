@@ -1,0 +1,6 @@
+- type: stack
+  id: RSCrystal
+  name: stack-redspace-crystal
+  icon: { sprite: /Textures/_RedStar/Objects/Materials/materials.rsi, state: redspace_crystal }
+  spawn: MaterialRSCrystal1
+  maxCount: 30

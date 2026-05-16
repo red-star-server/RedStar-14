@@ -1,0 +1,39 @@
+- type: entity
+  parent: RawBSCrystalOre
+  id: RawBSCrystalOreUnprocessed
+  name: unprocessed bluespace crystal ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: RawBSCrystalOreUnprocessed
+  - type: UnclaimedOre
+    miningPoints: 250
+
+- type: entity
+  parent: RawBSCrystalOreUnprocessed
+  id: RawBSCrystalOre1Unprocessed
+  name: unprocessed bluespace crystal ore
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: RawRSCrystalOre
+  id: RawRSCrystalOreUnprocessed
+  name: unprocessed redspace crystal ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: RawRSCrystalOreUnprocessed
+  - type: UnclaimedOre
+    miningPoints: 250
+
+- type: entity
+  parent: RawRSCrystalOreUnprocessed
+  id: RawRSCrystalOre1Unprocessed
+  name: unprocessed redspace crystal ore
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

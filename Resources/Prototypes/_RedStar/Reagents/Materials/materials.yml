@@ -1,0 +1,26 @@
+- type: material
+  id: RawBSCrystal
+  stackEntity: RawBSCrystalOre1
+  name: materials-raw-bluespace-crystal
+  unit: materials-unit-piece
+  icon: { sprite: /Textures/_RedStar/Objects/Materials/ore.rsi, state: bluespace_crystal }
+  color: "#00ccff"
+  price: 50
+
+- type: material
+  id: RawRSCrystal
+  stackEntity: RawRSCrystalOre1
+  name: materials-raw-redspace-crystal
+  unit: materials-unit-piece
+  icon: { sprite: /Textures/_RedStar/Objects/Materials/ore.rsi, state: redspace_crystal }
+  color: "#ff0000"
+  price: 50
+
+- type: material
+  id: RSCrystal
+  stackEntity: MaterialRSCrystal1
+  name: materials-redspace-crystal
+  unit: materials-unit-piece
+  icon: { sprite: _RedStar/Objects/Materials/materials.rsi, state: redspace_crystal }
+  color: "#ff0000"
+  price: 1.175

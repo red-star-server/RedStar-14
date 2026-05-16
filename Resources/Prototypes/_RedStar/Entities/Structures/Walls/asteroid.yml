@@ -1,0 +1,183 @@
+- type: entity
+  id: MeteorRockRSCrystal
+  parent: AsteroidRock
+  suffix: redspace crystal
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreRSCrystal
+    - type: Sprite
+      layers:
+        - state: rock_asteroid
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_asteroid_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_asteroid_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_asteroid_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_asteroid_west
+        - state: rock_redspace_crystal
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+          visible: false # Lavaland Change
+
+- type: entity
+  id: IronRockRSCrystal
+  parent: IronRock
+  suffix: redspace crystal
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreRSCrystal
+    - type: Sprite
+      layers:
+        - state: ironrock
+        - map: [ "enum.EdgeLayer.South" ]
+          state: ironrock_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: ironrock_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: ironrock_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: ironrock_west
+        - state: rock_redspace_crystal
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+          visible: false # Lavaland Change
+
+- type: entity
+  id: WallRockRSCrystal
+  parent: WallRock
+  suffix: redspace crystal
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreRSCrystal
+    - type: Sprite
+      layers:
+        - state: rock
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_west
+        - state: rock_redspace_crystal
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+          visible: false # Lavaland Change
+
+- type: entity
+  id: WallRockBasaltRSCrystal
+  parent: WallRockBasalt
+  suffix: redspace crystal
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreRSCrystal
+    - type: Sprite
+      layers:
+        - state: rock_wall
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_wall_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_wall_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_wall_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_wall_west
+        - state: rock_redspace_crystal
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+          visible: false # Lavaland Change
+
+- type: entity
+  id: WallRockSnowRSCrystal
+  parent: WallRockSnow
+  suffix: redspace crystal
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreRSCrystal
+    - type: Sprite
+      layers:
+        - state: rock_snow
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_snow_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_snow_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_snow_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_snow_west
+        - state: rock_redspace_crystal
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+          visible: false # Lavaland Change
+
+- type: entity
+  id: WallRockSandRSCrystal
+  parent: WallRockSand
+  suffix: redspace crystal
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreRSCrystal
+    - type: Sprite
+      layers:
+        - state: rock_sand
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_sand_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_sand_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_sand_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_sand_west
+        - state: rock_redspace_crystal
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+          visible: false # Lavaland Change
+
+- type: entity
+  id: WallRockChromiteRSCrystal
+  parent: WallRockChromite
+  suffix: redspace crystal
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreRSCrystal
+    - type: Sprite
+      layers:
+        - state: rock_chromite
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_chromite_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_chromite_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_chromite_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_chromite_west
+        - state: rock_redspace_crystal
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+          visible: false # Lavaland Change
+
+- type: entity
+  id: WallRockAndesiteRSCrystal
+  parent: WallRockAndesite
+  suffix: redspace crystal
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreRSCrystal
+    - type: Sprite
+      layers:
+        - state: rock_andesite
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_andesite_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_andesite_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_andesite_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_andesite_west
+        - state: rock_redspace_crystal
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+          visible: false # Lavaland Change

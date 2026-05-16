@@ -48,6 +48,7 @@
   - OreArtifactFragment
   - OreDiamond
   - OreBSCrystal
+  - OreRSCrystal # RS14
   #- OreGibtonite # It's broken right now sadly because of how Gatherable works :(
   addComponents:
   - type: FTLDestination

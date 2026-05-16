@@ -9,6 +9,6 @@
 
 - type: ore
   id: OreBSCrystal
-  oreEntity: MaterialBSCrystal1Unprocessed # Lavaland Change
+  oreEntity: RawBSCrystalOre1 # RS14
   minOreYield: 1
   maxOreYield: 2
