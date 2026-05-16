@@ -41,7 +41,7 @@
   - type: Sprite
     layers:
     - state: icon-base
-      color: "#b53636"
+      color: "#b53636" # RS14
     - state: icon-sling
       color: "#e0993a" # RS14
     - state: icon-clasp
@@ -50,7 +50,7 @@
     clothingVisuals:
       back:
       - state: base-equipped-BACKPACK
-        color: "#b53636"
+        color: "#b53636" # RS14
       - state: sling-equipped-BACKPACK
         color: "#e0993a" # RS14
       - state: clasp-equipped-BACKPACK
