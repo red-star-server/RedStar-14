@@ -9,7 +9,7 @@
 ## Static
 
 - type: latheRecipePack
-  id: FloorTilesStatic
+  id: FloorDarkTilesStatic # RS14
   recipes:
   - FloorTileItemDark
   - FloorTileItemDarkDiagonalMini
@@ -20,7 +20,11 @@
   - FloorTileItemDarkPavement
   - FloorTileItemDarkPavementVertical
   - FloorTileItemDarkOffset
-  - FloorTileItemSteelCheckerDark
+
+# RS14-start
+- type: latheRecipePack
+  id: FloorSteelTilesStatic
+  recipes:
   - FloorTileItemSteel
   - FloorTileItemSteelOffset
   - FloorTileItemSteelDiagonalMini
@@ -30,6 +34,12 @@
   - FloorTileItemSteelMono
   - FloorTileItemSteelPavement
   - FloorTileItemSteelPavementVertical
+  - FloorTileItemSteelCheckerDark
+  - FloorTileItemSteelCheckerLight
+
+- type: latheRecipePack
+  id: FloorWhiteTilesStatic
+  recipes:
   - FloorTileItemWhite
   - FloorTileItemWhiteOffset
   - FloorTileItemWhiteDiagonalMini
@@ -39,14 +49,37 @@
   - FloorTileItemWhiteMono
   - FloorTileItemWhitePavement
   - FloorTileItemWhitePavementVertical
-  - FloorTileItemSteelCheckerLight
+
+- type: latheRecipePack
+  id: FloorMaintsTilesStatic
+  recipes:
   - FloorTileItemGratingMaint
   - FloorTileItemTechmaint
   - FloorTileItemSteelMaint
   - FloorTileItemTechmaintDark
+
+- type: latheRecipePack
+  id: FloorIndustrialTilesStatic
+  recipes:
+  - FloorTileItemMining
+  - FloorTileItemMiningDark
+  - FloorTileItemMiningLight
+  - FloorTileItemElevatorShaft
+  - FloorTileItemRockVault
+  - FloorTileItemMetalDiamond
+  - FloorTileItemFreezer
+  - FloorTileItemShowroom
+
+- type: latheRecipePack
+  id: FloorWoodTilesStatic
+  recipes:
   - FloorTileItemWood
   - FloorTileItemWoodLarge
   - FloorTileItemWoodPattern
+
+- type: latheRecipePack
+  id: FloorConcreteTilesStatic
+  recipes:
   - FloorTileItemConcrete
   - FloorTileItemConcreteMono
   - FloorTileItemConcreteSmooth
@@ -56,5 +89,74 @@
   - FloorTileItemOldConcrete
   - FloorTileItemOldConcreteMono
   - FloorTileItemOldConcreteSmooth
+
+- type: latheRecipePack
+  id: CircuitFloorsStatic
+  recipes:
+  - FloorGreenCircuit
+  - FloorBlueCircuit
+  - FloorRedCircuit
+
+- type: latheRecipePack
+  id: FloorMarbleTilesStatic
+  recipes:
   - FloorTileItemWhiteMarble
   - FloorTileItemDarkMarble
+  - FloorTileItemUraniumMarble
+  - FloorTileItemPlasmaMarble
+
+- type: latheRecipePack
+  id: FloorShuttleTilesStatic
+  recipes:
+  - FloorTileItemShuttleWhite
+  - FloorTileItemShuttleBlue
+  - FloorTileItemShuttleOrange
+  - FloorTileItemShuttlePurple
+  - FloorTileItemShuttleRed
+  - FloorTileItemShuttleGrey
+  - FloorTileItemShuttleBlack
+
+- type: latheRecipePack
+  id: PlasticTilesStatic
+  recipes:
+  - FloorTileItemLino
+  - FloorTileItemBoxing
+  - FloorTileItemGym
+
+- type: latheRecipePack
+  id: CarpetTilesStatic
+  recipes:
+  - FloorTileItemArcadeBlue
+  - FloorTileItemArcadeBlue2
+  - FloorTileItemArcadeRed
+  - FloorTileItemEighties
+  - FloorTileItemCarpetClown
+  - FloorTileItemCarpetOffice
+
+- type: latheRecipePack
+  id: PreciousTilesStatic
+  recipes:
+  - FloorTileItemGold
+  - FloorTileItemSilver
+  - FloorTileItemDiamond
+  - FloorTileItemPlasma
+  - FloorTileItemUranium
+
+## Dynamic
+
+- type: latheRecipePack
+  id: FauxTiles
+  recipes:
+  - FauxTileAstroGrass
+  - FauxTileMowedAstroGrass
+  - FauxTileJungleAstroGrass
+  - FauxTileDarkAstroGrass
+  - FauxTileLightAstroGrass
+  - FauxTileAstroIce
+  - FauxTileAstroSnow
+  - FauxTileAstroAsteroidSand
+  - FauxTileAstroAsteroidSandBorderless
+  - FauxTileDesertAstroSand
+  - FauxTileAstroIronsand
+  - FauxTileAstroIronsandBorderless
+# RS14-end

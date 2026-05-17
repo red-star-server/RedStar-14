@@ -1,0 +1,210 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseTileRecipe
+  id: BaseTerracottaTileRecipe
+  categories:
+  - Terracotta
+  materials:
+    Steel: 25
+    Glass: 25
+
+## Recipes
+
+# Wooden tiles
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquet
+  result: FloorTileItemWoodParquet
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodBlack
+  result: FloorTileItemWoodBlack
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodDark
+  result: FloorTileItemWoodDark
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLight
+  result: FloorTileItemWoodLight
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodRed
+  result: FloorTileItemWoodRed
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeBlack
+  result: FloorTileItemWoodLargeBlack
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeDark
+  result: FloorTileItemWoodLargeDark
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeLight
+  result: FloorTileItemWoodLargeLight
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodLargeRed
+  result: FloorTileItemWoodLargeRed
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetBlack
+  result: FloorTileItemWoodParquetBlack
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetDark
+  result: FloorTileItemWoodParquetDark
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetLight
+  result: FloorTileItemWoodParquetLight
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodParquetRed
+  result: FloorTileItemWoodParquetRed
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChess
+  result: FloorTileItemWoodChess
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessBlack
+  result: FloorTileItemWoodChessBlack
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessDark
+  result: FloorTileItemWoodChessDark
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessLight
+  result: FloorTileItemWoodChessLight
+
+- type: latheRecipe
+  parent: BaseWoodTileRecipe
+  id: FloorTileItemWoodChessRed
+  result: FloorTileItemWoodChessRed
+
+# Specialized tiles
+
+- type: latheRecipe
+  parent: BaseIndustrialTileRecipe
+  id: FloorTileItemStone
+  result: FloorTileItemStone
+
+# Terracotta tiles
+
+- type: latheRecipe
+  parent: BaseTerracottaTileRecipe
+  id: FloorTileItemTerracotta
+  result: FloorTileItemTerracotta
+
+- type: latheRecipe
+  parent: BaseTerracottaTileRecipe
+  id: FloorTileItemTerracottaDiagonal
+  result: FloorTileItemTerracottaDiagonal
+
+- type: latheRecipe
+  parent: BaseTerracottaTileRecipe
+  id: FloorTileItemTerracottaHerringbone
+  result: FloorTileItemTerracottaHerringbone
+
+- type: latheRecipe
+  parent: BaseTerracottaTileRecipe
+  id: FloorTileItemTerracottaSmall
+  result: FloorTileItemTerracottaSmall
+
+# Faux tiles
+
+- type: latheRecipe
+  parent: BaseFauxTileRecipe
+  id: FauxTileFairyAstroGrass
+  result: FloorTileItemFairyAstroGrass
+
+# Shuttle mono tiles
+
+- type: latheRecipe
+  parent: BaseShuttleTileRecipe
+  id: FloorTileItemShuttleMonoWhite
+  result: FloorTileItemShuttleMonoWhite
+
+- type: latheRecipe
+  parent: BaseShuttleTileRecipe
+  id: FloorTileItemShuttleMonoBlue
+  result: FloorTileItemShuttleMonoBlue
+
+- type: latheRecipe
+  parent: BaseShuttleTileRecipe
+  id: FloorTileItemShuttleMonoOrange
+  result: FloorTileItemShuttleMonoOrange
+
+- type: latheRecipe
+  parent: BaseShuttleTileRecipe
+  id: FloorTileItemShuttleMonoPurple
+  result: FloorTileItemShuttleMonoPurple
+
+- type: latheRecipe
+  parent: BaseShuttleTileRecipe
+  id: FloorTileItemShuttleMonoRed
+  result: FloorTileItemShuttleMonoRed
+
+- type: latheRecipe
+  parent: BaseShuttleTileRecipe
+  id: FloorTileItemShuttleMonoGrey
+  result: FloorTileItemShuttleMonoGrey
+
+- type: latheRecipe
+  parent: BaseShuttleTileRecipe
+  id: FloorTileItemShuttleMonoBlack
+  result: FloorTileItemShuttleMonoBlack
+
+# Precious tiles
+
+- type: latheRecipe
+  id: FloorTileItemDiamond
+  result: FloorTileItemDiamond
+  applyMaterialDiscount: false
+  completetime: 0.5
+  categories:
+  - Precious
+  materials:
+    Diamond: 50
+
+- type: latheRecipe
+  id: FloorTileItemPlasma
+  result: FloorTileItemPlasma
+  applyMaterialDiscount: false
+  completetime: 0.5
+  categories:
+  - Precious
+  materials:
+    Plasma: 50
+
+- type: latheRecipe
+  id: FloorTileItemUranium
+  result: FloorTileItemUranium
+  applyMaterialDiscount: false
+  completetime: 0.5
+  categories:
+  - Precious
+  materials:
+    Uranium: 50

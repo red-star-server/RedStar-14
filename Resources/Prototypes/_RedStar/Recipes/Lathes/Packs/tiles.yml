@@ -1,0 +1,19 @@
+- type: latheRecipePack
+  id: TerracottaTilesStatic
+  recipes:
+  - FloorTileItemStone
+  - FloorTileItemTerracotta
+  - FloorTileItemTerracottaDiagonal
+  - FloorTileItemTerracottaHerringbone
+  - FloorTileItemTerracottaSmall
+
+- type: latheRecipePack
+  id: FloorShuttleMonoTilesStatic
+  recipes:
+  - FloorTileItemShuttleMonoWhite
+  - FloorTileItemShuttleMonoBlue
+  - FloorTileItemShuttleMonoOrange
+  - FloorTileItemShuttleMonoPurple
+  - FloorTileItemShuttleMonoRed
+  - FloorTileItemShuttleMonoGrey
+  - FloorTileItemShuttleMonoBlack

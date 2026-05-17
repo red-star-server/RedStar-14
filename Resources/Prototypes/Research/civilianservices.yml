@@ -164,9 +164,15 @@
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
   - FauxTileJungleAstroGrass
+  - FauxTileDarkAstroGrass # RS14
+  - FauxTileLightAstroGrass # RS14
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
+  - FauxTileAstroAsteroidSandBorderless # RS14
+  - FauxTileDesertAstroSand # RS14
+  - FauxTileAstroIronsand # RS14
+  - FauxTileAstroIronsandBorderless # RS14
   # Goobstation R&D Console rework start
   position: 1,5
   technologyPrerequisites:

@@ -4,7 +4,6 @@ lathe-category-clothing = Одежда
 lathe-category-lights = Лампы
 lathe-category-machines = Машины
 lathe-category-parts = Компоненты
-lathe-category-tiles = Плитка
 lathe-category-tools = Инструменты
 lathe-category-weapons = Вооружение
 # Biogen
@@ -21,13 +20,20 @@ lathe-category-security = Безопасность
 lathe-category-service = Сервис
 lathe-category-supply = Снабжение
 # Cutter
-lathe-category-concrete = Бетон
-lathe-category-dark = Тёмная
-lathe-category-maints = Техи
-lathe-category-steel = Стальная
-lathe-category-white = Белая
-lathe-category-wood = Деревянная
-lathe-category-marble = Marble
+lathe-category-tiles = Плитка
+lathe-category-circuit-tile = Схемная
+lathe-category-concrete-tile = Бетонная
+lathe-category-dark-tile = Тёмная
+lathe-category-faux-tile = Имитация
+lathe-category-maints-tile = Техи
+lathe-category-marble = Мрамор
+lathe-category-steel-tile = Стальная
+lathe-category-shuttle-tile = Шаттловая
+lathe-category-white-tile = Белая
+lathe-category-wood-tile = Деревянная
+lathe-category-plastic-tile = Пластиковая
+lathe-category-precious-tile = Драгоценная
+lathe-category-industrial-tile = Промышленная
 # Science
 lathe-category-mechs = Мехи
 lathe-category-modules = Модули

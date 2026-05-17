@@ -21,12 +21,12 @@
   - CutterMachineCircuitboard
   - BorgChargerCircuitboard
 
-- type: latheRecipePack
-  id: CircuitFloorsStatic
-  recipes:
-  - FloorGreenCircuit
-  - FloorBlueCircuit
-  - FloorRedCircuit
+#- type: latheRecipePack
+#  id: CircuitFloorsStatic
+#  recipes:
+#  - FloorGreenCircuit
+#  - FloorBlueCircuit
+#  - FloorRedCircuit
 
 # Keeps flash payloads out of the hands of tiders, I guess. All triggers roundstart for autolathes and med/sci/secfab
 - type: latheRecipePack
@@ -79,15 +79,15 @@
   - WeaponTetherGun
   - WeaponGauntletGorilla
 
-- type: latheRecipePack
-  id: FauxTiles
-  recipes:
-  - FauxTileAstroGrass
-  - FauxTileMowedAstroGrass
-  - FauxTileJungleAstroGrass
-  - FauxTileAstroIce
-  - FauxTileAstroSnow
-  - FauxTileAstroAsteroidSand
+#- type: latheRecipePack
+#  id: FauxTiles
+#  recipes:
+#  - FauxTileAstroGrass
+#  - FauxTileMowedAstroGrass
+#  - FauxTileJungleAstroGrass
+#  - FauxTileAstroIce
+#  - FauxTileAstroSnow
+#  - FauxTileAstroAsteroidSand
 
 - type: latheRecipePack
   id: ScienceBoards

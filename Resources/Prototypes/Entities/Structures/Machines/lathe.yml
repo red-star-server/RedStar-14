@@ -523,7 +523,7 @@
     - Janitor
     - Instruments
     - Equipment # Goobstation note: handheld mass scanner is removed
-    - FauxTiles
+    #- FauxTiles - RedStar - Moved to Cutter Machine
     # Goobstation Packs
     # - ServiceWeapons
     - SpecOpsGoogles
@@ -590,7 +590,7 @@
     - CargoBoardsStatic
     #- MedicalBoardsStatic - Goobstation - Moved to Scifab and Medfab
     #- EngineeringBoardsStatic - Goobstation - Moved to Scifab and Engifab
-    - CircuitFloorsStatic
+    #- CircuitFloorsStatic - RedStar - Moved to Cutter Machine
     # Goobstation Packs
     - SharedBoardsStatic
     - MedicalBoardsStaticGoob
@@ -1135,7 +1135,25 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    # RS14-start
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorIndustrialTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    - FloorShuttleTilesStatic
+    - FloorShuttleMonoTilesStatic
+    - PlasticTilesStatic
+    - CarpetTilesStatic
+    - PreciousTilesStatic
+    - TerracottaTilesStatic
+    dynamicPacks:
+    - FauxTiles
+    # RS14-end
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1144,3 +1162,4 @@
         - Wooden
         - RawMaterial
         - Plastic
+        - Ingot # RS14
