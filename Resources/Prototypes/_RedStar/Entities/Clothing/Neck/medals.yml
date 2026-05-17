@@ -7,7 +7,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckBronzeCentcommMedal
   name: Bronze Medal «For Merit to the General Staff»
-  description: An award conferred for significant contribution to the activities of the General Staff, exemplary service, and demonstrated initiative in the line of duty.
+  description: An award presented for diligent service, discipline, and commendable performance of duties in the interests of the General Staff.
   components:
   # Goobstation edit start
   - type: EmitSoundOnPickup
