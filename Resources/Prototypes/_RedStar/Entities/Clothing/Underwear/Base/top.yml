@@ -30,8 +30,8 @@
 - type: entity
   parent: ClothingUnderwearTopBase
   id: ClothingUnderwearTopBraWhite
-  name: бра
-  description: Стандартное нижнее белье для женского персонала СССП.
+  name: bra
+  description: Standard underwear for female SSSP personnel.
   components:
   - type: Sprite
     sprite: _RedStar/Clothing/Underwear/Base/Top/bra.rsi
@@ -39,8 +39,8 @@
 - type: entity
   parent: ClothingUnderwearTopBase
   id: ClothingUnderwearTopBraSports
-  name: спортивное бра
-  description: Стандартное нижнее белье для женского персонала СССП.
+  name: sports bra
+  description: Standard underwear for female SSSP personnel.
   components:
   - type: Sprite
     sprite: _RedStar/Clothing/Underwear/Base/Top/sportsbra.rsi
@@ -48,8 +48,8 @@
 - type: entity
   parent: ClothingUnderwearTopBase
   id: ClothingUnderwearTopBraSportsAlternative
-  name: альтернативное спортивное бра
-  description: Стандартное нижнее белье для женского персонала СССП.
+  name: alternative sports bra
+  description: Standard underwear for female SSSP personnel.
   components:
   - type: Sprite
     sprite: _RedStar/Clothing/Underwear/Base/Top/sportsbraalt.rsi

@@ -29,8 +29,8 @@
 - type: entity
   parent: ClothingUnderwearBottomBase
   id: ClothingUnderwearBottomBoxersSeniorResearcher
-  name: боксеры ведущего научного сотрудника
-  description: Cтандартное нижнее бельё ведущего научного сотрудника.
+  name: senior researcher's boxers
+  description: Standard senior researcher's underwear.
   components:
   - type: Sprite
     sprite: _RedStar/Clothing/Underwear/Science/senior_researcher/man.rsi
