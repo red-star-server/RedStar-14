@@ -3,7 +3,7 @@
   copyright: "Taken from /tg/station"
   source: "https://github.com/tgstation/tgstation/"
 
-- files: ["stone.png"]
+- files: ["stone_floor.png"]
   license: "CC-BY-SA-3.0"
   copyright: "Taken from /tg/station"
   source: "https://github.com/tgstation/tgstation/"
