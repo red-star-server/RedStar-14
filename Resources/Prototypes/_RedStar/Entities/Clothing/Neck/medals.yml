@@ -1,0 +1,112 @@
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckBronzeCentcommMedal
+  name: Bronze Medal «For Merit to the General Staff»
+  description: An award conferred for significant contribution to the activities of the General Staff, exemplary service, and demonstrated initiative in the line of duty.
+  components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
+  # Goobstation edit end
+  - type: Sprite
+    sprite: _RedStar/Clothing/Neck/Medals/bronzecentcomm.rsi
+  - type: Clothing
+    sprite: _RedStar/Clothing/Neck/Medals/bronzecentcomm.rsi
+  - type: StealTarget
+    stealGroup: ClothingNeckBronzeCentcommMedal
+  - type: Tag
+    tags:
+      - Medal
+      - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckSilverCentcommMedal
+  name: Silver Medal «For Special Merit to the General Staff»
+  description: An award conferred for significant contribution to the activities of the General Staff, exemplary service, and demonstrated initiative in the line of duty.
+  components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
+  # Goobstation edit end
+  - type: Sprite
+    sprite: _RedStar/Clothing/Neck/Medals/silvercentcomm.rsi
+  - type: Clothing
+    sprite: _RedStar/Clothing/Neck/Medals/silvercentcomm.rsi
+  - type: StealTarget
+    stealGroup: ClothingNeckSilverCentcommMedal
+  - type: Tag
+    tags:
+      - Medal
+      - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckGoldCentcommMedal
+  name: Gold Medal «For Outstanding Merit to the General Staff»
+  description: The highest departmental award, presented for exceptional devotion to duty, outstanding leadership, and special merits before the General Staff.
+  components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
+  # Goobstation edit end
+  - type: Sprite
+    sprite: _RedStar/Clothing/Neck/Medals/goldcentcomm.rsi
+  - type: Clothing
+    sprite: _RedStar/Clothing/Neck/Medals/goldcentcomm.rsi
+  - type: StealTarget
+    stealGroup: ClothingNeckGoldCentcommMedal
+  - type: Tag
+    tags:
+      - Medal
+      - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckPlatinumCentcommMedal
+  name: Platinum Medal «For Exceptional Merit to the General Staff»
+  description: A particularly honorable highest award of the General Staff, presented for exceptional contribution, outstanding leadership, and merits that have had a significant impact on the activities and interests of the General Staff.
+  components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/accessory_drop.ogg
+  # Goobstation edit end
+  - type: Sprite
+    sprite: _RedStar/Clothing/Neck/Medals/platinumcentcomm.rsi
+  - type: Clothing
+    sprite: _RedStar/Clothing/Neck/Medals/platinumcentcomm.rsi
+  - type: StealTarget
+    stealGroup: ClothingNeckPlatinumCentcommMedal
+  - type: Tag
+    tags:
+      - Medal
+      - WhitelistChameleon
