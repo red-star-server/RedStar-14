@@ -166,13 +166,13 @@
       Paper: !type:ContainerSlot
 
 - type: entity
-  name: nanotrasen representative handheld fax
+  name: Centcomm representative handheld fax
   parent: HandheldFax
   id: HandheldFaxNanorep
-  suffix: Nanotrasen Representative
+  suffix: Centcomm Representative
   components:
   - type: FaxMachine
-    name: "Nanotrasen Representative"
+    name: "Centcomm Representative"
   - type: Sprite
     sprite: _Goobstation/Objects/Tools/handheld_fax.rsi
     drawdepth: SmallObjects
@@ -216,6 +216,7 @@
       map: [ "enum.FaxMachineVisuals.VisualState" ]
     - state: scanner
       shader: unshaded
+  - type: MultiHandedItem
 
 - type: entity
   name: borg multitool
