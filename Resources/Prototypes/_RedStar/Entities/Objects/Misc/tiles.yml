@@ -1,9 +1,9 @@
 # Tiles
 - type: entity
-  name: терракотовая плитка
+  name: terracotta tile
   parent: FloorTileItemBase
   id: FloorTileItemTerracotta
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -18,10 +18,10 @@
     stackType: FloorTileTerracotta
 
 - type: entity
-  name: терракотовая диагональная плитка
+  name: terracotta diagonal tile
   parent: FloorTileItemTerracotta
   id: FloorTileItemTerracottaDiagonal
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -34,10 +34,10 @@
     stackType: FloorTileTerracottaDiagonal
 
 - type: entity
-  name: терракотовая плитка ёлочкой
+  name: terracotta herringbone tile
   parent: FloorTileItemTerracotta
   id: FloorTileItemTerracottaHerringbone
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -50,10 +50,10 @@
     stackType: FloorTileTerracottaHerringbone
 
 - type: entity
-  name: терракотовая мини плитка
+  name: terracotta small tile
   parent: FloorTileItemTerracotta
   id: FloorTileItemTerracottaSmall
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -66,10 +66,10 @@
     stackType: FloorTileTerracottaSmall
 
 - type: entity
-  name: каменный пол
+  name: stone floor
   parent: FloorTileItemBase
   id: FloorTileItemStone
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -84,10 +84,10 @@
     stackType: FloorTileStone
 
 - type: entity
-  name: культовый пол
+  name: cult floor
   parent: FloorTileItemBase
   id: FloorTileItemCult
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -103,10 +103,10 @@
 
 # Shuttle mono tiles
 - type: entity
-  name: белая моно плитка шаттла
+  name: white mono shuttle tile
   parent: FloorTileItemBase
   id: FloorTileItemShuttleMonoWhite
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -121,10 +121,10 @@
     stackType: FloorTileStackShuttleMonoWhite
 
 - type: entity
-  name: синяя моно плитка шаттла
+  name: blue mono shuttle tile
   parent: FloorTileItemBase
   id: FloorTileItemShuttleMonoBlue
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -139,10 +139,10 @@
     stackType: FloorTileStackShuttleMonoBlue
 
 - type: entity
-  name: оранжевая моно плитка шаттла
+  name: orange mono shuttle tile
   parent: FloorTileItemBase
   id: FloorTileItemShuttleMonoOrange
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -157,10 +157,10 @@
     stackType: FloorTileStackShuttleMonoOrange
 
 - type: entity
-  name: фиолетовая моно плитка шаттла
+  name: purple mono shuttle tile
   parent: FloorTileItemBase
   id: FloorTileItemShuttleMonoPurple
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -175,10 +175,10 @@
     stackType: FloorTileStackShuttleMonoPurple
 
 - type: entity
-  name: красная моно плитка шаттла
+  name: red mono shuttle tile
   parent: FloorTileItemBase
   id: FloorTileItemShuttleMonoRed
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -193,10 +193,10 @@
     stackType: FloorTileStackShuttleMonoRed
 
 - type: entity
-  name: серая моно плитка шаттла
+  name: grey mono shuttle tile
   parent: FloorTileItemBase
   id: FloorTileItemShuttleMonoGrey
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -211,10 +211,10 @@
     stackType: FloorTileStackShuttleMonoGrey
 
 - type: entity
-  name: чёрная моно плитка шаттла
+  name: black mono shuttle tile
   parent: FloorTileItemBase
   id: FloorTileItemShuttleMonoBlack
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -230,10 +230,10 @@
 
 # Grass tiles
 - type: entity
-  name: трава фей
+  name: fairy grass
   parent: FloorTileItemBase
   id: FloorTileItemFairyGrass
-  description: Может послужить неплохим метательным оружием.
+  description: Can serve as decent throwing weapon.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -248,10 +248,10 @@
     stackType: FloorTileFairyGrass
 
 - type: entity
-  name: астро-трава фей
+  name: fairy astro grass
   parent: FloorTileItemBase
   id: FloorTileItemFairyAstroGrass
-  description: Искусственная трава, отлично прячущая провода, поставляется с реалистичными НаноТравинками!
+  description: Artificial grass, excellent for hiding wires, comes with realistic NanoGrass!
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -267,10 +267,10 @@
 
 # Material tiles
 - type: entity
-  name: алмазная плитка
+  name: diamond tile
   parent: FloorTileItemBase
   id: FloorTileItemDiamond
-  description: Сверкающая плитка из чистого алмаза.
+  description: Sparkling tile made of pure diamond.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -285,10 +285,10 @@
     stackType: FloorTileDiamond
 
 - type: entity
-  name: плазменная плитка
+  name: plasma tile
   parent: FloorTileItemBase
   id: FloorTileItemPlasma
-  description: Плитка, наполненная чистой плазменной энергией.
+  description: Tile filled with pure plasma energy.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
@@ -303,10 +303,10 @@
     stackType: FloorTilePlasma
 
 - type: entity
-  name: урановая плитка
+  name: uranium tile
   parent: FloorTileItemBase
   id: FloorTileItemUranium
-  description: Тяжёлая плитка из радиоактивного урана.
+  description: Heavy tile made of radioactive uranium.
   components:
   - type: Sprite
     sprite: _RedStar/Objects/Tiles/tile.rsi
