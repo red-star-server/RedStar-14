@@ -48,7 +48,7 @@
   - type: Tag
     tags:
     #- Ore # RS14-disabled
-    - Ingot
+    - RawMaterial # RS14
 
 - type: entity
   parent: MaterialBSCrystal

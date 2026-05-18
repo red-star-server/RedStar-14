@@ -30,7 +30,7 @@
       max: 5
   - type: Tag
     tags:
-    - Ingot
+    - RawMaterial
 
 - type: entity
   parent: MaterialRSCrystal
