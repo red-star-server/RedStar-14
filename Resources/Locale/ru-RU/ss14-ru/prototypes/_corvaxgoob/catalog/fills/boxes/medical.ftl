@@ -1,6 +1,6 @@
 ent-BoxBodyBagBluespace = коробка блюспейс мешков для тел
     .desc = { ent-BoxBodyBag.desc }
-ent-BoxBodyBagNanoTrasen = коробка синих мешков для тел
+ent-BoxBodyBagNanoTrasen = коробка зелёных мешков для тел
     .desc = { ent-BoxBodyBag.desc }
 ent-BoxBodyBagPrisoner = коробка тюремных мешков для тел
     .desc = { ent-BoxBodyBag.desc }
