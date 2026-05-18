@@ -1,9 +1,9 @@
 ent-BlankHandyFlag = blank handheld flag
     .desc = Some piece of white cloth wound on a stick.
-ent-NTHandyFlag = Nanotrasen handheld flag
-    .desc = Glory to NT! Wait, they really made a handheld flag for a corporation?
+ent-NTHandyFlag = CentComm handheld flag
+    .desc = Glory to CentComm! Wait, they really made a handheld flag for a corporation?
 ent-SyndieHandyFlag = syndicate handheld flag
-    .desc = For truly rebellious patriots. Death to NT!
+    .desc = For truly rebellious patriots. Death to CentComm!
 ent-LGBTQHandyFlag = LGBTQ handheld flag
     .desc = The be gay do crime handy flag.
 ent-PirateHandyFlag = pirate handheld flag
