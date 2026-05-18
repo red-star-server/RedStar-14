@@ -47,7 +47,7 @@
       max: 5
   - type: Tag
     tags:
-    - Ore
+    #- Ore # RS14-disabled
     - Ingot
 
 - type: entity

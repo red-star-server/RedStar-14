@@ -30,7 +30,6 @@
       max: 5
   - type: Tag
     tags:
-    - Ore
     - Ingot
 
 - type: entity
