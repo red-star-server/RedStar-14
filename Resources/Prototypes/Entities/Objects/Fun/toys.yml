@@ -511,8 +511,8 @@
 - type: entity
   parent: BaseItem
   id: BalloonNT
-  name: nanotrasen balloon
-  description: Specially designed to inflict maximum psychological damage to Syndicate operatives.
+  name: CentComm balloon
+  description: Specially designed to inflict maximum psychological damage to enemies of CentComm.
   components:
   - type: Sprite
     sprite: Objects/Fun/Balloons/nanotrasen.rsi
