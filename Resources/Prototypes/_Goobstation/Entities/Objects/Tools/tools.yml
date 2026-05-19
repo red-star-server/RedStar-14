@@ -166,7 +166,7 @@
       Paper: !type:ContainerSlot
 
 - type: entity
-  name: Centcomm representative handheld fax
+  name: CentСomm representative handheld fax
   parent: HandheldFax
   id: HandheldFaxNanorep
   suffix: Centcomm Representative
