@@ -1,0 +1,8 @@
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseSecurityContraband]
+  id: ClothingBackpackDuffelCentcomm
+  name: CentComm duffel bag
+  description: A very protective duffel bag, smells like money.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Back/Duffels/centcomm.rsi
