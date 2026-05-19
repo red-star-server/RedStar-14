@@ -166,13 +166,13 @@
       Paper: !type:ContainerSlot
 
 - type: entity
-  name: CentСomm representative handheld fax
+  name: CentComm representative handheld fax
   parent: HandheldFax
   id: HandheldFaxNanorep
   suffix: Centcomm Representative
   components:
   - type: FaxMachine
-    name: "Centcomm Representative"
+    name: "CentComm Representative"
   - type: Sprite
     sprite: _Goobstation/Objects/Tools/handheld_fax.rsi
     drawdepth: SmallObjects
