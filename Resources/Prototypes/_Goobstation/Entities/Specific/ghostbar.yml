@@ -150,7 +150,7 @@
     - EngineeringBoardsStatic
     - AtmosTools
     - EngineeringWeapons
-    - BluespaceTheory
+    #- BluespaceTheory
     # cargofab
     - MiningToolsStatic
     - Mining

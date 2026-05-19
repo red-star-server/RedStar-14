@@ -1077,6 +1077,8 @@
     - OreSmelting
     - RGlassSmelting
     - AdvancedSmelting
+    dynamicPacks:
+    - BluespaceTheory # RS14
 
 - type: entity
   parent: [BaseLathe, BaseSiloUtilizer] # CorvaxGoob-changes: add BaseSiloUtilizer

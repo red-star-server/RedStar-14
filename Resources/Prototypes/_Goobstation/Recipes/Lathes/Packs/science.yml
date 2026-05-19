@@ -12,6 +12,7 @@
   id: BluespaceTheory
   recipes:
   - MaterialBSCrystal
+  - MaterialRSCrystal # RS14
 
 - type: latheRecipePack
   id: ExperimentalScienceGoob

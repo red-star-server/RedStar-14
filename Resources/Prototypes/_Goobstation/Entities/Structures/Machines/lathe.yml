@@ -71,7 +71,7 @@
     - CameraBoards
     - ShuttleBoards
     - ShuttleBoardsGoob
-    - BluespaceTheory
+    #- BluespaceTheory
     - ScienceClothing
     - UpgradeKits
     # CorvaxGoob Packs
@@ -139,7 +139,7 @@
     - SharedBoards
     - ShuttleBoards
     - ShuttleBoardsGoob
-    - BluespaceTheory
+    #- BluespaceTheory
     - ScienceClothing
     - ConstructionBagOfHolding
     # CorvaxGoob Packs
@@ -221,7 +221,7 @@
     - ShuttleBoards
     - ShuttleBoardsGoob
     - MedicalBoardsGoob
-    - BluespaceTheory
+    #- BluespaceTheory
     - ExperimentalScienceGoob
     - MechBoardsScience
     - Pinpointers
