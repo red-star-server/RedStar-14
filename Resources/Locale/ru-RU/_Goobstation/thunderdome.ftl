@@ -3,7 +3,7 @@ thunderdome-ghost-button = Грозовой Ринг ({ $count })
 thunderdome-ghost-button-default = Грозовой Ринг (0)
 # Loadout window
 thunderdome-loadout-title = Снаряжение Грозового Ринга
-thunderdome-loadout-players = игроков на арене: { $count }
+thunderdome-loadout-players = Игроков на арене: { $count }
 thunderdome-loadout-subtitle = Выбери свой комплект оружия
 thunderdome-loadout-confirm = Зайти на арену
 # Weapon categories
@@ -25,29 +25,31 @@ thunderdome-loadout-inspector = Инспектор
 thunderdome-loadout-hristov = Христов
 thunderdome-loadout-esword = Энергетический меч
 thunderdome-loadout-capo = Капоэйра
+thunderdome-loadout-mosin = Кардашев-Мосин
 # Weapon descriptions (tooltips)
 thunderdome-desc-shotgun = Дробовик + 1 коробка картечи, 1 коробка ружейных патронов
 thunderdome-desc-doublebarreled = Двустволка + 2 коробки картечи
-thunderdome-desc-smg = Пистолет пулемёт + 2 пары магазинов
-thunderdome-desc-wt550 = Пистолет пулемёт + 2 пары магазинов
+thunderdome-desc-smg = Пистолет-пулемёт + 2 пары магазинов
+thunderdome-desc-wt550 = Пистолет-пулемёт + 2 пары магазинов
 thunderdome-desc-lecter = Винтовка + 2 стандартных магазина, 1 зажигательный магазин
 thunderdome-desc-akms = Штурмовая винтовка + 2 пары магазинов
-thunderdome-desc-python = Заряженный бронебойный револьвер + 1 спидлоадер с бронебойными
+thunderdome-desc-python = Заряженный бронебойный револьвер + 1 спидлоадер с бронебойными патронами
 thunderdome-desc-inspector = Револьвер + 2 спидлоадера
-thunderdome-desc-hristov = Анти-материальная снайперская винтовка + 2 пары магазинов
+thunderdome-desc-hristov = Крупнокалиберная снайперская винтовка + 2 пары магазинов
 thunderdome-desc-esword = Энергетический меч + 2 инъектора стимуляторов
 thunderdome-desc-capo = Пособие по Капоэйре + 2 автоинъектора
+thunderdome-desc-mosin = Кардашев-Мосин + 2 запасных магазина + ушанка + водка
 # Kill streak announcements
 thunderdome-streak-3 = { $player } совершил серию убийств!
 thunderdome-streak-4 = { $player } доминирует!
-thunderdome-streak-5 = { $player } совершил Мега Убийство!
+thunderdome-streak-5 = { $player } совершил Мега-Убийство!
 thunderdome-streak-6 = { $player } Беспощаден!
 thunderdome-streak-7 = { $player } Ужасен!
 thunderdome-streak-8 = { $player } Монстр!
-thunderdome-streak-9 = { $player } БОЖЕСТВЕННЫЙ!
+thunderdome-streak-9 = { $player } БОЖЕСТВЕНЕН!
 thunderdome-streak-12 = { $player } ВЫШЕ БОГОВ!
 # Revival
-thunderdome-revival-title = Тело Воскрешено
+thunderdome-revival-title = Тело воскрешено
 thunderdome-revival-offer = Ваше первоначальное тело восстановлено! Вернётесь в него?
 thunderdome-revival-accept = Вернуться в тело
 thunderdome-revival-decline = Остаться на арене

@@ -7,6 +7,7 @@ poll-voting-window-no-polls = Нет активных опросов
 poll-voting-window-polls-count =
     { $count } { $count ->
         [one] активный опрос
+        [few] активных опроса
        *[other] активных опросов
     }
 poll-voting-window-error = Ошибка: { $error }
@@ -15,11 +16,13 @@ poll-control-created-by = Создано { $name }
 poll-control-ends-in-days =
     Завершится через { $days } { $days ->
         [one] день
+        [few] дня
        *[other] дней
     }
 poll-control-ends-in-hours =
     Завершится через { $hours } { $hours ->
         [one] час
+        [few] часа
        *[other] часов
     }
 poll-control-ended = Завершён
@@ -31,6 +34,11 @@ poll-command-create-fail = Ошибка создания опроса.
 poll-command-close-success = Опрос { $id } был завершён.
 poll-command-list-no-polls = Нет активных опросов.
 poll-command-info-not-found = Опрос { $id } не найден.
+poll-control-seen-by =
+    Просмотрено { $count } { $count ->
+        [one] игроком
+       *[other] игроками
+    }
 # Client Commands
 cmd-polls-desc = Открыть управление опросами.
 cmd-polls-help = Использование: polls

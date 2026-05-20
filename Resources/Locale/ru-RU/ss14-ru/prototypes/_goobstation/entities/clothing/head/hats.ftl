@@ -1,3 +1,7 @@
+ent-ClothingHeadHatArmored = { ent-ClothingHeadBase }
+    .desc = { ent-ClothingHeadBase.desc }
+ent-ClothingHeadHatArmoredCC = { ent-ClothingHeadBase }
+    .desc = { ent-ClothingHeadBase.desc }
 ent-ClothingHeadHatBeretEliteNavyOfficer = элитный берет офицера ГенШтаб
     .desc = Тёмно-синий берет с серебряным щитом сил безопасности NanoTrasen.
 ent-ClothingHeadHatBeretNavyOfficer = берет офицера ГенШтаб

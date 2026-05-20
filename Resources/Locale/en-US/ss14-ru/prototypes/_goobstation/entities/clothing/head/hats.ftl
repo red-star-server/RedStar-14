@@ -1,3 +1,7 @@
+ent-ClothingHeadHatArmored = { ent-ClothingHeadBase }
+    .desc = { ent-ClothingHeadBase.desc }
+ent-ClothingHeadHatArmoredCC = { ent-ClothingHeadBase }
+    .desc = { ent-ClothingHeadBase.desc }
 ent-ClothingHeadHatBeretEliteNavyOfficer = elite navy officer's beret
     .desc = A navy blue beret with the silver shield of the Nanotrasen security forces.
 ent-ClothingHeadHatBeretNavyOfficer = navy officer's beret

@@ -78,6 +78,7 @@
   cost: 5000
   recipeUnlocks:
   - MaterialBSCrystal
+  - MaterialRSCrystal # RS14
   position: -4,-2
   technologyPrerequisites:
   - DeterrenceTechnologies

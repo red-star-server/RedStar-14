@@ -1,0 +1,13 @@
+ent-SpawnMobXenomorphLarva = спавнер ксено-личинки
+    .suffix = Не может развиваться
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobXenomorphDrone = спавнер ксено-дрона
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobXenomorphHunter = спавнер ксено-охотника
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobXenomorphPraetorian = спавнер ксено-преторианца
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobXenomorphSentinel = спавнер ксено-часового
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobXenomorphQueen = спавнер ксено-королевы
+    .desc = { ent-MarkerBase.desc }

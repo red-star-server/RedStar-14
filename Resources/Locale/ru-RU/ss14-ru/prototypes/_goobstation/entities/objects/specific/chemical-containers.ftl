@@ -4,3 +4,4 @@ ent-JugSalicylicAcid = { ent-Jug }
 ent-JugOxandrolone = { ent-Jug }
     .suffix = oxandrolone
     .desc = { ent-Jug.desc }
+
