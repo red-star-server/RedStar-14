@@ -42,3 +42,4 @@ marking-ScreenSmile = Улыбка
 marking-ScreenFrown = Грусть
 marking-ScreenRing = Кольцо
 marking-ScreenL = Л
+marking-ScreenWaiting = Ожидание
