@@ -7,7 +7,7 @@
 
 - type: marking
   speciesRestriction: [ IPC ]
-  id: ScreenStatic
+  id: RedStar_ScreenStatic
   bodyPart: Face
   markingCategory: Face
   sprites:
