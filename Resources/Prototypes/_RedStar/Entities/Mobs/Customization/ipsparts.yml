@@ -1,0 +1,816 @@
+# SPDX-FileCopyrightText: 2025 YourName <your@email.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# ================================
+# IPC Base Parts (ipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ipc_l_leg
+
+# ================================
+# IPS Parts (ips_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpsHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ips_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpsChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ips_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpsRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ips_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpsLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ips_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpsRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ips_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingIpsLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: ips_l_leg
+
+# ================================
+# BshIPC Parts (bshipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBshipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bshipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBshipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bshipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBshipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bshipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBshipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bshipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBshipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bshipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBshipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bshipc_l_leg
+
+# ================================
+# Bs2IPC Parts (bs2ipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBs2ipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bs2ipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBs2ipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bs2ipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBs2ipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bs2ipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBs2ipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bs2ipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBs2ipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bs2ipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingBs2ipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: bs2ipc_l_leg
+
+# ================================
+# HsiIPC Parts (hsiipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHsiipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hsiipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHsiipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hsiipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHsiipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hsiipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHsiipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hsiipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHsiipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hsiipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHsiipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hsiipc_l_leg
+
+# ================================
+# Hi2IPC Parts (hi2ipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHi2ipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hi2ipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHi2ipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hi2ipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHi2ipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hi2ipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHi2ipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hi2ipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHi2ipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hi2ipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingHi2ipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: hi2ipc_l_leg
+
+# ================================
+# SgmIPC Parts (sgmipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingSgmipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: sgmipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingSgmipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: sgmipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingSgmipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: sgmipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingSgmipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: sgmipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingSgmipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: sgmipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingSgmipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: sgmipc_l_leg
+
+# ================================
+# WtmIPC Parts (wtmipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingWtmipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: wtmipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingWtmipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: wtmipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingWtmipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: wtmipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingWtmipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: wtmipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingWtmipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: wtmipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingWtmipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: wtmipc_l_leg
+
+# ================================
+# XmgIPC Parts (xmgipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXmgipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xmgipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXmgipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xmgipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXmgipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xmgipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXmgipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xmgipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXmgipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xmgipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXmgipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xmgipc_l_leg
+
+# ================================
+# Xm2IPC Parts (xm2ipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXm2ipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xm2ipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXm2ipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xm2ipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXm2ipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xm2ipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXm2ipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xm2ipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXm2ipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xm2ipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingXm2ipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: xm2ipc_l_leg
+
+# ================================
+# ZhpIPC Parts (zhpipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingZhpipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: zhpipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingZhpipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: zhpipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingZhpipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: zhpipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingZhpipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: zhpipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingZhpipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: zhpipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingZhpipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: zhpipc_l_leg
+
+# ================================
+# McgIPC Parts (mcgipc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingMcgipcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: mcgipc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingMcgipcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: mcgipc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingMcgipcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: mcgipc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingMcgipcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: mcgipc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingMcgipcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: mcgipc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingMcgipcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: mcgipc_l_leg
+
+# ================================
+# StarIPC Parts (staripc_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingStaripcHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: staripc_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingStaripcChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: staripc_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingStaripcRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: staripc_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingStaripcLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: staripc_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingStaripcRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: staripc_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingStaripcLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: staripc_l_leg
+
+# ================================
+# Pawsitrons Parts (pawsitrons_*)
+# ================================
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingPawsitronsHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: pawsitrons_head
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingPawsitronsChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: pawsitrons_chest
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingPawsitronsRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: pawsitrons_r_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingPawsitronsLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: pawsitrons_l_arm
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingPawsitronsRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: pawsitrons_r_leg
+
+- type: marking
+  id: RedStar_CyberLimbsMarkingPawsitronsLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _RedStar/Mobs/Customization/ips/ipc_parts.rsi
+    state: pawsitrons_l_leg
+
