@@ -14,7 +14,6 @@ admin-skills-revoke = Убрать навык
 teach-skills-verb = Обучить навыку
 teach-skills-window = Обучение навыкам
 teach-skills-start = Начать обучение
-
 skill-cooking = Готовка
 skill-cooking-desc = Персонаж умеет готовить блюда и работать с кухонными рецептами.
 skill-drinks = Напитки
