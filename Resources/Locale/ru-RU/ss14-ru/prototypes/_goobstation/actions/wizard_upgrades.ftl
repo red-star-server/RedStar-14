@@ -161,8 +161,11 @@ ent-ActionKnockII = Стук II
 ent-ActionKnockIII = Стук III
     .desc = { ent-ActionKnock.desc }
 ent-ActionSpellCardsII = Карты заклинаний II
+    .desc =
+        { ent-ActionSpellCards.desc }
+        ent-ActionSpellCardsIII = Карты заклинаний III
     .desc = { ent-ActionSpellCards.desc }
-                ent-ActionSpellCardsIII = Карты заклинаний III
+ent-ActionSpellCardsIII = Spell Cards III
     .desc = { ent-ActionSpellCards.desc }
 ent-ActionPolymorphWizardRodII = Форма жезла II
     .desc = { ent-ActionPolymorphWizardRod.desc }

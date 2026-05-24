@@ -69,6 +69,13 @@
   startingGear: BotanistGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-hop
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - PlantMutation
   #goobcoins: 15 #Goob content Corvax-Goob-coins
   guides: [ Botany ] # goobstation
   access:

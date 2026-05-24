@@ -124,8 +124,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - All
+  grantAllSkills: true # RS14
   accessGroups:
   - AllAccess
   access:
@@ -206,6 +205,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  grantAllSkills: true # RS14
   accessGroups:
   - AllAccess
   access:
@@ -308,6 +308,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  grantAllSkills: true # RS14
   accessGroups:
   - AllAccess
   access:
@@ -396,6 +397,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  grantAllSkills: true # RS14
   accessGroups:
   - AllAccess
   access:
@@ -503,6 +505,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  grantAllSkills: true # RS14
   accessGroups:
   - AllAccess
   access:
@@ -589,6 +592,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  grantAllSkills: true # RS14
   accessGroups:
   - AllAccess
   access:

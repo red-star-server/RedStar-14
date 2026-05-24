@@ -83,7 +83,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Shared._CorvaxGoob.Skills;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Antag;
 using Content.Shared.Destructible.Thresholds;
 using Content.Shared.Preferences.Loadouts;
@@ -332,7 +332,13 @@ public partial struct AntagSelectionDefinition()
     /// Skills that will be given on make antag.
     /// </summary>
     [DataField]
-    public HashSet<Skills> Skills = [];
+    public HashSet<ProtoId<SkillPrototype>> Skills = []; // RS14
+
+    /// <summary>
+    /// Grant every registered skill prototype on make antag.
+    /// </summary>
+    [DataField]
+    public bool GrantAllSkills; // RS14
 }
 
 /// <summary>

@@ -85,9 +85,14 @@
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-cmo
   #goobcoins: 20 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - Surgery
-  - MedicalEquipment
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Pharmacology
+  - Stasis
   guides: # goobstation
   - MedicalDoctor
   - Medical

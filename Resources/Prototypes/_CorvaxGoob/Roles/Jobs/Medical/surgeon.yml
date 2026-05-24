@@ -10,10 +10,15 @@
   startingGear: SurgeonGear
   icon: "JobIconSurgeon"
   supervisors: job-supervisors-cmo
-  skills: # CorvaxGoob-Skills
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Pharmacology
+  - Stasis
   - Surgery
-  - MedicalEquipment
-  - Butchering
   access:
   - Medical
   - Maintenance

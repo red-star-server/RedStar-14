@@ -1,4 +1,6 @@
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared._EinsteinEngines.Silicon.Components; // RS14
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
@@ -14,6 +16,8 @@ using Content.Shared.Medical.Healing;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Silicons.Borgs.Components; // RS14
+using Robust.Shared.Prototypes; // RS14
 
 namespace Content.Shared.Repairable;
 
@@ -26,6 +30,12 @@ public sealed partial class RepairableSystem : EntitySystem
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;          // Goob edit
     [Dependency] private readonly HealingSystem _healingSystem = default!;          // Goob edit
     [Dependency] private readonly WoundSystem _wounds = default!;                   // Goob edit
+    [Dependency] private readonly SharedSkillsSystem _skills = default!;             // RS14
+
+    // RS14-start
+    private const float RoboticsRepairDelayModifierWithoutSkill = 1.8f;
+    private static readonly ProtoId<SkillPrototype> RoboticsSkill = "Robotics";
+    // RS14-end
 
     public override void Initialize()
     {
@@ -124,6 +134,11 @@ public sealed partial class RepairableSystem : EntitySystem
             {
                 delay *= ent.Comp.SelfRepairPenalty;
             }
+            // RS14-start
+            if (IsRoboticsRepair(ent.Owner) && !_skills.HasSkill(args.User, RoboticsSkill))
+                delay *= RoboticsRepairDelayModifierWithoutSkill;
+            // RS14-end
+
             args.Handled = _toolSystem.UseTool(args.Used.Value, args.User, ent.Owner, delay, ent.Comp.QualityNeeded, new RepairFinishedEvent(), ent.Comp.FuelCost); // args.Repeat doesn't work because this current event is a wrapped event of ToolDoAfterEvent
         }
         // Goob edit end
@@ -165,9 +180,22 @@ public sealed partial class RepairableSystem : EntitySystem
             delay *= ent.Comp.SelfRepairPenalty;
         }
 
+        // RS14-start
+        if (IsRoboticsRepair(ent.Owner) && !_skills.HasSkill(args.User, RoboticsSkill))
+            delay *= RoboticsRepairDelayModifierWithoutSkill;
+        // RS14-end
+
         // Run the repairing doafter
         args.Handled = _toolSystem.UseTool(args.Used, args.User, ent.Owner, delay, ent.Comp.QualityNeeded, new RepairFinishedEvent(), ent.Comp.FuelCost);
     }
+
+    // RS14-start
+    private bool IsRoboticsRepair(EntityUid target)
+    {
+        return HasComp<SiliconComponent>(target)
+            || HasComp<BorgChassisComponent>(target);
+    }
+    // RS14-end
 }
 
 /// <summary>

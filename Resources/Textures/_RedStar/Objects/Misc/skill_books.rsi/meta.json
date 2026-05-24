@@ -1,0 +1,89 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from TauCetiStation at https://github.com/TauCetiStation/TauCetiClassic/commit/449c60f8873fa0ed45c71d447a2cf409a3e4b8e7",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "cooking"
+        },
+        {
+            "name": "engineering"
+        },
+        {
+            "name": "construction"
+        },
+        {
+            "name": "advanced_engines"
+        },
+        {
+            "name": "atmos"
+        },
+        {
+            "name": "engines"
+        },
+        {
+            "name": "supermatter"
+        },
+        {
+            "name": "detective"
+        },
+        {
+            "name": "artifacts"
+        },
+        {
+            "name": "xenobiology"
+        },
+        {
+            "name": "robotics"
+        },
+        {
+            "name": "exosuits"
+        },
+        {
+            "name": "hydroponics"
+        },
+        {
+            "name": "drinks"
+        },
+        {
+            "name": "anomaly"
+        },
+        {
+            "name": "stasis"
+        },
+        {
+            "name": "medical"
+        },
+        {
+            "name": "virology"
+        },
+        {
+            "name": "surgery"
+        },
+        {
+            "name": "chemistry"
+        },
+        {
+            "name": "pharmacology"
+        },
+        {
+            "name": "shooting"
+        },
+        {
+            "name": "piloting"
+        },
+        {
+            "name": "plants_mutation"
+        },
+        {
+            "name": "butchering"
+        },
+        {
+            "name": "magic"
+        }
+    ]
+}

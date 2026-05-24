@@ -84,15 +84,22 @@
   - Salvage
   - Cargo
   supervisors: job-supervisors-qm
-  skills: # CorvaxGoob-Skills
-  - ShuttleControl
-  - Shooting
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   - Butchering
+  - Piloting
+  - Shooting
+  - Exosuits
   access:
   - Cargo
   - Salvage
   - Maintenance
   - External
+
 - type: startingGear
   id: SalvageSpecialistGear
   equipment:

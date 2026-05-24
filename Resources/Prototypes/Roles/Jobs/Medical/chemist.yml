@@ -73,9 +73,13 @@
   icon: "JobIconChemist"
   supervisors: job-supervisors-cmo
   #goobcoins: 20 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - Surgery
-  - MedicalEquipment
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Chemistry
   guides: # goobstation
   - Chemist
   - Chemicals

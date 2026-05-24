@@ -24,7 +24,6 @@
 using System;
 using System.Linq;
 using System.Text;
-using Content.Goobstation.Shared.Supermatter;
 using Content.Goobstation.Shared.Supermatter.Components;
 using Content.Goobstation.Shared.Supermatter.Systems;
 using Content.Server.AlertLevel;
@@ -35,8 +34,8 @@ using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Kitchen.Components;
 using Content.Server.Lightning;
-using Content.Server.Popups;
 using Content.Server.Station.Systems;
+using Content.Shared._RedStar.Skills;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Atmos;
 using Content.Shared.Chat;
@@ -47,16 +46,12 @@ using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Radiation.Components;
-using Content.Shared.Tag;
-using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
-using Robust.Shared.Maths;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Prototypes; // RS14
 using Robust.Shared.Random; // CorvaxGoob-SM-Accent-Sound
 using Robust.Shared.Timing;
 
@@ -79,8 +74,14 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
     [Dependency] private readonly IRobustRandom _rand = default!; // CorvaxGoob-SM-Accent-Sound
+    [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
 
     private DelamType _delamType = DelamType.Explosion;
+    // RS14-start
+    private const float SupermatterDelayModifierWithoutSkill = 1.8f;
+    private const float SupermatterSliverFailureChanceWithoutSkill = 0.35f;
+    private static readonly ProtoId<SkillPrototype> SupermatterSkill = "Supermatter";
+    // RS14-end
 
     public override void Initialize()
     {
@@ -714,7 +715,13 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         if (!HasComp<SharpComponent>(args.Used))
             return;
 
-        var dae = new DoAfterArgs(EntityManager, args.User, 30f, new SupermatterDoAfterEvent(), uid)
+        // RS14-start
+        var delay = 30f;
+        if (!_skills.HasSkill(args.User, SupermatterSkill))
+            delay *= SupermatterDelayModifierWithoutSkill;
+        // RS14-end
+
+        var dae = new DoAfterArgs(EntityManager, args.User, delay, new SupermatterDoAfterEvent(), uid) // RS14
         {
             BreakOnDamage = true,
             BreakOnHandChange = false,
@@ -731,6 +738,15 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     {
         if (args.Cancelled)
             return;
+
+        // RS14-start
+        if (!_skills.HasSkill(args.User, SupermatterSkill)
+            && _rand.Prob(SupermatterSliverFailureChanceWithoutSkill))
+        {
+            args.Handled = true;
+            return;
+        }
+        // RS14-end
 
         // your criminal actions will not go unnoticed
         sm.Damage += sm.DelaminationPoint / 10;

@@ -1,0 +1,207 @@
+- type: skill
+  id: Cooking
+  color: "#ebb59f"
+  difficulty: Easy
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: cooking
+
+- type: skill
+  id: Drinks
+  color: "#df9fc8"
+  difficulty: Easy
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: drinks
+
+- type: skill
+  id: Hydroponics
+  color: "#b1e7a0"
+  difficulty: Easy
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: hydroponics
+
+- type: skill
+  id: Butchering
+  color: "#d19b8d"
+  difficulty: Easy
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: butchering
+
+- type: skill
+  id: Medical
+  color: "#a5d4eb"
+  difficulty: Easy
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: medical
+
+- type: skill
+  id: Pharmacology
+  color: "#92cbe5"
+  difficulty: Medium
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: pharmacology
+
+- type: skill
+  id: Chemistry
+  color: "#ff9b7a"
+  difficulty: Medium
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: chemistry
+
+- type: skill
+  id: Stasis
+  color: "#a7ddeb"
+  difficulty: Medium
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: stasis
+
+- type: skill
+  id: Virology
+  color: "#b7dff0"
+  difficulty: Hard
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: virology
+
+- type: skill
+  id: Surgery
+  color: "#b7dff0"
+  difficulty: Hard
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: surgery
+
+- type: skill
+  id: Engineering
+  color: "#fae9c1"
+  difficulty: Medium
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: engineering
+
+- type: skill
+  id: Construction
+  color: "#f0d5c7"
+  difficulty: Easy
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: construction
+
+- type: skill
+  id: Atmos
+  color: "#b4e4d4"
+  difficulty: Medium
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: atmos
+
+- type: skill
+  id: Engines
+  color: "#f3d48d"
+  difficulty: Medium
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: engines
+
+- type: skill
+  id: AdvancedEngines
+  color: "#f0bd75"
+  difficulty: Hard
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: advanced_engines
+
+- type: skill
+  id: Supermatter
+  color: "#f0dc75"
+  difficulty: Hard
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: supermatter
+
+- type: skill
+  id: Piloting
+  color: "#cad6e4"
+  difficulty: Hard
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: piloting
+
+- type: skill
+  id: Detective
+  color: "#d5c2a6"
+  difficulty: Medium
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: detective
+
+- type: skill
+  id: Shooting
+  color: "#caa1a1"
+  difficulty: Easy
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: shooting
+
+- type: skill
+  id: Xenobiology
+  color: "#eca8eb"
+  difficulty: Hard
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: xenobiology
+
+- type: skill
+  id: Exosuits
+  color: "#c2c8d2"
+  difficulty: Easy
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: exosuits
+
+- type: skill
+  id: Robotics
+  color: "#c7c4ef"
+  difficulty: Medium
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: robotics
+
+- type: skill
+  id: Anomaly
+  color: "#b5d3ff"
+  difficulty: Hard
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: anomaly
+
+- type: skill
+  id: Artifacts
+  color: "#d4b8f2"
+  difficulty: Hard
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: artifacts
+
+- type: skill
+  id: PlantMutation
+  color: "#78cf68"
+  difficulty: Medium
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: plants_mutation
+
+- type: skill
+  id: Magic
+  color: "#cab5dd"
+  difficulty: Hard
+  icon:
+    sprite: _RedStar/Objects/Misc/skill_books.rsi
+    state: magic

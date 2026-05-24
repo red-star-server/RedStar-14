@@ -80,6 +80,12 @@
   startingGear: LawyerGear
   icon: "JobIconLawyer"
   supervisors: job-supervisors-hop
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   # guides: # goobstation Hidden by CorvaxGoob
   # - SpaceLaw
   # - Legal SOP

@@ -53,8 +53,7 @@
       max: 5
       mindRoles:
       - MindRolePirate
-      skills: # CorvaxGoob-Skills
-      - All
+      grantAllSkills: true # RS14
       startingGear: PirateGear
       components:
       - type: RandomMetadata

@@ -20,9 +20,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using Content.Server._CorvaxGoob.Skills;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Popups;
-using Content.Shared._CorvaxGoob.Skills;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Implants;
@@ -30,6 +30,7 @@ using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Implants;
 
@@ -38,13 +39,14 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SkillsSystem _skills = default!; // CorvaxGoob-Skills
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
 
-    // CorvaxGoob-Skills-Start
+    // RS14-start
     private const float ImplantDelayModifierWithoutSkill = 10;
 
     private const float DrawDelayModifierWithoutSkill = 5;
-    // CorvaxGoob-Skills-End
+    private static readonly ProtoId<SkillPrototype> SurgerySkill = "Surgery"; // RS14
+    // RS14-end
 
     public override void Initialize()
     {
@@ -93,7 +95,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
 
 
             //Implant self instantly, otherwise try to inject the target.
-            if (args.User == target && _skills.HasSkill(args.User, Skills.Surgery)) // CorvaxGoob-Skills
+            if (args.User == target && _skills.HasSkill(args.User, SurgerySkill)) // RS14
                 Implant(target, target, uid, component);
             else if (implantComp != null)
                 TryImplant(component, args.User, target, uid, implantComp.ImplantationTimeMultiplier); // Goobstation - allow traitors to buy suicide implants (add time multiplier)
@@ -112,9 +114,9 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
     // Goobstation - allow traitors to buy suicide implants (add time multiplier)
     public void TryImplant(ImplanterComponent component, EntityUid user, EntityUid target, EntityUid implanter, float timeMultiplier = 1)
     {
-        var delay = component.ImplantTime * (!_skills.HasSkill(user, Skills.Surgery) ? ImplantDelayModifierWithoutSkill : timeMultiplier); // CorvaxGoob-Skills
+        var delay = component.ImplantTime * (!_skills.HasSkill(user, SurgerySkill) ? ImplantDelayModifierWithoutSkill : timeMultiplier); // RS14
 
-        var args = new DoAfterArgs(EntityManager, user, delay, new ImplantEvent(), implanter, target: target, used: implanter) // CorvaxGoob-Skills
+        var args = new DoAfterArgs(EntityManager, user, delay, new ImplantEvent(), implanter, target: target, used: implanter) // RS14
         {
             BreakOnDamage = true,
             BreakOnMove = true,
@@ -124,10 +126,10 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         if (!_doAfter.TryStartDoAfter(args))
             return;
 
-        // CorvaxGoob-Skills-Start
+        // RS14-start
         if (user == target)
             return;
-        // CorvaxGoob-Skills-End
+        // RS14-end
 
         _popup.PopupEntity(Loc.GetString("injector-component-injecting-user"), target, user);
 
@@ -145,9 +147,9 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
     //TODO: Remove when surgery is in
     public void TryDraw(ImplanterComponent component, EntityUid user, EntityUid target, EntityUid implanter)
     {
-        var delay = component.DrawTime * (!_skills.HasSkill(user, Skills.Surgery) ? DrawDelayModifierWithoutSkill : 1); // CorvaxGoob-Skills
+        var delay = component.DrawTime * (!_skills.HasSkill(user, SurgerySkill) ? DrawDelayModifierWithoutSkill : 1); // RS14
 
-        var args = new DoAfterArgs(EntityManager, user, delay, new DrawEvent(), implanter, target: target, used: implanter) // CorvaxGoob-Skills
+        var args = new DoAfterArgs(EntityManager, user, delay, new DrawEvent(), implanter, target: target, used: implanter) // RS14
         {
             BreakOnDamage = true,
             BreakOnMove = true,

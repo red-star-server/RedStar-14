@@ -41,12 +41,12 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Server._CorvaxGoob.Skills;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Construction.Components;
 using Content.Server.Stack;
+using Content.Goobstation.Common.Effects; // RS14
 using Content.Shared.Construction;
 using Content.Shared.DoAfter;
-using Content.Shared.Stacks;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Shared.Random;
@@ -65,15 +65,15 @@ namespace Content.Server.Construction
         [Dependency] private readonly ContainerSystem _container = default!;
         [Dependency] private readonly StackSystem _stackSystem = default!;
         [Dependency] private readonly SharedToolSystem _toolSystem = default!;
-        [Dependency] private readonly SkillsSystem _skills = default!; // CorvaxGoob-Skills-Start
+        [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+        [Dependency] private readonly SparksSystem _sparks = default!; // RS14
 
-        // CorvaxGoob-Skills-Start
-        private const float DelayModifierWithoutSkill = 30;
+        // RS14-start
+        private const float DelayModifierWithoutSkill = 5; // RS14-value: 30 -> 5
+        private const float AdvancedConstructionMishapChance = 0.70f; // RS14
 
-        private readonly HashSet<string> _advancedMaterials = ["Plasteel", "ReinforcedGlass", "ReinforcedPlasmaGlass", "ReinforcedUraniumGlass"];
-
-        private readonly HashSet<string> _advancedConstructions = ["ComputerFrame", "MachineFrame"];
-        // CorvaxGoob-Skills-End
+        private readonly HashSet<string> _advancedConstructions = ["ComputerFrame", "MachineFrame", "UnfinishedMachineFrame"];
+        // RS14-end
 
         public override void Initialize()
         {
@@ -144,16 +144,23 @@ namespace Content.Server.Construction
             UpdateInteractions();
         }
 
-        // CorvaxGoob-Skills-Start
-        private bool IsAdvancedMaterial(EntityUid entity)
-        {
-            return TryComp<StackComponent>(entity, out var stack) && _advancedMaterials.Contains(stack.StackTypeId);
-        }
-
+        // RS14-start
         private bool IsAdvancedConstruction(EntityUid entity)
         {
-            return (HasComp<ComputerComponent>(entity) || HasComp<MachineComponent>(entity) || HasComp<MachineFrameComponent>(entity));
+            return HasComp<ComputerComponent>(entity)
+                || HasComp<MachineComponent>(entity)
+                || HasComp<MachineFrameComponent>(entity)
+                || MetaData(entity).EntityPrototype is { } prototype && _advancedConstructions.Contains(prototype.ID);
         }
-        // CorvaxGoob-Skills-End
+
+        private bool TryAdvancedConstructionMishap(EntityUid user, EntityUid target)
+        {
+            if (_skills.HasSkill(user, EngineeringSkill) || !_robustRandom.Prob(AdvancedConstructionMishapChance))
+                return false;
+
+            _sparks.DoSparks(Transform(target).Coordinates);
+            return true;
+        }
+        // RS14-end
     }
 }

@@ -3,9 +3,11 @@ using System.Linq;
 using Content.Server.Botany.Components;
 using Content.Server.Botany.Systems;
 using Content.Server.Popups;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Shared._CorvaxGoob.AbstractAnalyzer;
 using Content.Shared._CorvaxGoob.Botany.Components;
 using Content.Shared._CorvaxGoob.Botany.PlantAnalyzer;
+using Content.Shared._RedStar.Skills;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Labels.EntitySystems;
@@ -13,6 +15,7 @@ using Content.Shared.Paper;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes; // RS14
 using Robust.Shared.Timing;
 
 namespace Content.Server._CorvaxGoob.Botany.Systems;
@@ -28,6 +31,11 @@ public sealed class PlantAnalyzerSystem : AbstractAnalyzerSystem<PlantAnalyzerCo
     [Dependency] private readonly PaperSystem _paperSystem = default!;
     [Dependency] private readonly LabelSystem _labelSystem = default!;
     [Dependency] private readonly PlantAnalyzerLocalizationHelper _localizationHelper = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+
+    // RS14-start
+    private static readonly ProtoId<SkillPrototype> PlantMutationSkill = "PlantMutation";
+    // RS14-end
 
     public override void Initialize()
     {
@@ -51,9 +59,10 @@ public sealed class PlantAnalyzerSystem : AbstractAnalyzerSystem<PlantAnalyzerCo
         _uiSystem.ServerSendUiMessage(analyzer, PlantAnalyzerUiKey.Key, GatherData(analyzerComponent, scanMode, target: target));
     }
 
-    private PlantAnalyzerScannedUserMessage GatherData(PlantAnalyzerComponent analyzer, bool? scanMode = null, EntityUid? target = null)
+    private PlantAnalyzerScannedUserMessage GatherData(PlantAnalyzerComponent analyzer, bool? scanMode = null, EntityUid? target = null, EntityUid? user = null) // RS14
     {
         target ??= analyzer.ScannedEntity;
+        var hasPlantMutation = user is { } userUid && _skills.HasSkill(userUid, PlantMutationSkill); // RS14
         PlantAnalyzerPlantData? plantData = null;
         PlantAnalyzerTrayData? trayData = null;
         PlantAnalyzerTolerancesData? tolerancesData = null;
@@ -73,28 +82,33 @@ public sealed class PlantAnalyzerSystem : AbstractAnalyzerSystem<PlantAnalyzerCo
                     mutating: plantHolder.MutationLevel > 0f,
                     kudzu: plantHolder.Seed.TurnIntoKudzu
                 );
-                tolerancesData = new PlantAnalyzerTolerancesData(
-                    waterConsumption: plantHolder.Seed.WaterConsumption,
-                    nutrientConsumption: plantHolder.Seed.NutrientConsumption,
-                    toxinsTolerance: plantHolder.Seed.ToxinsTolerance,
-                    pestTolerance: plantHolder.Seed.PestTolerance,
-                    weedTolerance: plantHolder.Seed.WeedTolerance,
-                    lowPressureTolerance: plantHolder.Seed.LowPressureTolerance,
-                    highPressureTolerance: plantHolder.Seed.HighPressureTolerance,
-                    idealHeat: plantHolder.Seed.IdealHeat,
-                    heatTolerance: plantHolder.Seed.HeatTolerance,
-                    idealLight: plantHolder.Seed.IdealLight,
-                    lightTolerance: plantHolder.Seed.LightTolerance,
-                    consumeGasses: [.. plantHolder.Seed.ConsumeGasses.Keys]
-                );
-                produceData = new PlantAnalyzerProduceData(
-                    yield: plantHolder.Seed.ProductPrototypes.Count == 0 ? 0 : BotanySystem.CalculateTotalYield(plantHolder.Seed.Yield, plantHolder.YieldMod),
-                    potency: plantHolder.Seed.Potency,
-                    chemicals: [.. plantHolder.Seed.Chemicals.Keys],
-                    produce: plantHolder.Seed.ProductPrototypes,
-                    exudeGasses: [.. plantHolder.Seed.ExudeGasses.Keys],
-                    seedless: plantHolder.Seed.Seedless
-                );
+                // RS14-start
+                if (hasPlantMutation)
+                {
+                    tolerancesData = new PlantAnalyzerTolerancesData(
+                        waterConsumption: plantHolder.Seed.WaterConsumption,
+                        nutrientConsumption: plantHolder.Seed.NutrientConsumption,
+                        toxinsTolerance: plantHolder.Seed.ToxinsTolerance,
+                        pestTolerance: plantHolder.Seed.PestTolerance,
+                        weedTolerance: plantHolder.Seed.WeedTolerance,
+                        lowPressureTolerance: plantHolder.Seed.LowPressureTolerance,
+                        highPressureTolerance: plantHolder.Seed.HighPressureTolerance,
+                        idealHeat: plantHolder.Seed.IdealHeat,
+                        heatTolerance: plantHolder.Seed.HeatTolerance,
+                        idealLight: plantHolder.Seed.IdealLight,
+                        lightTolerance: plantHolder.Seed.LightTolerance,
+                        consumeGasses: [.. plantHolder.Seed.ConsumeGasses.Keys]
+                    );
+                    produceData = new PlantAnalyzerProduceData(
+                        yield: plantHolder.Seed.ProductPrototypes.Count == 0 ? 0 : BotanySystem.CalculateTotalYield(plantHolder.Seed.Yield, plantHolder.YieldMod),
+                        potency: plantHolder.Seed.Potency,
+                        chemicals: [.. plantHolder.Seed.Chemicals.Keys],
+                        produce: plantHolder.Seed.ProductPrototypes,
+                        exudeGasses: [.. plantHolder.Seed.ExudeGasses.Keys],
+                        seedless: plantHolder.Seed.Seedless
+                    );
+                }
+                // RS14-end
             }
             trayData = new PlantAnalyzerTrayData(
                 waterLevel: plantHolder.WaterLevel,
@@ -116,6 +130,17 @@ public sealed class PlantAnalyzerSystem : AbstractAnalyzerSystem<PlantAnalyzerCo
             analyzer.PrintReadyAt
         );
     }
+
+    // RS14-start
+    protected override void OnScanComplete(Entity<PlantAnalyzerComponent> ent, EntityUid target, PlantAnalyzerDoAfterEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        base.OnScanComplete(ent, target, args);
+        _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, GatherData(ent.Comp, target: target, user: args.User));
+    }
+    // RS14-end
 
     private void OnPrint(EntityUid uid, PlantAnalyzerComponent component, PlantAnalyzerPrintMessage args)
     {
@@ -139,7 +164,7 @@ public sealed class PlantAnalyzerSystem : AbstractAnalyzerSystem<PlantAnalyzerCo
             return;
         }
 
-        var data = GatherData(component);
+        var data = GatherData(component, user: args.Actor); // RS14
         var missingData = Loc.GetString("plant-analyzer-printout-missing");
 
         var seedName = data.PlantData is not null ? Loc.GetString(data.PlantData.SeedDisplayName) : null;

@@ -81,6 +81,12 @@
   startingGear: JanitorGear
   icon: "JobIconJanitor"
   supervisors: job-supervisors-hop
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   #goobcoins: 15 #Goob content Corvax-Goob-coins
   guides: [ Janitorial ] # goobstation
   access:

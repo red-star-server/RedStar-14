@@ -40,8 +40,9 @@ using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stacks;
 using Content.Shared.Nutrition.EntitySystems;
-using Content.Shared._CorvaxGoob.Skills;
-using Content.Server._CorvaxGoob.Skills;
+using Content.Shared._RedStar.Skills; // RS14
+using Content.Server._RedStar.Skills; // RS14
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing; // Goobstation
 using System.Linq; // Goobstation
 using Content.Shared.Chemistry.Reagent; // Goobstation
@@ -53,9 +54,10 @@ public sealed class InjectorSystem : SharedInjectorSystem
     [Dependency] private readonly BloodstreamSystem _blood = default!;
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
     [Dependency] private readonly OpenableSystem _openable = default!;
-    [Dependency] private readonly SkillsSystem _skills = default!; // CorvaxGoob-Skills
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
 
-    private const float DelayModifierWithoutSkill = 5; // CorvaxGoob-Skills
+    private const float DelayModifierWithoutSkill = 5; // RS14
+    private static readonly ProtoId<SkillPrototype> PharmacologySkill = "Pharmacology"; // RS14
     [Dependency] private readonly IGameTiming _timing = default!; // Goobstation
 
     public override void Initialize()
@@ -242,10 +244,10 @@ public sealed class InjectorSystem : SharedInjectorSystem
             }
         }
 
-        // CorvaxGoob-Skills-Start
-        if (!_skills.HasSkill(user, Skills.MedicalEquipment))
+        // RS14-start
+        if (!_skills.HasSkill(user, PharmacologySkill))
             actualDelay *= DelayModifierWithoutSkill;
-        // CorvaxGoob-Skills-End
+        // RS14-end
 
         DoAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, actualDelay, new InjectorDoAfterEvent(), injector.Owner, target: target, used: injector.Owner)
         {

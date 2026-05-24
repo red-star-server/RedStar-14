@@ -19,8 +19,13 @@
   icon: "JobIconPilot"
   supervisors: job-supervisors-hos
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - ShuttleControl
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Piloting
   - Shooting
   access:
   - Security

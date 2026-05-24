@@ -80,8 +80,14 @@
   icon: "JobIconCargoTechnician"
   supervisors: job-supervisors-qm
   #goobcoins: 20 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - ShuttleControl
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Piloting
+  - Exosuits
   guides: # goobstation
   - Cargo
   access:

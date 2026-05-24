@@ -63,8 +63,12 @@
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science
   #goobcoins: 20 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - AdvancedBuilding
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   guides: [ Science ] # goobstation
   access:
   - Research

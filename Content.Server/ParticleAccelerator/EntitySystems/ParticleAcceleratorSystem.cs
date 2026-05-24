@@ -9,9 +9,13 @@
 
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Projectiles;
 using Content.Server.Machines.EntitySystems;
+using Content.Shared._RedStar.Skills; // RS14
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes; // RS14
+using Robust.Shared.Random; // RS14
 using Robust.Shared.Timing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
@@ -30,6 +34,13 @@ public sealed partial class ParticleAcceleratorSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MultipartMachineSystem _multipartMachine = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+    [Dependency] private readonly IRobustRandom _random = default!; // RS14
+
+    // RS14-start
+    private const float ParticleAcceleratorMishapChance = 0.50f;
+    private static readonly ProtoId<SkillPrototype> AdvancedEnginesSkill = "AdvancedEngines";
+    // RS14-end
 
     public override void Initialize()
     {

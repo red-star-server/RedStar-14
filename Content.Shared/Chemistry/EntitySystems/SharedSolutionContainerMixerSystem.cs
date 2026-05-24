@@ -81,8 +81,13 @@ public abstract class SharedSolutionContainerMixerSystem : EntitySystem
         if (_net.IsServer)
             comp.MixingSoundEntity = _audio.PlayPvs(comp.MixingSound, entity, comp.MixingSound?.Params.WithLoop(true));
         comp.MixTimeEnd = _timing.CurTime + comp.MixDuration;
+        OnMixStarted(entity, user); // RS14
         _appearance.SetData(entity, SolutionContainerMixerVisuals.Mixing, true);
         Dirty(uid, comp);
+    }
+
+    protected virtual void OnMixStarted(Entity<SolutionContainerMixerComponent> entity, EntityUid? user) // RS14
+    {
     }
 
     public void StopMix(Entity<SolutionContainerMixerComponent> entity)

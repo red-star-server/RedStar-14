@@ -81,8 +81,20 @@
   icon: "JobIconScientist"
   supervisors: job-supervisors-rd
   #goobcoins: 20 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - AdvancedBuilding
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Pharmacology
+  - Chemistry
+  - Engineering
+  - Atmos
+  - Xenobiology
+  - Robotics
+  - Anomaly
+  - Artifacts
   guides: [ Science ] # goobstation
   access:
   - Research

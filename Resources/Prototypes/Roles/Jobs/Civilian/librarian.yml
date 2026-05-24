@@ -71,6 +71,13 @@
   startingGear: LibrarianGear
   icon: "JobIconLibrarian"
   supervisors: job-supervisors-hop
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Magic
   #goobcoins: 10 #Goob content Corvax-Goob-coins
   access:
   - Service

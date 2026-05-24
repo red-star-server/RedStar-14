@@ -12,6 +12,12 @@
   canBeAntag: false
   whitelisted: true # 1984
   setPreference: false # 1984 x2
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   accessGroups:
   - AllAccess
   access:

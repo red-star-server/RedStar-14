@@ -107,8 +107,12 @@
   icon: "JobIconPsychologist"
   supervisors: job-supervisors-cmo
   #goobcoins: 15 #Goob content Corvax-Goob-coins
-  skills: # CorvaxGoob-Skills
-  - MedicalEquipment
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   access:
   - Medical
   - Maintenance

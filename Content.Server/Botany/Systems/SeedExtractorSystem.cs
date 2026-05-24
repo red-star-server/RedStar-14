@@ -18,8 +18,11 @@
 using Content.Server.Botany.Components;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
+using Content.Server._RedStar.Skills; // RS14
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Robust.Shared.Prototypes; // RS14
 using Robust.Shared.Random;
 
 namespace Content.Server.Botany.Systems;
@@ -29,6 +32,9 @@ public sealed class SeedExtractorSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly BotanySystem _botanySystem = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+
+    private static readonly ProtoId<SkillPrototype> PlantMutationSkill = "PlantMutation"; // RS14
 
     public override void Initialize()
     {
@@ -58,6 +64,9 @@ public sealed class SeedExtractorSystem : EntitySystem
         args.Handled = true;
 
         var amount = _random.Next(seedExtractor.BaseMinSeeds, seedExtractor.BaseMaxSeeds + 1);
+        if (!_skills.HasSkill(args.User, PlantMutationSkill)) // RS14
+            amount = Math.Max(1, amount - 1);
+
         var coords = Transform(uid).Coordinates;
 
         var packetSeed = seed;

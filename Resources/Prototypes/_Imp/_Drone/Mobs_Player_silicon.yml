@@ -180,9 +180,9 @@
     name: ghost-role-information-drone-name
     description: ghost-role-information-drone-description
     rules: ghost-role-information-drone-rules
-    skills: # CorvaxGoob-Skills
-      - AdvancedBuilding
-      - ShuttleControl
+    skills: # RS14
+      - Engineering
+      - Piloting
     mindRoles:
     - MindRoleGhostRoleSilicon
     job: Borg

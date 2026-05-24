@@ -93,6 +93,7 @@
 
 using Content.Server.Body.Systems;
 using Content.Server.Kitchen.Components;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Database;
@@ -110,10 +111,9 @@ using Content.Shared.Storage;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes; // RS14
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Shared._CorvaxGoob.Skills;
-using Content.Server._CorvaxGoob.Skills;
 
 namespace Content.Server.Kitchen.EntitySystems;
 
@@ -128,9 +128,12 @@ public sealed class SharpSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SkillsSystem _skills = default!; // CorvaxGoob-Skills
+    [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
 
-    private const float ButcherDelayModifierWithoutSkill = 5; // CorvaxGoob-Skills
+    // RS14-start
+    private const float ButcheringDelayModifierWithoutSkill = 1.8f;
+    private static readonly ProtoId<SkillPrototype> ButcheringSkill = "Butchering";
+    // RS14-end
 
     public override void Initialize()
     {
@@ -159,11 +162,9 @@ public sealed class SharpSystem : EntitySystem
         if (!TryComp<SharpComponent>(knife, out var sharp))
             return false;
 
-        // CorvaxGoob-Skills-Start
         var hasMobState = TryComp<MobStateComponent>(target, out var mobState);
         if (hasMobState && !_mobStateSystem.IsDead(target, mobState))
             return false;
-        // CorvaxGoob-Skills-End
 
         if (butcher.Type != ButcheringType.Knife && target != user)
         {
@@ -179,13 +180,16 @@ public sealed class SharpSystem : EntitySystem
         // so that the doafter can be interrupted if they drop the item in their hands
         var needHand = user != knife;
 
-        // CorvaxGoob-Skills-Start
-        var delayModifier = hasMobState && !_skills.HasSkill(user, Skills.Butchering) ? ButcherDelayModifierWithoutSkill : 1;
+        // RS14-start
+        var delay = sharp.ButcherDelayModifier * butcher.ButcherDelay;
+        if (!_skills.HasSkill(user, ButcheringSkill))
+            delay *= ButcheringDelayModifierWithoutSkill;
+        // RS14-end
 
         var doAfter = new DoAfterArgs(
             EntityManager,
             user,
-            sharp.ButcherDelayModifier * butcher.ButcherDelay * delayModifier,
+            delay, // RS14
             new SharpDoAfterEvent(),
             knife,
             target: target,
@@ -195,7 +199,6 @@ public sealed class SharpSystem : EntitySystem
             BreakOnMove = true,
             NeedHand = needHand,
         };
-        // CorvaxGoob-Skills-End
 
         _doAfterSystem.TryStartDoAfter(doAfter);
         return true;

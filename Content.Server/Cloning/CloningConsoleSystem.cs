@@ -59,6 +59,7 @@ using Content.Server.Cloning.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Medical.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.UserInterface;
 using Content.Shared.Cloning;
 using Content.Shared.Cloning.CloningConsole;
@@ -73,6 +74,7 @@ using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Content.Shared.Damage;
+using Robust.Shared.Prototypes; // RS14
 
 namespace Content.Server.Cloning
 {
@@ -87,6 +89,12 @@ namespace Content.Server.Cloning
         [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
         [Dependency] private readonly SharedMindSystem _mindSystem = default!;
         [Dependency] private readonly DamageableSystem _damage = default!; // Goobstation
+        [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
+
+        // RS14-start
+        private const float StasisCloningFailChanceModifier = 2.5f;
+        private static readonly ProtoId<SkillPrototype> StasisSkill = "Stasis";
+        // RS14-end
 
         public override void Initialize()
         {
@@ -114,7 +122,7 @@ namespace Content.Server.Cloning
             {
                 case UiButton.Clone:
                     if (consoleComponent.GeneticScanner != null && consoleComponent.CloningPod != null)
-                        TryClone(uid, consoleComponent.CloningPod.Value, consoleComponent.GeneticScanner.Value, consoleComponent: consoleComponent);
+                        TryClone(uid, consoleComponent.CloningPod.Value, consoleComponent.GeneticScanner.Value, consoleComponent: consoleComponent, user: args.Actor); // RS14
                     break;
             }
             UpdateUserInterface(uid, consoleComponent);
@@ -203,7 +211,7 @@ namespace Content.Server.Cloning
             _uiSystem.SetUiState(consoleUid, CloningConsoleUiKey.Key, newState);
         }
 
-        public void TryClone(EntityUid uid, EntityUid cloningPodUid, EntityUid scannerUid, CloningPodComponent? cloningPod = null, MedicalScannerComponent? scannerComp = null, CloningConsoleComponent? consoleComponent = null)
+        public void TryClone(EntityUid uid, EntityUid cloningPodUid, EntityUid scannerUid, CloningPodComponent? cloningPod = null, MedicalScannerComponent? scannerComp = null, CloningConsoleComponent? consoleComponent = null, EntityUid? user = null) // RS14
         {
             if (!Resolve(uid, ref consoleComponent) || !Resolve(cloningPodUid, ref cloningPod) || !Resolve(scannerUid, ref scannerComp))
                 return;
@@ -225,7 +233,13 @@ namespace Content.Server.Cloning
             if (mind.UserId.HasValue == false || !_playerManager.ValidSessionId(mind.UserId.Value))
                 return;
 
-            if (_cloningPodSystem.TryCloning(cloningPodUid, body.Value, (mindId, mind), cloningPod, scannerComp.CloningFailChanceMultiplier))
+            // RS14-start
+            var failChanceModifier = scannerComp.CloningFailChanceMultiplier;
+            if (user is { } userUid && !_skills.HasSkill(userUid, StasisSkill))
+                failChanceModifier *= StasisCloningFailChanceModifier;
+            // RS14-end
+
+            if (_cloningPodSystem.TryCloning(cloningPodUid, body.Value, (mindId, mind), cloningPod, failChanceModifier)) // RS14
                 _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(uid)} successfully cloned {ToPrettyString(body.Value)}.");
 
             _damage.TryChangeDamage(body.Value, cloningPod.CloneDamage, true); // Goobstation - Damage the og body if the clone successful

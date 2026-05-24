@@ -41,8 +41,7 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom # Goobstation
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - All
+  grantAllSkills: true # RS14
   requirements:
   - !type:AgeRequirement
     requiredAge: 21

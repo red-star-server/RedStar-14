@@ -7,7 +7,9 @@
 
 using Content.Goobstation.Shared.Xenobiology.Components;
 using Content.Goobstation.Shared.Xenobiology.Systems;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Power.Components;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Audio;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Construction.Components;
@@ -15,11 +17,13 @@ using Content.Shared.Jittering;
 using Content.Shared.Medical;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Popups; // RS14
 using Content.Shared.Power;
 using Content.Shared.Throwing;
 using Robust.Server.Containers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Prototypes; // RS14
 using Robust.Shared.Random;
 
 namespace Content.Goobstation.Server.Xenobiology.SlimeGrinder;
@@ -37,6 +41,13 @@ public sealed partial class SlimeGrinderSystem : EntitySystem
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+    [Dependency] private readonly SharedPopupSystem _popup = default!; // RS14
+
+    // RS14-start
+    private const float SlimeGrinderMishapChance = 0.50f;
+    private static readonly ProtoId<SkillPrototype> XenobiologySkill = "Xenobiology";
+    // RS14-end
 
     public override void Initialize()
     {
@@ -117,11 +128,11 @@ public sealed partial class SlimeGrinderSystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Args.Used is not { } toProcess)
             return;
 
-        QueueProcess(toProcess, grinder);
+        QueueProcess(toProcess, grinder, args.User); // RS14
         args.Handled = true;
     }
 
-    private void QueueProcess(EntityUid toProcess, Entity<SlimeGrinderComponent> grinder, PhysicsComponent? physics = null, SlimeComponent? slime = null)
+    private void QueueProcess(EntityUid toProcess, Entity<SlimeGrinderComponent> grinder, EntityUid? user = null, PhysicsComponent? physics = null, SlimeComponent? slime = null)
     {
         if (!Resolve(toProcess, ref physics, ref slime))
             return;
@@ -132,9 +143,22 @@ public sealed partial class SlimeGrinderSystem : EntitySystem
         var extractProto = _xenobio.GetProducedExtract((toProcess, slime));
         var extractQuantity = slime.ExtractsProduced;
 
-        if (!grinder.Comp.YieldQueue.ContainsKey(extractProto))
-            grinder.Comp.YieldQueue.Add(extractProto, extractQuantity);
-        else grinder.Comp.YieldQueue[extractProto] += extractQuantity;
+        // RS14-start
+        if (user is { } userUid
+            && !_skills.HasSkill(userUid, XenobiologySkill)
+            && _robustRandom.Prob(SlimeGrinderMishapChance))
+        {
+            extractQuantity = Math.Max(0, extractQuantity - 1);
+            _popup.PopupEntity(Loc.GetString("slime-grinder-skill-mishap"), grinder, userUid, PopupType.MediumCaution);
+        }
+        // RS14-end
+
+        if (extractQuantity > 0) // RS14
+        {
+            if (!grinder.Comp.YieldQueue.ContainsKey(extractProto))
+                grinder.Comp.YieldQueue.Add(extractProto, extractQuantity);
+            else grinder.Comp.YieldQueue[extractProto] += extractQuantity;
+        }
 
         foreach (var ent in _container.EmptyContainer(slime.Stomach)) // spew everything out jic
         {

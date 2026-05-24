@@ -40,15 +40,28 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Power.EntitySystems;
+using Content.Server._RedStar.Skills;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reaction; // RS14
 using Content.Shared.Power;
+using Robust.Shared.Prototypes; // RS14
+using Robust.Shared.Timing; // RS14
 
 namespace Content.Server.Chemistry.EntitySystems;
 
 /// <inheritdoc/>
 public sealed class SolutionContainerMixerSystem : SharedSolutionContainerMixerSystem
 {
+    [Dependency] private readonly IGameTiming _timing = default!; // RS14
+    [Dependency] private readonly SkillsSystem _skills = default!; // RS14
+
+    private const float ChemistryMixDelayModifier = 2f; // RS14
+    private static readonly ProtoId<SkillPrototype> ChemistrySkill = "Chemistry"; // RS14
+    private static readonly ProtoId<MixingCategoryPrototype> CentrifugeMixing = "Centrifuge"; // RS14
+    private static readonly ProtoId<MixingCategoryPrototype> ElectrolysisMixing = "Electrolysis"; // RS14
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -66,5 +79,25 @@ public sealed class SolutionContainerMixerSystem : SharedSolutionContainerMixerS
     protected override bool HasPower(Entity<SolutionContainerMixerComponent> entity)
     {
         return this.IsPowered(entity, EntityManager);
+    }
+
+    protected override void OnMixStarted(Entity<SolutionContainerMixerComponent> entity, EntityUid? user)
+    {
+        if (user is not { } userUid
+            || _skills.HasSkill(userUid, ChemistrySkill)
+            || !TryComp<ReactionMixerComponent>(entity, out var reactionMixer)
+            || !NeedsChemistry(reactionMixer))
+        {
+            return;
+        }
+
+        entity.Comp.MixTimeEnd = _timing.CurTime + entity.Comp.MixDuration * ChemistryMixDelayModifier;
+        Dirty(entity);
+    }
+
+    private static bool NeedsChemistry(ReactionMixerComponent reactionMixer)
+    {
+        return reactionMixer.ReactionTypes.Contains(CentrifugeMixing)
+            || reactionMixer.ReactionTypes.Contains(ElectrolysisMixing);
     }
 }

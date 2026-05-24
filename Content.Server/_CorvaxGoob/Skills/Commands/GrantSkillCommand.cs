@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Administration;
 using SkillTypes = Content.Shared._CorvaxGoob.Skills.Skills;
@@ -79,7 +81,7 @@ public sealed class GrantSkillCommand : LocalizedEntityCommands
                 : null
             : null;
 
-        var existingSkills = component?.Skills ?? new HashSet<SkillTypes>();
+        var existingSkills = component?.CorvaxSkills ?? new HashSet<SkillTypes>();
 
         var alreadyEnteredSkills = new HashSet<SkillTypes>();
         for (int i = 1; i < args.Length - 1; i++)

@@ -45,8 +45,7 @@
       min: 1
       max: 2
       playerRatio: 10
-      skills: # CorvaxGoob-Skills
-      - All
+      grantAllSkills: true # RS14
       blacklist:
         components:
         - AntagImmune
@@ -325,8 +324,7 @@
       min: 1
       max: 1
       pickPlayer: false
-      skills: # CorvaxGoob-Skills
-      - All
+      grantAllSkills: true # RS14
       mindRoles:
       - MindRoleGhostRoleSoloAntagonist
       - MindRoleTraitor
@@ -419,8 +417,7 @@
       min: 3
       max: 4
       pickPlayer: false
-      skills: # CorvaxGoob-Skills
-      - All
+      grantAllSkills: true # RS14
       mindRoles:
       - MindRoleGhostRoleTeamAntagonist
       - MindRoleThief
@@ -487,8 +484,7 @@
       min: 1
       max: 1
       pickPlayer: false
-      skills: # CorvaxGoob-Skills
-      - All
+      grantAllSkills: true # RS14
       startingGear: SlasherGear
       briefing:
         text: slasher-role-greeting

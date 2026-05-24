@@ -177,9 +177,12 @@
   joinNotifyCrew: true
   supervisors: job-supervisors-centcom
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - ShuttleControl
-  - Shooting
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   accessGroups:
   - AllAccess
   special:

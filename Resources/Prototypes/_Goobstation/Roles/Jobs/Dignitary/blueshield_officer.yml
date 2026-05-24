@@ -69,11 +69,13 @@
   joinNotifyCrew: true
   supervisors: job-supervisors-ntr-centcom
   canBeAntag: false
-  skills: # CorvaxGoob-Skills
-  - ShuttleControl
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
   - Shooting
-  - MedicalEquipment
-  - Surgery
   access:
   - Security
   - Brig

@@ -44,7 +44,7 @@ public sealed class ListSkillsCommand : LocalizedEntityCommands
 
         StringBuilder builder = new();
 
-        builder.AppendJoin('\n', mind.Skills.Order());
+        builder.AppendJoin('\n', mind.CorvaxSkills.Order()); // RS14
 
         builder.Append('\n');
 

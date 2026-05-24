@@ -83,7 +83,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Server._CorvaxGoob.Skills;
+using Content.Server._RedStar.Skills; // RS14
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
@@ -121,7 +121,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly AdminSystem _admin = default!;
-        [Dependency] private readonly SkillsSystem _skills = default!; // CorvaxGoob-Skills
+        [Dependency] private readonly SkillsSystem _skills = default!; // RS14
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
@@ -423,8 +423,13 @@ namespace Content.Server.GameTicking
                     Loc.GetString("job-greet-station-name", ("stationName", metaData.EntityName)));
             }
 
-            if (jobPrototype is not null) // CorvaxGoob-Skills
-                _skills.GrantSkill(mob, jobPrototype.Skills, true);
+            if (jobPrototype is not null) // RS14
+            {
+                if (jobPrototype.GrantAllSkills) // RS14
+                    _skills.GrantAllSkills(mob, true);
+                else
+                    _skills.GrantSkill(mob, jobPrototype.Skills, true);
+            }
 
             // We raise this event directed to the mob, but also broadcast it so game rules can do something now.
             PlayersJoinedRoundNormally++;

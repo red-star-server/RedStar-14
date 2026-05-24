@@ -48,13 +48,12 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Shared._CorvaxGoob.Skills;
-using Content.Shared.GameTicking;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Mind.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using CorvaxSkill = Content.Shared._CorvaxGoob.Skills.Skills; // RS14
 
 namespace Content.Shared.Mind;
 
@@ -168,6 +167,11 @@ public sealed partial class MindComponent : Component
     [DataField]
     public LocId? Subtype;
 
+    // RS14-start
     [DataField]
-    public HashSet<Skills> Skills = []; // CorvaxGoob-Skills
+    public HashSet<CorvaxSkill> CorvaxSkills = [];
+
+    [DataField, AutoNetworkedField]
+    public HashSet<ProtoId<SkillPrototype>> Skills = [];
+    // RS14-end
 }

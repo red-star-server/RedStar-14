@@ -24,7 +24,11 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Client._RedStar.Skills; // RS14
+using Content.Client._RedStar.Skills.Ui; // RS14
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Client.CharacterInfo;
 using Content.Client.Gameplay;
 using Content.Client.Stylesheets;
@@ -44,6 +48,7 @@ using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using static Content.Client.CharacterInfo.CharacterInfoSystem;
 using static Robust.Client.UserInterface.Controls.BaseButton;
@@ -59,6 +64,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
+    [UISystemDependency] private readonly SkillsSystem _skills = default!; // RS14
 
     public override void Initialize()
     {
@@ -67,7 +73,16 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         SubscribeNetworkEvent<MindRoleTypeChangedEvent>(OnRoleTypeChanged);
     }
 
+    public override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        if (_window != null && _skillsWindow == null)
+            _window.SkillsButton.Disabled = !TryGetLocalMind(out _);
+    }
+
     private CharacterWindow? _window;
+    private SkillsWindow? _skillsWindow; // RS14
     private MenuButton? CharacterButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.CharacterButton;
 
     public void OnStateEntered(GameplayState state)
@@ -80,6 +95,13 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         _window.OnClose += DeactivateButton;
         _window.OnOpen += ActivateButton;
 
+        // RS14-start
+        _window.SkillsButton.OnPressed += OnSkillsButtonPressed;
+        if (TryGetLocalMind(out _))
+            _window.SkillsButton.Disabled = false;
+        _skills.PlayerSkillsWindowUpdated += OnPlayerSkillsUpdated;
+        // RS14-end
+
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenCharacterMenu,
                 InputCmdHandler.FromDelegate(_ => ToggleWindow()))
@@ -88,6 +110,10 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
     public void OnStateExited(GameplayState state)
     {
+        // RS14-start
+        _skills.PlayerSkillsWindowUpdated -= OnPlayerSkillsUpdated;
+        // RS14-end
+
         if (_window != null)
         {
             _window.Close();
@@ -159,6 +185,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         var (entity, job, objectives, briefing, entityName) = data;
 
         _window.SpriteView.SetEntity(entity);
+        _window.SkillsButton.Disabled = !TryGetLocalMind(out _);
 
         UpdateRoleType();
 
@@ -281,4 +308,50 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             _window.Open();
         }
     }
+
+    // RS14-start
+    private void OnSkillsButtonPressed(ButtonEventArgs args)
+    {
+        OpenSkillsWindow();
+    }
+
+    private void OpenSkillsWindow()
+    {
+        if (_skillsWindow != null)
+        {
+            _skillsWindow.Close();
+            _skillsWindow = null;
+        }
+
+        _skillsWindow = new SkillsWindow(Array.Empty<ProtoId<SkillPrototype>>())
+        {
+            Title = Loc.GetString("skill-window")
+        };
+        _skillsWindow.OpenCentered();
+
+        _skills.RequestPlayerSkills();
+    }
+
+    private void OnPlayerSkillsUpdated(List<ProtoId<SkillPrototype>> skills)
+    {
+        if (_skillsWindow == null || _skillsWindow.Disposed || !_skillsWindow.IsOpen)
+            return;
+
+        _skillsWindow.SetSkills(skills);
+    }
+
+    private bool TryGetLocalMind([NotNullWhen(true)] out MindComponent? mind)
+    {
+        mind = null;
+
+        if (_player.LocalEntity is not { } entity)
+            return false;
+
+        if (!_ent.TryGetComponent<MindContainerComponent>(entity, out var container)
+            || container.Mind is not { } mindId)
+            return false;
+
+        return _ent.TryGetComponent(mindId, out mind);
+    }
+    // RS14-end
 }

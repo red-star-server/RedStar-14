@@ -127,6 +127,13 @@
   startingGear: ClownGear
   icon: "JobIconClown"
   supervisors: job-supervisors-hop
+  skills: # RS14
+  - Cooking
+  - Drinks
+  - Hydroponics
+  - Medical
+  - Construction
+  - Exosuits
   #goobcoins: 15 #Goob content Corvax-Goob-coins
   access:
   - Theatre

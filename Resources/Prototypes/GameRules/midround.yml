@@ -55,8 +55,7 @@
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
       jobBlacklist: [ Chaplain ] # GOOBSTATION
-      skills: # CorvaxGoob-Skills
-      - All
+      grantAllSkills: true # RS14
       blacklist:
         components:
         - CommandStaff

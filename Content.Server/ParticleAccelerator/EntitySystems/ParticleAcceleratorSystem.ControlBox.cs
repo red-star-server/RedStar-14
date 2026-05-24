@@ -60,6 +60,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Content.Shared.ParticleAccelerator;
 using Content.Shared.Machines.Events;
+using Robust.Shared.Random;
 
 namespace Content.Server.ParticleAccelerator.EntitySystems;
 
@@ -207,6 +208,13 @@ public sealed partial class ParticleAcceleratorSystem
 
         if (strength == comp.SelectedStrength)
             return;
+
+        // RS14-start
+        if (user is { } operatorUid && !_skills.HasSkill(operatorUid, AdvancedEnginesSkill) && _random.Prob(ParticleAcceleratorMishapChance))
+        {
+            strength = (ParticleAcceleratorPowerState) _random.Next((int) ParticleAcceleratorPowerState.Standby, (int) comp.MaxStrength + 1);
+        }
+        // RS14-end
 
         if (user is { } player)
         {
@@ -432,7 +440,16 @@ public sealed partial class ParticleAcceleratorSystem
         if (msg.Enabled)
         {
             if (_multipartMachine.IsAssembled((uid, null)))
+            {
+                // RS14-start
+                if (!_skills.HasSkill(msg.Actor, AdvancedEnginesSkill) && _random.Prob(ParticleAcceleratorMishapChance))
+                {
+                    SetStrength(uid, (ParticleAcceleratorPowerState) _random.Next((int) ParticleAcceleratorPowerState.Level0, (int) comp.MaxStrength + 1), msg.Actor, comp);
+                }
+                // RS14-end
+
                 SwitchOn(uid, msg.Actor, comp);
+            }
         }
         else
             SwitchOff(uid, msg.Actor, comp);
