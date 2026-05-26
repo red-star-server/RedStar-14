@@ -29,3 +29,13 @@
     sprite: /Textures/_CorvaxGoob/Interface/Misc/job_icons.rsi
     state: Magistrate
   jobName: job-name-magistrate
+
+# RS14-start
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconIAA
+  icon:
+    sprite: /Textures/_CorvaxGoob/Interface/Misc/job_icons.rsi
+    state: Magistrate
+  jobName: job-name-iaa
+# RS14-end

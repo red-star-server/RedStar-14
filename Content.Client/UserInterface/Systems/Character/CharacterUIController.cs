@@ -111,7 +111,9 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
     public void OnStateExited(GameplayState state)
     {
         // RS14-start
-        _skills.PlayerSkillsWindowUpdated -= OnPlayerSkillsUpdated;
+        _skills?.PlayerSkillsWindowUpdated -= OnPlayerSkillsUpdated;
+        _skillsWindow?.Close();
+        _skillsWindow = null;
         // RS14-end
 
         if (_window != null)

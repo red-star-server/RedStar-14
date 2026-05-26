@@ -29,3 +29,11 @@
     sprite: Clothing/Ears/Headsets/command.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/command.rsi
+
+# RS14-start
+- type: entity
+  parent: ClothingHeadsetMagistrate
+  id: ClothingHeadsetIAA
+  name: internal affairs headset
+  description: A headset for internal affairs agents.
+# RS14-end

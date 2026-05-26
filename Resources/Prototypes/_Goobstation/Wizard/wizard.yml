@@ -80,6 +80,12 @@
     - sprite: Objects/Fun/figurines.rsi
       state: wizard
 
+# RS14-start
+- type: entity
+  parent: SpawnPointWizard
+  id: SpawnPointGhostWizard
+# RS14-end
+
 - type: npcFaction
   id: Wizard # Not hostile to angry mobs
   hostile:
