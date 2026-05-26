@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 RedStar Contributors
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Text;
 using System.Text.RegularExpressions;
 using Content.Server.Chat.Systems;
