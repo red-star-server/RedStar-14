@@ -93,14 +93,6 @@
     sprite: _CorvaxGoob/Objects/Devices/pda.rsi
     state: pda-magistrate
 
-# RS14-start
-- type: entity
-  parent: MagistratePDA
-  id: IAAPDA
-  name: internal affairs PDA
-  description: A PDA issued for internal investigations.
-# RS14-end
-
 - type: entity
   parent: BaseItem
   id: StationAiPDA

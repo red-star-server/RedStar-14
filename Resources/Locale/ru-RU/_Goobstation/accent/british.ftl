@@ -145,7 +145,6 @@ accent-british-words-67 = бабло
 accent-british-words-replace-67 = монеты
 accent-british-words-68 = часы
 accent-british-words-replace-68 = биг бен
-accent-british-words-69 = авд
 accent-british-words-replace-69 = служитель
 accent-british-words-70 = spy
 accent-british-words-replace-70 = birdwatcher
