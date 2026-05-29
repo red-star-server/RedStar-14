@@ -94,7 +94,7 @@
       shuttleTime: 600
       announcersAudio: # CorvaxGoob-CustomAnnouncers
         Intern:
-          path: /Audio/_CorvaxGoob/Announcements/Announcers/Intern/green.ogg
+          path: /Audio/Announcements/attention.ogg
     blue:
       announcement: alert-level-blue-announcement
       sound: /Audio/Misc/bluealert.ogg
@@ -154,7 +154,7 @@
       shuttleTime: 1200
       announcersAudio: # CorvaxGoob-CustomAnnouncers
         Intern:
-          path: /Audio/_CorvaxGoob/Announcements/Announcers/Intern/delta.ogg
+          path: /Audio/Misc/delta.ogg
     epsilon:
       announcement: alert-level-epsilon-announcement
       selectable: false

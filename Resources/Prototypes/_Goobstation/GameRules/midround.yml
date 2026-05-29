@@ -27,7 +27,7 @@
       path: /Audio/Announcements/intercept.ogg
     announcersStartAudio: # CorvaxGoob-CustomAnnouncers
       Intern:
-        path: /Audio/_CorvaxGoob/Announcements/Announcers/Intern/intercept.ogg
+        path: /Audio/Announcements/intercept.ogg
     duration: null
     occursDuringRoundEnd: false
     chaos:

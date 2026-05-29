@@ -18,7 +18,7 @@
       path: /Audio/Announcements/attention.ogg
     announcersStartAudio: # CorvaxGoob-CustomAnnouncers
       Intern:
-        path: /Audio/_CorvaxGoob/Announcements/Announcers/Intern/sentience.ogg
+        path: /Audio/Announcements/sentience.ogg
     chaos: # Goobstation
       Mess: 5
       Friend: -5
