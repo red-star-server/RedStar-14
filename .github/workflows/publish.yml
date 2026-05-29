@@ -91,15 +91,24 @@ jobs:
     - name: Package server
       run: dotnet run --project Content.Packaging server --platform win-x64 --platform linux-x64 --platform osx-x64 --platform linux-arm64
 
+    - name: Show release files
+      run: |
+        echo "=== RELEASE FILES ==="
+        find release -type f || true
+
+        echo
+        echo "=== BIN FILES ==="
+        find bin -type f | tail -100 || true
+
     - name: Package client
       run: dotnet run --project Content.Packaging client --no-wipe-release
 
-    - name: Publish version
-      run: Tools/publish_multi_request.py
-      env:
-        PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-        GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
-        FORK_ID: ${{ vars.FORK_ID }}
+    #- name: Publish version
+    #  run: Tools/publish_multi_request.py
+    #  env:
+    #    PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+    #    GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
+    #    FORK_ID: ${{ vars.FORK_ID }}
 
     #    - name: Publish changelog (Discord)
     #      continue-on-error: true
