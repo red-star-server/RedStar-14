@@ -120,7 +120,7 @@ public sealed class SkillTeachingSystem : EntitySystem
         if (!_doAfter.TryStartDoAfter(doAfter))
             return;
 
-        _activeTeachings.Add(new TeachingRequest(teacher, target.Value, msg.Skill));
+        _activeTeachings.Add(new TeachingRequest(teacher, GetNetEntity(target.Value), msg.Skill));
     }
 
     private void OnTeachingFinished(SkillTeachingDoAfterEvent args)
@@ -184,7 +184,7 @@ public sealed class SkillTeachingSystem : EntitySystem
 
     private bool HasActiveTeaching(EntityUid teacher, EntityUid target, ProtoId<SkillPrototype> skill)
     {
-        return _activeTeachings.Contains(new TeachingRequest(teacher, target, skill));
+        return _activeTeachings.Contains(new TeachingRequest(teacher, GetNetEntity(target), skill));
     }
 
     private void PopupTeachingFailure(EntityUid teacher, EntityUid target, ProtoId<SkillPrototype> skill)
@@ -206,13 +206,7 @@ public sealed class SkillTeachingSystem : EntitySystem
 
     private void RemoveActiveTeaching(EntityUid teacher, NetEntity target, ProtoId<SkillPrototype> skill)
     {
-        if (TryGetEntity(target, out var targetUid))
-        {
-            _activeTeachings.Remove(new TeachingRequest(teacher, targetUid.Value, skill));
-            return;
-        }
-
-        _activeTeachings.RemoveWhere(request => request.Teacher == teacher && request.Skill == skill);
+        _activeTeachings.Remove(new TeachingRequest(teacher, target, skill));
     }
 
     private bool HasTeachableSkill(
@@ -224,6 +218,6 @@ public sealed class SkillTeachingSystem : EntitySystem
 
     private readonly record struct TeachingRequest(
         EntityUid Teacher,
-        EntityUid Target,
+        NetEntity Target,
         ProtoId<SkillPrototype> Skill);
 }
