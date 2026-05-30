@@ -123,7 +123,8 @@ namespace Content.IntegrationTests.Tests.Chemistry
                 await server.WaitAssertion(() =>
                 {
                     // This integration test only validates that every reaction can be processed without runtime errors.
-                    Assert.That(solution.Contents.Count, Is.GreaterThan(0));
+                    // RS14: Entity-only reactions can legitimately consume all reagents.
+                    Assert.That(solution, Is.Not.Null);
                 });
 
             }

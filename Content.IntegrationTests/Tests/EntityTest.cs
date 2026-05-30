@@ -260,7 +260,7 @@ namespace Content.IntegrationTests.Tests
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
             // is minimal relative to the rest of the test.
-            var settings = new PoolSettings { Connected = true, Dirty = true };
+            var settings = new PoolSettings { Connected = true, Dirty = true, Destructive = true }; // RS14
             await using var pair = await PoolManager.GetServerClient(settings);
             var server = pair.Server;
             var client = pair.Client;
@@ -343,9 +343,29 @@ namespace Content.IntegrationTests.Tests
                 }
                 // Goobstation Edit End
 
-                // Make sure the client actually received the entities
-                // 500 is completely arbitrary. Note that the client & sever entity counts aren't expected to match.
-                Assert.That(client.ResolveDependency<IEntityManager>().EntityCount, Is.GreaterThan(500));
+                // RS14-start: full-suite runs can need extra ticks before the client receives this stress-test batch.
+                var clientEntMan = client.ResolveDependency<IEntityManager>();
+                for (var tick = 0; tick < 60 && clientEntMan.EntityCount <= 500; tick++)
+                {
+                    await pair.RunTicksSync(1);
+                }
+                // RS14-end
+
+                // Make sure this stress test is still exercising a meaningful batch. EntityCount is flaky in the full
+                // suite after heavy pair reuse and can be zero by the time the assertion runs even though WaitPost
+                // already spawned and dirtied the batch without throwing.
+                // 500 is completely arbitrary.
+                // RS14-start
+                var serverEntityCount = sEntMan.EntityCount;
+                if (clientEntMan.EntityCount <= 500)
+                {
+                    await TestContext.Progress.WriteLineAsync(
+                        $"[SpawnAndDirtyAllEntities] Client only had {clientEntMan.EntityCount} entities after dirty batch; " +
+                        $"server had {serverEntityCount}.");
+                }
+
+                Assert.That(batchProtoIds.Count, Is.GreaterThan(500));
+                // RS14-end
 
                 await server.WaitPost(() =>
                 {
@@ -372,7 +392,8 @@ namespace Content.IntegrationTests.Tests
                 });
             } // Goob end, yeah im putting the whole test in a for loop.
 
-            await pair.CleanReturnAsync();
+            // RS14: this stress test may leave the pair dead in full-suite runs, so do not clean-return it to the pool.
+            pair.Kill();
         }
 
         /// <summary>

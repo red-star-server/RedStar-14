@@ -64,7 +64,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
-    [UISystemDependency] private readonly SkillsSystem _skills = default!; // RS14
+    [UISystemDependency] private readonly SkillsSystem? _skills = default; // RS14
 
     public override void Initialize()
     {
@@ -97,9 +97,12 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
         // RS14-start
         _window.SkillsButton.OnPressed += OnSkillsButtonPressed;
-        _skills.PlayerSkillsWindowUpdated += OnPlayerSkillsUpdated;
-        _skills.SkillsStateUpdated += OnSkillsStateUpdated;
-        _skills.RequestSkillsState();
+        if (_skills != null)
+        {
+            _skills.PlayerSkillsWindowUpdated += OnPlayerSkillsUpdated;
+            _skills.SkillsStateUpdated += OnSkillsStateUpdated;
+            _skills.RequestSkillsState();
+        }
         UpdateSkillsButton();
         // RS14-end
 
@@ -112,8 +115,14 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
     public void OnStateExited(GameplayState state)
     {
         // RS14-start
-        _skills.PlayerSkillsWindowUpdated -= OnPlayerSkillsUpdated;
-        _skills.SkillsStateUpdated -= OnSkillsStateUpdated;
+        if (_skills != null)
+        {
+            _skills.PlayerSkillsWindowUpdated -= OnPlayerSkillsUpdated;
+            _skills.SkillsStateUpdated -= OnSkillsStateUpdated;
+        }
+
+        _skillsWindow?.Close();
+        _skillsWindow = null;
         // RS14-end
 
         if (_window != null)
@@ -314,7 +323,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
     // RS14-start
     private void OnSkillsButtonPressed(ButtonEventArgs args)
     {
-        if (!_skills.IsSkillsEnabled)
+        if (_skills?.IsSkillsEnabled != true)
             return;
 
         OpenSkillsWindow();
@@ -334,7 +343,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         };
         _skillsWindow.OpenCentered();
 
-        _skills.RequestPlayerSkills();
+        _skills?.RequestPlayerSkills();
     }
 
     private void OnPlayerSkillsUpdated(List<ProtoId<SkillPrototype>> skills)
@@ -361,7 +370,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         if (_window == null)
             return;
 
-        var visible = _skills.IsSkillsEnabled;
+        var visible = _skills?.IsSkillsEnabled == true;
         _window.SkillsButton.Visible = visible;
         _window.SkillsButton.Disabled = !visible || !TryGetLocalMind(out _);
     }
