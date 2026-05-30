@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using Robust.Client.Graphics;
 using Robust.Client.Utility;
 using Robust.Client.UserInterface;
@@ -20,6 +21,8 @@ public sealed partial class SkillDisplayEntry : Control
         bool allowRevoke = true)
     {
         RobustXamlLoader.Load(this);
+
+        MouseFilter = MouseFilterMode.Pass;
 
         var colorPanel = FindControl<PanelContainer>("ColorPanel");
         var iconPanel = FindControl<PanelContainer>("IconPanel");
@@ -54,9 +57,11 @@ public sealed partial class SkillDisplayEntry : Control
 
         skillNameLabel.Text = Loc.GetString($"skill-{skill.ID.ToLower()}");
         var description = Loc.GetString($"skill-{skill.ID.ToLower()}-desc");
-        
-        skillNameLabel.ToolTip = description;
-        iconPanel.ToolTip = description;
+        var tooltip = GetSkillTooltip(skill, description);
+
+        ToolTip = tooltip;
+        skillNameLabel.ToolTip = tooltip;
+        iconPanel.ToolTip = tooltip;
 
         if (hasSkill == null || onToggle == null)
             return;
@@ -72,5 +77,16 @@ public sealed partial class SkillDisplayEntry : Control
                 ? "admin-skills-grant"
                 : "teach-skills-start");
         toggleButton.OnPressed += _ => onToggle(skill);
+    }
+
+    private static string GetSkillTooltip(SkillPrototype skill, string description)
+    {
+        if (skill.LearningPrerequisites.Count == 0)
+            return description;
+
+        var prerequisites = string.Join(", ", skill.LearningPrerequisites
+            .Select(prerequisite => Loc.GetString($"skill-{prerequisite.ToString().ToLower()}")));
+
+        return $"{description}\n{Loc.GetString("skill-learning-prerequisites-tooltip", ("skills", prerequisites))}";
     }
 }

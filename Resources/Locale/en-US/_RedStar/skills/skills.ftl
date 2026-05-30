@@ -15,6 +15,11 @@ admin-skills-revoke = Revoke skill
 teach-skills-verb = Teach skill
 teach-skills-window = Teach skills
 teach-skills-start = Start teaching
+skill-learning-already-known = I already know this.
+skill-learning-missing-prerequisites = I lack knowledge of {$skills}.
+skill-teaching-target-already-known = They already know this.
+skill-teaching-missing-prerequisites = They lack knowledge of {$skills}.
+skill-learning-prerequisites-tooltip = Requires: {$skills}
 
 skill-cooking = Cooking
 skill-cooking-desc = The character can cook meals and use kitchen recipes.

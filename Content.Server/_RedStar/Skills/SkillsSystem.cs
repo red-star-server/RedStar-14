@@ -107,6 +107,38 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         return skillPrototype.LearningPrerequisites.All(prerequisite => mind.Skills.Contains(prerequisite));
     }
 
+    public bool TryGetMissingLearningPrerequisites(
+        EntityUid entity,
+        ProtoId<SkillPrototype> skill,
+        out List<ProtoId<SkillPrototype>> missingPrerequisites)
+    {
+        missingPrerequisites = new List<ProtoId<SkillPrototype>>();
+
+        if (!_prototype.TryIndex(skill, out var skillPrototype))
+            return false;
+
+        if (!_mind.TryGetMind(entity, out _, out var mind))
+            return false;
+
+        missingPrerequisites = skillPrototype.LearningPrerequisites
+            .Where(prerequisite => !mind.Skills.Contains(prerequisite))
+            .ToList();
+
+        return missingPrerequisites.Count > 0;
+    }
+
+    public string GetSkillNames(IEnumerable<ProtoId<SkillPrototype>> skills)
+    {
+        return string.Join(", ", skills.Select(GetSkillName));
+    }
+
+    public string GetSkillName(ProtoId<SkillPrototype> skill)
+    {
+        return _prototype.TryIndex(skill, out var skillPrototype)
+            ? Loc.GetString($"skill-{skillPrototype.ID.ToLower()}")
+            : skill.ToString();
+    }
+
     private void OnImplantImplanted(ref ImplantImplantedEvent ev)
     {
         if (ev.Implanted is null)
@@ -320,6 +352,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             ValidateSkillSet(skill.LearningPrerequisites, $"skill prototype '{skill.ID}' learning prerequisites");
         }
 
+        ValidateSkillPrerequisiteCycles();
+
         foreach (var job in _prototype.EnumeratePrototypes<JobPrototype>())
         {
             ValidateSkillSet(job.Skills, $"job prototype '{job.ID}'");
@@ -363,5 +397,47 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             return;
 
         Log.Error($"Unknown skill prototype '{skill}' referenced by {source}.");
+    }
+
+    private void ValidateSkillPrerequisiteCycles()
+    {
+        var visited = new HashSet<ProtoId<SkillPrototype>>();
+        var visiting = new HashSet<ProtoId<SkillPrototype>>();
+        var path = new Stack<ProtoId<SkillPrototype>>();
+
+        foreach (var skill in _prototype.EnumeratePrototypes<SkillPrototype>())
+        {
+            VisitSkillPrerequisite((ProtoId<SkillPrototype>) skill.ID, visited, visiting, path);
+        }
+    }
+
+    private void VisitSkillPrerequisite(
+        ProtoId<SkillPrototype> skill,
+        HashSet<ProtoId<SkillPrototype>> visited,
+        HashSet<ProtoId<SkillPrototype>> visiting,
+        Stack<ProtoId<SkillPrototype>> path)
+    {
+        if (visited.Contains(skill))
+            return;
+
+        if (!_prototype.TryIndex(skill, out var skillPrototype))
+            return;
+
+        if (!visiting.Add(skill))
+        {
+            Log.Error($"Circular skill learning prerequisite detected: {string.Join(" -> ", path.Reverse())} -> {skill}.");
+            return;
+        }
+
+        path.Push(skill);
+
+        foreach (var prerequisite in skillPrototype.LearningPrerequisites)
+        {
+            VisitSkillPrerequisite(prerequisite, visited, visiting, path);
+        }
+
+        path.Pop();
+        visiting.Remove(skill);
+        visited.Add(skill);
     }
 }

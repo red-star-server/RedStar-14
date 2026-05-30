@@ -4,6 +4,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
+using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -16,6 +17,7 @@ public sealed class SkillTeachingSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
 
@@ -82,9 +84,14 @@ public sealed class SkillTeachingSystem : EntitySystem
         if (args.SenderSession.AttachedEntity is not { } teacher
             || !TryGetEntity(msg.Target, out var target)
             || target.Value == teacher
-            || HasActiveTeaching(teacher, target.Value, msg.Skill)
-            || !CanTeachSkill(teacher, target.Value, msg.Skill))
+            || HasActiveTeaching(teacher, target.Value, msg.Skill))
         {
+            return;
+        }
+
+        if (!CanTeachSkill(teacher, target.Value, msg.Skill))
+        {
+            PopupTeachingFailure(teacher, target.Value, msg.Skill);
             return;
         }
 
@@ -126,9 +133,15 @@ public sealed class SkillTeachingSystem : EntitySystem
         RemoveActiveTeaching(args.User, args.TargetEntity, args.Skill);
 
         if (!_skills.IsSkillsEnabled()
-            || !TryGetEntity(args.TargetEntity, out var target)
-            || !CanTeachSkill(args.User, target.Value, args.Skill))
+            || !TryGetEntity(args.TargetEntity, out var target))
         {
+            return;
+        }
+
+        if (!CanTeachSkill(args.User, target.Value, args.Skill))
+        {
+            PopupTeachingFailure(args.User, target.Value, args.Skill);
+
             return;
         }
 
@@ -168,6 +181,23 @@ public sealed class SkillTeachingSystem : EntitySystem
     private bool HasActiveTeaching(EntityUid teacher, EntityUid target, ProtoId<SkillPrototype> skill)
     {
         return _activeTeachings.Contains(new TeachingRequest(teacher, target, skill));
+    }
+
+    private void PopupTeachingFailure(EntityUid teacher, EntityUid target, ProtoId<SkillPrototype> skill)
+    {
+        if (_skills.HasSkill(target, skill))
+        {
+            _popup.PopupEntity(Loc.GetString("skill-teaching-target-already-known"), teacher, teacher);
+            return;
+        }
+
+        if (_skills.TryGetMissingLearningPrerequisites(target, skill, out var missingPrerequisites))
+        {
+            _popup.PopupEntity(
+                Loc.GetString("skill-teaching-missing-prerequisites", ("skills", _skills.GetSkillNames(missingPrerequisites))),
+                teacher,
+                teacher);
+        }
     }
 
     private void RemoveActiveTeaching(EntityUid teacher, NetEntity target, ProtoId<SkillPrototype> skill)
