@@ -1,0 +1,43 @@
+- type: entityTable
+  id: LockerFillNanotrasenCareerTrainer
+  table: !type:AllSelector
+    children:
+    - id: BoxFolderCentCom
+    - id: BoxFolderCentComClipboard
+    - id: RubberStampApproved
+    - id: RubberStampDenied
+    - id: ClothingUniformEnvirosuitNanotrasenCareerTrainer
+    - id: ClothingHeadEnvirohelmNanotrasenCareerTrainer
+    - id: Paper
+      amount: !type:ConstantNumberSelector
+        value: 5
+
+- type: entity
+  id: LockerNanotrasenCareerTrainerFilled
+  suffix: Filled
+  parent: LockerNanotrasenCareerTrainer
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillNanotrasenCareerTrainer
+
+- type: entity
+  id: DresserNanotrasenCareerTrainerFilled
+  parent: Dresser
+  suffix: Filled, NCT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: DresserFillNanotrasenCareerTrainer
+
+- type: entityTable
+  id: DresserFillNanotrasenCareerTrainer
+  table: !type:AllSelector
+    children:
+    - id: ClothingUniformJumpsuitTrainer
+    - id: ClothingUniformJumpskirtTrainer
+    - id: ClothingOuterWinterCoatTrainer
+    - id: ClothingHeadHatTrainer
+    - id: ClothingHeadBeretTrainer

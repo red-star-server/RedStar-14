@@ -1157,3 +1157,9 @@ CrateServiceLoreBooks: null
 
 # 2026-05-29 RedStar
 BriefcaseIAAFilled: BriefcaseBrownFilled
+SpawnPointNanotrasenRepresentative: SpawnPointNanotrasenCareerTrainer
+LockerRepresentative: LockerNanotrasenCareerTrainerFilled
+LockerNanorep: LockerNanotrasenCareerTrainer
+LockerNanorepFilled: LockerNanotrasenCareerTrainerFilled
+UniqueLockerNanorepFilled: UniqueLockerNanotrasenCareerTrainerFilled
+DresserNanorepFilled: DresserNanotrasenCareerTrainerFilled

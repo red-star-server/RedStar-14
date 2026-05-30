@@ -118,13 +118,31 @@
   name: nanotrasen career trainer ID card
   components:
   - type: Sprite
+    sprite: _RedStar/Objects/Misc/id_cards.rsi # RS14
     layers:
     - state: centcom
-    - state: idcentcom
+    - state: idtrainer # RS14
   - type: Item
-    heldPrefix:
+    heldPrefix: green # RS14
   - type: PresetIdCard
     job: NanotrasenCareerTrainer
+  # RS14-start
+  - type: Access
+    tags:
+    - NanotrasenCareerTrainer
+    - External
+    - Cryogenics
+    - Brig
+    - Lawyer
+    - Engineering
+    - Maintenance
+    - Medical
+    - Research
+    - Cargo
+    - Theatre
+    - CentralCommand
+    - NanotrasenRepresentative
+  # RS14-end
 
 # Executive Access
 - type: entity

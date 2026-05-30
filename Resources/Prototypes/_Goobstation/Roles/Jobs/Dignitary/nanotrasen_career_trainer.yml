@@ -10,20 +10,51 @@
   joinNotifyCrew: true
   supervisors: job-supervisors-ntr-centcom
   canBeAntag: false
-  whitelisted: true # 1984
-  setPreference: false # 1984 x2
+  whitelisted: true
+  setPreference: true # RS14-value: false -> true
   skills: # RS14
   - Cooking
   - Drinks
   - Hydroponics
+  - Butchering
   - Medical
+  - Pharmacology
+  - Chemistry
+  - Stasis
+  - Virology
+  - Surgery
+  - Engineering
   - Construction
-  accessGroups:
-  - AllAccess
+  - Atmos
+  - Engines
+  - AdvancedEngines
+  - Supermatter
+  - Piloting
+  - Detective
+  - Shooting
+  - Xenobiology
+  - Exosuits
+  - Robotics
+  - Anomaly
+  - Artifacts
+  - PlantMutation
+  - Magic
+  # RS14-start
   access:
+  - NanotrasenCareerTrainer
+  - External
+  - Cryogenics
+  - Brig
+  - Lawyer
+  - Engineering
+  - Maintenance
+  - Medical
+  - Research
+  - Cargo
+  - Theatre
   - CentralCommand
   - NanotrasenRepresentative
-  - BlueshieldOfficer
+  # RS14-end
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, BluespaceLifelineImplant ]
@@ -37,13 +68,14 @@
     id: TrainerPDA
     ears: ClothingHeadsetAltCentCom
     eyes: ClothingEyesGlassesCentComm
-    pocket1: WeaponDisabler
-    pocket2: FoodSnackLollypopWrappedCentComm # Come on, it's a trademark at this point.
+    pocket1: UniqueNanotrasenCareerTrainerLockerTeleporter # RS14
+    pocket2: WeaponDisabler # RS14-value: FoodSnackLollypopWrappedCentComm -> WeaponDisabler
   storage:
     back:
     - Flash
     - TelescopicBatonAdvanced
     - CentralCommandBusinessCard
+    - FoodSnackLollypopWrappedCentComm # RS14
 
 - type: chameleonOutfit
   id: NanotrasenCareerTrainerChameleonOutfit

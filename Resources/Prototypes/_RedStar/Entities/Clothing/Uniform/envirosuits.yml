@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformEnvirosuitCentcomOfficial
+  id: ClothingUniformEnvirosuitNanotrasenCareerTrainer
+  name: nanotrasen career trainer envirosuit
+  description: An envirosuit issued to Nanotrasen Career Trainers.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Uniforms/Envirosuits/career_trainer.rsi
+  - type: Clothing
+    sprite: _RedStar/Clothing/Uniforms/Envirosuits/career_trainer.rsi

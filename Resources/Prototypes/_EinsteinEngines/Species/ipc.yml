@@ -40,7 +40,7 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
-    Hair: MobHumanoidMarkingMatchSkin
+    # RS14: IPCs should not have hair.
     Chest: MobIPCChest
     Groin: MobIPCGroin
     LArm: MobIPCLArm
@@ -60,9 +60,7 @@
       points: 1
       required: true
       defaultMarkings: [ MobIPCHeadDefault ]
-    Hair:
-      points: 1
-      required: false
+    # RS14: IPCs should not have hair.
     Face:
       points: 1
       required: false

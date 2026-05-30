@@ -1118,6 +1118,24 @@
   - NanotrasenTrainerBoots
   - NanotrasenTrainerShoes
 
+# RS14-start
+- type: loadoutGroup
+  id: NanotrasenTrainerEnvirohelm
+  name: loadout-group-nct-envirohelm
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - NanotrasenTrainerEnvirohelm
+
+- type: loadoutGroup
+  id: NanotrasenTrainerEnvirosuit
+  name: loadout-group-nct-envirosuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - NanotrasenTrainerEnvirosuit
+# RS14-end
+
 # Reporter
 
 - type: loadoutGroup

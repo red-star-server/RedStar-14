@@ -86,7 +86,7 @@ public sealed partial class IdCardConsoleComponent : Component
         "Theatre",
         "Robotics", //Goob
         "Journalism", //Goob
-        "NanotrasenRepresentative", //Corvax-Goob
+        // "NanotrasenRepresentative", // RS14
         "BlueshieldOfficer", //Corvax-Goob
         "CentralCommand" //Corvax-Goob
     };

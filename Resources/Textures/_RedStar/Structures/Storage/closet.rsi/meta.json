@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by andrew_fenriz (discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "trainer"
+    },
+    {
+      "name": "trainer_door"
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "welded"
+    },
+    {
+      "name": "trainer_open"
+    }
+  ]
+}

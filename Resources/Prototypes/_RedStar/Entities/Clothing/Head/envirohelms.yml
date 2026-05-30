@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingHeadEnvirohelmCentcomOfficial
+  id: ClothingHeadEnvirohelmNanotrasenCareerTrainer
+  name: nanotrasen career trainer envirosuit helmet
+  description: A special containment helmet issued to Nanotrasen Career Trainers.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Head/Envirohelms/career_trainer.rsi
+  - type: Clothing
+    sprite: _RedStar/Clothing/Head/Envirohelms/career_trainer.rsi
