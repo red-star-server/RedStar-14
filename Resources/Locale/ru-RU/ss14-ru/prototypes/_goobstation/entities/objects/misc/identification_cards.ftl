@@ -8,7 +8,6 @@ ent-BlueshieldIDCard = ID-карта Синего Щита
     .desc = { ent-IDCardStandard.desc }
 ent-NanotrasenRepresentativeIDCard = ID-карта инспектора Nanotrasen
     .desc = { ent-IDCardStandard.desc }
-# RS14
 ent-NanotrasenCareerTrainerIDCard = ID-карта наставника ГенШтаба
     .desc = { ent-IDCardStandard.desc }
 ent-ExecutiveIDCard = карта доступа руководителя

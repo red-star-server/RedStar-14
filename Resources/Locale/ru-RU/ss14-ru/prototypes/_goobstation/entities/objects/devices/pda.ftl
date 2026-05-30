@@ -12,7 +12,6 @@ ent-DeathsquadPDA = КПК Эскадрона Смерти
     .desc = Рвите и метайте всех и вся, пока все не будет готово.
 ent-NanotrasenRepresentativePDA = КПК представителя NanoTrasen
     .desc = Дьявол кроется в деталях.
-# RS14
 ent-TrainerPDA = КПК наставника
     .desc = Стандартный КПК наставника ГенШтаба
 ent-NavyCaptainPDA = КПК капитана ВКС

@@ -10,14 +10,35 @@
   joinNotifyCrew: true
   supervisors: job-supervisors-ntr-centcom
   canBeAntag: false
-  whitelisted: true # 1984
+  whitelisted: false # RS14-value: true -> false
   setPreference: true # RS14-value: false -> true
   skills: # RS14
   - Cooking
   - Drinks
   - Hydroponics
+  - Butchering
   - Medical
+  - Pharmacology
+  - Chemistry
+  - Stasis
+  - Virology
+  - Surgery
+  - Engineering
   - Construction
+  - Atmos
+  - Engines
+  - AdvancedEngines
+  - Supermatter
+  - Piloting
+  - Detective
+  - Shooting
+  - Xenobiology
+  - Exosuits
+  - Robotics
+  - Anomaly
+  - Artifacts
+  - PlantMutation
+  - Magic
   # RS14-start
   access:
   - NanotrasenCareerTrainer

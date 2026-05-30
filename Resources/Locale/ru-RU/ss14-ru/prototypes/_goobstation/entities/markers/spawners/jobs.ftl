@@ -2,7 +2,6 @@ ent-SpawnPointBlueshieldOfficer = офицер Синего Щита
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointNanotrasenRepresentative = представитель NanoTrasen
     .desc = { ent-SpawnPointJobBase.desc }
-# RS14
 ent-SpawnPointNanotrasenCareerTrainer = наставник ГенШтаба
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointRoboticist = робототехник
