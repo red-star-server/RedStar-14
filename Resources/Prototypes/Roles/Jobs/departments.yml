@@ -153,8 +153,7 @@
   - DeathSquad
   - HecuOperative
   - BlueshieldOfficer # Goobstation - Start
-  - NanotrasenRepresentative
-  - NanotrasenCareerTrainer
+  - NanotrasenCareerTrainer # RS14-value: NanotrasenRepresentative -> NanotrasenCareerTrainer
   - NavyOfficer
   - NavyCaptain
   - NavyOfficerUndercover
@@ -178,8 +177,7 @@
   - ResearchDirector
   - Quartermaster
   - BlueshieldOfficer # Goobstation
-  - NanotrasenRepresentative # Goobstation
-  - NanotrasenCareerTrainer # Goobstation
+  - NanotrasenCareerTrainer # RS14-value: NanotrasenRepresentative -> NanotrasenCareerTrainer
   - CentralCommandOfficial
   - CBURN
   - ERTLeader
