@@ -10,7 +10,7 @@
   joinNotifyCrew: true
   supervisors: job-supervisors-ntr-centcom
   canBeAntag: false
-  whitelisted: false # RS14-value: true -> false
+  whitelisted: true
   setPreference: true # RS14-value: false -> true
   skills: # RS14
   - Cooking
