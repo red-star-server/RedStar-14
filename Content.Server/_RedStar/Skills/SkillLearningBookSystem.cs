@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 RedStar Contributors
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared._RedStar.Skills;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction.Events;
