@@ -1,36 +1,30 @@
 using System.Linq;
-using Content.Shared._RedStar.CCVar;
 using Content.Shared._RedStar.Skills;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Verbs;
-using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server._RedStar.Skills;
 
 public sealed class SkillTeachingSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SkillsSystem _skills = default!;
 
-    private bool _skillsEnabled = true;
     private const float LearningPenaltyPerKnownSkill = 0.15f;
     private const float MaxLearningPenalty = 4f;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _skillsEnabled = _cfg.GetCVar(RedStarSkillsCVars.SkillsEnabled);
-        Subs.CVar(_cfg, RedStarSkillsCVars.SkillsEnabled, value => _skillsEnabled = value);
 
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(OnGetVerbs);
         SubscribeLocalEvent<SkillTeachingDoAfterEvent>(OnTeachingFinished);
@@ -50,7 +44,7 @@ public sealed class SkillTeachingSystem : EntitySystem
 
     private void OnGetVerbs(GetVerbsEvent<Verb> args)
     {
-        if (!_skillsEnabled
+        if (!_skills.IsSkillsEnabled()
             || args.User == args.Target
             || !args.CanInteract
             || !TryComp(args.User, out ActorComponent? actor))
@@ -70,6 +64,7 @@ public sealed class SkillTeachingSystem : EntitySystem
         {
             Text = Loc.GetString("teach-skills-verb"),
             Category = VerbCategory.Interaction,
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/students-cap.svg.192dpi.png")),
             Act = () => SendTeachSkillsWindow(session, args.User, args.Target),
             Impact = LogImpact.Low
         });
@@ -77,7 +72,7 @@ public sealed class SkillTeachingSystem : EntitySystem
 
     private void OnTeachSkillRequest(TeachSkillRequestEvent msg, EntitySessionEventArgs args)
     {
-        if (!_skillsEnabled)
+        if (!_skills.IsSkillsEnabled())
             return;
 
         if (!_prototype.TryIndex(msg.Skill, out var skill))
@@ -118,7 +113,7 @@ public sealed class SkillTeachingSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!_skillsEnabled
+        if (!_skills.IsSkillsEnabled()
             || !TryGetEntity(args.TargetEntity, out var target)
             || !CanTeachSkill(args.User, target.Value, args.Skill))
         {

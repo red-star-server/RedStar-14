@@ -10,4 +10,10 @@ public sealed class RedStarSkillsCVars
     /// </summary>
     public static readonly CVarDef<bool> SkillsEnabled =
         CVarDef.Create("redstar.skills.enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Minimum connected players required for skills to be applied.
+    /// </summary>
+    public static readonly CVarDef<int> SkillsMinimumPlayers =
+        CVarDef.Create("redstar.skills.minimum_players", 10, CVar.SERVERONLY | CVar.ARCHIVE);
 }

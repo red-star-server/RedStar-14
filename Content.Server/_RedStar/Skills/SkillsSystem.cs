@@ -8,6 +8,7 @@ using Content.Shared.Implants;
 using Content.Shared.Mind;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -19,11 +20,13 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
 
     private static readonly ProtoId<TagPrototype> SkillsTag = "Skills";
     private bool _skillsEnabled = true;
+    private int _skillsMinimumPlayers = 10;
 
     public override void Initialize()
     {
@@ -31,6 +34,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
         _skillsEnabled = _cfg.GetCVar(RedStarSkillsCVars.SkillsEnabled);
         Subs.CVar(_cfg, RedStarSkillsCVars.SkillsEnabled, value => _skillsEnabled = value);
+        _skillsMinimumPlayers = _cfg.GetCVar(RedStarSkillsCVars.SkillsMinimumPlayers);
+        Subs.CVar(_cfg, RedStarSkillsCVars.SkillsMinimumPlayers, value => _skillsMinimumPlayers = value);
 
         SubscribeLocalEvent<ImplantImplantedEvent>(OnImplantImplanted);
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(OnGetVerbs);
@@ -41,13 +46,18 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
     public override bool HasSkill(EntityUid entity, ProtoId<SkillPrototype> skill)
     {
-        if (!_skillsEnabled)
+        if (!IsSkillsEnabled())
             return true;
 
         if (!_mind.TryGetMind(entity, out _, out var mind))
             return false;
 
         return mind.Skills.Contains(skill);
+    }
+
+    public bool IsSkillsEnabled()
+    {
+        return _skillsEnabled && _player.PlayerCount >= _skillsMinimumPlayers;
     }
 
     private void OnImplantImplanted(ref ImplantImplantedEvent ev)
