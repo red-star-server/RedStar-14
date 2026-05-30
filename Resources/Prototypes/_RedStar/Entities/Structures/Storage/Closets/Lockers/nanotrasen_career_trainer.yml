@@ -1,0 +1,31 @@
+- type: entity
+  id: LockerNanotrasenCareerTrainer
+  name: nanotrasen career trainer locker
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _RedStar/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: trainer
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: trainer_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      offset: "-0.065,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: trainer
+    stateDoorOpen: trainer_open
+    stateDoorClosed: trainer_door
+  - type: AccessReader
+    access: [["NanotrasenCareerTrainer"], ["CentralCommand"]]

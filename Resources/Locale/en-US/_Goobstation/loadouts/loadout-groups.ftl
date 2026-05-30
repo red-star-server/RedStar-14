@@ -170,6 +170,10 @@ loadout-group-ntr-envirohelm = Nanotrasen Representative envirohelm
 loadout-group-ntr-envirosuit = Nanotrasen Representative envirosuit
 loadout-group-ntr-envirogloves = Nanotrasen Representative envirogloves
 loadout-group-ntr-gloves = Nanotrasen Representative gloves
+# RS14
+loadout-group-nct-envirohelm = Nanotrasen Career Trainer envirohelm
+# RS14
+loadout-group-nct-envirosuit = Nanotrasen Career Trainer envirosuit
 
 # Blueshield Officer
 loadout-group-bso-envirohelm = Blueshield Officer envirohelm

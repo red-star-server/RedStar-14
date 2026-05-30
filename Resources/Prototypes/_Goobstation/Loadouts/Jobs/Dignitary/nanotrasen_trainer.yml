@@ -2,14 +2,12 @@
 - type: loadout
   id: NanotrasenTrainerHat
   equipment:
-    head: ClothingHeadBeretTrainer
-
+    head: ClothingHeadHatTrainer # RS14-value: ClothingHeadBeretTrainer -> ClothingHeadHatTrainer
 
 - type: loadout
   id: NanotrasenTrainerBeret
   equipment:
-    head: ClothingHeadHatTrainer
-
+    head: ClothingHeadBeretTrainer # RS14-value: ClothingHeadHatTrainer -> ClothingHeadBeretTrainer
 
 # Backpacks
 - type: loadout
@@ -33,12 +31,10 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitTrainer
 
-
 - type: loadout
   id: NanotrasenTrainerJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtTrainer
-
 
 # Outer
 - type: loadout
@@ -62,7 +58,6 @@
   id: NanotrasenTrainerGloves
   equipment:
     gloves: ClothingHandsGlovesHeavyGoldenTrim
-
 
 # Shoes
 - type: loadout

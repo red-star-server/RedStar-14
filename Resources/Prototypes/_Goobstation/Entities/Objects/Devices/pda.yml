@@ -182,6 +182,19 @@
   components:
   - type: Pda
     id: NanotrasenCareerTrainerIDCard
+    # RS14-start
+  - type: Icon
+    sprite: _RedStar/Objects/Devices/pda.rsi
+    state: pda-trainer
+  - type: Sprite
+    sprite: _RedStar/Objects/Devices/pda.rsi
+    state: pda-trainer
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-trainer
+    # RS14-end
 
 - type: entity
   parent: CentcomPDA

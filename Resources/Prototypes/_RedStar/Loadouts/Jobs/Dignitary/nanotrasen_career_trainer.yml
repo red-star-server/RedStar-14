@@ -1,0 +1,17 @@
+- type: loadout
+  id: NanotrasenTrainerEnvirohelm
+  equipment:
+    head: ClothingHeadEnvirohelmNanotrasenCareerTrainer
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Plasmaman
+
+- type: loadout
+  id: NanotrasenTrainerEnvirosuit
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitNanotrasenCareerTrainer
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Plasmaman

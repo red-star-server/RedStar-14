@@ -18,12 +18,22 @@
   - Hydroponics
   - Medical
   - Construction
-  accessGroups:
-  - AllAccess
+  # RS14-start
   access:
+  - NanotrasenCareerTrainer
+  - External
+  - Cryogenics
+  - Brig
+  - Lawyer
+  - Engineering
+  - Maintenance
+  - Medical
+  - Research
+  - Cargo
+  - Theatre
   - CentralCommand
   - NanotrasenRepresentative
-  - BlueshieldOfficer
+  # RS14-end
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, BluespaceLifelineImplant ]
@@ -37,13 +47,14 @@
     id: TrainerPDA
     ears: ClothingHeadsetAltCentCom
     eyes: ClothingEyesGlassesCentComm
-    pocket1: WeaponDisabler
-    pocket2: FoodSnackLollypopWrappedCentComm # Come on, it's a trademark at this point.
+    pocket1: UniqueNanotrasenCareerTrainerLockerTeleporter # RS14
+    pocket2: WeaponDisabler # RS14-value: FoodSnackLollypopWrappedCentComm -> WeaponDisabler
   storage:
     back:
     - Flash
     - TelescopicBatonAdvanced
     - CentralCommandBusinessCard
+    - FoodSnackLollypopWrappedCentComm # RS14
 
 - type: chameleonOutfit
   id: NanotrasenCareerTrainerChameleonOutfit

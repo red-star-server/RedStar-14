@@ -1,0 +1,40 @@
+- type: entity
+  id: UniqueMarkerNanotrasenCareerTrainerLocker
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: UniqueEntityMarker
+    markerName: NanotrasenCareerTrainerLocker
+
+- type: entity
+  id: UniqueLockerNanotrasenCareerTrainerFilled
+  suffix: MAP THIS, Unique, Filled
+  parent: LockerNanotrasenCareerTrainerFilled
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - UniqueMarkerNanotrasenCareerTrainerLocker
+
+- type: entity
+  parent: BaseLockerTeleporter
+  id: NanotrasenCareerTrainerLockerTeleporter
+  name: nanotrasen career trainer locker teleporter
+  description: Device that allows you to request delivery of a nanotrasen career trainer locker.
+  components:
+  - type: Sprite
+    state: ntr
+  - type: SpawnItemsOnUse
+    items:
+    - id: UniqueLockerNanotrasenCareerTrainerFilled
+
+- type: entity
+  parent: NanotrasenCareerTrainerLockerTeleporter
+  id: UniqueNanotrasenCareerTrainerLockerTeleporter
+  suffix: Unique
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: UniqueEntityChecker
+    markerName: NanotrasenCareerTrainerLocker
+  - type: UniqueEntityMarker
+    markerName: NanotrasenCareerTrainerLocker
+    stationOnly: false
