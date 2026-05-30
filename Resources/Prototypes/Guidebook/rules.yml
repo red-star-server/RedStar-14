@@ -22,14 +22,20 @@
   id: DefaultRuleset
   name: guide-entry-rules
   priority: 60
-  text: "/ServerInfo/_CorvaxGoob/Guidebook/ServerRules/MrpRuleset.xml" # CorvaxGoob-MRPRules
+  # RS14-start
+  text: "/ServerInfo/_RedStar/Guidebook/ServerRules/Ruleset.xml"
   children:
-  - CoreRules
-  - RoleplayRules
-  - SiliconRules
-  - RoleTypes
-  - BanTypes
-  - BanDurations
+  - RedStarRule0
+  - RedStarRule1
+  - RedStarRule2
+  - RedStarRule3
+  - RedStarRule4
+  - RedStarRule5
+  - RedStarRule6
+  - RedStarRule7
+  - RedStarRule8
+  - RedStarRule9
+  # RS14-end
 
 - type: guideEntry
   id: RoleTypes
