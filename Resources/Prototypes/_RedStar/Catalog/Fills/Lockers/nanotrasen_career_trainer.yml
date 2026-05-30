@@ -30,10 +30,10 @@
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:NestedSelector
-        tableId: DresserNanotrasenCareerTrainerFilled
+        tableId: DresserFillNanotrasenCareerTrainer
 
 - type: entityTable
-  id: DresserNanotrasenCareerTrainerFilled
+  id: DresserFillNanotrasenCareerTrainer
   table: !type:AllSelector
     children:
     - id: ClothingUniformJumpsuitTrainer
