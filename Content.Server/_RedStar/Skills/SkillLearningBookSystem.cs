@@ -29,7 +29,10 @@ public sealed class SkillLearningBookSystem : EntitySystem
 
         args.Handled = true;
 
-        if (_skills.HasSkill(args.User, ent.Comp.Skill))
+        if (!_skills.IsSkillsEnabled())
+            return;
+
+        if (!_skills.CanLearnSkill(args.User, ent.Comp.Skill))
         {
             _audio.PlayPvs(ent.Comp.ReadSound, ent.Owner);
             return;
@@ -64,7 +67,12 @@ public sealed class SkillLearningBookSystem : EntitySystem
         if (args.Cancelled || args.Handled)
             return;
 
-        _skills.GrantSkill(args.User, ent.Comp.Skill);
         args.Handled = true;
+
+        if (!_skills.IsSkillsEnabled())
+            return;
+
+        if (_skills.CanLearnSkill(args.User, ent.Comp.Skill))
+            _skills.GrantSkill(args.User, ent.Comp.Skill);
     }
 }

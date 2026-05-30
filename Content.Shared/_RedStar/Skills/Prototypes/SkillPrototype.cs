@@ -17,6 +17,9 @@ public sealed partial class SkillPrototype : IPrototype
 
     [DataField]
     public SkillDifficulty Difficulty { get; private set; } = SkillDifficulty.Easy;
+
+    [DataField]
+    public HashSet<ProtoId<SkillPrototype>> LearningPrerequisites { get; private set; } = new();
 }
 
 public enum SkillDifficulty : byte

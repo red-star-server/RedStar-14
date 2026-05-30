@@ -92,6 +92,24 @@ public sealed class TeachSkillRequestEvent : EntityEventArgs
 public sealed class RequestPlayerSkillsEvent : EntityEventArgs;
 
 [Serializable, NetSerializable]
+public sealed class RequestSkillsStateEvent : EntityEventArgs;
+
+[Serializable, NetSerializable]
+public sealed class UpdateSkillsStateEvent : EntityEventArgs
+{
+    public bool Enabled;
+
+    public UpdateSkillsStateEvent()
+    {
+    }
+
+    public UpdateSkillsStateEvent(bool enabled)
+    {
+        Enabled = enabled;
+    }
+}
+
+[Serializable, NetSerializable]
 public sealed class UpdatePlayerSkillsEvent : EntityEventArgs
 {
     public List<ProtoId<SkillPrototype>> Skills = new();

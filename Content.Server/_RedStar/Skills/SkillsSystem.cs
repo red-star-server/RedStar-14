@@ -1,17 +1,20 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
+using Content.Server.Antag.Components;
+using Content.Server.Ghost.Roles.Components;
 using Content.Shared._RedStar.CCVar;
 using Content.Shared._RedStar.Skills;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Implants;
 using Content.Shared.Mind;
+using Content.Shared.Roles;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 
 namespace Content.Server._RedStar.Skills;
 
@@ -27,27 +30,57 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     private static readonly ProtoId<TagPrototype> SkillsTag = "Skills";
     private bool _skillsEnabled = true;
     private int _skillsMinimumPlayers = 10;
+    private readonly HashSet<ProtoId<SkillPrototype>> _invalidSkillLogs = new();
 
     public override void Initialize()
     {
         base.Initialize();
 
         _skillsEnabled = _cfg.GetCVar(RedStarSkillsCVars.SkillsEnabled);
-        Subs.CVar(_cfg, RedStarSkillsCVars.SkillsEnabled, value => _skillsEnabled = value);
+        Subs.CVar(_cfg, RedStarSkillsCVars.SkillsEnabled, value =>
+        {
+            _skillsEnabled = value;
+            BroadcastSkillsState();
+        });
         _skillsMinimumPlayers = _cfg.GetCVar(RedStarSkillsCVars.SkillsMinimumPlayers);
-        Subs.CVar(_cfg, RedStarSkillsCVars.SkillsMinimumPlayers, value => _skillsMinimumPlayers = value);
+        Subs.CVar(_cfg, RedStarSkillsCVars.SkillsMinimumPlayers, value =>
+        {
+            _skillsMinimumPlayers = value;
+            BroadcastSkillsState();
+        });
+
+        _prototype.PrototypesReloaded += OnPrototypesReloaded;
+        _player.PlayerStatusChanged += OnPlayerStatusChanged;
+        ValidateSkillReferences();
 
         SubscribeLocalEvent<ImplantImplantedEvent>(OnImplantImplanted);
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(OnGetVerbs);
 
         SubscribeNetworkEvent<AdminToggleSkillEvent>(OnAdminToggleSkill);
         SubscribeNetworkEvent<RequestPlayerSkillsEvent>(OnRequestPlayerSkills);
+        SubscribeNetworkEvent<RequestSkillsStateEvent>(OnRequestSkillsState);
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _prototype.PrototypesReloaded -= OnPrototypesReloaded;
+        _player.PlayerStatusChanged -= OnPlayerStatusChanged;
     }
 
     public override bool HasSkill(EntityUid entity, ProtoId<SkillPrototype> skill)
     {
         if (!IsSkillsEnabled())
             return true;
+
+        if (!_prototype.HasIndex(skill))
+        {
+            if (_invalidSkillLogs.Add(skill))
+                Log.Error($"Unknown skill prototype '{skill}' checked on {ToPrettyString(entity)}.");
+
+            return false;
+        }
 
         if (!_mind.TryGetMind(entity, out _, out var mind))
             return false;
@@ -58,6 +91,20 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     public bool IsSkillsEnabled()
     {
         return _skillsEnabled && _player.PlayerCount >= _skillsMinimumPlayers;
+    }
+
+    public bool CanLearnSkill(EntityUid entity, ProtoId<SkillPrototype> skill)
+    {
+        if (!_prototype.TryIndex(skill, out var skillPrototype))
+            return false;
+
+        if (!_mind.TryGetMind(entity, out _, out var mind))
+            return false;
+
+        if (mind.Skills.Contains(skill))
+            return false;
+
+        return skillPrototype.LearningPrerequisites.All(prerequisite => mind.Skills.Contains(prerequisite));
     }
 
     private void OnImplantImplanted(ref ImplantImplantedEvent ev)
@@ -119,6 +166,11 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         SendPlayerSkillsUpdate(args.SenderSession, entity);
     }
 
+    private void OnRequestSkillsState(RequestSkillsStateEvent msg, EntitySessionEventArgs args)
+    {
+        SendSkillsStateUpdate(args.SenderSession);
+    }
+
     private bool TryGetMindSkills(EntityUid entity, out List<ProtoId<SkillPrototype>> skills)
     {
         skills = new List<ProtoId<SkillPrototype>>();
@@ -135,6 +187,22 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             return;
 
         RaiseNetworkEvent(new UpdatePlayerSkillsEvent(skills), session);
+    }
+
+    private void SendSkillsStateUpdate(ICommonSession session)
+    {
+        RaiseNetworkEvent(new UpdateSkillsStateEvent(IsSkillsEnabled()), session);
+    }
+
+    private void BroadcastSkillsState()
+    {
+        var enabled = IsSkillsEnabled();
+        var ev = new UpdateSkillsStateEvent(enabled);
+
+        foreach (var session in _player.Sessions)
+        {
+            RaiseNetworkEvent(ev, session);
+        }
     }
 
     private void SendAdminSkillsWindow(ICommonSession session, EntityUid target)
@@ -232,5 +300,68 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     private void RevokeSkill(EntityUid entity, ProtoId<SkillPrototype> skill)
     {
         RevokeSkill(entity, new HashSet<ProtoId<SkillPrototype>> { skill });
+    }
+
+    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+    {
+        BroadcastSkillsState();
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        _invalidSkillLogs.Clear();
+        ValidateSkillReferences();
+    }
+
+    private void ValidateSkillReferences()
+    {
+        foreach (var skill in _prototype.EnumeratePrototypes<SkillPrototype>())
+        {
+            ValidateSkillSet(skill.LearningPrerequisites, $"skill prototype '{skill.ID}' learning prerequisites");
+        }
+
+        foreach (var job in _prototype.EnumeratePrototypes<JobPrototype>())
+        {
+            ValidateSkillSet(job.Skills, $"job prototype '{job.ID}'");
+        }
+
+        foreach (var entity in _prototype.EnumeratePrototypes<EntityPrototype>())
+        {
+            foreach (var (_, registration) in entity.Components)
+            {
+                switch (registration.Component)
+                {
+                    case SkillLearningBookComponent book:
+                        ValidateSkillReference(book.Skill, $"skill book prototype '{entity.ID}'");
+                        break;
+                    case GhostRoleComponent ghostRole:
+                        ValidateSkillSet(ghostRole.Skills, $"ghost role prototype '{entity.ID}'");
+                        break;
+                    case AntagSelectionComponent antag:
+                        foreach (var definition in antag.Definitions)
+                        {
+                            ValidateSkillSet(definition.Skills, $"antag selection prototype '{entity.ID}'");
+                        }
+
+                        break;
+                }
+            }
+        }
+    }
+
+    private void ValidateSkillSet(IEnumerable<ProtoId<SkillPrototype>> skills, string source)
+    {
+        foreach (var skill in skills)
+        {
+            ValidateSkillReference(skill, source);
+        }
+    }
+
+    private void ValidateSkillReference(ProtoId<SkillPrototype> skill, string source)
+    {
+        if (_prototype.HasIndex(skill))
+            return;
+
+        Log.Error($"Unknown skill prototype '{skill}' referenced by {source}.");
     }
 }

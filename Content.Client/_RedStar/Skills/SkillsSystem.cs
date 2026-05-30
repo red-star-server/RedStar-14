@@ -14,6 +14,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     private SkillsWindow? _teachSkillsWindow;
     private NetEntity _adminSkillsTarget;
     private NetEntity _teachSkillsTarget;
+    private bool _skillsEnabled;
 
     public override void Initialize()
     {
@@ -22,6 +23,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         SubscribeNetworkEvent<OpenAdminSkillsWindowEvent>(OnOpenAdminSkillsWindow);
         SubscribeNetworkEvent<OpenTeachSkillsWindowEvent>(OnOpenTeachSkillsWindow);
         SubscribeNetworkEvent<UpdatePlayerSkillsEvent>(OnUpdatePlayerSkills);
+        SubscribeNetworkEvent<UpdateSkillsStateEvent>(OnUpdateSkillsState);
     }
 
     public override bool HasSkill(EntityUid uid, ProtoId<SkillPrototype> skill)
@@ -31,6 +33,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
     private List<ProtoId<SkillPrototype>>? _cachedPlayerSkills;
 
+    public bool IsSkillsEnabled => _skillsEnabled;
+
     public void RequestPlayerSkills()
     {
         if (_cachedPlayerSkills != null)
@@ -39,12 +43,29 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         RaiseNetworkEvent(new RequestPlayerSkillsEvent());
     }
 
+    public void RequestSkillsState()
+    {
+        RaiseNetworkEvent(new RequestSkillsStateEvent());
+    }
+
     public event Action<List<ProtoId<SkillPrototype>>>? PlayerSkillsWindowUpdated;
+    public event Action<bool>? SkillsStateUpdated;
 
     private void OnUpdatePlayerSkills(UpdatePlayerSkillsEvent msg)
     {
         _cachedPlayerSkills = msg.Skills;
         PlayerSkillsWindowUpdated?.Invoke(msg.Skills);
+    }
+
+    private void OnUpdateSkillsState(UpdateSkillsStateEvent msg)
+    {
+        _skillsEnabled = msg.Enabled;
+        SkillsStateUpdated?.Invoke(msg.Enabled);
+
+        if (msg.Enabled)
+            return;
+
+        _teachSkillsWindow?.Close();
     }
 
     private void OnOpenAdminSkillsWindow(OpenAdminSkillsWindowEvent msg)

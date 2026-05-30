@@ -78,7 +78,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         base.FrameUpdate(args);
 
         if (_window != null && _skillsWindow == null)
-            _window.SkillsButton.Disabled = !TryGetLocalMind(out _);
+            UpdateSkillsButton();
     }
 
     private CharacterWindow? _window;
@@ -97,9 +97,10 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
         // RS14-start
         _window.SkillsButton.OnPressed += OnSkillsButtonPressed;
-        if (TryGetLocalMind(out _))
-            _window.SkillsButton.Disabled = false;
         _skills.PlayerSkillsWindowUpdated += OnPlayerSkillsUpdated;
+        _skills.SkillsStateUpdated += OnSkillsStateUpdated;
+        _skills.RequestSkillsState();
+        UpdateSkillsButton();
         // RS14-end
 
         CommandBinds.Builder
@@ -112,6 +113,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
     {
         // RS14-start
         _skills.PlayerSkillsWindowUpdated -= OnPlayerSkillsUpdated;
+        _skills.SkillsStateUpdated -= OnSkillsStateUpdated;
         // RS14-end
 
         if (_window != null)
@@ -185,7 +187,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         var (entity, job, objectives, briefing, entityName) = data;
 
         _window.SpriteView.SetEntity(entity);
-        _window.SkillsButton.Disabled = !TryGetLocalMind(out _);
+        UpdateSkillsButton();
 
         UpdateRoleType();
 
@@ -312,6 +314,9 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
     // RS14-start
     private void OnSkillsButtonPressed(ButtonEventArgs args)
     {
+        if (!_skills.IsSkillsEnabled)
+            return;
+
         OpenSkillsWindow();
     }
 
@@ -338,6 +343,27 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             return;
 
         _skillsWindow.SetSkills(skills);
+    }
+
+    private void OnSkillsStateUpdated(bool enabled)
+    {
+        UpdateSkillsButton();
+
+        if (enabled)
+            return;
+
+        _skillsWindow?.Close();
+        _skillsWindow = null;
+    }
+
+    private void UpdateSkillsButton()
+    {
+        if (_window == null)
+            return;
+
+        var visible = _skills.IsSkillsEnabled;
+        _window.SkillsButton.Visible = visible;
+        _window.SkillsButton.Disabled = !visible || !TryGetLocalMind(out _);
     }
 
     private bool TryGetLocalMind([NotNullWhen(true)] out MindComponent? mind)

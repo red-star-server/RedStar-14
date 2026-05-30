@@ -21,6 +21,7 @@ public sealed class SkillTeachingSystem : EntitySystem
 
     private const float LearningPenaltyPerKnownSkill = 0.15f;
     private const float MaxLearningPenalty = 4f;
+    private readonly HashSet<TeachingRequest> _activeTeachings = new();
 
     public override void Initialize()
     {
@@ -53,8 +54,8 @@ public sealed class SkillTeachingSystem : EntitySystem
         }
 
         if (!_mind.TryGetMind(args.User, out _, out var teacherMind)
-            || !_mind.TryGetMind(args.Target, out _, out var targetMind)
-            || !HasTeachableSkill(teacherMind.Skills, targetMind.Skills))
+            || !_mind.TryGetMind(args.Target, out _, out _)
+            || !HasTeachableSkill(args.Target, teacherMind.Skills))
         {
             return;
         }
@@ -81,6 +82,7 @@ public sealed class SkillTeachingSystem : EntitySystem
         if (args.SenderSession.AttachedEntity is not { } teacher
             || !TryGetEntity(msg.Target, out var target)
             || target.Value == teacher
+            || HasActiveTeaching(teacher, target.Value, msg.Skill)
             || !CanTeachSkill(teacher, target.Value, msg.Skill))
         {
             return;
@@ -96,22 +98,32 @@ public sealed class SkillTeachingSystem : EntitySystem
             showTo: target.Value)
         {
             BreakOnDamage = true,
-            BreakOnMove = true,
             Broadcast = true,
+            CancelDuplicate = false,
             DistanceThreshold = SharedInteractionSystem.InteractionRange,
+            DuplicateCondition = DuplicateConditions.SameEvent | DuplicateConditions.SameTarget,
             NeedHand = false,
             RequireCanInteract = true,
         };
 
-        _doAfter.TryStartDoAfter(doAfter);
+        if (!_doAfter.TryStartDoAfter(doAfter))
+            return;
+
+        _activeTeachings.Add(new TeachingRequest(teacher, target.Value, msg.Skill));
     }
 
     private void OnTeachingFinished(SkillTeachingDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
+        {
+            RemoveActiveTeaching(args.User, args.TargetEntity, args.Skill);
+
             return;
+        }
 
         args.Handled = true;
+
+        RemoveActiveTeaching(args.User, args.TargetEntity, args.Skill);
 
         if (!_skills.IsSkillsEnabled()
             || !TryGetEntity(args.TargetEntity, out var target)
@@ -136,7 +148,7 @@ public sealed class SkillTeachingSystem : EntitySystem
 
         RaiseNetworkEvent(new OpenTeachSkillsWindowEvent(
             GetNetEntity(target),
-            teacherMind.Skills.ToList(),
+            teacherMind.Skills.Where(skill => _skills.CanLearnSkill(target, skill)).ToList(),
             targetMind.Skills.ToList()), session);
     }
 
@@ -145,18 +157,39 @@ public sealed class SkillTeachingSystem : EntitySystem
         if (!_prototype.HasIndex(skill)
             || !_interaction.InRangeUnobstructed(teacher, target)
             || !_mind.TryGetMind(teacher, out _, out var teacherMind)
-            || !_mind.TryGetMind(target, out _, out var targetMind))
+            || !_mind.TryGetMind(target, out _, out _))
         {
             return false;
         }
 
-        return teacherMind.Skills.Contains(skill) && !targetMind.Skills.Contains(skill);
+        return teacherMind.Skills.Contains(skill) && _skills.CanLearnSkill(target, skill);
     }
 
-    private static bool HasTeachableSkill(
-        IReadOnlySet<ProtoId<SkillPrototype>> teacherSkills,
-        IReadOnlySet<ProtoId<SkillPrototype>> targetSkills)
+    private bool HasActiveTeaching(EntityUid teacher, EntityUid target, ProtoId<SkillPrototype> skill)
     {
-        return teacherSkills.Any(skill => !targetSkills.Contains(skill));
+        return _activeTeachings.Contains(new TeachingRequest(teacher, target, skill));
     }
+
+    private void RemoveActiveTeaching(EntityUid teacher, NetEntity target, ProtoId<SkillPrototype> skill)
+    {
+        if (TryGetEntity(target, out var targetUid))
+        {
+            _activeTeachings.Remove(new TeachingRequest(teacher, targetUid.Value, skill));
+            return;
+        }
+
+        _activeTeachings.RemoveWhere(request => request.Teacher == teacher && request.Skill == skill);
+    }
+
+    private bool HasTeachableSkill(
+        EntityUid target,
+        IReadOnlySet<ProtoId<SkillPrototype>> teacherSkills)
+    {
+        return teacherSkills.Any(skill => _skills.CanLearnSkill(target, skill));
+    }
+
+    private readonly record struct TeachingRequest(
+        EntityUid Teacher,
+        EntityUid Target,
+        ProtoId<SkillPrototype> Skill);
 }
