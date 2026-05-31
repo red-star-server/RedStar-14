@@ -65,7 +65,8 @@ public sealed class HandTests
             var xform = entMan.GetComponent<TransformComponent>(player);
             item = entMan.SpawnEntity("Crowbar", tSys.GetMapCoordinates(player, xform: xform));
             hands = entMan.GetComponent<HandsComponent>(player);
-            sys.TryPickup(player, item, hands.ActiveHandId!);
+            // RS14: connected test players can spawn with an item already in their active hand.
+            sys.TryForcePickup(player, item, hands.ActiveHandId!);
         });
 
         // run ticks here is important, as errors may happen within the container system's frame update methods.
@@ -117,7 +118,8 @@ public sealed class HandTests
             player = playerMan.Sessions.First().AttachedEntity!.Value;
             tSys.PlaceNextTo(player, item);
             hands = entMan.GetComponent<HandsComponent>(player);
-            sys.TryPickup(player, item, hands.ActiveHandId!);
+            // RS14: connected test players can spawn with an item already in their active hand.
+            sys.TryForcePickup(player, item, hands.ActiveHandId!);
         });
         await pair.RunTicksSync(5);
         Assert.That(sys.GetActiveItem((player, hands)), Is.EqualTo(item));
