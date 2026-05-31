@@ -91,17 +91,45 @@ jobs:
     - name: Package server
       run: dotnet run --project Content.Packaging server --platform win-x64 --platform linux-x64 --platform osx-x64 --platform linux-arm64
 
-    - name: Show release files
-      run: |
-        echo "=== RELEASE FILES ==="
-        find release -type f || true
-
-        echo
-        echo "=== BIN FILES ==="
-        find bin -type f | tail -100 || true
-
     - name: Package client
       run: dotnet run --project Content.Packaging client --no-wipe-release
+
+    - name: Prepare deploy archive
+      run: |
+        cd release
+        zip -r ../redstar-bin.zip .
+
+    - name: Upload build to VPS
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        source: redstar-bin.zip
+        target: /tmp/redstar-deploy
+
+    - name: Deploy on VPS
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        script: |
+          set -e
+
+          cd /opt/ss14/watchdog/instances/redstar
+
+          systemctl stop SS14.Watchdog.service
+
+          rm -rf bin.new
+          mkdir bin.new
+          unzip -q /tmp/redstar-deploy/redstar-bin.zip -d bin.new
+
+          rm -rf bin.old
+          mv bin bin.old
+          mv bin.new bin
+
+          systemctl start SS14.Watchdog.service
 
     #- name: Publish version
     #  run: Tools/publish_multi_request.py
