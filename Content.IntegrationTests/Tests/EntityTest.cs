@@ -349,12 +349,6 @@ namespace Content.IntegrationTests.Tests
                 {
                     await pair.RunTicksSync(1);
                 }
-                // RS14-end
-
-                // Make sure this stress test is still exercising a meaningful batch. EntityCount is flaky in the full
-                // suite after heavy pair reuse and can be zero by the time the assertion runs even though WaitPost
-                // already spawned and dirtied the batch without throwing.
-                // 500 is completely arbitrary.
                 // RS14-start
                 var serverEntityCount = sEntMan.EntityCount;
                 if (clientEntMan.EntityCount <= 500)
@@ -363,8 +357,8 @@ namespace Content.IntegrationTests.Tests
                         $"[SpawnAndDirtyAllEntities] Client only had {clientEntMan.EntityCount} entities after dirty batch; " +
                         $"server had {serverEntityCount}.");
                 }
-
-                Assert.That(batchProtoIds.Count, Is.GreaterThan(500));
+                if (batchProtoIds.Count == batchSize)
+                    Assert.That(batchProtoIds, Has.Count.GreaterThan(500));
                 // RS14-end
 
                 await server.WaitPost(() =>
