@@ -159,7 +159,7 @@
       shader: unshaded
     state: base
   - type: PointLight
-    color: "#FFE4CE" # 5000K color temp
+    color: "#FFC183" # RS14-value: #FFE4CE -> #FFC183
     energy: 0.8
     radius: 10
     softness: 1

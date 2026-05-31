@@ -1,0 +1,10 @@
+ent-UniqueMarkerNanotrasenCareerTrainerLocker = { ent-MarkerBase }
+    .desc = { ent-MarkerBase.desc }
+ent-UniqueLockerNanotrasenCareerTrainerFilled = { ent-LockerNanotrasenCareerTrainerFilled }
+    .suffix = МАППИТЬ ЭТО, Уникальный, Заполненный
+    .desc = { ent-LockerNanotrasenCareerTrainerFilled.desc }
+ent-NanotrasenCareerTrainerLockerTeleporter = телепорт шкафчика наставника ГШ
+    .desc = Устройство, позволяющее заказать доставку шкафчика наставника ГШ.
+ent-UniqueNanotrasenCareerTrainerLockerTeleporter = { ent-NanotrasenCareerTrainerLockerTeleporter }
+    .suffix = Уникальный
+    .desc = { ent-NanotrasenCareerTrainerLockerTeleporter.desc }

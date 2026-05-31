@@ -1,8 +1,6 @@
-ent-LockerNanotrasenCareerTrainer = шкаф наставника ГенШтаба
-    .desc = { ent-LockerBaseSecure.desc }
 ent-LockerNanotrasenCareerTrainerFilled = { ent-LockerNanotrasenCareerTrainer }
+    .suffix = Filled
     .desc = { ent-LockerNanotrasenCareerTrainer.desc }
-    .suffix = Заполненный
 ent-DresserNanotrasenCareerTrainerFilled = { ent-Dresser }
+    .suffix = Filled, NCT
     .desc = { ent-Dresser.desc }
-    .suffix = Заполненный, Наставник ГШ

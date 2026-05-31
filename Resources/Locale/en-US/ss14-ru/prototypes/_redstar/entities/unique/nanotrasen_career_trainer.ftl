@@ -1,0 +1,10 @@
+ent-UniqueMarkerNanotrasenCareerTrainerLocker = { ent-MarkerBase }
+    .desc = { ent-MarkerBase.desc }
+ent-UniqueLockerNanotrasenCareerTrainerFilled = { ent-LockerNanotrasenCareerTrainerFilled }
+    .suffix = MAP THIS, Unique, Filled
+    .desc = { ent-LockerNanotrasenCareerTrainerFilled.desc }
+ent-NanotrasenCareerTrainerLockerTeleporter = nanotrasen career trainer locker teleporter
+    .desc = Device that allows you to request delivery of a nanotrasen career trainer locker.
+ent-UniqueNanotrasenCareerTrainerLockerTeleporter = { ent-NanotrasenCareerTrainerLockerTeleporter }
+    .suffix = Unique
+    .desc = { ent-NanotrasenCareerTrainerLockerTeleporter.desc }

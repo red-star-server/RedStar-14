@@ -137,6 +137,8 @@ loadout-group-ntr-envirohelm = Экошлем представителя NanoTra
 loadout-group-ntr-envirosuit = Экокостюм представителя NanoTrasen
 loadout-group-ntr-envirogloves = Экоперчатки представителя NanoTrasen
 loadout-group-ntr-gloves = ПNT, перчатки
+loadout-group-nct-envirohelm = Экошлем наставника ГенШтаба
+loadout-group-nct-envirosuit = Экокостюм наставника ГенШтаба
 # Blueshield Officer
 loadout-group-bso-envirohelm = Экошлем офицера синего щита
 loadout-group-bso-envirosuit = Экокостюм офицера синего щита
