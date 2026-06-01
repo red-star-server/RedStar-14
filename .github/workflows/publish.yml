@@ -1,168 +1,35 @@
-# SPDX-FileCopyrightText: 2021 Paul <ritter.paul1@googlemail.com>
-# SPDX-FileCopyrightText: 2022 0x6273 <0x40@keemail.me>
-# SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@googlemail.com>
-# SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto <gradientvera@outlook.com>
-# SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Jezithyr <jezithyr@gmail.com>
-# SPDX-FileCopyrightText: 2024 Matt <psykzz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 name: Publish
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 concurrency:
   group: publish
   cancel-in-progress: true
 
-on:
-  workflow_dispatch:
-  schedule:
-  - cron: '0 1 * * *'
-
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-    - name: Fail if we are attempting to run on the master branch
-      if: ${{ github.ref_name == 'master' && github.repository == 'space-wizards/space-station-14' }}
-      run: exit 1
-
     - uses: actions/checkout@v4.2.2
       with:
-        submodules: 'recursive'
+        fetch-depth: 0
+        submodules: recursive
 
-    # Corvax-Secrets-Start
-    - name: Setup secrets
-      env:
-        SSH_KEY: ${{ secrets.SECRETS_PRIVATE_KEY }}
-      if: ${{ env.SSH_KEY != '' }}
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SECRETS_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        echo "HOST *" > ~/.ssh/config
-        echo "  Hostname github.com" >> ~/.ssh/config
-        echo "  Port 22" >> ~/.ssh/config
-        echo "  StrictHostKeyChecking no" >> ~/.ssh/config
-        git clone git@github.com:corvax-nexus/secrets.git Secrets
-        cd Secrets
-        git checkout goob && cd ..
-        cp -R Secrets/Resources/Prototypes Resources/Prototypes/CorvaxSecrets
-        cp -R Secrets/Resources/ServerPrototypes Resources/Prototypes/CorvaxSecretsServer
-        cp -R Secrets/Resources/Locale Resources/Locale/ru-RU/corvax-secrets
-        cp -R Secrets/Resources/Textures Resources/Textures/CorvaxSecrets
-        cp -R Secrets/Resources/Audio Resources/Audio/CorvaxSecrets
-    # Corvax-Secrets-End
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-      env:
-        DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
 
-    - name: Set DOTNET_ROOT and PATH
+    - name: Check build
       run: |
-        echo "DOTNET_ROOT=${{ runner.temp }}/.dotnet" >> $GITHUB_ENV
-        echo "${{ runner.temp }}/.dotnet" >> $GITHUB_PATH
+        dotnet restore
+        dotnet build Content.Packaging --configuration Release --no-restore /m
+        dotnet run --project Content.Packaging server --platform linux-x64
+        dotnet run --project Content.Packaging client --no-wipe-release
 
-    - name: Check .NET installation
-      run: dotnet --info
-
-    - name: Get Engine Tag
+    - name: Move live branch
       run: |
-        cd RobustToolbox
-        git fetch --depth=1
-
-    - name: Install dependencies
-      run: dotnet restore
-
-    - name: Build Packaging
-      run: dotnet build Content.Packaging --configuration Release --no-restore /m
-
-    - name: Package server
-      run: dotnet run --project Content.Packaging server --platform linux-x64
-
-    - name: Package client
-      run: dotnet run --project Content.Packaging client --no-wipe-release
-
-    - name: Prepare deploy archive
-      run: |
-        mkdir -p deploy
-        cp release/SS14.Server_linux-x64.zip deploy/
-        cp release/SS14.Client.zip deploy/
-        cd deploy
-        zip -r ../redstar-deploy.zip .
-
-    - name: Upload build to VPS
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_SSH_KEY }}
-        source: redstar-deploy.zip
-        target: /tmp/redstar-deploy
-
-    - name: Deploy on VPS
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_SSH_KEY }}
-        script: |
-          set -e
-
-          INSTANCE=/opt/ss14/watchdog/instances/redstar
-          DEPLOY=/tmp/redstar-deploy
-          SERVICE=SS14.Watchdog.service
-
-          cd "$INSTANCE"
-
-          systemctl stop "$SERVICE" || true
-          pkill -u ss14 -f Robust.Server || true
-
-          rm -rf deploy.new
-          mkdir -p deploy.new/packages deploy.new/bin
-
-          unzip -q "$DEPLOY/redstar-deploy.zip" -d deploy.new/packages
-          unzip -q deploy.new/packages/SS14.Server_linux-x64.zip -d deploy.new/bin
-
-          cp deploy.new/packages/SS14.Client.zip deploy.new/bin/Content.Client.zip
-
-          if [ -f bin/server_config.toml ]; then
-            cp bin/server_config.toml deploy.new/bin/server_config.toml
-          fi
-
-          rm -rf bin.previous
-          mv bin.old bin.previous 2>/dev/null || true
-
-          if [ -d bin ]; then
-            mv bin bin.old
-          fi
-
-          mv deploy.new/bin bin
-
-          chown -R ss14:ss14 bin
-          chmod +x bin/Robust.Server
-          chmod +x bin/Robust.Packaging 2>/dev/null || true
-
-          systemctl start "$SERVICE"
-
-          for i in $(seq 1 36); do
-            if curl -fs http://127.0.0.1:1212/status > /tmp/redstar-status.json; then
-              cat /tmp/redstar-status.json
-              exit 0
-            fi
-
-            echo "Waiting for server to start... $i/36"
-            sleep 5
-          done
-
-          echo "Server did not start in time"
-          journalctl -u "$SERVICE" -n 120 --no-pager
-          exit 1
+        git push origin "${GITHUB_SHA}:refs/heads/live" --force
