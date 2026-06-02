@@ -106,6 +106,12 @@
         Shock: -4
         Ion: -4 # Goobstation
         Radiation: -2.5 # Goobstation - Make IPCs take radiation
+    # RS14-start
+    healingBeginSound:
+      path: /Audio/Items/wirecutter.ogg
+    healingEndSound:
+      path: /Audio/Items/wirecutter.ogg
+    # RS14-end
   # EE Change End
   # <Shitmed>
   - type: Stitches
