@@ -26,7 +26,7 @@ namespace Content.Client.Clickable
         {
             // These will probably never need click maps so skip em.
             "/Textures/Interface",
-            "/Textures/LobbyScreens",
+            "/Textures/_RedStar/LobbyScreens", // RS14-value: /Textures/LobbyScreens -> /Textures/_RedStar/LobbyScreens
             "/Textures/Parallaxes",
             "/Textures/Logo",
         };
