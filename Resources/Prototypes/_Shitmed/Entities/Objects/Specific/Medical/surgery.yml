@@ -42,7 +42,7 @@
   name: tissue cutter
   id: EnergyScalpel
   parent: Scalpel
-  description: A scalpel which uses an energy blade, also serves as a drill in its powered state.
+  description: A scalpel which uses an energy blade, also serves as a bone saw in its powered state.
   components:
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-scalpel.rsi
@@ -66,8 +66,8 @@
       Gold: 37
   - type: Scalpel
     speed: 3
-  - type: BoneSaw
-    speed: 3
+  #- type: BoneSaw
+  #  speed: 3
   - type: ItemSwitch
     showLabel: true
     state: scalpel
@@ -81,21 +81,21 @@
         components:
           - type: Scalpel
             speed: 3
-          - type: BoneSaw
-            speed: 3
+          #- type: BoneSaw
+          #  speed: 3
         soundStateActivate:
           collection: sparks
           params:
             variation: 0.125
             volume: -5
 
-      drill: !type:ItemSwitchState
-        verb: drill
+      bonesaw: !type:ItemSwitchState # RS14
+        verb: bonesaw # RS14
         sprite:
           sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-scalpel.rsi
           state: e-scalpel-on
         components:
-        - type: Drill
+        - type: BoneSaw # RS14
           speed: 3
         soundStateActivate:
           collection: sparks
@@ -171,7 +171,7 @@
   name: energy stapler
   id: EnergyCautery
   parent: Cautery
-  description: A cautery with an energy tip, also serves as stitches in its powered state.
+  description: A cautery with an energy tip, also serves as a drill in its powered state.
   components:
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-cautery.rsi
@@ -213,13 +213,13 @@
             variation: 0.125
             volume: -5
 
-      stitches: !type:ItemSwitchState
-        verb: stitches
+      drill: !type:ItemSwitchState # RS14
+        verb: drill # RS14
         sprite:
           sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-cautery.rsi
           state: e-cautery-on
         components:
-        - type: Stitches # should be unlimited when the actual stitches become limited
+        - type: Drill # RS14
           speed: 3
         soundStateActivate:
           collection: sparks

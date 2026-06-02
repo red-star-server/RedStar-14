@@ -22,6 +22,7 @@
   id: DefaultRuleset
   name: guide-entry-rules
   priority: 60
+  ruleEntry: true # RS14
   # RS14-start
   text: "/ServerInfo/_RedStar/Guidebook/ServerRules/Ruleset.xml"
   children:

@@ -1,91 +1,125 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 import argparse
-import requests
 import os
 import subprocess
+from pathlib import Path
 from typing import Iterable
+
+import requests
 
 PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
 VERSION = os.environ["GITHUB_SHA"]
-FORK_ID = os.environ['FORK_ID']
+FORK_ID = os.environ["FORK_ID"]
 
-RELEASE_DIR = "release"
+RELEASE_DIR = Path("release")
 
-#
-# CONFIGURATION PARAMETERS
-# Forks should change these to publish to their own infrastructure.
-#
-ROBUST_CDN_URL = "https://cdn.station14.ru/"
+ROBUST_CDN_URL = os.environ.get("ROBUST_CDN_URL", "https://cdn.station14.ru/")
+if not ROBUST_CDN_URL.endswith("/"):
+    ROBUST_CDN_URL += "/"
 
-def main():
+
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--fork-id", default=FORK_ID)
+    parser.add_argument("--version", default=VERSION)
+    parser.add_argument("--cdn-url", default=ROBUST_CDN_URL)
 
     args = parser.parse_args()
+
     fork_id = args.fork_id
+    version = args.version
+    cdn_url = args.cdn_url
+
+    if not cdn_url.endswith("/"):
+        cdn_url += "/"
+
+    if not RELEASE_DIR.exists():
+        raise RuntimeError(f"Release directory does not exist: {RELEASE_DIR}")
+
+    files = list(get_files_to_publish())
+    if not files:
+        raise RuntimeError(f"No files found in release directory: {RELEASE_DIR}")
 
     session = requests.Session()
-    session.headers = {
+    session.headers.update({
         "Authorization": f"Bearer {PUBLISH_TOKEN}",
-    }
+    })
 
-    print(f"Starting publish on Robust.Cdn for version {VERSION}")
+    print(f"Starting publish on Robust.Cdn")
+    print(f"CDN URL: {cdn_url}")
+    print(f"Fork ID: {fork_id}")
+    print(f"Version: {version}")
+    print(f"Files: {len(files)}")
 
     data = {
-        "version": VERSION,
+        "version": version,
         "engineVersion": get_engine_version(),
     }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/start", json=data, headers=headers)
+
+    resp = session.post(
+        f"{cdn_url}fork/{fork_id}/publish/start",
+        json=data,
+        headers={"Content-Type": "application/json"},
+        timeout=60,
+    )
     resp.raise_for_status()
+
     print("Publish successfully started, adding files...")
 
-    for file in get_files_to_publish():
+    for file in files:
         print(f"Publishing {file}")
-        with open(file, "rb") as f:
-            headers = {
-                "Content-Type": "application/octet-stream",
-                "Robust-Cdn-Publish-File": os.path.basename(file),
-                "Robust-Cdn-Publish-Version": VERSION
-            }
-            resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/file", data=f, headers=headers)
+
+        with file.open("rb") as f:
+            resp = session.post(
+                f"{cdn_url}fork/{fork_id}/publish/file",
+                data=f,
+                headers={
+                    "Content-Type": "application/octet-stream",
+                    "Robust-Cdn-Publish-File": file.name,
+                    "Robust-Cdn-Publish-Version": version,
+                },
+                timeout=600,
+            )
 
         resp.raise_for_status()
 
     print("Successfully pushed files, finishing publish...")
 
-    data = {
-        "version": VERSION
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/finish", json=data, headers=headers)
+    resp = session.post(
+        f"{cdn_url}fork/{fork_id}/publish/finish",
+        json={"version": version},
+        headers={"Content-Type": "application/json"},
+        timeout=60,
+    )
     resp.raise_for_status()
 
     print("SUCCESS!")
 
 
-def get_files_to_publish() -> Iterable[str]:
-    for file in os.listdir(RELEASE_DIR):
-        yield os.path.join(RELEASE_DIR, file)
+def get_files_to_publish() -> Iterable[Path]:
+    for file in RELEASE_DIR.iterdir():
+        if file.is_file():
+            yield file
 
 
 def get_engine_version() -> str:
-    proc = subprocess.run(["git", "describe","--tags", "--abbrev=0"], stdout=subprocess.PIPE, cwd="RobustToolbox", check=True, encoding="UTF-8")
+    proc = subprocess.run(
+        ["git", "describe", "--tags", "--abbrev=0"],
+        stdout=subprocess.PIPE,
+        cwd="RobustToolbox",
+        check=True,
+        encoding="utf-8",
+    )
+
     tag = proc.stdout.strip()
-    assert tag.startswith("v")
-    return tag[1:] # Cut off v prefix.
+
+    if not tag.startswith("v"):
+        raise RuntimeError(f"Engine tag does not start with 'v': {tag}")
+
+    return tag[1:]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
