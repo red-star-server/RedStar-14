@@ -52,11 +52,11 @@
 - type: gameMapPool
   id: DefaultMapPool
   maps:
-  - Atlas
+  #- Atlas
   - Amber
   - Bagel
   - Box
-  - Cluster
+  #- Cluster
   #- Core
   - Fland
   - Gate
