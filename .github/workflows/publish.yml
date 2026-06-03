@@ -72,6 +72,7 @@ jobs:
 
             SHA="${{ github.sha }}"
             CDN="${{ vars.ROBUST_CDN_URL }}"
+            CDN="${CDN%/}"
             FORK="${{ vars.FORK_ID }}"
             CONFIG="/opt/ss14/watchdog/instances/redstar/config.toml"
 
