@@ -54,9 +54,44 @@ jobs:
         run: dotnet run --project Content.Packaging client --no-wipe-release
 
       - name: Publish version to Robust.Cdn
-        run: Tools/publish_multi_request.py
+        run: python3 Tools/publish_multi_request.py
         env:
           PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
           FORK_ID: ${{ vars.FORK_ID }}
           ROBUST_CDN_URL: ${{ vars.ROBUST_CDN_URL }}
+
+      - name: Deploy to Watchdog
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+
+            SHA="${{ github.sha }}"
+            CDN="${{ vars.ROBUST_CDN_URL }}"
+            FORK="${{ vars.FORK_ID }}"
+            CONFIG="/opt/ss14/watchdog/instances/redstar/config.toml"
+
+            URL="$CDN/fork/$FORK/version/$SHA/file/SS14.Client.zip"
+
+            echo "Checking CDN file:"
+            echo "$URL"
+
+            TMP="/tmp/SS14.Client.$SHA.zip"
+            curl -fsSL "$URL" -o "$TMP"
+
+            HASH="$(sha256sum "$TMP" | awk '{print toupper($1)}')"
+            rm -f "$TMP"
+
+            echo "New hash: $HASH"
+
+            sed -i "s|^download_url = .*|download_url = \"$URL\"|" "$CONFIG"
+            sed -i "s|^hash = .*|hash = \"$HASH\"|" "$CONFIG"
+
+            systemctl restart SS14.Watchdog
+
+            sleep 5
+            curl -fsS http://127.0.0.1:1212/info
