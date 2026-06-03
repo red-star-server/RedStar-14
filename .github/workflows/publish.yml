@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Fail if we are attempting to run on the master branch
+        if: ${{ github.ref_name == 'master' && github.repository == 'space-wizards/space-station-14' }}
+        run: exit 1
+
       - name: Checkout
         uses: actions/checkout@v4.2.2
         with:
@@ -36,10 +40,10 @@ jobs:
       - name: Check .NET installation
         run: dotnet --info
 
-      - name: Fetch engine tags
+      - name: Get Engine Tag
         run: |
           cd RobustToolbox
-          git fetch --tags --force
+          git fetch --depth=1
 
       - name: Restore dependencies
         run: dotnet restore
@@ -68,31 +72,4 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            set -e
-
-            SHA="${{ github.sha }}"
-            CDN="${{ vars.ROBUST_CDN_URL }}"
-            CDN="${CDN%/}"
-            FORK="${{ vars.FORK_ID }}"
-            CONFIG="/opt/ss14/watchdog/instances/redstar/config.toml"
-
-            URL="$CDN/fork/$FORK/version/$SHA/file/SS14.Client.zip"
-
-            echo "Checking CDN file:"
-            echo "$URL"
-
-            TMP="/tmp/SS14.Client.$SHA.zip"
-            curl -fsSL "$URL" -o "$TMP"
-
-            HASH="$(sha256sum "$TMP" | awk '{print toupper($1)}')"
-            rm -f "$TMP"
-
-            echo "New hash: $HASH"
-
-            sed -i "s|^download_url = .*|download_url = \"$URL\"|" "$CONFIG"
-            sed -i "s|^hash = .*|hash = \"$HASH\"|" "$CONFIG"
-
-            systemctl restart SS14.Watchdog
-
-            sleep 5
-            curl -fsS http://127.0.0.1:1212/info
+            /opt/ss14/deploy-latest-redstar.sh "${{ github.sha }}"
