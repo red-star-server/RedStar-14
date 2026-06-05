@@ -6,6 +6,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Module.Components;
 using Content.Shared.Mech.Systems;
 using Content.Server.PowerCell;
+using Content.Shared.Vehicle;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
@@ -26,6 +27,7 @@ public sealed class MechInterfaceSystem : EntitySystem
     [Dependency] private readonly MechLockSystem _mechLock = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly VehicleSystem _vehicle = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -70,34 +72,59 @@ public sealed class MechInterfaceSystem : EntitySystem
         UpdateUi(ent);
     }
 
-    private void RelayEquipmentUiMessage(MechEquipmentUiMessage msg)
+    private bool CanUseMechUi(Entity<MechComponent> ent, EntityUid actor)
+    {
+        return _vehicle.GetOperatorOrNull(ent.Owner) == actor;
+    }
+
+    private void RelayEquipmentUiMessage(Entity<MechComponent> ent, MechEquipmentUiMessage msg)
     {
         var equipment = GetEntity(msg.Equipment);
+
+        if (!ent.Comp.EquipmentContainer.Contains(equipment) &&
+            !ent.Comp.ModuleContainer.Contains(equipment))
+            return;
+
         RaiseLocalEvent(equipment, new MechEquipmentUiMessageRelayEvent(msg));
     }
 
     private void HandleEquipmentUiMessageRelay(Entity<MechComponent> ent, ref MechEquipmentUiMessage args)
     {
-        RelayEquipmentUiMessage(args);
+        if (!CanUseMechUi(ent, args.Actor))
+            return;
+
+        RelayEquipmentUiMessage(ent, args);
     }
 
     private void HandleEquipmentUiMessageRelay(Entity<MechComponent> ent, ref MechGrabberEjectMessage args)
     {
-        RelayEquipmentUiMessage(args);
+        if (!CanUseMechUi(ent, args.Actor))
+            return;
+
+        RelayEquipmentUiMessage(ent, args);
     }
 
     private void HandleEquipmentUiMessageRelay(Entity<MechComponent> ent, ref MechSoundboardPlayMessage args)
     {
-        RelayEquipmentUiMessage(args);
+        if (!CanUseMechUi(ent, args.Actor))
+            return;
+
+        RelayEquipmentUiMessage(ent, args);
     }
 
     private void HandleEquipmentUiMessageRelay(Entity<MechComponent> ent, ref MechGeneratorEjectFuelMessage args)
     {
-        RelayEquipmentUiMessage(args);
+        if (!CanUseMechUi(ent, args.Actor))
+            return;
+
+        RelayEquipmentUiMessage(ent, args);
     }
 
     private void HandleEquipmentRemove(Entity<MechComponent> ent, ref MechEquipmentRemoveMessage args)
     {
+        if (!CanUseMechUi(ent, args.Actor))
+            return;
+
         var equipment = GetEntity(args.Equipment);
         if (!ent.Comp.EquipmentContainer.Contains(equipment))
             return;
@@ -108,6 +135,9 @@ public sealed class MechInterfaceSystem : EntitySystem
 
     private void HandleModuleRemove(Entity<MechComponent> ent, ref MechModuleRemoveMessage args)
     {
+        if (!CanUseMechUi(ent, args.Actor))
+            return;
+
         var module = GetEntity(args.Module);
         if (!ent.Comp.ModuleContainer.Contains(module))
             return;
@@ -118,7 +148,14 @@ public sealed class MechInterfaceSystem : EntitySystem
 
     private void HandleCabinPurge(Entity<MechComponent> ent, ref MechCabinAirMessage args)
     {
+        if (!CanUseMechUi(ent, args.Actor))
+            return;
+
         if (!TryComp<MechCabinAirComponent>(ent, out var cabin))
+            return;
+
+        if (TryComp<MechCabinPurgeComponent>(ent, out var existingPurge) &&
+            existingPurge.CooldownRemaining > 0)
             return;
 
         var atmos = EntityManager.System<AtmosphereSystem>();
@@ -251,7 +288,7 @@ public sealed class MechInterfaceSystem : EntitySystem
         GasMixture? tankAir = null;
         foreach (var modulesEnt in ent.Comp.ModuleContainer.ContainedEntities)
         {
-            if (HasComp<MechAirTankModuleComponent>(modulesEnt))
+            if (!HasComp<MechAirTankModuleComponent>(modulesEnt))
                 continue;
 
             if (!TryComp<GasTankComponent>(modulesEnt, out var tank))

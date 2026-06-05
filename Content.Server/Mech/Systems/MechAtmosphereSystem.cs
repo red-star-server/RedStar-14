@@ -6,6 +6,7 @@ using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Module.Components;
 using Content.Shared.Mech.Systems;
+using Content.Shared.Vehicle;
 using Robust.Server.GameObjects;
 
 namespace Content.Server.Mech.Systems;
@@ -18,6 +19,7 @@ public sealed class MechAtmosphereSystem : EntitySystem
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly SharedMechSystem _mech = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly VehicleSystem _vehicle = default!;
 
     private const float MinExternalPressure = 0.05f;
     private const float PressureTolerance = 0.1f;
@@ -105,6 +107,9 @@ public sealed class MechAtmosphereSystem : EntitySystem
 
     private void OnAirtightMessage(Entity<MechComponent> ent, ref MechAirtightMessage args)
     {
+        if (_vehicle.GetOperatorOrNull(ent.Owner) != args.Actor)
+            return;
+
         // Cannot be airtight if CanAirtight is false.
         ent.Comp.Airtight = ent.Comp.CanAirtight && args.IsAirtight;
         Dirty(ent);
@@ -167,11 +172,11 @@ public sealed class MechAtmosphereSystem : EntitySystem
 
     private bool UpdateFanModule(Entity<MechComponent> ent, float frameTime)
     {
-        var fanModule = GetFanModule(ent);
-        if (fanModule == null || !fanModule.IsActive)
+        var hasFanModule = TryGetFanModule(ent, out var fanModule);
+        if (!hasFanModule || !fanModule.Comp.IsActive)
         {
-            if (fanModule != null)
-                SetFanState(ent, fanModule, MechFanState.Off);
+            if (hasFanModule)
+                return SetFanState(fanModule, MechFanState.Off);
 
             return false;
         }
@@ -179,8 +184,7 @@ public sealed class MechAtmosphereSystem : EntitySystem
         var (tankComp, tankAir) = GetGasTank(ent.Comp);
         if (tankAir == null || tankComp == null)
         {
-            SetFanState(ent, fanModule, MechFanState.Off);
-            return false;
+            return SetFanState(fanModule, MechFanState.Off);
         }
 
         return ProcessFanOperation(ent, fanModule, tankComp, tankAir, frameTime);
@@ -198,7 +202,7 @@ public sealed class MechAtmosphereSystem : EntitySystem
     }
 
     private bool ProcessFanOperation(Entity<MechComponent> ent,
-        MechFanModuleComponent fanModule,
+        Entity<MechFanModuleComponent> fanModule,
         GasTankComponent tankComp,
         GasMixture tankAir,
         float frameTime)
@@ -208,19 +212,17 @@ public sealed class MechAtmosphereSystem : EntitySystem
             || external.Pressure <= MinExternalPressure
             || tankAir.Pressure >= tankComp.MaxOutputPressure - PressureTolerance)
         {
-            SetFanState(ent, fanModule, MechFanState.Idle);
-            return false;
+            return SetFanState(fanModule, MechFanState.Idle);
         }
 
-        if (!_mech.TryChangeEnergy(ent.AsNullable(), -fanModule.EnergyConsumption * frameTime))
+        if (!_mech.TryChangeEnergy(ent.AsNullable(), -fanModule.Comp.EnergyConsumption * frameTime))
         {
-            SetFanState(ent, fanModule, MechFanState.Off);
-            return false;
+            return SetFanState(fanModule, MechFanState.Off);
         }
 
-        var success = ProcessFilteredTransfer(external, tankAir, fanModule, frameTime);
+        var success = ProcessFilteredTransfer(external, tankAir, fanModule.Comp, frameTime);
 
-        SetFanState(ent, fanModule, success ? MechFanState.On : MechFanState.Idle);
+        SetFanState(fanModule, success ? MechFanState.On : MechFanState.Idle);
         return success;
     }
 
@@ -253,29 +255,32 @@ public sealed class MechAtmosphereSystem : EntitySystem
         return true;
     }
 
-    private void SetFanState(Entity<MechComponent> ent, MechFanModuleComponent fanModule, MechFanState state)
+    private bool SetFanState(Entity<MechFanModuleComponent> fanModule, MechFanState state)
     {
-        if (fanModule.State == state)
-            return;
+        if (fanModule.Comp.State == state)
+            return false;
 
-        fanModule.State = state;
-        Dirty(ent);
+        fanModule.Comp.State = state;
+        Dirty(fanModule);
+        return true;
     }
 
     private void OnFanToggleMessage(Entity<MechComponent> ent, ref MechFanToggleMessage args)
     {
-        var fanModule = GetFanModule(ent);
-        if (fanModule == null)
+        if (_vehicle.GetOperatorOrNull(ent.Owner) != args.Actor)
             return;
 
-        fanModule.IsActive = args.IsActive;
+        if (!TryGetFanModule(ent, out var fanModule))
+            return;
+
+        fanModule.Comp.IsActive = args.IsActive;
 
         // Set the correct state based on the toggle.
         var newState = args.IsActive ? MechFanState.On : MechFanState.Off;
-        if (fanModule.State != newState)
+        if (fanModule.Comp.State != newState)
         {
-            fanModule.State = newState;
-            Dirty(ent);
+            fanModule.Comp.State = newState;
+            Dirty(fanModule);
         }
 
         _mech.UpdateMechUi(ent.Owner);
@@ -283,24 +288,30 @@ public sealed class MechAtmosphereSystem : EntitySystem
 
     private void OnFilterToggleMessage(Entity<MechComponent> ent, ref MechFilterToggleMessage args)
     {
-        var fanModule = GetFanModule(ent);
-        if (fanModule == null)
+        if (_vehicle.GetOperatorOrNull(ent.Owner) != args.Actor)
             return;
 
-        fanModule.FilterEnabled = args.Enabled;
-        Dirty(ent);
+        if (!TryGetFanModule(ent, out var fanModule))
+            return;
+
+        fanModule.Comp.FilterEnabled = args.Enabled;
+        Dirty(fanModule);
         _mech.UpdateMechUi(ent.Owner);
     }
 
-    private MechFanModuleComponent? GetFanModule(Entity<MechComponent> ent)
+    private bool TryGetFanModule(Entity<MechComponent> ent, out Entity<MechFanModuleComponent> fan)
     {
         foreach (var entModule in ent.Comp.ModuleContainer.ContainedEntities)
         {
             if (TryComp<MechFanModuleComponent>(entModule, out var fanModule))
-                return fanModule;
+            {
+                fan = (entModule, fanModule);
+                return true;
+            }
         }
 
-        return null;
+        fan = default;
+        return false;
     }
 
     #endregion

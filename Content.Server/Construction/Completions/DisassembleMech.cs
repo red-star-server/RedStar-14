@@ -65,5 +65,3 @@ public sealed partial class DisassembleMech : IGraphAction
         entityManager.QueueDeleteEntity(uid);
     }
 }
-
-

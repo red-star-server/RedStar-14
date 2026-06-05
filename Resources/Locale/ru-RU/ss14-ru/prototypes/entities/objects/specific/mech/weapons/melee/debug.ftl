@@ -1,3 +1,3 @@
-ent-WeaponMechDebugMelle = debug bam
+ent-WeaponMechDebugMelle = отладочный бам
     .desc = Прочный тестовый предмет.
-    .suffix = Mech Weapon, DEBUG, Melee
+    .suffix = Оружие меха, DEBUG, ближний бой

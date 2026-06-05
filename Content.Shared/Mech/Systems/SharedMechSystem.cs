@@ -433,7 +433,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         Dirty(pilot, pilotActions);
         Dirty(pilot, pilotAlerts);
     }
-    
+
     private void OnMechExit(Entity<MechComponent> ent, ref MechExitEvent args)
     {
         if (args.Cancelled || args.Handled)
@@ -566,7 +566,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         // Block movement if mech is locked and pilot lacks access.
         var pilot = Vehicle.GetOperatorOrNull(ent.Owner);
-        if (pilot.HasValue && !_mechLock.CheckAccessWithFeedback(ent.Owner, pilot.Value))
+        if (pilot.HasValue && !_mechLock.CheckAccess(ent.Owner, pilot.Value))
         {
             args.Cancel();
             return;

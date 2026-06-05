@@ -193,6 +193,7 @@
   - type: Strap
     position: Stand
     buckleOffset: "0,-0.05"
+    lockBuckleOffset: true # RS14
   - type: Vehicle # RS14
     requiresHands: false
   - type: MovementSpeedModifier

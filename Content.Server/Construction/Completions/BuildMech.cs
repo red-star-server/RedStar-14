@@ -73,4 +73,3 @@ public sealed partial class BuildMech : IGraphAction
         entityManager.QueueDeleteEntity(uid);
     }
 }
-

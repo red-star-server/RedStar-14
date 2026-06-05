@@ -52,7 +52,15 @@ public abstract partial class SharedMechSystem
         // Module.
         if (Resolve(toInsert, ref moduleComponent, false))
         {
-            if (ent.Comp.ModuleContainer.ContainedEntities.Count >= ent.Comp.MaxModuleAmount)
+            var used = 0;
+            foreach (var module in ent.Comp.ModuleContainer.ContainedEntities)
+            {
+                used += TryComp<MechModuleComponent>(module, out var installedModule)
+                    ? installedModule.Size
+                    : 1;
+            }
+
+            if (used + moduleComponent.Size > ent.Comp.MaxModuleAmount)
                 return;
 
             if (_entWhitelist.IsWhitelistFail(ent.Comp.ModuleWhitelist, toInsert))
@@ -313,6 +321,9 @@ public abstract partial class SharedMechSystem
             return false;
 
         if (ent.Comp.Broken)
+            return false;
+
+        if (!Vehicle.CanOperate(ent.Owner, toInsert))
             return false;
 
         if (!_actionBlocker.CanMove(toInsert))

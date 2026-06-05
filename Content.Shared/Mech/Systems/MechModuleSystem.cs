@@ -28,7 +28,15 @@ public sealed class MechModuleSystem : MechInstallSystem
         if (mechComp == null)
             return;
 
-        if (mechComp.ModuleContainer.ContainedEntities.Count >= mechComp.MaxModuleAmount)
+        var used = 0;
+        foreach (var module in mechComp.ModuleContainer.ContainedEntities)
+        {
+            used += TryComp<MechModuleComponent>(module, out var installedModule)
+                ? installedModule.Size
+                : 1;
+        }
+
+        if (used + ent.Comp.Size > mechComp.MaxModuleAmount)
         {
             Popup.PopupClient(Loc.GetString("mech-module-slot-full-popup"), args.User, args.User);
             return;
@@ -52,6 +60,9 @@ public sealed class MechModuleSystem : MechInstallSystem
             return;
 
         var mech = args.Args.Target.Value;
+
+        if (!TryPrepareInstall(args.Args.User, mech, out _))
+            return;
 
         Mech.InsertEquipment(mech, ent.Owner, moduleComponent: ent.Comp);
         args.Handled = true;

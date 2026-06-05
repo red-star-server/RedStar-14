@@ -53,6 +53,9 @@ public sealed class MechEquipmentSystem : MechInstallSystem
 
         var mech = args.Args.Target.Value;
 
+        if (!TryPrepareInstall(args.Args.User, mech, out _))
+            return;
+
         Mech.InsertEquipment(mech, ent.Owner, equipmentComponent: ent.Comp);
         args.Handled = true;
     }
