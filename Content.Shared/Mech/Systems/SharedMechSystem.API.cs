@@ -358,8 +358,7 @@ public abstract partial class SharedMechSystem
         if (!Vehicle.TryGetOperator(ent.Owner, out var operatorEnt))
             return false;
 
-        _container.RemoveEntity(ent.Owner, operatorEnt.Value);
-        return true;
+        return _container.RemoveEntity(ent.Owner, operatorEnt.Value);
     }
 
     /// <summary>

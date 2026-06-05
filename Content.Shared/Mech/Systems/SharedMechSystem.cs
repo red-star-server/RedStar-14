@@ -96,7 +96,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
         SubscribeLocalEvent<MechPilotComponent, GetUsedEntityEvent>(OnPilotGetUsedEntity);
         SubscribeLocalEvent<MechPilotComponent, AccessibleOverrideEvent>(OnPilotAccessible);
-
         SubscribeLocalEvent<MechComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<MechComponent, MechEntryEvent>(OnMechEntry);
         SubscribeLocalEvent<MechComponent, MechExitEvent>(OnMechExit);
@@ -434,7 +433,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         Dirty(pilot, pilotActions);
         Dirty(pilot, pilotAlerts);
     }
-
+    
     private void OnMechExit(Entity<MechComponent> ent, ref MechExitEvent args)
     {
         if (args.Cancelled || args.Handled)

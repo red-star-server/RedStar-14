@@ -41,11 +41,15 @@
   components:
   - type: MobMover
   - type: Mech
-    pilotBlacklist: # Goobstation Change
-      components:
-      - Zombie
-      - ZombieBlob
+    # RS14-start: legacy Mech pilotBlacklist has no Vehicle equivalent here.
+    # pilotBlacklist: # Goobstation Change
+    #   components:
+    #   - Zombie
+    #   - ZombieBlob
+    # RS14-end
   - type: Vehicle # RS14: added for vehicle operator checks
+  - type: ContainerVehicle # RS14: pilot container drives Vehicle operator state
+    containerId: "mech-pilot-slot"
   - type: MechLock # RS14: added for mech access control
   - type: MechCabinAir # RS14-value: MechAir -> MechCabinAir
   - type: AirFilter
@@ -216,8 +220,16 @@
     baseState: ripley
     openState: ripley-open
     brokenState: ripley-broken
-    mechToPilotDamageMultiplier: 0.75
-    pilotWhitelist:
+  - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Cold: 0.75
+        Heat: 0.75
+        Shock: 0.75
+    operatorWhitelist:
       components:
         - HumanoidAppearance
   - type: MeleeWeapon
@@ -266,9 +278,17 @@
     baseState: honker
     openState: honker-open
     brokenState: honker-broken
-    mechToPilotDamageMultiplier: 0.5
     airtight: true # Goobstation - Space Honk is real.
-    pilotWhitelist:
+  - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Cold: 0.5
+        Heat: 0.5
+        Shock: 0.5
+    operatorWhitelist:
       components:
       - HumanoidAppearance
 
@@ -302,10 +322,18 @@
     baseState: hamtr
     openState: hamtr-open
     brokenState: hamtr-broken
-    mechToPilotDamageMultiplier: 0.2
     maxEquipmentAmount: 2
     airtight: true
-    pilotWhitelist:
+  - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Cold: 0.2
+        Heat: 0.2
+        Shock: 0.2
+    operatorWhitelist:
       tags:
       - Hamster
   - type: MeleeWeapon
@@ -366,9 +394,17 @@
     brokenState: vim-broken
     maxEquipmentAmount: 0
     # keep mouse safe
-    mechToPilotDamageMultiplier: 0.1
     airtight: true
-    pilotWhitelist:
+  - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.1
+        Slash: 0.1
+        Piercing: 0.1
+        Cold: 0.1
+        Heat: 0.1
+        Shock: 0.1
+    operatorWhitelist:
       tags:
       - VimPilot
   - type: MeleeWeapon
