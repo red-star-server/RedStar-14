@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 RedStar Contributors
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Client.Mech.Ui;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
