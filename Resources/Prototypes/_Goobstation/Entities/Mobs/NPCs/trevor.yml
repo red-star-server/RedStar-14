@@ -19,6 +19,7 @@
   - type: StrapVehicle # RS14
   - type: Strap
     position: Stand
+    lockBuckleOffset: true # RS14
   - type: WaddleAnimation
   - type: MobThresholds
     thresholds:

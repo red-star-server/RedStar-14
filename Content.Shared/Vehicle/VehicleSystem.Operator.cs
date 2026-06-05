@@ -21,16 +21,27 @@ public sealed partial class VehicleSystem
 
     private void OnVehicleStrapped(Entity<StrapVehicleComponent> ent, ref StrappedEvent args)
     {
+        if (_timing.ApplyingState)
+            return;
+
         if (!_vehicleQuery.TryComp(ent, out var vehicle))
             return;
-        TrySetOperator((ent, vehicle), args.Buckle);
+
+        TrySetOperator((ent, vehicle), args.Buckle, removeExisting: false);
     }
 
     private void OnVehicleUnstrapped(Entity<StrapVehicleComponent> ent, ref UnstrappedEvent args)
     {
+        if (_timing.ApplyingState)
+            return;
+
         if (!_vehicleQuery.TryComp(ent, out var vehicle))
             return;
-        TrySetOperator((ent, vehicle), null);
+
+        if (vehicle.Operator != args.Buckle)
+            return;
+
+        TryRemoveOperator((ent, vehicle));
     }
 
     private void OnContainerEntInserted(Entity<ContainerVehicleComponent> ent, ref EntInsertedIntoContainerMessage args)

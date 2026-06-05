@@ -117,7 +117,8 @@
     startingCharge: 250
   - type: Gun
     projectileSpeed: 1
-    projectileSpeedModified: 5
+    # RS14: legacy Gun field is unavailable locally; projectileSpeed is kept above.
+    # projectileSpeedModified: 5
     fireRate: 0.4
     selectedMode: SemiAuto
     availableModes:
@@ -229,7 +230,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/incendiary.ogg
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg # RS14-value: incendiary.ogg did not exist locally.
   - type: ProjectileBatteryAmmoProvider
     proto: ShellShotgunIncendiary
     fireCost: 50

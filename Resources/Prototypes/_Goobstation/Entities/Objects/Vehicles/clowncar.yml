@@ -47,6 +47,7 @@
     buckleOnInteractHand: false
     addBuckleverb: false
     allowOthersToUnbuckle: false
+    lockBuckleOffset: true # RS14
     unbuckleSound:
       collection: ClowncarCrash
     whitelist:

@@ -28,6 +28,7 @@
   - type: Strap
     position: Stand
     blockMovement: false
+    lockBuckleOffset: true # RS14
   - type: Appearance
   - type: AmbientSound
     sound: "/Audio/Effects/Vehicle/vehicleengineidle.ogg"

@@ -10,7 +10,7 @@ namespace Content.Shared.Vehicle.Components;
 /// <summary>
 /// This is used for a vehicle which can only be operated when a specific key matching a whitelist is inserted.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(VehicleSystem))]
 public sealed partial class GenericKeyedVehicleComponent : Component
 {
@@ -31,4 +31,16 @@ public sealed partial class GenericKeyedVehicleComponent : Component
     /// </summary>
     [DataField]
     public bool PreventInvalidInsertion = true;
+
+    /// <summary>
+    /// The key currently bound to this vehicle.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid? BoundKey;
+
+    /// <summary>
+    /// Next time a wrong-key popup may be shown.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan NextWrongKeyPopup;
 }

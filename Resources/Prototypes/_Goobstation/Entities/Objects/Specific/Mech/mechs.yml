@@ -98,7 +98,8 @@
     baseState: ripleymkii
     openState: ripleymkii-open
     brokenState: ripleymkii-broken
-    airtight: true
+    # RS14: legacy Mech airtight field has no component field here.
+    # airtight: true
   - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
     transferDamageModifier:
       coefficients:
@@ -164,7 +165,8 @@
     baseState: clarke
     openState: clarke-open
     brokenState: clarke-broken
-    airtight: true
+    # RS14: legacy Mech airtight field has no component field here.
+    # airtight: true
   - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
     transferDamageModifier:
       coefficients:
@@ -244,7 +246,8 @@
     baseState: gygax
     openState: gygax-open
     brokenState: gygax-broken
-    airtight: true
+    # RS14: legacy Mech airtight field has no component field here.
+    # airtight: true
   - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
     transferDamageModifier:
       coefficients:
@@ -313,7 +316,8 @@
     baseState: durand
     openState: durand-open
     brokenState: durand-broken
-    airtight: true
+    # RS14: legacy Mech airtight field has no component field here.
+    # airtight: true
     maxIntegrity: 400
   - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
     transferDamageModifier:
@@ -390,7 +394,8 @@
     baseState: marauder
     openState: marauder-open
     brokenState: marauder-broken
-    airtight: true
+    # RS14: legacy Mech airtight field has no component field here.
+    # airtight: true
     maxIntegrity: 500
     maxEquipmentAmount: 4
   - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
@@ -473,7 +478,8 @@
     baseState: seraph
     openState: seraph-open
     brokenState: seraph-broken
-    airtight: true
+    # RS14: legacy Mech airtight field has no component field here.
+    # airtight: true
     maxIntegrity: 550
     maxEquipmentAmount: 5
   - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
@@ -559,7 +565,8 @@
     baseState: darkgygax
     openState: darkgygax-open
     brokenState: darkgygax-broken
-    airtight: true
+    # RS14: legacy Mech airtight field has no component field here.
+    # airtight: true
     maxIntegrity: 300
     maxEquipmentAmount: 4
   - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
@@ -642,7 +649,8 @@
     baseState: mauler
     openState: mauler-open
     brokenState: mauler-broken
-    airtight: true
+    # RS14: legacy Mech airtight field has no component field here.
+    # airtight: true
     maxIntegrity: 500
     maxEquipmentAmount: 5
   - type: Vehicle # RS14: mech pilot whitelist/damage transfer moved to Vehicle
