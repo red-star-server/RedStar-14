@@ -285,11 +285,11 @@
     !type:DayOfYear
     dayOfYear: 256
 
-- type: holiday
-  id: BisexualPrideDay
-  name: holiday-name-bisexual-pride-day
-  beginDay: 23
-  beginMonth: September
+#- type: holiday
+#  id: BisexualPrideDay
+#  name: holiday-name-bisexual-pride-day
+#  beginDay: 23
+#  beginMonth: September
 
 - type: holiday
   id: StupidQuestionsDay
@@ -458,9 +458,9 @@
   shouldCelebrate:
     !type:FridayThirteenth { }
 
-- type: holiday
-  id: PrideMonth
-  name: holiday-name-pride-month
-  beginDay: 1
-  endDay: 31
-  beginMonth: June
+#- type: holiday
+#  id: PrideMonth
+#  name: holiday-name-pride-month
+#  beginDay: 1
+#  endDay: 31
+#  beginMonth: June
