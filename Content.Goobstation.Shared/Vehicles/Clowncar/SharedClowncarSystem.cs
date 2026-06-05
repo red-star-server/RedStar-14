@@ -12,6 +12,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Stunnable;
+using Content.Shared.Vehicle.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 using Robust.Shared.Audio.Systems;
@@ -79,7 +80,7 @@ public abstract partial class SharedClowncarSystem : EntitySystem
         if (args.Container.ID != component.Container)
             return;
 
-        if (!TryComp<VehicleComponent>(uid, out var _))
+        if (!HasComp<VehicleComponent>(uid))
             return;
         EnsureComp<StunnedComponent>(args.Entity);
         _actionsSystem.AddAction(args.Entity, component.ThankRiderAction, uid);

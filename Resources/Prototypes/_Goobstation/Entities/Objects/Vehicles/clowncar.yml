@@ -17,13 +17,13 @@
       map: ["enum.ClowncarLayers.Base"]
     netsync: false
     noRot: true
-  - type: Vehicle
-    renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
-    requiredHands: 1
-    hornSound:
-      collection: BikeHorn
-      params:
-        variation: 0.125
+  - type: GenericKeyedVehicle # RS14
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - BikeHorn
   - type: MovementSpeedModifier
     weightlessModifier: 0
     acceleration: 1

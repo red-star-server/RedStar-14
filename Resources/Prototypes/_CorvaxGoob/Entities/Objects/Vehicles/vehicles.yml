@@ -4,8 +4,13 @@
   name: skeleton motorcycle
   description: Bad to the Bone.
   components:
-    - type: Vehicle
-      renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+    - type: GenericKeyedVehicle # RS14
+      containerId: key_slot
+      keyWhitelist:
+        requireAll: true
+        tags:
+          - VehicleKey
+          - SkeletonMotorcycleKeys
     - type: Sprite
       sprite: Objects/Vehicles/motorbike.rsi
       state: vehicle

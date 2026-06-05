@@ -193,10 +193,8 @@
   - type: Strap
     position: Stand
     buckleOffset: "0,-0.05"
-  - type: Vehicle
-    requiredHands: 0
-    engineRunning: true
-    renderOver: North, NorthEast, NorthWest
+  - type: Vehicle # RS14
+    requiresHands: false
   - type: MovementSpeedModifier
     acceleration: 10
     friction: 3.5

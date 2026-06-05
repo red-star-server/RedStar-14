@@ -18,6 +18,12 @@ public sealed partial class ForkliftComponent : Component
     [DataField]
     public SoundSpecifier LiftSound;
 
+    [DataField]
+    public Robust.Shared.Prototypes.EntProtoId? OverlayPrototype;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public EntityUid? ActiveOverlay;
+
     [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid? LiftSoundUid;
 

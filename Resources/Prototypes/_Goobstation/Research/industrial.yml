@@ -29,6 +29,22 @@
   position: -1,-6
 
 - type: technology
+  id: MechModule
+  name: research-technology-mech-module
+  icon:
+    sprite: Objects/Specific/Mech/mecha_modules.rsi
+    state: mecha_fan
+  discipline: Industrial
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - MechModuleFan
+  - MechModuleAirTank
+  technologyPrerequisites:
+  - Ripley2
+  position: 0,-7
+
+- type: technology
   id: Clarke
   name: research-technology-clarke
   icon:
@@ -61,6 +77,8 @@
   recipeUnlocks:
   - TeslaCoilCircuitboard
   - RadiationCollectorCircuitboard
+  - MechModuleTeslaRelay
+  - MechModulePlasmaGenerator
   position: 1,-2
   technologyPrerequisites:
   - PowerGeneration

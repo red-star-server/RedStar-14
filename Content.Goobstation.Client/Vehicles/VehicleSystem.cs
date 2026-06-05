@@ -6,6 +6,9 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+/* RS14-disabled: legacy Goob client vehicle visuals kept for upstream sync/reference.
+ * Active vehicle behavior was replaced by Content.Shared.Vehicle from WizDen PRs 43525/43527/43532.
+
 using Content.Goobstation.Shared.Vehicles;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -74,3 +77,4 @@ public sealed class VehicleSystem : SharedVehicleSystem
             _sprite.SetDrawDepth((ent, spriteComp), (int) Content.Shared.DrawDepth.DrawDepth.OverMobs);
     }
 }
+*/

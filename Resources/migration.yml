@@ -1177,3 +1177,16 @@ EvilPlushieWachtel: null
 EvilPlushieLeguia: null
 EvilPlushiePasha: null
 SpawnMobGoidaBot: null
+
+# 2026-06-05 RedStar
+MechEquipmentHorn: MechModuleHorn
+WeaponMechMeleeDrill: WeaponMechMelleDrill
+WeaponMechMeleeDrillDiamond: WeaponMechMelleDrillDiamond
+RipleyChassis: null
+HonkerChassis: null
+HamtrChassis: null
+VimChassis: null
+RipleyMKIIChassis: null
+ClarkeChassis: null
+DurandChassis: null
+GygaxChassis: null

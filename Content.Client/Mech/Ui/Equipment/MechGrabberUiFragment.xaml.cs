@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+﻿// SPDX-FileCopyrightText: 2022 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 //
@@ -21,12 +21,15 @@ public sealed partial class MechGrabberUiFragment : BoxContainer
     public MechGrabberUiFragment()
     {
         RobustXamlLoader.Load(this);
-        IoCManager.InjectDependencies(this);
     }
 
     public void UpdateContents(MechGrabberUiState state)
     {
         SpaceLabel.Text = $"{state.Contents.Count}/{state.MaxContents}";
+
+        ItemList.Clear();
+        ItemList.ClearSelected();
+
         for (var i = 0; i < state.Contents.Count; i++)
         {
             var ent = _entity.GetEntity(state.Contents[i]);
@@ -34,8 +37,8 @@ public sealed partial class MechGrabberUiFragment : BoxContainer
             if (!_entity.TryGetComponent<MetaDataComponent>(ent, out var meta))
                 continue;
 
-            ItemList.AddItem(meta.EntityName);
-            ItemList[i].OnSelected += _ => OnEjectAction?.Invoke(ent);
+            var item = ItemList.AddItem(meta.EntityName);
+            item.OnSelected += _ => OnEjectAction?.Invoke(ent);
         }
     }
 }

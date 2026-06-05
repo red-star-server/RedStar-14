@@ -14,5 +14,6 @@ lathe-category-mechs-clarke = Clarke
 lathe-category-mechs-gygax = Gygax
 lathe-category-mechs-durand = Durand
 lathe-category-mechs-equipment = Mech equipment
+lathe-category-mechs-module = Mech modules
 lathe-category-mechs-weapons = Mech weapons
 lathe-category-modsuit = MOD Suits

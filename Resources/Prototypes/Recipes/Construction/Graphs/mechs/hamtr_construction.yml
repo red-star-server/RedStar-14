@@ -4,7 +4,6 @@
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 #
 # SPDX-License-Identifier: MIT
-
 - type: constructionGraph
   id: Hamtr
   start: start
@@ -13,6 +12,9 @@
     edges:
     - to: hamtr
       steps:
+      - assemblyId: Hamtr
+        guideString: mech-construction-guide-string
+
       - tool: Anchoring
         doAfter: 1
         completed:

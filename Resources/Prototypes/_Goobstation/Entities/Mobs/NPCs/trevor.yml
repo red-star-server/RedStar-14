@@ -15,8 +15,8 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: trevor
-  - type: Vehicle
-    renderOver: East, SouthEast, South, SouthWest, West
+  - type: Vehicle # RS14
+  - type: StrapVehicle # RS14
   - type: Strap
     position: Stand
   - type: WaddleAnimation

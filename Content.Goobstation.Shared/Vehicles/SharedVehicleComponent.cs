@@ -8,6 +8,9 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+/* RS14-disabled: legacy Goob vehicle component kept for upstream sync/reference.
+ * Active vehicle behavior was replaced by Content.Shared.Vehicle from WizDen PRs 43525/43527/43532.
+
 using System.Numerics;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -114,3 +117,4 @@ public enum VehicleRenderOver
     West = 64,
     NorthWest = 128,
 }
+*/

@@ -227,48 +227,49 @@
     Glass: 200
 
 
-# Equipment
-- type: latheRecipe
-  id: MechEquipmentDrill
-  result: WeaponMechMeleeDrill
-  categories:
-  - MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1000
-    Glass: 250
-
-- type: latheRecipe
-  id: MechEquipmentDrillDiamond
-  result: WeaponMechMeleeDrillDiamond
-  categories:
-  - MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1000
-    Plastic: 150
-    Silver: 350
-    Diamond: 150
-
-- type: latheRecipe
-  id: MechEquipmentHonkerBananaMortar
-  result: WeaponMechSpecialBananaMortar
-  categories:
-  - MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1150
-    Bananium: 800
-
-- type: latheRecipe
-  id: MechEquipmentHonkerMousetrapMortar
-  result: WeaponMechSpecialMousetrapMortar
-  categories:
-  - MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1200
-    Bananium: 300
+# RS14-disabled: replaced by WizDen upstream mech equipment recipes in Resources/Prototypes/Recipes/Lathes/mech_equipment.yml.
+# # Equipment
+# - type: latheRecipe
+#   id: MechEquipmentDrill
+#   result: WeaponMechMeleeDrill
+#   categories:
+#   - MechEquipment
+#   completetime: 10
+#   materials:
+#     Steel: 1000
+#     Glass: 250
+#
+# - type: latheRecipe
+#   id: MechEquipmentDrillDiamond
+#   result: WeaponMechMeleeDrillDiamond
+#   categories:
+#   - MechEquipment
+#   completetime: 10
+#   materials:
+#     Steel: 1000
+#     Plastic: 150
+#     Silver: 350
+#     Diamond: 150
+#
+# - type: latheRecipe
+#   id: MechEquipmentHonkerBananaMortar
+#   result: WeaponMechSpecialBananaMortar
+#   categories:
+#   - MechEquipment
+#   completetime: 10
+#   materials:
+#     Steel: 1150
+#     Bananium: 800
+#
+# - type: latheRecipe
+#   id: MechEquipmentHonkerMousetrapMortar
+#   result: WeaponMechSpecialMousetrapMortar
+#   categories:
+#   - MechEquipment
+#   completetime: 10
+#   materials:
+#     Steel: 1200
+#     Bananium: 300
 
 # Misc
 - type: latheRecipe

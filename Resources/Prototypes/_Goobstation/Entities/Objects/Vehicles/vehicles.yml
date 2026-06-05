@@ -23,8 +23,8 @@
   save: false
   categories: [ HideSpawnMenu ]
   components:
-  - type: Vehicle
-    renderOver: None
+  - type: Vehicle # RS14
+  - type: StrapVehicle # RS14
   - type: Strap
     position: Stand
     blockMovement: false
@@ -111,15 +111,13 @@
     sprite: Objects/Vehicles/secway.rsi
     state: vehicle
     noRot: true
-  - type: Vehicle
-    hornSound:
-      collection: DeskBell
-      params:
-        variation: 0.125
-    sirenSound:
-      collection: PoliceSiren
-      params:
-        variation: 0.125
+  - type: GenericKeyedVehicle # RS14
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - SyndicateSegwayKeys
   - type: ItemSlots
     slots:
       key_slot:
@@ -168,12 +166,13 @@
     sprite: Objects/Vehicles/atv.rsi
     state: vehicle
     noRot: true
-  - type: Vehicle
-    hornSound:
-      collection: BikeHorn
-      params:
-        variation: 0.125
-    renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+  - type: GenericKeyedVehicle # RS14
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ATVKeys
   - type: ItemSlots
     slots:
       key_slot:
@@ -198,8 +197,13 @@
     sprite: Objects/Vehicles/janicart.rsi
     state: vehicle
     noRot: true
-  - type: Vehicle
-    renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+  - type: GenericKeyedVehicle # RS14
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - JanicartKeys
   - type: ItemSlots
     slots:
       key_slot:
@@ -237,14 +241,8 @@
       map: ["foldedLayer"]
       visible: false
     noRot: true
-  - type: Vehicle
-    requiredHands: 0
-    engineRunning: true
-    hornSound:
-      collection: BikeHorn
-      params:
-        variation: 0.125
-    renderOver: North, NorthEast, NorthWest
+  - type: Vehicle # RS14
+    requiresHands: false
   - type: MovementSpeedModifier
     acceleration: 10
     friction: 10
@@ -288,10 +286,8 @@
     layers:
     - state: vehicle
     noRot: true
-  - type: Vehicle
-    requiredHands: 0
-    engineRunning: true
-    renderOver: North, NorthEast, NorthWest, East, West
+  - type: Vehicle # RS14
+    requiresHands: false
   - type: MovementSpeedModifier
     acceleration: 10
     friction: 0.5
@@ -370,18 +366,20 @@
     layers:
     - state: forklift
     noRot: true
-  - type: Vehicle
-    overlayPrototype: VehicleForkliftOverlay
-    hornSound:
-      collection: BikeHorn
-      params:
-        variation: 0.125
+  - type: GenericKeyedVehicle # RS14
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ForkliftKeys
   - type: MovementSpeedModifier
     baseAcceleration: 8
     baseFriction: 0.2 # wheels dont stop instantly
     baseSprintSpeed: 6.5
     baseWalkSpeed: 4.5 # default walking speed
   - type: Forklift
+    overlayPrototype: VehicleForkliftOverlay
     liftSound: !type:SoundPathSpecifier
       path: /Audio/_Goobstation/Vehicle/Forklift/forklift.ogg
       params:

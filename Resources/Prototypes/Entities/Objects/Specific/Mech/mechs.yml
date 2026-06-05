@@ -45,7 +45,7 @@
       components:
       - Zombie
       - ZombieBlob
-  - type: MechAir
+  - type: MechCabinAir # RS14-value: MechAir -> MechCabinAir
   - type: AirFilter
     # everything except oxygen and nitrogen
     gases:
@@ -133,7 +133,7 @@
     containers:
       mech-pilot-slot: !type:ContainerSlot
       mech-equipment-container: !type:Container
-      mech-battery-slot: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot # RS14-value: mech-battery-slot -> cell_slot
       paper_label: !type:ContainerSlot # Goobstation
   - type: Damageable
     damageContainer: Silicon # Goobstation
@@ -236,7 +236,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHigh
 
 - type: entity
@@ -277,7 +277,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHigh
 
 - type: entity
@@ -324,7 +324,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHigh
 
 # Vim!!!!!!!
@@ -392,5 +392,5 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHigh

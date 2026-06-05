@@ -14,5 +14,6 @@ lathe-category-mechs-clarke = Кларк
 lathe-category-mechs-gygax = Гигакс
 lathe-category-mechs-durand = Дюранд
 lathe-category-mechs-equipment = Оборудование мехов
+lathe-category-mechs-module = Модули мехов
 lathe-category-mechs-weapons = Оружие мехов
 lathe-category-modsuit = MOD

@@ -65,10 +65,7 @@
       map: ["foldedLayer"]
       visible: false
     noRot: true
-  - type: Vehicle
-    requiredHands: 1
-    engineRunning: true
-    renderOver: South
+  - type: Vehicle # RS14
   - type: MovementSpeedModifier
     acceleration: 1 # Hard to accelerate, but has high max speed
     friction: 0.1

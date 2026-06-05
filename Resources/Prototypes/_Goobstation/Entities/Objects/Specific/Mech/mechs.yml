@@ -23,6 +23,11 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+      - UniversalMech
+    moduleWhitelist:
+      tags:
+      - CombatMech
+      - UniversalMech
 
 - type: entity
   id: IndustrialMech
@@ -33,6 +38,11 @@
     equipmentWhitelist:
       tags:
       - IndustrialMech
+      - UniversalMech
+    moduleWhitelist:
+      tags:
+      - IndustrialMech
+      - UniversalMech
 
 - type: entity
   id: SpecialMech
@@ -43,6 +53,11 @@
     equipmentWhitelist:
       tags:
       - SpecialMech
+      - UniversalMech
+    moduleWhitelist:
+      tags:
+      - SpecialMech
+      - UniversalMech
 
 - type: entity
   id: SmallMech
@@ -53,6 +68,11 @@
     equipmentWhitelist:
       tags:
       - SmallMech
+      - UniversalMech
+    moduleWhitelist:
+      tags:
+      - SmallMech
+      - UniversalMech
 
 # Ripley MK-II
 - type: entity
@@ -109,7 +129,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHigh
 
 # Clarke
@@ -167,7 +187,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHigh
 
 - type: entity
@@ -179,7 +199,8 @@
     startingEquipment:
       - WeaponMechSpecialBananaMortar
       - WeaponMechSpecialMousetrapMortar
-      - MechEquipmentHorn
+    startingModules:
+      - MechModuleHorn
 
 # Combat-Station Mechs
 
@@ -241,7 +262,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHigh
 
 # Durand
@@ -308,7 +329,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHigh
 
 # Nanotrasen Combat Mechs
@@ -373,7 +394,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHyper
 
 - type: entity
@@ -448,7 +469,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellAntiqueProto
 
 - type: entity
@@ -526,7 +547,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHyper
 
 - type: entity
@@ -601,7 +622,7 @@
   components:
   - type: ContainerFill
     containers:
-      mech-battery-slot:
+      cell_slot:
       - PowerCellHyper
 
 - type: entity

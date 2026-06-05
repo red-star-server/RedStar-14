@@ -20,6 +20,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 using Content.Shared.Audio.Jukebox;
+using Content.Shared.Vehicle.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -52,12 +53,12 @@ public sealed class ClowncarSystem : SharedClowncarSystem
 
     private void OnThankRider(EntityUid uid, ClowncarComponent component, ThankRiderActionEvent args)
     {
-        if (!TryComp<VehicleComponent>(uid, out var vehicle) || args.Handled)
+        if (!TryComp<VehicleComponent>(uid, out var vehicle) || args.Handled) // RS14
             return;
 
         component.ThankCounter++;
 
-        if (vehicle.Driver == null)
+        if (vehicle.Operator == null)
         {
             _chatSystem.TrySendInGameICMessage(args.Performer, Loc.GetString("clowncar-thank-no-driver"), InGameICChatType.Speak, false);
             args.Handled = true;
@@ -68,7 +69,7 @@ public sealed class ClowncarSystem : SharedClowncarSystem
             return;
         }
 
-        var message = Loc.GetString("clowncar-thank-driver", ("driver", vehicle.Driver));
+        var message = Loc.GetString("clowncar-thank-driver", ("driver", vehicle.Operator));
         _chatSystem.TrySendInGameICMessage(args.Performer, message, InGameICChatType.Speak, false);
         args.Handled = true;
 
@@ -84,10 +85,10 @@ public sealed class ClowncarSystem : SharedClowncarSystem
             return;
         if (container.Contains(verbs.User))
             return;
-        if (!TryComp<VehicleComponent>(uid, out var vehicle))
+        if (!TryComp<VehicleComponent>(uid, out var vehicle)) // RS14
             return;
 
-        if (vehicle.Driver == null)
+        if (vehicle.Operator == null)
         {
             AlternativeVerb verb = new();
             verb.Text = Loc.GetString("enter-driver-seat");
@@ -120,9 +121,9 @@ public sealed class ClowncarSystem : SharedClowncarSystem
             return;
         if (container.Contains(args.User))
             return;
-        if (!TryComp<VehicleComponent>(uid, out var vehicle))
+        if (!TryComp<VehicleComponent>(uid, out var vehicle)) // RS14
             return;
-        if (vehicle.Driver != null)
+        if (vehicle.Operator != null)
             return;
 
         _buckle.TryBuckle(args.User, args.User, uid);

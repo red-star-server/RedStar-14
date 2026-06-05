@@ -77,5 +77,13 @@
   id: MechEquipment
   recipes:
     - MechEquipmentGrabber
-    - MechEquipmentHorn
     - MechEquipmentGrabberSmall
+
+- type: latheRecipePack
+  id: MechModules
+  recipes:
+    - MechModuleFan
+    - MechModuleAirTank
+    - MechModuleTeslaRelay
+    - MechModulePlasmaGenerator
+    - MechModuleHorn

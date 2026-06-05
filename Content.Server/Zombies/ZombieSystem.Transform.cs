@@ -47,7 +47,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Rejuvenate; // Shitmed Change
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
-using Content.Shared.Mech.EntitySystems;
+using Content.Shared.Mech.Systems;
 using Content.Goobstation.Common.Traits; // Goobstation
 
 namespace Content.Server.Zombies;
@@ -323,6 +323,6 @@ public sealed partial class ZombieSystem
         //zombies get slowdown once they convert
         _movementSpeedModifier.RefreshMovementSpeedModifiers(target);
         if (TryComp<MechPilotComponent>(target, out var mechPilotComponent)) // Goobstation - kick out zombies from mechs on conversion
-            _mech.TryEject(mechPilotComponent.Mech, null, target);
+            _mech.TryEject(mechPilotComponent.Mech);
     }
 }

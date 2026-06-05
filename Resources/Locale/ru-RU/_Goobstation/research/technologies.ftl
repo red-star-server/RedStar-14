@@ -16,6 +16,7 @@
 research-technology-weapon-plasma-rifle = Экспериментальная плазменная винтовка
 research-technology-medical-defense = Медицинское контрольное снаряжение
 research-technology-ripley-mkii = Рипли MK-II
+research-technology-mech-module = Модули мехов
 research-technology-clarke = Кларк
 research-technology-gygax = Гигакс (необходимо разрешение ЦК)
 research-technology-durand = Дюранд (необходимо разрешение ЦК)

@@ -1,4 +1,4 @@
-﻿// SPDX-FileCopyrightText...
+// SPDX-FileCopyrightText...
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -22,6 +22,7 @@ public sealed class ForkliftSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private const string CrateContainerId = "crate_storage";
@@ -36,8 +37,8 @@ public sealed class ForkliftSystem : EntitySystem
         SubscribeLocalEvent<ForkliftComponent, ComponentInit>(OnUpdate);
         SubscribeLocalEvent<ForkliftComponent, EntInsertedIntoContainerMessage>(OnUpdate);
         SubscribeLocalEvent<ForkliftComponent, EntRemovedFromContainerMessage>(OnUpdate);
+        SubscribeLocalEvent<ForkliftComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<ForkliftComponent, UnstrappedEvent>(OnUnstrapped);
-        SubscribeLocalEvent<ForkliftComponent, StrapAttemptEvent>(OnStrapAttempt);
         SubscribeLocalEvent<ForkliftActionEvent>(OnLiftForks);
         SubscribeLocalEvent<ForkliftComponent, UnforkliftActionEvent>(OnUnliftForks);
 
@@ -108,17 +109,29 @@ public sealed class ForkliftSystem : EntitySystem
 
     private void OnUnstrapped(Entity<ForkliftComponent> ent, ref UnstrappedEvent args)
     {
-        if (ent.Comp.LiftAction == null)
-            return;
+        if (ent.Comp.LiftAction != null)
+            _action.RemoveAction(args.Buckle.Owner, ent.Comp.LiftAction);
 
-        _action.RemoveAction(args.Buckle.Owner, ent.Comp.LiftAction);
-        _action.RemoveAction(args.Buckle.Owner, ent.Comp.UnliftAction);
+        if (ent.Comp.UnliftAction != null)
+            _action.RemoveAction(args.Buckle.Owner, ent.Comp.UnliftAction);
+
+        ent.Comp.LiftAction = null;
+        ent.Comp.UnliftAction = null;
+
+        if (ent.Comp.ActiveOverlay != null)
+        {
+            QueueDel(ent.Comp.ActiveOverlay.Value);
+            ent.Comp.ActiveOverlay = null;
+        }
     }
 
-    private void OnStrapAttempt(Entity<ForkliftComponent> ent, ref StrapAttemptEvent args)
+    private void OnStrapped(Entity<ForkliftComponent> ent, ref StrappedEvent args)
     {
         _action.AddAction(args.Buckle.Owner, ref ent.Comp.LiftAction, LiftForkActionId, ent);
         _action.AddAction(args.Buckle.Owner, ref ent.Comp.UnliftAction, UnliftForkActionId, ent);
+
+        EnsureOverlay(ent);
+        UpdateAppearance(ent);
     }
 
     private void OnUpdate<T>(Entity<ForkliftComponent> ent, ref T args)
@@ -129,7 +142,7 @@ public sealed class ForkliftSystem : EntitySystem
     private void UpdateAppearance(Entity<ForkliftComponent> ent)
     {
 
-        if(!_container.TryGetContainer(ent, CrateContainerId, out var container) || !TryComp<VehicleComponent>(ent, out var vehicle) || vehicle.ActiveOverlay == null)
+        if (!_container.TryGetContainer(ent, CrateContainerId, out var container) || ent.Comp.ActiveOverlay == null)
             return;
 
         var state = container.ContainedEntities.Count switch
@@ -141,6 +154,18 @@ public sealed class ForkliftSystem : EntitySystem
             _ => ForkliftCrateState.FourCrates,
         };
 
-        _appearance.SetData(vehicle.ActiveOverlay.Value, ForkliftVisuals.CrateState, state);
+        _appearance.SetData(ent.Comp.ActiveOverlay.Value, ForkliftVisuals.CrateState, state);
+    }
+
+    private void EnsureOverlay(Entity<ForkliftComponent> ent)
+    {
+        if (ent.Comp.ActiveOverlay != null || ent.Comp.OverlayPrototype == null)
+            return;
+
+        var overlay = Spawn(ent.Comp.OverlayPrototype.Value, Transform(ent).Coordinates);
+        _transform.SetParent(overlay, ent.Owner);
+        _transform.SetLocalPosition(overlay, Vector2.Zero);
+        _transform.SetLocalRotation(overlay, Angle.Zero);
+        ent.Comp.ActiveOverlay = overlay;
     }
 }
