@@ -45,6 +45,8 @@
       components:
       - Zombie
       - ZombieBlob
+  - type: Vehicle # RS14: added for vehicle operator checks
+  - type: MechLock # RS14: added for mech access control
   - type: MechCabinAir # RS14-value: MechAir -> MechCabinAir
   - type: AirFilter
     # everything except oxygen and nitrogen
