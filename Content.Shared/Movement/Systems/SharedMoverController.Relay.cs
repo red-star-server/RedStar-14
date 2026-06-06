@@ -94,6 +94,9 @@ public abstract partial class SharedMoverController
         if (TryComp(targetComp.Source, out RelayInputMoverComponent? oldRelay))
         {
             var oldRelayEffectiveMover = GetEffectiveMover((targetComp.Source, oldRelay)); // RS14
+            if (MoverQuery.TryComp(oldRelayEffectiveMover, out var oldRelayMover))
+                SetMoveInput((oldRelayEffectiveMover, oldRelayMover), MoveButtons.None);
+
             oldRelay.RelayEntity = EntityUid.Invalid;
             RemComp(targetComp.Source, oldRelay);
             PhysicsSystem.UpdateIsPredicted(targetComp.Source);

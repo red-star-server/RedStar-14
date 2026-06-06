@@ -250,15 +250,19 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (args.Used is { } @using && !xformQuery.TryGetComponent(@using, out usedXform))
             return true;
 
+        var movementEntity = args.User;
+        TransformComponent? movementXform = userXform;
+        if (args.BreakOnMove)
+        {
+            movementEntity = doAfter.MovementEntity;
+            if (!xformQuery.TryGetComponent(movementEntity, out movementXform))
+                return true;
+        }
+
         // TODO: Re-use existing xform query for these calculations.
-        if (args.BreakOnMove && !(!args.BreakOnWeightlessMove && _gravity.IsWeightless(args.User, xform: userXform)))
+        if (args.BreakOnMove && !(!args.BreakOnWeightlessMove && _gravity.IsWeightless(movementEntity, xform: movementXform)))
         {
             // RS14-start
-            var movementEntity = doAfter.MovementEntity;
-
-            if (!xformQuery.TryGetComponent(movementEntity, out var movementXform))
-                return true;
-
             // Whether the effective movement entity has moved too much from its original position.
             if (!_transform.InRange(movementXform.Coordinates, doAfter.UserPosition, args.MovementThreshold))
                 return true;

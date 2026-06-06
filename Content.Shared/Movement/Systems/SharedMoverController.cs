@@ -284,11 +284,13 @@ public abstract partial class SharedMoverController : VirtualController
                 dirtied = true;
             }
 
+            // RS14-start
             // if (relayTargetMover.CanMove != mover.CanMove)
             // {
             //     relayTargetMover.CanMove = mover.CanMove;
             //     dirtied = true;
             // }
+            // RS14-end
 
             if (dirtied)
             {

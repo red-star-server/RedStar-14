@@ -124,7 +124,13 @@ public sealed class MoverController : SharedMoverController
             return;
 
         if (RelayQuery.TryGetComponent(player, out var relayMover))
+        {
+            // RS14-start
+            HandleClientsideMovement(player, frameTime);
             HandleClientsideMovement(relayMover.RelayEntity, frameTime);
+            return;
+            // RS14-end
+        }
 
         HandleClientsideMovement(player, frameTime);
     }
