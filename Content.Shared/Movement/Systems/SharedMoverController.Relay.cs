@@ -139,19 +139,21 @@ public abstract partial class SharedMoverController
     {
         var oldEffectiveMover = entity.Comp.RelayEntity; // RS14
         PhysicsSystem.UpdateIsPredicted(entity.Owner);
-        PhysicsSystem.UpdateIsPredicted(entity.Comp.RelayEntity);
+        if (oldEffectiveMover.IsValid())
+            PhysicsSystem.UpdateIsPredicted(oldEffectiveMover);
 
-        if (TryComp<InputMoverComponent>(entity.Comp.RelayEntity, out var inputMover))
-            SetMoveInput((entity.Comp.RelayEntity, inputMover), MoveButtons.None);
+        if (MoverQuery.TryComp(oldEffectiveMover, out var inputMover))
+            SetMoveInput((oldEffectiveMover, inputMover), MoveButtons.None);
 
         if (Timing.ApplyingState)
             return;
 
-        if (TryComp(entity.Comp.RelayEntity, out MovementRelayTargetComponent? target) && target.LifeStage <= ComponentLifeStage.Running)
-            RemComp(entity.Comp.RelayEntity, target);
+        if (RelayTargetQuery.TryComp(oldEffectiveMover, out var target) && target.LifeStage <= ComponentLifeStage.Running)
+            RemComp(oldEffectiveMover, target);
 
         _blocker.UpdateCanMove(entity.Owner);
-        RaiseEffectiveMoverChanged(entity.Owner, oldEffectiveMover, entity.Owner); // RS14
+        if (oldEffectiveMover.IsValid())
+            RaiseEffectiveMoverChanged(entity.Owner, oldEffectiveMover, entity.Owner); // RS14
     }
 
     protected virtual void OnTargetRelayShutdown(Entity<MovementRelayTargetComponent> entity, ref ComponentShutdown args)
@@ -167,10 +169,7 @@ public abstract partial class SharedMoverController
             SetMoveInput((entity.Owner, inputMover), MoveButtons.None);
 
         if (TryComp(entity.Comp.Source, out RelayInputMoverComponent? relay) && relay.LifeStage <= ComponentLifeStage.Running)
-        {
             RemComp(entity.Comp.Source, relay);
-            RaiseEffectiveMoverChanged(entity.Comp.Source, entity.Owner, entity.Comp.Source);
-        }
     }
 
     protected virtual void UpdateMoverStatus(Entity<InputMoverComponent?, MovementRelayTargetComponent?> ent) { }
