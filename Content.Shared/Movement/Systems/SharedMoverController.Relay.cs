@@ -42,6 +42,12 @@ public abstract partial class SharedMoverController
     {
         if (MoverQuery.TryComp(ent.Comp.RelayEntity, out var targetMover))
         {
+            if (targetMover.CanMove != args.CanMove)
+            {
+                targetMover.CanMove = args.CanMove;
+                Dirty(ent.Comp.RelayEntity, targetMover);
+            }
+
             if (!args.CanMove)
                 SetMoveInput((ent.Comp.RelayEntity, targetMover), MoveButtons.None);
 
