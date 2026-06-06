@@ -6,7 +6,7 @@ namespace Content.Shared.Weapons.Ranged.Events;
 
 // RS14-start
 [ByRefEvent]
-public struct GetShootingEntityEvent
+public record struct GetShootingEntityEvent
 {
     public EntityUid? ShootingEntity;
 

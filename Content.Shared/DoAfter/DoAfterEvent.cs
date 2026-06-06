@@ -115,10 +115,7 @@ public sealed partial class AwaitedDoAfterEvent : SimpleDoAfterEvent
 
 // RS14-start
 [ByRefEvent]
-public struct GetDoAfterUserEvent(EntityUid user)
-{
-    public EntityUid User = user;
-}
+public record struct GetDoAfterUserEvent(EntityUid User);
 // RS14-end
 
 /// <summary>

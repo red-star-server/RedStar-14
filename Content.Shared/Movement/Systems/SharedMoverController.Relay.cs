@@ -69,7 +69,7 @@ public abstract partial class SharedMoverController
 
     private void OnGetDoAfterUser(Entity<RelayInputMoverComponent> ent, ref GetDoAfterUserEvent args)
     {
-        if (ent.Comp.RelayEntity.IsValid())
+        if (ent.Comp.RelayEntity.IsValid() && Exists(ent.Comp.RelayEntity))
             args.User = ent.Comp.RelayEntity;
     }
     // RS14-end

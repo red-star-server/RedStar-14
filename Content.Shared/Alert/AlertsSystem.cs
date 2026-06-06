@@ -398,6 +398,7 @@ public abstract class AlertsSystem : EntitySystem
         var target = player.Value;
         if (TryComp<AlertsDisplayRelayComponent>(player.Value, out var relay) &&
             relay.Source is { } source &&
+            Exists(source) &&
             relay.InteractAsSource)
         {
             target = source;
