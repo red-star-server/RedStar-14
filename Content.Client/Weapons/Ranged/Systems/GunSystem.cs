@@ -42,6 +42,7 @@ using Content.Client.Weapons.Ranged.Components;
 using Content.Shared._Goobstation.Heretic.Components;
 using Content.Shared.Camera;
 using Content.Shared.CombatMode;
+using Content.Shared.Mech.Components; // RS14
 using Content.Shared.Vehicle.Components; // RS14
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
@@ -205,7 +206,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
         var entity = entityNull.Value;
 
-        if (TryComp<VehicleOperatorComponent>(entity, out var vehicleOperator) && vehicleOperator.Vehicle is { } vehicle) // RS14
+        if (TryComp<VehicleOperatorComponent>(entity, out var vehicleOperator) && vehicleOperator.Vehicle is { } vehicle && HasComp<MechComponent>(vehicle)) // RS14
             entity = vehicle;
 
         if (!TryGetGun(entity, out var gunUid, out var gun))

@@ -292,7 +292,14 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
-        TryInsert(uid, args.User, component); // RS14
+        // RS14-start
+        if (!TryInsert(uid, args.User, component))
+        {
+            _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), args.User);
+            return;
+        }
+        // RS14-end
+
         args.Handled = true;
     }
 
