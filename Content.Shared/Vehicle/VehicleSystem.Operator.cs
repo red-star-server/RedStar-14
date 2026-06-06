@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 RedStar Contributors
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared.Buckle.Components;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Containers;
