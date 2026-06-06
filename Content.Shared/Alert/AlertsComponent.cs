@@ -28,6 +28,20 @@ public sealed partial class AlertsComponent : Component
     public override bool SendOnlyToOwner => true;
 }
 
+// RS14-start
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class AlertsDisplayRelayComponent : Component
+{
+    public override bool SendOnlyToOwner => true;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? Source;
+
+    [DataField, AutoNetworkedField]
+    public bool InteractAsSource = false;
+}
+// RS14-end
+
 [Serializable, NetSerializable]
 public sealed class AlertComponentState : ComponentState
 {

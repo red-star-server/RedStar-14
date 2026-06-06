@@ -22,7 +22,21 @@ internal sealed class ServerAlertsSystem : AlertsSystem
 
     private void OnGetState(Entity<AlertsComponent> alerts, ref ComponentGetState args)
     {
+        // RS14-start
+        var display = new Dictionary<AlertKey, AlertState>(alerts.Comp.Alerts);
+
+        if (TryComp<AlertsDisplayRelayComponent>(alerts.Owner, out var relay) &&
+            relay.Source is { } source &&
+            TryComp<AlertsComponent>(source, out var sourceAlerts))
+        {
+            foreach (var (key, state) in sourceAlerts.Alerts)
+            {
+                display[key] = state;
+            }
+        }
+        // RS14-end
+
         // TODO: Use sourcegen when clone-state bug fixed.
-        args.State = new AlertComponentState(new(alerts.Comp.Alerts));
+        args.State = new AlertComponentState(display); // RS14
     }
 }

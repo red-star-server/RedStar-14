@@ -8,6 +8,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.DoAfter;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 
@@ -24,6 +25,7 @@ public abstract partial class SharedMoverController
         // RS14-start
         SubscribeLocalEvent<RelayInputMoverComponent, CanMoveUpdatedEvent>(OnRelayCanMoveUpdated);
         SubscribeLocalEvent<InputMoverComponent, CanMoveUpdatedEvent>(OnInputMoverCanMoveUpdated);
+        SubscribeLocalEvent<RelayInputMoverComponent, GetDoAfterUserEvent>(OnGetDoAfterUser);
         // RS14-end
     }
 
@@ -63,6 +65,12 @@ public abstract partial class SharedMoverController
     {
         if (!args.CanMove)
             SetMoveInput(ent, MoveButtons.None);
+    }
+
+    private void OnGetDoAfterUser(Entity<RelayInputMoverComponent> ent, ref GetDoAfterUserEvent args)
+    {
+        if (ent.Comp.RelayEntity.IsValid())
+            args.User = ent.Comp.RelayEntity;
     }
     // RS14-end
 

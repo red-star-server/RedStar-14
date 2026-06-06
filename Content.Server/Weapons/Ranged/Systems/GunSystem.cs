@@ -229,6 +229,14 @@ public sealed partial class GunSystem : SharedGunSystem
         var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle(), user);  // Goobstation user
 
         // RS14-start
+        var shooterEvent = new GetShootingEntityEvent();
+        if (user != null)
+            RaiseLocalEvent(user.Value, ref shooterEvent);
+
+        var effectiveShooter = shooterEvent.ShootingEntity ?? user;
+        // RS14-end
+
+        // RS14-start
         if (gun.RequiresSkill && user is not null && !_skills.HasSkill(user!.Value, ShootingSkill) && !HasComp<NoWieldNeededComponent>(user!.Value))
         {
             var spread = -SpreadWithoutSkill / 2 + Random.NextFloat() * SpreadWithoutSkill;
@@ -312,7 +320,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     var dir = mapDirection.Normalized();
 
                     //in the situation when user == null, means that the cannon fires on its own (via signals). And we need the gun to not fire by itself in this case
-                    var lastUser = user ?? gunUid;
+                    var lastUser = effectiveShooter ?? gunUid; // RS14
 
                     if (hitscan.Reflective != ReflectType.None)
                     {
@@ -349,7 +357,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                             FireEffects(fromEffect, result.Distance, dir.Normalized().ToAngle(), hitscan, hit);
 
-                            var ev = new HitScanReflectAttemptEvent(user, gunUid, hitscan.Reflective, dir, false, hitscan.Damage); // WD EDIT
+                            var ev = new HitScanReflectAttemptEvent(effectiveShooter, gunUid, hitscan.Reflective, dir, false, hitscan.Damage); // WD EDIT // RS14
                             RaiseLocalEvent(hit, ref ev);
 
                             if (!ev.Reflected)
@@ -366,7 +374,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     {
                         var hitEntity = lastHit.Value;
                         if (hitscan.StaminaDamage > 0f)
-                            _stamina.TakeStaminaDamage(hitEntity, hitscan.StaminaDamage, source: user, applyResistances: true); // Goob edit
+                            _stamina.TakeStaminaDamage(hitEntity, hitscan.StaminaDamage, source: effectiveShooter, applyResistances: true); // Goob edit // RS14
 
                         if (hitscan.FireStacks > 0f && TryComp(hitEntity, out FlammableComponent? flammable)) // Goobstation
                             _flammable.AdjustFireStacks(hitEntity, hitscan.FireStacks, flammable, true);
@@ -379,7 +387,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         {
                             dmg = Damageable.TryChangeDamage(hitEntity,
                                 dmg * Damageable.UniversalHitscanDamageModifier,
-                                origin: user,
+                                origin: effectiveShooter, // RS14
                                 targetPart: GetTargetPart(lastUser,
                                     new MapCoordinates(toMap, fromMap.MapId),
                                     _transform.GetMapCoordinates(hitEntity)),
@@ -401,10 +409,10 @@ public sealed partial class GunSystem : SharedGunSystem
                                 PlayImpactSound(hitEntity, dmg, hitscan.Sound, hitscan.ForceSound);
                             }
 
-                            if (user != null)
+                            if (effectiveShooter != null) // RS14
                             {
                                 Logs.Add(LogType.HitScanHit,
-                                    $"{ToPrettyString(user.Value):user} hit {hitName:target} using hitscan and dealt {dmg.GetTotal():damage} damage");
+                                    $"{ToPrettyString(effectiveShooter.Value):user} hit {hitName:target} using hitscan and dealt {dmg.GetTotal():damage} damage"); // RS14
                             }
                             else
                             {

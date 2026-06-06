@@ -198,7 +198,7 @@ public abstract class AlertsSystem : EntitySystem
 
             AfterShowAlert((euid, alertsComponent));
 
-            Dirty(euid, alertsComponent);
+            OnAlertsDirty(euid, alertsComponent); // RS14
         }
         else
         {
@@ -224,7 +224,7 @@ public abstract class AlertsSystem : EntitySystem
 
         AfterClearAlert((euid, alertsComponent));
 
-        Dirty(euid, alertsComponent);
+        OnAlertsDirty(euid, alertsComponent); // RS14
     }
 
     /// <summary>
@@ -247,7 +247,7 @@ public abstract class AlertsSystem : EntitySystem
 
             AfterClearAlert((euid, alertsComponent));
 
-            Dirty(euid, alertsComponent);
+            OnAlertsDirty(euid, alertsComponent); // RS14
         }
         else
         {
@@ -309,7 +309,7 @@ public abstract class AlertsSystem : EntitySystem
         }
 
         if (dirty)
-            Dirty(uid, comp);
+            OnAlertsDirty(uid, alertComp); // RS14
     }
 
     public override void Update(float frameTime)
@@ -344,7 +344,7 @@ public abstract class AlertsSystem : EntitySystem
             }
 
             if (dirtyComp)
-                Dirty(uid, alertComp);
+                OnAlertsDirty(uid, alertComp); // RS14
         }
     }
 
@@ -394,7 +394,17 @@ public abstract class AlertsSystem : EntitySystem
         if (player is null || !HasComp<AlertsComponent>(player))
             return;
 
-        if (!IsShowingAlert(player.Value, msg.Type))
+        // RS14-start
+        var target = player.Value;
+        if (TryComp<AlertsDisplayRelayComponent>(player.Value, out var relay) &&
+            relay.Source is { } source &&
+            relay.InteractAsSource)
+        {
+            target = source;
+        }
+        // RS14-end
+
+        if (!IsShowingAlert(target, msg.Type)) // RS14
         {
             Log.Debug("User {0} attempted to" +
                                    " click alert {1} which is not currently showing for them",
@@ -408,7 +418,7 @@ public abstract class AlertsSystem : EntitySystem
             return;
         }
 
-        if (ActivateAlert(player.Value, alert) && _timing.IsFirstTimePredicted)
+        if (ActivateAlert(target, alert) && _timing.IsFirstTimePredicted) // RS14
         {
             HandledAlert();
         }
@@ -434,6 +444,23 @@ public abstract class AlertsSystem : EntitySystem
 
     private void OnPlayerAttached(EntityUid uid, AlertsComponent component, PlayerAttachedEvent args)
     {
-        Dirty(uid, component);
+        OnAlertsDirty(uid, component); // RS14
     }
+
+    // RS14-start
+    private void OnAlertsDirty(EntityUid uid, AlertsComponent component)
+    {
+        Dirty(uid, component);
+
+        var relayQuery = EntityQueryEnumerator<AlertsDisplayRelayComponent>();
+        while (relayQuery.MoveNext(out var relayUid, out var relayComp))
+        {
+            if (relayComp.Source != uid)
+                continue;
+
+            if (TryComp<AlertsComponent>(relayUid, out var relayAlertsComp))
+                Dirty(relayUid, relayAlertsComp);
+        }
+    }
+    // RS14-end
 }

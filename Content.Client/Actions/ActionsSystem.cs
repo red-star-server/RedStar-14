@@ -210,10 +210,13 @@ namespace Content.Client.Actions
             // TODO: Decouple this.
             ent.Comp.IconColor = _sharedCharges.GetCurrentCharges(ent.Owner) == 0 || !ent.Comp.Enabled ? ent.Comp.DisabledIconColor : ent.Comp.OriginalIconColor; // WD EDIT
             base.UpdateAction(ent);
-            if (_playerManager.LocalEntity != ent.Comp.AttachedEntity)
+            // RS14-start
+            if (_playerManager.LocalEntity is not { } local)
                 return;
 
-            ActionsUpdated?.Invoke();
+            if (TryComp<ActionsComponent>(local, out var actions) && actions.Actions.Contains(ent.Owner))
+                ActionsUpdated?.Invoke();
+            // RS14-end
         }
 
         private void OnHandleState(Entity<ActionsComponent> ent, ref ComponentHandleState args)

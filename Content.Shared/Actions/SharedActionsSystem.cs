@@ -222,7 +222,20 @@ public abstract class SharedActionsSystem : EntitySystem
 
     private void OnGetState(Entity<ActionsComponent> ent, ref ComponentGetState args)
     {
-        args.State = new ActionsComponentState(GetNetEntitySet(ent.Comp.Actions));
+        // RS14-start
+        var actions = GetNetEntitySet(ent.Comp.Actions);
+        if (TryComp<ActionsDisplayRelayComponent>(ent.Owner, out var relay) &&
+            relay.Source is { } source &&
+            _actionsQuery.TryComp(source, out var sourceActions))
+        {
+            foreach (var action in GetNetEntitySet(sourceActions.Actions))
+            {
+                actions.Add(action);
+            }
+        }
+
+        args.State = new ActionsComponentState(actions);
+        // RS14-end
     }
 
     /// <summary>
@@ -699,11 +712,11 @@ public abstract class SharedActionsSystem : EntitySystem
         if (GetAction(actionEnt) is not {} action)
             return false;
 
-        if (!CanPerformAction((user, component), action, ev))
+        if (!CanPerformAction((user, component), action, ev, out var performer, out var playPredicted)) // RS14
             return false;
 
         // All checks passed. Perform the action!
-        PerformAction((user, component), action);
+        PerformAction(performer, action, null, playPredicted); // RS14
         return true;
     }
 
@@ -713,6 +726,20 @@ public abstract class SharedActionsSystem : EntitySystem
     /// </summary>
     public bool CanPerformAction(Entity<ActionsComponent?> user, Entity<ActionComponent> action, RequestPerformActionEvent ev)
     {
+        return CanPerformAction(user, action, ev, out _, out _); // RS14
+    }
+
+    // RS14-start
+    private bool CanPerformAction(
+        Entity<ActionsComponent?> user,
+        Entity<ActionComponent> action,
+        RequestPerformActionEvent ev,
+        out Entity<ActionsComponent?> performer,
+        out bool playPredicted)
+    {
+        performer = default;
+        playPredicted = true;
+
         if (!Resolve(user.Owner, ref user.Comp, false)
             || !TryComp(action, out MetaDataComponent? metaData))
             return false;
@@ -720,14 +747,37 @@ public abstract class SharedActionsSystem : EntitySystem
         var name = Name(action, metaData);
 
         // Does the user actually have the requested action?
-        if (!user.Comp.Actions.Contains(action))
+        var hasAction = user.Comp.Actions.Contains(action);
+        var performEntity = user.Owner;
+        var relayed = false;
+
+        if (!hasAction &&
+            TryComp<ActionsDisplayRelayComponent>(user.Owner, out var relay) &&
+            relay.Source is { } source &&
+            _actionsQuery.TryComp(source, out var sourceActions) &&
+            sourceActions.Actions.Contains(action))
+        {
+            hasAction = true;
+            relayed = true;
+
+            if (relay.InteractAsSource)
+                performEntity = source;
+        }
+
+        if (!hasAction)
         {
             _adminLogger.Add(LogType.Action,
                 $"{ToPrettyString(user):user} attempted to perform an action that they do not have: {name}.");
             return false;
         }
 
-        DebugTools.Assert(action.Comp.AttachedEntity == user);
+        if (!_actionsQuery.TryComp(performEntity, out var performerActions))
+            return false;
+
+        performer = (performEntity, performerActions);
+        playPredicted = performEntity == user.Owner;
+
+        DebugTools.Assert(action.Comp.AttachedEntity == performer.Owner || relayed);
         if (!action.Comp.Enabled)
             return false;
 
@@ -737,22 +787,23 @@ public abstract class SharedActionsSystem : EntitySystem
 
         // check for action use prevention
         // TODO: make code below use this event with a dedicated component
-        var attemptEv = new ActionAttemptEvent(user);
+        var attemptEv = new ActionAttemptEvent(performer);
         RaiseLocalEvent(action, ref attemptEv);
         if (attemptEv.Cancelled)
             return false;
 
         // Validate request by checking action blockers and the like
-        var provider = action.Comp.Container ?? user;
+        var provider = action.Comp.Container ?? performer.Owner;
         var validateEv = new ActionValidateEvent()
         {
             Input = ev,
-            User = user,
+            User = performer,
             Provider = provider
         };
         RaiseLocalEvent(action, ref validateEv);
         return !validateEv.Invalid;
     }
+    // RS14-end
 
     #endregion
 
@@ -853,7 +904,7 @@ public abstract class SharedActionsSystem : EntitySystem
         ent.Comp.AttachedEntity = performer;
         DirtyField(ent, ent.Comp, nameof(ActionComponent.AttachedEntity));
         performer.Comp.Actions.Add(ent);
-        Dirty(performer, performer.Comp);
+        OnActionsDirty(performer, performer.Comp); // RS14
         ActionAdded((performer, performer.Comp), (ent, ent.Comp));
         return true;
     }
@@ -1010,7 +1061,7 @@ public abstract class SharedActionsSystem : EntitySystem
         }
 
         performer.Comp.Actions.Remove(ent.Owner);
-        Dirty(performer, performer.Comp);
+        OnActionsDirty(performer, performer.Comp); // RS14
         ent.Comp.AttachedEntity = null;
         DirtyField(ent, ent.Comp, nameof(ActionComponent.AttachedEntity));
         ActionRemoved((performer, performer.Comp), ent);
@@ -1254,6 +1305,23 @@ public abstract class SharedActionsSystem : EntitySystem
         ent.Comp.Temporary = temporary;
         Dirty(ent);
     }
+
+    // RS14-start
+    private void OnActionsDirty(EntityUid uid, ActionsComponent component)
+    {
+        Dirty(uid, component);
+
+        var relayQuery = EntityQueryEnumerator<ActionsDisplayRelayComponent>();
+        while (relayQuery.MoveNext(out var relayUid, out var relayComp))
+        {
+            if (relayComp.Source != uid)
+                continue;
+
+            if (TryComp<ActionsComponent>(relayUid, out var relayActionsComp))
+                Dirty(relayUid, relayActionsComp);
+        }
+    }
+    // RS14-end
 
     // Shitmed Change Start - Starlight Abductors
     public EntityUid[] HideActions(EntityUid performer, ActionsComponent? comp = null)

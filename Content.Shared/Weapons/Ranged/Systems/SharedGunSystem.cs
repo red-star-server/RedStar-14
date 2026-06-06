@@ -266,6 +266,20 @@ public abstract partial class SharedGunSystem : EntitySystem
         gunEntity = default;
         gunComp = null;
 
+        // RS14-start
+        var weaponEvent = new GetActiveWeaponEvent();
+        RaiseLocalEvent(entity, ref weaponEvent);
+
+        if (weaponEvent.Handled &&
+            weaponEvent.Weapon.HasValue &&
+            TryComp(weaponEvent.Weapon.Value, out GunComponent? eventGun))
+        {
+            gunEntity = weaponEvent.Weapon.Value;
+            gunComp = eventGun;
+            return true;
+        }
+        // RS14-end
+
         if (TryComp<MechComponent>(entity, out var mech) &&
             mech.CurrentSelectedEquipment.HasValue &&
             TryComp<GunComponent>(mech.CurrentSelectedEquipment.Value, out var mechGun))
@@ -446,7 +460,13 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
         }
 
-        var fromCoordinates = Transform(user).Coordinates;
+        // RS14-start
+        var shootingEvent = new GetShootingEntityEvent();
+        RaiseLocalEvent(user, ref shootingEvent);
+        var shootingEntity = shootingEvent.ShootingEntity ?? user;
+        var fromCoordinates = Transform(shootingEntity).Coordinates;
+        // RS14-end
+
         // Remove ammo
         var ev = new TakeAmmoEvent(shots, new List<(EntityUid? Entity, IShootable Shootable)>(), fromCoordinates, user);
 
@@ -523,14 +543,14 @@ public abstract partial class SharedGunSystem : EntitySystem
         var shotBodyEv = new GunShotBodyEvent(gunUid, gun); // Shitmed Change
         RaiseLocalEvent(user, shotBodyEv); // Shitmed Change
 
-        if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
+        if (!userImpulse || !TryComp<PhysicsComponent>(shootingEntity, out var userPhysics)) // RS14
             return;
 
         var shooterEv = new ShooterImpulseEvent();
-        RaiseLocalEvent(user, ref shooterEv);
+        RaiseLocalEvent(shootingEntity, ref shooterEv); // RS14
 
-        if (shooterEv.Push || _gravity.IsWeightless(user, userPhysics))
-            CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
+        if (shooterEv.Push || _gravity.IsWeightless(shootingEntity, userPhysics)) // RS14
+            CauseImpulse(fromCoordinates, toCoordinates.Value, shootingEntity, userPhysics); // RS14
 
         UpdateAmmoCount(gunUid); //GoobStation - Multishot
     }
@@ -571,7 +591,13 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         var projectile = EnsureComp<ProjectileComponent>(uid);
         projectile.Weapon = gunUid;
-        var shooter = user ?? gunUid;
+        // RS14-start
+        var shooterEvent = new GetShootingEntityEvent();
+        if (user != null)
+            RaiseLocalEvent(user.Value, ref shooterEvent);
+
+        var shooter = shooterEvent.ShootingEntity ?? user ?? gunUid;
+        // RS14-end
         if (shooter != null)
             Projectiles.SetShooter(uid, projectile, shooter.Value);
 

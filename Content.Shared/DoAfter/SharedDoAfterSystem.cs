@@ -359,7 +359,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (args.BreakOnMove)
         {
             // RS14-start
-            doAfter.MovementEntity = _mover.GetEffectiveMover(args.User);
+            doAfter.MovementEntity = GetDoAfterMovementEntity(args.User);
             doAfter.UserPosition = Transform(doAfter.MovementEntity).Coordinates;
             // RS14-end
         }
@@ -408,6 +408,15 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         args.Event.DoAfter = doAfter;
         return true;
     }
+
+    // RS14-start
+    private EntityUid GetDoAfterMovementEntity(EntityUid user)
+    {
+        var ev = new GetDoAfterUserEvent(_mover.GetEffectiveMover(user));
+        RaiseLocalEvent(user, ref ev);
+        return ev.User;
+    }
+    // RS14-end
 
     /// <summary>
     ///     Cancel any applicable duplicate DoAfters and return whether or not the new DoAfter should be created.
