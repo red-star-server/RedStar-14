@@ -17,6 +17,9 @@
       state: trevor
   - type: Vehicle
     renderOver: East, SouthEast, South, SouthWest, West
+  # RS14-start
+  - type: StrapVehicle
+  # RS14-end
   - type: Strap
     position: Stand
   - type: WaddleAnimation

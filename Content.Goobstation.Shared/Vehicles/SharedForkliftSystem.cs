@@ -8,6 +8,7 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Tag;
+using Content.Shared.Vehicle.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -37,7 +38,7 @@ public sealed class ForkliftSystem : EntitySystem
         SubscribeLocalEvent<ForkliftComponent, EntInsertedIntoContainerMessage>(OnUpdate);
         SubscribeLocalEvent<ForkliftComponent, EntRemovedFromContainerMessage>(OnUpdate);
         SubscribeLocalEvent<ForkliftComponent, UnstrappedEvent>(OnUnstrapped);
-        SubscribeLocalEvent<ForkliftComponent, StrapAttemptEvent>(OnStrapAttempt);
+        SubscribeLocalEvent<ForkliftComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<ForkliftActionEvent>(OnLiftForks);
         SubscribeLocalEvent<ForkliftComponent, UnforkliftActionEvent>(OnUnliftForks);
 
@@ -108,14 +109,13 @@ public sealed class ForkliftSystem : EntitySystem
 
     private void OnUnstrapped(Entity<ForkliftComponent> ent, ref UnstrappedEvent args)
     {
-        if (ent.Comp.LiftAction == null)
-            return;
-
-        _action.RemoveAction(args.Buckle.Owner, ent.Comp.LiftAction);
-        _action.RemoveAction(args.Buckle.Owner, ent.Comp.UnliftAction);
+        _action.RemoveAction(ent.Comp.LiftAction);
+        _action.RemoveAction(ent.Comp.UnliftAction);
+        ent.Comp.LiftAction = null;
+        ent.Comp.UnliftAction = null;
     }
 
-    private void OnStrapAttempt(Entity<ForkliftComponent> ent, ref StrapAttemptEvent args)
+    private void OnStrapped(Entity<ForkliftComponent> ent, ref StrappedEvent args)
     {
         _action.AddAction(args.Buckle.Owner, ref ent.Comp.LiftAction, LiftForkActionId, ent);
         _action.AddAction(args.Buckle.Owner, ref ent.Comp.UnliftAction, UnliftForkActionId, ent);

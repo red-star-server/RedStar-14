@@ -25,6 +25,9 @@
   components:
   - type: Vehicle
     renderOver: None
+  # RS14-start
+  - type: StrapVehicle
+  # RS14-end
   - type: Strap
     position: Stand
     blockMovement: false
@@ -120,6 +123,13 @@
       collection: PoliceSiren
       params:
         variation: 0.125
+  # RS14-start
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - SecwayKeys
+  # RS14-end
   - type: ItemSlots
     slots:
       key_slot:
@@ -144,6 +154,13 @@
     sprite: Objects/Vehicles/syndicatesegway.rsi
     state: vehicle
     noRot: true
+  # RS14-start
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - SyndicateSegwayKeys
+  # RS14-end
   - type: ItemSlots
     slots:
       key_slot:
@@ -174,6 +191,13 @@
       params:
         variation: 0.125
     renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+  # RS14-start
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - ATVKeys
+  # RS14-end
   - type: ItemSlots
     slots:
       key_slot:
@@ -196,10 +220,28 @@
   components:
   - type: Sprite
     sprite: Objects/Vehicles/janicart.rsi
-    state: vehicle
+    layers:
+    - state: vehicle
+      map: ["movement"]
     noRot: true
+  # RS14-start
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: vehicle-moving
+    noMovementLayers:
+      movement:
+        state: vehicle
+  # RS14-end
   - type: Vehicle
     renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+  # RS14-start
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - JanicartKeys
+  # RS14-end
   - type: ItemSlots
     slots:
       key_slot:
@@ -231,15 +273,15 @@
   - type: Sprite
     sprite: Objects/Vehicles/wheelchair.rsi
     layers:
-    - state: vehicle
+    - state: wheelchair
       map: ["unfoldedLayer"]
-    - state: vehicle_folded
+    - state: wheelchair_overlay
+      map: ["overlayLayer"]
+    - state: wheelchair_folded
       map: ["foldedLayer"]
       visible: false
     noRot: true
   - type: Vehicle
-    requiredHands: 0
-    engineRunning: true
     hornSound:
       collection: BikeHorn
       params:
@@ -289,8 +331,6 @@
     - state: vehicle
     noRot: true
   - type: Vehicle
-    requiredHands: 0
-    engineRunning: true
     renderOver: North, NorthEast, NorthWest, East, West
   - type: MovementSpeedModifier
     acceleration: 10
@@ -376,6 +416,13 @@
       collection: BikeHorn
       params:
         variation: 0.125
+  # RS14-start
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - ForkliftKeys
+  # RS14-end
   - type: MovementSpeedModifier
     baseAcceleration: 8
     baseFriction: 0.2 # wheels dont stop instantly

@@ -36,9 +36,8 @@ public abstract partial class SharedRocketChairSystem : EntitySystem
 
     private void OnUnstrapped(Entity<RocketChairComponent> ent, ref UnstrappedEvent args)
     {
-        var (uid, comp) = ent;
-        if (comp.BoostAction != null)
-            _actions.RemoveAction(args.Buckle.Owner, comp.BoostAction);
+        var comp = ent.Comp;
+        _actions.RemoveAction(comp.BoostAction);
         comp.BoostAction = null;
     }
 

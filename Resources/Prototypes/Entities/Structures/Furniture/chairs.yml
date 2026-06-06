@@ -193,10 +193,12 @@
   - type: Strap
     position: Stand
     buckleOffset: "0,-0.05"
+  # RS14: upstream vehicle core replaces legacy Goob requiredHands/engineRunning fields.
   - type: Vehicle
-    requiredHands: 0
-    engineRunning: true
     renderOver: North, NorthEast, NorthWest
+  # RS14-start
+  - type: StrapVehicle
+  # RS14-end
   - type: MovementSpeedModifier
     acceleration: 10
     friction: 3.5

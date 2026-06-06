@@ -3,12 +3,12 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Common.CCVar;
-using Content.Goobstation.Shared.Vehicles;
 using Content.Shared._EinsteinEngines.Contests;
 using Content.Shared.Actions;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Item;
 using Content.Shared.Throwing;
+using Content.Shared.Vehicle.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -55,9 +55,7 @@ public sealed partial class VehicleWallPushSystem : EntitySystem
         if (!TryComp(uid, out VehicleWallPushComponent? comp))
             return;
 
-        if (comp.KickAction != null)
-            _actions.RemoveAction(args.Buckle.Owner, comp.KickAction);
-
+        _actions.RemoveAction(comp.KickAction);
         comp.KickAction = null;
     }
 
@@ -65,7 +63,7 @@ public sealed partial class VehicleWallPushSystem : EntitySystem
     {
         if (args.Handled)
             return;
-        if (!TryComp(uid, out VehicleComponent? vehicle) || vehicle.Driver != args.Performer)
+        if (!TryComp(uid, out VehicleComponent? vehicle) || vehicle.Operator != args.Performer)
             return;
         if (!TryComp(uid, out PhysicsComponent? physics))
             return;
@@ -83,7 +81,7 @@ public sealed partial class VehicleWallPushSystem : EntitySystem
         var dir = aim / aimLen;
         var ray = new CollisionRay(from.Position, dir, VehicleWallPushComponent.KickMask);
 
-        if (_physics.IntersectRayWithPredicate(to.MapId, ray, comp.MaxDistance, x => x == vehicle.Driver || x == uid).FirstOrNull() is not { HitEntity: { } blocker })
+        if (_physics.IntersectRayWithPredicate(to.MapId, ray, comp.MaxDistance, x => x == vehicle.Operator || x == uid).FirstOrNull() is not { HitEntity: { } blocker })
             return;
 
         _audio.PlayPredicted(comp.RollSound, args.Performer, args.Performer);

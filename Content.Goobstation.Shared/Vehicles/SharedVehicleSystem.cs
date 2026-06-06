@@ -2,7 +2,6 @@
 // SPDX-FileCopyrightText: 2024 Scruq445 <storchdamien@gmail.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Fishbait <Fishbait@git.ml>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
 // SPDX-FileCopyrightText: 2025 fishbait <gnesse@gmail.com>
 // SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
@@ -12,24 +11,20 @@
 
 using System.Numerics;
 using Content.Shared._vg.TileMovement;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Audio;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Hands;
-using Content.Shared.Inventory.VirtualItem;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.Prototypes;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Destructible;
-using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Damage;
-using Content.Shared.Actions.Components;
+using Content.Shared.Destructible;
+using Content.Shared.Movement.Components;
+using Content.Shared.Vehicle.Components;
+using Content.Goobstation.Maths.FixedPoint;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Shared.Vehicles;
 
@@ -40,8 +35,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private static readonly EntProtoId HornActionId = "ActionHorn";
@@ -50,150 +44,137 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        // RS14-start
         SubscribeLocalEvent<VehicleComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<VehicleComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<VehicleComponent, StrapAttemptEvent>(OnStrapAttempt);
-        SubscribeLocalEvent<VehicleComponent, StrappedEvent>(OnStrapped);
-        SubscribeLocalEvent<VehicleComponent, UnstrappedEvent>(OnUnstrapped);
-        SubscribeLocalEvent<VehicleComponent, VirtualItemDeletedEvent>(OnDropped);
-
-        SubscribeLocalEvent<VehicleComponent, EntInsertedIntoContainerMessage>(OnInsert);
-        SubscribeLocalEvent<VehicleComponent, EntRemovedFromContainerMessage>(OnEject);
-
         SubscribeLocalEvent<VehicleComponent, HornActionEvent>(OnHorn);
         SubscribeLocalEvent<VehicleComponent, SirenActionEvent>(OnSiren);
         SubscribeLocalEvent<VehicleComponent, ItemSlotEjectAttemptEvent>(OnItemSlotEject);
         SubscribeLocalEvent<VehicleComponent, BreakageEventArgs>(OnBreak);
         SubscribeLocalEvent<VehicleComponent, DamageChangedEvent>(OnRepair);
-        SubscribeLocalEvent<VehicleComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
+        SubscribeLocalEvent<VehicleComponent, VehicleCanRunEvent>(OnCanRun);
+        SubscribeLocalEvent<VehicleComponent, VehicleOperatorSetEvent>(OnOperatorSet);
+        // RS14-end
     }
 
-    private void OnInit(EntityUid uid, VehicleComponent component, ComponentInit args)
+    private void OnInit(Entity<VehicleComponent> ent, ref ComponentInit args)
     {
-        _appearance.SetData(uid, VehicleState.Animated, component.EngineRunning);
-        _appearance.SetData(uid, VehicleState.DrawOver, false);
-    }
-
-    private void OnRemove(EntityUid uid, VehicleComponent component, ComponentRemove args)
-    {
-        if (component.Driver == null)
-            return;
-
-        _buckle.TryUnbuckle(component.Driver.Value, component.Driver.Value);
-        Dismount(component.Driver.Value, uid);
-        _appearance.SetData(uid, VehicleState.DrawOver, false);
-    }
-
-    private void OnInsert(EntityUid uid, VehicleComponent component, ref EntInsertedIntoContainerMessage args)
-    {
-        if (HasComp<InstantActionComponent>(args.Entity)
-            || args.Container.ID != component.KeySlot
-            || component.IsBroken)
-            return;
-
-        component.EngineRunning = true;
-        _appearance.SetData(uid, VehicleState.Animated, true);
-
-        _ambientSound.SetAmbience(uid, true);
-
-        if (component.Driver == null)
-            return;
-
-        Mount(component.Driver.Value, uid);
-    }
-
-    private void OnEject(EntityUid uid, VehicleComponent component, ref EntRemovedFromContainerMessage args)
-    {
-        if (args.Container.ID != component.KeySlot)
-            return;
-        component.EngineRunning = false;
-        _appearance.SetData(uid, VehicleState.Animated, false);
-        _ambientSound.SetAmbience(uid, false);
-
-        if (component.Driver == null)
-            return;
-
-        Dismount(component.Driver.Value, uid);
-    }
-
-    private void OnHorn(EntityUid uid, VehicleComponent component, InstantActionEvent args)
-    {
-        if (args.Handled
-        || component.Driver != args.Performer
-        || component.HornSound == null)
-            return;
-
-        _audio.PlayPvs(component.HornSound, uid);
-        args.Handled = true;
-    }
-
-    private void OnSiren(EntityUid uid, VehicleComponent component, InstantActionEvent args)
-    {
-        if (args.Handled
-        || component.Driver != args.Performer
-        || component.SirenSound == null)
-            return;
-
-        component.SirenStream = component.SirenEnabled ? _audio.Stop(component.SirenStream) : _audio.PlayPvs(component.SirenSound, uid)?.Entity;
-        component.SirenEnabled = !component.SirenEnabled;
-        args.Handled = true;
+        _ambientSound.SetAmbience(ent, CanRun(ent));
     }
 
     private void OnStrapAttempt(Entity<VehicleComponent> ent, ref StrapAttemptEvent args)
     {
-        var driver = args.Buckle.Owner;
-
-        if (ent.Comp.Driver != null)
+        if (ent.Comp.Operator != null)
         {
             args.Cancelled = true;
             return;
         }
-
-        if (TrySpawnVirtualItems(ent, ref args, driver))
-            return;
-
-        AddHorns(driver, ent);
     }
 
-    private bool TrySpawnVirtualItems(Entity<VehicleComponent> ent, ref StrapAttemptEvent args, EntityUid driver)
+    private void OnOperatorSet(Entity<VehicleComponent> ent, ref VehicleOperatorSetEvent args)
     {
-        if (ent.Comp.RequiredHands == 0)
-            return false;
+        if (args.OldOperator != null)
+            CleanupOperator(args.OldOperator.Value, ent);
 
-        for (var hands = 0; hands < ent.Comp.RequiredHands; hands++)
+        if (args.NewOperator == null)
         {
-            if (_virtualItem.TrySpawnVirtualItemInHand(ent.Owner, driver, false))
-                continue;
-            args.Cancelled = true;
-            _virtualItem.DeleteInHandsMatching(driver, ent.Owner);
-            return true;
+            _appearance.SetData(ent, VehicleVisuals.HasOperator, false);
+            return;
         }
 
-        return false;
-    }
-
-    private void OnStrapped(Entity<VehicleComponent> ent, ref StrappedEvent args)
-    {
-        var driver = args.Buckle.Owner;
-
-        if (!HasComp<MobMoverComponent>(driver) || ent.Comp.Driver != null)
-            return;
-
-        ent.Comp.Driver = driver;
-        _appearance.SetData(ent, VehicleState.DrawOver, true);
-
+        AddActions(args.NewOperator.Value, ent);
         SetupOverlay(ent);
+        _appearance.SetData(ent, VehicleVisuals.HasOperator, true);
 
-        if (!ent.Comp.EngineRunning)
+        if (HasComp<TileMovementComponent>(args.NewOperator.Value))
+            EnsureComp<TileMovementComponent>(ent);
+    }
+
+    private void OnHorn(Entity<VehicleComponent> ent, ref HornActionEvent args)
+    {
+        if (args.Handled
+            || ent.Comp.Operator != args.Performer
+            || ent.Comp.HornSound == null)
             return;
 
-        Mount(driver, ent);
+        _audio.PlayPvs(ent.Comp.HornSound, ent);
+        args.Handled = true;
+    }
+
+    private void OnSiren(Entity<VehicleComponent> ent, ref SirenActionEvent args)
+    {
+        if (args.Handled
+            || ent.Comp.Operator != args.Performer
+            || ent.Comp.SirenSound == null)
+            return;
+
+        ent.Comp.SirenStream = ent.Comp.SirenEnabled
+            ? _audio.Stop(ent.Comp.SirenStream)
+            : _audio.PlayPvs(ent.Comp.SirenSound, ent)?.Entity;
+        ent.Comp.SirenEnabled = !ent.Comp.SirenEnabled;
+        args.Handled = true;
+    }
+
+    private void OnItemSlotEject(Entity<VehicleComponent> ent, ref ItemSlotEjectAttemptEvent args)
+    {
+        if (!ent.Comp.PreventEjectOfKey
+            || ent.Comp.Operator == null
+            || args.Slot.ID != ent.Comp.KeySlot
+            || args.User == ent.Comp.Operator)
+            return;
+
+        args.Cancelled = true;
+    }
+
+    private void OnBreak(Entity<VehicleComponent> ent, ref BreakageEventArgs args)
+    {
+        ent.Comp.IsBroken = true;
+        _ambientSound.SetAmbience(ent, false);
+        _actionBlocker.UpdateCanMove(ent);
+
+        if (ent.Comp.Operator != null)
+            _buckle.TryUnbuckle(ent.Comp.Operator.Value, ent.Comp.Operator.Value);
+    }
+
+    private void OnRepair(Entity<VehicleComponent> ent, ref DamageChangedEvent args)
+    {
+        if (!ent.Comp.IsBroken || args.Damageable.TotalDamage != FixedPoint2.Zero)
+            return;
+
+        ent.Comp.IsBroken = false;
+        _ambientSound.SetAmbience(ent, CanRun(ent));
+        _actionBlocker.UpdateCanMove(ent);
+    }
+
+    private void OnCanRun(Entity<VehicleComponent> ent, ref VehicleCanRunEvent args)
+    {
+        if (ent.Comp.IsBroken)
+            args = args with { CanRun = false };
+
+        _ambientSound.SetAmbience(ent, args.CanRun);
+    }
+
+    private bool CanRun(Entity<VehicleComponent> ent)
+    {
+        var ev = new VehicleCanRunEvent(ent);
+        RaiseLocalEvent(ent, ref ev);
+        return ev.CanRun;
+    }
+
+    private void AddActions(EntityUid operatorUid, Entity<VehicleComponent> vehicle)
+    {
+        if (vehicle.Comp.HornSound != null)
+            _actions.AddAction(operatorUid, ref vehicle.Comp.HornAction, HornActionId, vehicle);
+        if (vehicle.Comp.SirenSound != null)
+            _actions.AddAction(operatorUid, ref vehicle.Comp.SirenAction, SirenActionId, vehicle);
     }
 
     private void SetupOverlay(Entity<VehicleComponent> ent)
     {
-        if (ent.Comp.OverlayPrototype == null)
+        if (ent.Comp.OverlayPrototype == null || ent.Comp.ActiveOverlay != null)
             return;
+
         var overlay = EntityManager.SpawnEntity(ent.Comp.OverlayPrototype, Transform(ent).Coordinates);
         _transform.SetParent(overlay, ent);
         _transform.SetLocalPosition(overlay, Vector2.Zero);
@@ -201,103 +182,31 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         ent.Comp.ActiveOverlay = overlay;
     }
 
-    private void OnUnstrapped(Entity<VehicleComponent> ent, ref UnstrappedEvent args)
+    private void CleanupOperator(EntityUid operatorUid, Entity<VehicleComponent> vehicle)
     {
-        if (ent.Comp.Driver != args.Buckle.Owner)
-            return;
-
-        Dismount(args.Buckle.Owner, ent);
-        _appearance.SetData(ent, VehicleState.DrawOver, false);
-    }
-
-    private void OnDropped(Entity<VehicleComponent> ent, ref VirtualItemDeletedEvent args)
-    {
-        if (ent.Comp.Driver != args.User)
-            return;
-
-        _buckle.TryUnbuckle(args.User, args.User);
-        Dismount(args.User, ent);
-        _appearance.SetData(ent, VehicleState.DrawOver, false);
-    }
-
-    private void AddHorns(EntityUid driver, EntityUid vehicle)
-    {
-        if (!TryComp<VehicleComponent>(vehicle, out var vehicleComp))
-            return;
-
-        if (vehicleComp.HornSound != null)
-            _actions.AddAction(driver, ref vehicleComp.HornAction, HornActionId, vehicle);
-        if (vehicleComp.SirenSound != null)
-            _actions.AddAction(driver, ref vehicleComp.SirenAction, SirenActionId, vehicle);
-    }
-
-    private void Mount(EntityUid driver, EntityUid vehicle)
-    {
-        _mover.SetRelay(driver, vehicle);
-
-        if (HasComp<TileMovementComponent>(driver))
-            EnsureComp<TileMovementComponent>(vehicle);
-    }
-
-    private void Dismount(EntityUid driver, EntityUid vehicle)
-    {
-        if (!TryComp<VehicleComponent>(vehicle, out var vehicleComp) || vehicleComp.Driver != driver)
-            return;
-
-        vehicleComp.Driver = null;
-
-        if (vehicleComp.ActiveOverlay.HasValue)
+        if (vehicle.Comp.ActiveOverlay != null)
         {
-            EntityManager.QueueDeleteEntity(vehicleComp.ActiveOverlay.Value);
-            vehicleComp.ActiveOverlay = null;
+            EntityManager.QueueDeleteEntity(vehicle.Comp.ActiveOverlay.Value);
+            vehicle.Comp.ActiveOverlay = null;
         }
-        RemComp<RelayInputMoverComponent>(driver);
 
-        if (vehicleComp.HornAction != null)
-            _actions.RemoveAction(driver, vehicleComp.HornAction);
-        if (vehicleComp.SirenAction != null)
-            _actions.RemoveAction(driver, vehicleComp.SirenAction);
-
-        _virtualItem.DeleteInHandsMatching(driver, vehicle);
+        RemoveOperatorAction(operatorUid, ref vehicle.Comp.HornAction);
+        RemoveOperatorAction(operatorUid, ref vehicle.Comp.SirenAction);
 
         if (HasComp<TileMovementComponent>(vehicle))
             RemComp<TileMovementComponent>(vehicle);
     }
 
-    private void OnItemSlotEject(EntityUid uid, VehicleComponent comp, ref ItemSlotEjectAttemptEvent args)
+    private void RemoveOperatorAction(EntityUid operatorUid, ref EntityUid? action)
     {
-        if (!comp.PreventEjectOfKey || comp.Driver == null || args.Slot.ID != comp.KeySlot || args.User == comp.Driver)
+        if (action is not { } actionUid)
             return;
 
-        args.Cancelled = true;
-    }
+        action = null;
 
-    private void OnBreak(EntityUid uid, VehicleComponent component, BreakageEventArgs args)
-    {
-        component.IsBroken = true;
-
-        //remove drivers ability to drive if there is a driver
-        if (component.Driver != null)
-            Dismount(component.Driver.Value, uid);
-
-        //stop animation
-        component.EngineRunning = false;
-        _appearance.SetData(uid, VehicleState.Animated, false);
-        _ambientSound.SetAmbience(uid, false);
-    }
-
-    private void OnRepair(EntityUid uid, VehicleComponent component, DamageChangedEvent args)
-    {
-        if (component.IsBroken && args.Damageable.TotalDamage == FixedPoint2.Zero)
-            component.IsBroken = false;
-    }
-
-    private void OnGetAdditionalAccess(EntityUid uid, VehicleComponent component, ref GetAdditionalAccessEvent args)
-    {
-        var driver = component.Driver;
-        if (driver == null)
+        if (!TryComp<ActionComponent>(actionUid, out var actionComp) || actionComp.AttachedEntity != operatorUid)
             return;
 
-        args.Entities.Add(driver.Value);
+        _actions.RemoveAction(operatorUid, (actionUid, actionComp));
     }
 }

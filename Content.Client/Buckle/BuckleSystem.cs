@@ -41,11 +41,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Client.Rotation;
-using Content.Goobstation.Shared.Vehicles;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Rotation;
+using Content.Shared.Vehicle.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 

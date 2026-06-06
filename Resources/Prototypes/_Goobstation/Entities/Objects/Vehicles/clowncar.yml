@@ -19,11 +19,18 @@
     noRot: true
   - type: Vehicle
     renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
-    requiredHands: 1
     hornSound:
       collection: BikeHorn
       params:
         variation: 0.125
+  # RS14-start
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - VehicleKey
+      - BikeHorn
+  # RS14-end
   - type: MovementSpeedModifier
     weightlessModifier: 0
     acceleration: 1

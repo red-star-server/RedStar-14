@@ -7,6 +7,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Vehicles;
+using Content.Shared.Vehicle.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 
@@ -28,7 +29,7 @@ public sealed class VehicleSystem : SharedVehicleSystem
     private void OnAppearanceChange(Entity<VehicleComponent> ent, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null
-            || !_appearance.TryGetData(ent, VehicleState.Animated, out bool animated)
+            || !_appearance.TryGetData(ent, VehicleVisuals.CanRun, out bool animated)
             || !TryComp<SpriteComponent>(ent, out var spriteComp))
             return;
 
@@ -48,12 +49,12 @@ public sealed class VehicleSystem : SharedVehicleSystem
     private void SpritePos(Entity<VehicleComponent> ent)
     {
         if (!TryComp<SpriteComponent>(ent, out var spriteComp)
-            || !_appearance.TryGetData(ent, VehicleState.DrawOver, out _))
+            || !_appearance.TryGetData(ent, VehicleVisuals.HasOperator, out bool hasOperator))
             return;
 
         _sprite.SetDrawDepth((ent, spriteComp), (int)Content.Shared.DrawDepth.DrawDepth.Objects);
 
-        if (ent.Comp.RenderOver == VehicleRenderOver.None)
+        if (!hasOperator || ent.Comp.RenderOver == VehicleRenderOver.None)
             return;
 
         var dir = (Transform(ent).LocalRotation + _eye.CurrentEye.Rotation).GetCardinalDir();

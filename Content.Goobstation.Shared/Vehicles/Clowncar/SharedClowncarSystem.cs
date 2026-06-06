@@ -12,6 +12,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Stunnable;
+using Content.Shared.Vehicle.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 using Robust.Shared.Audio.Systems;

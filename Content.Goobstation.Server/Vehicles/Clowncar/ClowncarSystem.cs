@@ -10,7 +10,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using Content.Goobstation.Shared.Vehicles;
 using Content.Goobstation.Shared.Vehicles.Clowncar;
 using Content.Server.Chat.Systems;
 using Content.Shared.ActionBlocker;
@@ -18,6 +17,7 @@ using Content.Shared.Buckle;
 using Content.Shared.Chat;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
+using Content.Shared.Vehicle.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Audio.Jukebox;
 using Robust.Shared.Audio;
@@ -57,7 +57,7 @@ public sealed class ClowncarSystem : SharedClowncarSystem
 
         component.ThankCounter++;
 
-        if (vehicle.Driver == null)
+        if (vehicle.Operator == null)
         {
             _chatSystem.TrySendInGameICMessage(args.Performer, Loc.GetString("clowncar-thank-no-driver"), InGameICChatType.Speak, false);
             args.Handled = true;
@@ -68,7 +68,7 @@ public sealed class ClowncarSystem : SharedClowncarSystem
             return;
         }
 
-        var message = Loc.GetString("clowncar-thank-driver", ("driver", vehicle.Driver));
+        var message = Loc.GetString("clowncar-thank-driver", ("driver", vehicle.Operator));
         _chatSystem.TrySendInGameICMessage(args.Performer, message, InGameICChatType.Speak, false);
         args.Handled = true;
 
@@ -87,7 +87,7 @@ public sealed class ClowncarSystem : SharedClowncarSystem
         if (!TryComp<VehicleComponent>(uid, out var vehicle))
             return;
 
-        if (vehicle.Driver == null)
+        if (vehicle.Operator == null)
         {
             AlternativeVerb verb = new();
             verb.Text = Loc.GetString("enter-driver-seat");
@@ -122,7 +122,7 @@ public sealed class ClowncarSystem : SharedClowncarSystem
             return;
         if (!TryComp<VehicleComponent>(uid, out var vehicle))
             return;
-        if (vehicle.Driver != null)
+        if (vehicle.Operator != null)
             return;
 
         _buckle.TryBuckle(args.User, args.User, uid);

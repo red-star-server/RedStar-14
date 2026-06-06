@@ -119,6 +119,7 @@ using Content.Shared.Standing;
 using Content.Shared.Storage.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
+using Content.Shared.Vehicle.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -300,7 +301,19 @@ public abstract partial class SharedBuckleSystem
     private void OnBuckleUpdateCanMove(EntityUid uid, BuckleComponent component, UpdateCanMoveEvent args)
     {                            // Goobstation
         if (component.Buckled && TryComp<StrapComponent>(component.BuckledTo, out var strap) && strap.BlockMovement)
+        {
+            // RS14-start
+            if (TryComp<VehicleOperatorComponent>(uid, out var vehicleOperator) &&
+                vehicleOperator.Vehicle is { } vehicle &&
+                component.BuckledTo == vehicle &&
+                HasComp<VehicleComponent>(vehicle))
+            {
+                return;
+            }
+            // RS14-end
+
             args.Cancel();
+        }
     }
 
     // WD EDIT START

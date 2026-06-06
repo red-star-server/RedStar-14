@@ -66,8 +66,6 @@
       visible: false
     noRot: true
   - type: Vehicle
-    requiredHands: 1
-    engineRunning: true
     renderOver: South
   - type: MovementSpeedModifier
     acceleration: 1 # Hard to accelerate, but has high max speed
