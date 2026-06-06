@@ -63,6 +63,16 @@ public sealed partial class DoAfter
 
     public NetCoordinates NetUserPosition;
 
+    // RS14-start
+    /// <summary>
+    /// Entity whose movement is tracked for break-on-move checks.
+    /// </summary>
+    [NonSerialized]
+    public EntityUid MovementEntity;
+
+    public NetEntity NetMovementEntity;
+    // RS14-end
+
     /// <summary>
     ///     Distance from the user to the target when the do after was started.
     /// </summary>
@@ -110,9 +120,11 @@ public sealed partial class DoAfter
         TargetDistance = other.TargetDistance;
         InitialHand = other.InitialHand;
         InitialItem = other.InitialItem;
+        MovementEntity = other.MovementEntity; // RS14
 
         NetUserPosition = other.NetUserPosition;
         NetInitialItem = other.NetInitialItem;
+        NetMovementEntity = other.NetMovementEntity; // RS14
     }
 }
 

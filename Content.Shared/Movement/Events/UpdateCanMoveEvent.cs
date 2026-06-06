@@ -20,3 +20,17 @@ public sealed class UpdateCanMoveEvent : CancellableEntityEventArgs
 
     public EntityUid Uid { get; }
 }
+
+// RS14-start
+/// <summary>
+/// Event raised directed on an entity when their value of <see cref="InputMoverComponent.CanMove"/> is updated.
+/// </summary>
+[ByRefEvent]
+public readonly record struct CanMoveUpdatedEvent(bool CanMove);
+
+/// <summary>
+/// Event raised directed on an entity when its effective movement entity changes.
+/// </summary>
+[ByRefEvent]
+public readonly record struct EffectiveMoverChangedEvent(EntityUid OldMover, EntityUid NewMover);
+// RS14-end

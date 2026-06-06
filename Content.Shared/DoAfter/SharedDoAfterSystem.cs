@@ -111,6 +111,8 @@ using Content.Shared._Shitmed.DoAfter; // Shitmed
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
+using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -125,6 +127,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     [Dependency] protected readonly IGameTiming GameTiming = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedMoverController _mover = default!; // RS14
     [Dependency] private readonly TagSystem _tag = default!;
 
     /// <summary>
@@ -141,7 +144,29 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         SubscribeLocalEvent<DoAfterComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<DoAfterComponent, ComponentGetState>(OnDoAfterGetState);
         SubscribeLocalEvent<DoAfterComponent, ComponentHandleState>(OnDoAfterHandleState);
+        SubscribeLocalEvent<DoAfterComponent, EffectiveMoverChangedEvent>(OnEffectiveMoverChanged); // RS14
     }
+
+    // RS14-start
+    private void OnEffectiveMoverChanged(EntityUid uid, DoAfterComponent component, ref EffectiveMoverChangedEvent args)
+    {
+        var dirty = false;
+        foreach (var doAfter in component.DoAfters.Values)
+        {
+            if (doAfter.Cancelled || doAfter.Completed || !doAfter.Args.BreakOnMove)
+                continue;
+
+            if (doAfter.MovementEntity != args.OldMover)
+                continue;
+
+            InternalCancel(doAfter, component);
+            dirty = true;
+        }
+
+        if (dirty)
+            Dirty(uid, component);
+    }
+    // RS14-end
 
     private void OnUnpaused(EntityUid uid, DoAfterComponent component, ref EntityUnpausedEvent args)
     {
@@ -229,6 +254,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             // Networking yay (if you have an easier way dear god please).
             newDoAfter.UserPosition = EnsureCoordinates<DoAfterComponent>(newDoAfter.NetUserPosition, uid);
             newDoAfter.InitialItem = EnsureEntity<DoAfterComponent>(newDoAfter.NetInitialItem, uid);
+            newDoAfter.MovementEntity = EnsureEntity<DoAfterComponent>(newDoAfter.NetMovementEntity, uid); // RS14
 
             var doAfterArgs = newDoAfter.Args;
             doAfterArgs.Target = EnsureEntity<DoAfterComponent>(doAfterArgs.NetTarget, uid);
@@ -331,7 +357,12 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         args.NetEventTarget = GetNetEntity(args.EventTarget);
 
         if (args.BreakOnMove)
-            doAfter.UserPosition = Transform(args.User).Coordinates;
+        {
+            // RS14-start
+            doAfter.MovementEntity = _mover.GetEffectiveMover(args.User);
+            doAfter.UserPosition = Transform(doAfter.MovementEntity).Coordinates;
+            // RS14-end
+        }
 
         if (args.Target != null && args.BreakOnMove)
         {
@@ -340,6 +371,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         }
 
         doAfter.NetUserPosition = GetNetCoordinates(doAfter.UserPosition);
+        doAfter.NetMovementEntity = GetNetEntity(doAfter.MovementEntity); // RS14
 
         // For this we need to stay on the same hand slot and need the same item in that hand slot
         // (or if there is no item there we need to keep it free).

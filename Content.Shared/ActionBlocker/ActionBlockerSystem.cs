@@ -130,7 +130,11 @@ namespace Content.Shared.ActionBlocker
                 Dirty(uid, component);
 
             component.CanMove = !ev.Cancelled;
-            return !ev.Cancelled;
+            // RS14-start
+            var updatedEv = new CanMoveUpdatedEvent(component.CanMove);
+            RaiseLocalEvent(uid, ref updatedEv);
+            return component.CanMove;
+            // RS14-end
         }
 
         /// <summary>
