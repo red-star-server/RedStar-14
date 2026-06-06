@@ -54,6 +54,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, BreakageEventArgs>(OnBreak);
         SubscribeLocalEvent<VehicleComponent, DamageChangedEvent>(OnRepair);
         SubscribeLocalEvent<VehicleComponent, VehicleCanRunEvent>(OnCanRun);
+        SubscribeLocalEvent<VehicleComponent, VehicleCanRunUpdatedEvent>(OnCanRunUpdated);
         SubscribeLocalEvent<VehicleComponent, VehicleOperatorSetEvent>(OnOperatorSet);
         // RS14-end
     }
@@ -151,7 +152,10 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     {
         if (ent.Comp.IsBroken)
             args = args with { CanRun = false };
+    }
 
+    private void OnCanRunUpdated(Entity<VehicleComponent> ent, ref VehicleCanRunUpdatedEvent args)
+    {
         _ambientSound.SetAmbience(ent, args.CanRun);
     }
 
@@ -159,6 +163,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     {
         var ev = new VehicleCanRunEvent(ent);
         RaiseLocalEvent(ent, ref ev);
+        _ambientSound.SetAmbience(ent, ev.CanRun);
         return ev.CanRun;
     }
 
@@ -184,6 +189,12 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void CleanupOperator(EntityUid operatorUid, Entity<VehicleComponent> vehicle)
     {
+        if (vehicle.Comp.SirenEnabled || vehicle.Comp.SirenStream != null)
+        {
+            vehicle.Comp.SirenStream = _audio.Stop(vehicle.Comp.SirenStream);
+            vehicle.Comp.SirenEnabled = false;
+        }
+
         if (vehicle.Comp.ActiveOverlay != null)
         {
             EntityManager.QueueDeleteEntity(vehicle.Comp.ActiveOverlay.Value);

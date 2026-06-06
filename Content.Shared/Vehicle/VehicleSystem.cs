@@ -84,6 +84,8 @@ public sealed partial class VehicleSystem : EntitySystem
         if (ent.Comp.RequiresOperator && ent.Comp.Operator is null)
         {
             args.Cancel();
+            var noOperatorEv = new VehicleCanRunUpdatedEvent(ent, false);
+            RaiseLocalEvent(ent, ref noOperatorEv);
             return;
         }
         // RS14-end
@@ -92,6 +94,11 @@ public sealed partial class VehicleSystem : EntitySystem
         RaiseLocalEvent(ent, ref ev);
         if (!ev.CanRun)
             args.Cancel();
+
+        // RS14-start
+        var updatedEv = new VehicleCanRunUpdatedEvent(ent, ev.CanRun);
+        RaiseLocalEvent(ent, ref updatedEv);
+        // RS14-end
     }
 
     private void OnVehicleShutdown(Entity<VehicleComponent> ent, ref ComponentShutdown args)

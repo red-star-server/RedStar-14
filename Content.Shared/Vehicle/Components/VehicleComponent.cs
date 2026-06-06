@@ -165,3 +165,11 @@ public readonly record struct VehicleOperatorSetEvent(EntityUid? NewOperator, En
 /// </summary>
 [ByRefEvent, UsedImplicitly]
 public readonly record struct VehicleCanRunEvent(Entity<VehicleComponent> Vehicle, bool CanRun = true);
+
+// RS14-start
+/// <summary>
+/// Event raised on a vehicle after its final can-run state has been resolved.
+/// </summary>
+[ByRefEvent, UsedImplicitly]
+public readonly record struct VehicleCanRunUpdatedEvent(Entity<VehicleComponent> Vehicle, bool CanRun);
+// RS14-end
