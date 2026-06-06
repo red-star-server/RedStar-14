@@ -53,6 +53,7 @@
             Botanist: [ 1, 1 ]
             Chef: [ 1, 1 ]
             MedicalDoctor: [ 1, 2 ]
+            Surgeon: [ 1, 1 ] # RS14
             Chemist: [ 1, 1 ]
             Janitor: [ 1, 1 ]
             Musician: [ 1, 1 ]

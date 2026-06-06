@@ -44,6 +44,7 @@
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 3, 3 ]
             MedicalDoctor: [ 6, 7 ]
+            Surgeon: [ 1, 1 ] # RS14
             Paramedic: [ 2, 2 ]
             MedicalIntern: [ 4, 5 ]
             #Virologist: [ 1, 1 ]
