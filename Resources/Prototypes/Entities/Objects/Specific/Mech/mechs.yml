@@ -40,6 +40,15 @@
   abstract: true
   components:
   - type: MobMover
+  # RS14-start
+  - type: Vehicle
+    transferDamage: false
+    operatorWhitelist:
+      components:
+      - HumanoidAppearance
+  - type: ContainerVehicle
+    containerId: mech-pilot-slot
+  # RS14-end
   - type: Mech
     pilotBlacklist: # Goobstation Change
       components:

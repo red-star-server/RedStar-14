@@ -17,7 +17,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
-using Content.Shared.Mech.Components;
+using Content.Shared.Mech.Components; // RS14
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
@@ -25,6 +25,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Content.Shared.Vehicle.Components; // RS14
 using Content.Shared.Zombies;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Input;
@@ -64,7 +65,7 @@ public abstract class SharedSprintingSystem : EntitySystem
         SubscribeLocalEvent<SprinterComponent, StunnedEvent>(OnSprintDisablingEvent);
         SubscribeLocalEvent<SprinterComponent, DownedEvent>(OnSprintDisablingEvent);
         SubscribeLocalEvent<CuffableComponent, SprintAttemptEvent>(OnCuffableSprintAttempt);
-        SubscribeLocalEvent<MechPilotComponent, SprintAttemptEvent>(OnMechPilotSprintAttempt);
+        SubscribeLocalEvent<VehicleOperatorComponent, SprintAttemptEvent>(OnMechPilotSprintAttempt); // RS14
         SubscribeLocalEvent<StandingStateComponent, SprintAttemptEvent>(OnStandingStateSprintAttempt);
         SubscribeLocalEvent<BuckleComponent, SprintAttemptEvent>(OnBuckleSprintAttempt);
         SubscribeLocalEvent<SprinterComponent, EntityZombifiedEvent>(OnZombified);
@@ -211,9 +212,11 @@ public abstract class SharedSprintingSystem : EntitySystem
         args.Cancel();
     }
 
-    private void OnMechPilotSprintAttempt(EntityUid uid, MechPilotComponent component, ref SprintAttemptEvent args)
+    private void OnMechPilotSprintAttempt(EntityUid uid, VehicleOperatorComponent component, ref SprintAttemptEvent args) // RS14
     {
-        if (!TryComp<SprinterComponent>(component.Mech, out var sprinterComponent)
+        if (component.Vehicle is not { } vehicle // RS14
+            || !HasComp<MechComponent>(vehicle) // RS14
+            || !TryComp<SprinterComponent>(vehicle, out var sprinterComponent) // RS14
             || sprinterComponent.IsSprinting)
             return;
 

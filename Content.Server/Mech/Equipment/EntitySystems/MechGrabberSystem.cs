@@ -93,6 +93,7 @@ using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Vehicle;
 using Content.Shared.Wall;
 using Content.Shared.Whitelist; // goobstation - added blacklist
 using Robust.Server.GameObjects;
@@ -116,6 +117,7 @@ public sealed class MechGrabberSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Goobstation - added blacklist
+    [Dependency] private readonly VehicleSystem _vehicle = default!; // RS14
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -234,7 +236,10 @@ public sealed class MechGrabberSystem : EntitySystem
         if (component.ItemContainer.ContainedEntities.Count >= component.MaxContents)
             return;
 
-        if (!TryComp<MechComponent>(args.User, out var mech) || mech.PilotSlot.ContainedEntity == target)
+        if (_vehicle.GetOperatorOrNull(args.User) == target) // RS14
+            return;
+
+        if (!TryComp<MechComponent>(args.User, out var mech)) // RS14
             return;
 
         if (mech.Energy + component.GrabEnergyDelta < 0)

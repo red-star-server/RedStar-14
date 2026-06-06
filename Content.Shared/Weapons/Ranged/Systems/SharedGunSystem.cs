@@ -77,6 +77,7 @@ using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Mech.Components; // Goobstation
+using Content.Shared.Vehicle.Components; // RS14
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
@@ -212,8 +213,8 @@ public abstract partial class SharedGunSystem : EntitySystem
             !_combatMode.IsInCombatMode(user))
             return;
 
-        if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
-            user = mechPilot.Mech;
+        if (TryComp<VehicleOperatorComponent>(user.Value, out var vehicleOperator) && vehicleOperator.Vehicle is { } vehicle) // RS14
+            user = vehicle;
 
         if (!TryGetGun(user.Value, out var ent, out var gun) ||
             HasComp<ItemComponent>(user))
@@ -240,8 +241,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (user == null)
             return;
 
-        if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
-            user = mechPilot.Mech;
+        if (TryComp<VehicleOperatorComponent>(user.Value, out var vehicleOperator) && vehicleOperator.Vehicle is { } vehicle) // RS14
+            user = vehicle;
 
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;

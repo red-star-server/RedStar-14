@@ -12,6 +12,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+using System.Linq; // RS14
 using System.Numerics;
 using Content.Shared.CardboardBox;
 using Content.Shared.CardboardBox.Components;
@@ -57,21 +58,18 @@ public sealed class CardboardBoxSystem : SharedCardboardBoxSystem
         //Any mob that can move should be surprised?
         //God mind rework needs to come faster so it can just check for mind
         //TODO: Replace with Mind Query when mind rework is in.
-        var mobMoverEntities = new List<EntityUid>();
         var mover = GetEntity(msg.Mover);
 
         //Filter out entities in range to see that they're a mob and add them to the mobMoverEntities hash for faster lookup
         var movers = new HashSet<Entity<MobMoverComponent>>();
         _entityLookup.GetEntitiesInRange(xform.Coordinates, box.Distance, movers);
 
-        foreach (var moverComp in movers)
-        {
-            var uid = moverComp.Owner;
-            if (uid == mover)
-                continue;
-
-            mobMoverEntities.Add(uid);
-        }
+        // RS14-start
+        var mobMoverEntities = movers
+            .Select(moverComp => moverComp.Owner)
+            .Where(uid => uid != mover)
+            .ToList();
+        // RS14-end
 
         //Play the effect for the mobs as long as they can see the box and are in range.
         foreach (var mob in mobMoverEntities)
