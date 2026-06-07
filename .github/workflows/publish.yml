@@ -63,7 +63,7 @@ jobs:
           ROBUST_CDN_URL: ${{ vars.ROBUST_CDN_URL }}
 
       - name: Deploy to Watchdog
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
