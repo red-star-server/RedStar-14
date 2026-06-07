@@ -69,4 +69,5 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
+            set -euxo pipefail
             /opt/ss14/deploy-latest-redstar.sh "${{ github.sha }}"
