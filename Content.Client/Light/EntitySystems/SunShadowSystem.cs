@@ -51,7 +51,7 @@ public sealed class SunShadowSystem : SharedSunShadowSystem
     {
         // So essentially the values are stored as the percentages of the total duration just so it adjusts the speed
         // dynamically and we don't have to manually handle it.
-        // It will lerp from each value to the next one with angle and length handled separately
+        // It will lerp from each value to the next one with angle and length handled separately.
         // RS14-start
         var directions = entity.Comp.Directions;
 
@@ -102,17 +102,17 @@ public sealed class SunShadowSystem : SharedSunShadowSystem
         var diff = (ratio - dir.Ratio) / range;
         diff = Math.Clamp(diff, 0f, 1f);
         // RS14-end
-                // We lerp angle + length separately as we don't want a straight-line lerp and want the rotation to be consistent.
-                var currentAngle = dir.Direction.ToAngle();
-                var nextAngle = next.Direction.ToAngle();
+        // We lerp angle + length separately as we don't want a straight-line lerp and want the rotation to be consistent.
+        var currentAngle = dir.Direction.ToAngle();
+        var nextAngle = next.Direction.ToAngle();
 
-                var angle = Angle.Lerp(currentAngle, nextAngle, diff);
-                // This is to avoid getting weird issues where the angle gets pretty close but length still noticeably catches up.
-                var lengthDiff = MathF.Pow(diff, 1f / 2f);
-                var length = float.Lerp(dir.Direction.Length(), next.Direction.Length(), lengthDiff);
+        var angle = Angle.Lerp(currentAngle, nextAngle, diff);
+        // This is to avoid getting weird issues where the angle gets pretty close but length still noticeably catches up.
+        var lengthDiff = MathF.Pow(diff, 1f / 2f);
+        var length = float.Lerp(dir.Direction.Length(), next.Direction.Length(), lengthDiff);
 
-                var vector = angle.ToVec() * length;
-                var alpha = float.Lerp(dir.Alpha, next.Alpha, diff);
-                return (vector, alpha);
-            }
-        }
+        var vector = angle.ToVec() * length;
+        var alpha = float.Lerp(dir.Alpha, next.Alpha, diff);
+        return (vector, alpha);
+    }
+}

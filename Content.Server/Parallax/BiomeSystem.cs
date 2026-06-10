@@ -351,6 +351,18 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         return !_ghostQuery.HasComp(uid) || _tags.HasTag(uid, AllowBiomeLoadingTag);
     }
 
+    // RS14-start
+    private HashSet<Vector2i> GetActiveChunks(BiomeComponent biome)
+    {
+        if (_activeChunks.TryGetValue(biome, out var chunks))
+            return chunks;
+
+        chunks = _tilePool.Get();
+        _activeChunks.Add(biome, chunks);
+        return chunks;
+    }
+    // RS14-end
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -361,8 +373,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             if (biome.LifeStage < ComponentLifeStage.Running)
                 continue;
             // RS14-start
-            if (!_activeChunks.ContainsKey(biome))
-                _activeChunks.Add(biome, _tilePool.Get());
+            GetActiveChunks(biome);
             // RS14-end
             _markerChunks.GetOrNew(biome);
         }
@@ -442,7 +453,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
         while (enumerator.MoveNext(out var chunkOrigin))
         {
-            _activeChunks[biome].Add(chunkOrigin.Value * ChunkSize);
+            GetActiveChunks(biome).Add(chunkOrigin.Value * ChunkSize);
         }
     }
 
@@ -474,7 +485,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     {
         BuildMarkerChunks(component, gridUid, grid, seed);
 
-        var active = _activeChunks[component];
+        var active = GetActiveChunks(component);
 
         foreach (var chunk in active)
         {
@@ -919,7 +930,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     /// </summary>
     private void UnloadChunks(BiomeComponent component, EntityUid gridUid, MapGridComponent grid, int seed)
     {
-        var active = _activeChunks[component];
+        var active = GetActiveChunks(component);
         List<(Vector2i, Tile)>? tiles = null;
 
         foreach (var chunk in component.LoadedChunks)
