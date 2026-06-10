@@ -29,3 +29,49 @@
       - Silicon
       - SiliconRadiation
 
+# Stomach
+
+- type: entity
+  parent: BaseCyberneticOrgan
+  id: BasicCyberneticStomach
+  name: cybernetic stomach
+  description: An advanced synthetic stomach capable of digesting almost anything that living beings can consume.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Mobs/Species/Misc/Cybernetics/organs.rsi
+    state: stomach
+  - type: Organ
+    intCap: 50
+    integrity: 50
+    integrityThresholds:
+      Normal: 50
+      Damaged: 20
+      Destroyed: 0
+    slotId: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - Trash
+      - Meat
+      - Vegetable
+      - Fruit
+    isSpecialDigestibleExclusive: false
+  - type: Metabolizer
+    maxPoisonsProcessable: 5
+    metabolizerTypes: [ Cybernetic ]
+    groups:
+    - id: Food
+    - id: Drink
+    - id: Poison
+      rateModifier: 0.5
+  - type: Tag
+    tags:
+    - Stomach
+

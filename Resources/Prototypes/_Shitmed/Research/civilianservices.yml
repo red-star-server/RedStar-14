@@ -65,6 +65,7 @@
   - BasicCyberneticHeart
   - BasicCyberneticLungs
   - BasicCyberneticLiver
+  - BasicCyberneticStomach # RS14
   position: -2,5
   technologyPrerequisites:
   - AdvancedTreatment

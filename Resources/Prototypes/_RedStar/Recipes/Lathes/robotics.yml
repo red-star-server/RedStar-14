@@ -11,3 +11,16 @@
     Gold: 1000
     Silver: 600
     Plasma: 400
+
+- type: latheRecipe
+  id: BasicCyberneticStomach
+  result: BasicCyberneticStomach
+  categories:
+  - Robotics
+  completetime: 5
+  materials:
+    Steel: 1000
+    Glass: 5000
+    Plastic: 500
+    Gold: 500
+    Silver: 300
