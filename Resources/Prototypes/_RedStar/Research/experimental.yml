@@ -2,7 +2,7 @@
   id: HUD
   name: research-technology-hud
   icon:
-    sprite: _RedStar/Clothing/Eyes/Hud/advanced_hud.rsi
+    sprite: _RedStar/Clothing/Eyes/HUD/advanced_hud.rsi
     state: icon
   discipline: Industrial
   tier: 2
