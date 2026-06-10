@@ -159,6 +159,7 @@
   - DiagnosticCyberneticEyes
   - SecurityCyberneticEyes
   - MedicalCyberneticEyes
+  - AdvancedCyberneticEyes # RS14
   position: -2,7
   technologyPrerequisites:
   - Autodoc

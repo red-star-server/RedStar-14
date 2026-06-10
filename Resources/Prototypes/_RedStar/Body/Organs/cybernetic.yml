@@ -1,0 +1,31 @@
+# Eyes
+
+- type: entity
+  parent: BasicCyberneticEyes
+  id: AdvancedCyberneticEyes
+  name: cybernetic advanced eyes
+  description: A pair of cybernetic eyes that enhance your vision, featuring an integrated AdvancedHUD.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Mobs/Species/Misc/Cybernetics/organs.rsi
+    state: eyes-advanced
+  - type: Organ
+    onAdd:
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: FlashImmunity
+    - type: EyeProtection
+    - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - SiliconRadiation
+    - type: ShowHealthIcons
+      damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - SiliconRadiation
+

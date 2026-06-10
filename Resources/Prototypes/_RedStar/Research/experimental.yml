@@ -1,0 +1,17 @@
+- type: technology
+  id: HUD
+  name: research-technology-hud
+  icon:
+    sprite: _RedStar/Clothing/Eyes/Hud/advanced_hud.rsi
+    state: icon
+  discipline: Industrial
+  tier: 2
+  cost: 7500
+  position: -5,-1
+  recipeUnlocks:
+  - ClothingEyesHudDiagnostic
+  - ClothingEyesHudMedical
+  - ClothingEyesHudSecurity
+  - ClothingEyesHudAdvanced
+  technologyPrerequisites:
+  - ModsuitsTech

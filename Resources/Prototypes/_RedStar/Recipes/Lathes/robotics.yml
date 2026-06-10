@@ -1,0 +1,13 @@
+- type: latheRecipe
+  id: AdvancedCyberneticEyes
+  result: AdvancedCyberneticEyes
+  categories:
+  - Robotics
+  completetime: 10
+  materials:
+    Steel: 3000
+    Glass: 1500
+    Plastic: 1000
+    Gold: 1000
+    Silver: 600
+    Plasma: 400
