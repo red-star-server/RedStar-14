@@ -62,6 +62,11 @@
       - Meat
       - Vegetable
       - Fruit
+      - ClothMade
+      - Paper
+      - Pill
+      - ReptilianFood
+      - Crayon
     isSpecialDigestibleExclusive: false
   - type: Metabolizer
     maxPoisonsProcessable: 5
