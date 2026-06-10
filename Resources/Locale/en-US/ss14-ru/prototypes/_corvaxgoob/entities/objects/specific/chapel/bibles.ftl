@@ -1,0 +1,10 @@
+ent-BibleDruid = druidic tablet
+    .desc = It's the mystery of the druids!
+ent-BibleCommunistManifesto = communist manifesto
+    .desc = Remove the mask of humanity from Capital.
+ent-BibleNarsie = tome of nar'sie
+    .desc = What could possibly go wrong with a book covered in blood?
+ent-BibleNanoTrasen = codex nanotrasimus
+    .desc = A familiar book containing the Sacred Operating Procedures.
+ent-BibleHonk = mirth of the honkmother
+    .desc = Oh great and glorious Mother, Mistress of Mirth, Matron of Mask and Merriments, Blessed is she amongst us jesters.
