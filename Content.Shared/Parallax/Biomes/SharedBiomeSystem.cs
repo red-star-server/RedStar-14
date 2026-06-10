@@ -10,6 +10,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Maps;
@@ -33,7 +34,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     public const byte ChunkSize = 8; // Lavaland change - make it public
 
     // Goob - Cache Noise
-    private readonly Dictionary<(FastNoiseLite, int), FastNoiseLite> _noiseCache = new();
+    private readonly ConcurrentDictionary<(FastNoiseLite, int), FastNoiseLite> _noiseCache = new(); // RS14
 
     protected void ClearNoiseCache()
     {
@@ -395,15 +396,16 @@ public abstract class SharedBiomeSystem : EntitySystem
 
     private FastNoiseLite GetNoise(FastNoiseLite seedNoise, int seed)
     {
-        if (_noiseCache.TryGetValue((seedNoise, seed), out var cached)) // Goob - Cache Noise
-            return cached;
-
-        var noiseCopy = new FastNoiseLite();
-        _serManager.CopyTo(seedNoise, ref noiseCopy, notNullableOverride: true);
-        noiseCopy.SetSeed(noiseCopy.GetSeed() + seed);
-        // Ensure re-calculate is run.
-        noiseCopy.SetFractalOctaves(noiseCopy.GetFractalOctaves());
-        _noiseCache[(seedNoise, seed)] = noiseCopy; // Goob - Cache Noise
-        return noiseCopy;
+        // RS14-start
+        return _noiseCache.GetOrAdd((seedNoise, seed), key =>
+        {
+            var noiseCopy = new FastNoiseLite();
+            _serManager.CopyTo(key.Item1, ref noiseCopy, notNullableOverride: true);
+            noiseCopy.SetSeed(noiseCopy.GetSeed() + key.Item2);
+            // Ensure re-calculate is run.
+            noiseCopy.SetFractalOctaves(noiseCopy.GetFractalOctaves());
+            return noiseCopy;
+        });
+        // RS14-end
     }
 }

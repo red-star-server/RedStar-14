@@ -126,11 +126,11 @@
     state: pod_0
   discipline: CivilianServices
   tier: 3
-  cost: 15000
+  cost: 20000 # CorvaxGoob
   recipeUnlocks:
   - CloningPodMachineCircuitboardRecipe
   - MedicalScannerMachineCircuitboardRecipe
   - CloningConsoleComputerCircuitboardRecipe
   technologyPrerequisites:
-  - HighEndSurgery
-  position: -3, 9
+  - BiochemicalStasis # CorvaxGoob
+  position: 5, 5 # CorvaxGoob

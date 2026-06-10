@@ -360,8 +360,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         {
             if (biome.LifeStage < ComponentLifeStage.Running)
                 continue;
-
-            _activeChunks.Add(biome, _tilePool.Get());
+            // RS14-start
+            if (!_activeChunks.ContainsKey(biome))
+                _activeChunks.Add(biome, _tilePool.Get());
+            // RS14-end
             _markerChunks.GetOrNew(biome);
         }
 
@@ -1051,11 +1053,11 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             return;
 
         EnsureComp<MapGridComponent>(mapUid);
-        var biome = EntityManager.ComponentFactory.GetComponent<BiomeComponent>();
+        var biome = EnsureComp<BiomeComponent>(mapUid); // RS14
         seed ??= _random.Next();
         SetSeed(mapUid, biome, seed.Value, false);
         SetTemplate(mapUid, biome, biomeTemplate, false);
-        AddComp(mapUid, biome, true);
+        // AddComp(mapUid, biome, true); // RS14
         Dirty(mapUid, biome, metadata);
 
         var gravity = EnsureComp<GravityComponent>(mapUid);
