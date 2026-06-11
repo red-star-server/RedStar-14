@@ -153,7 +153,7 @@ namespace Content.Client.Access.UI
                 }
             }
         }
-
+        // RS14-start
         /// <param name="enabled">If true, every individual access button will be pressed. If false, each will be depressed.</param>
         private void SetAllAccess(bool enabled)
         {
@@ -163,7 +163,7 @@ namespace Content.Client.Access.UI
                     button.Pressed = enabled;
             }
         }
-
+        // RS14-end
         private void SelectJobPreset(OptionButton.ItemSelectedEventArgs args)
         {
             if (!_prototypeManager.TryIndex(_jobPrototypeIds[args.Id], out JobPrototype? job))
@@ -243,9 +243,10 @@ namespace Content.Client.Access.UI
             JobTitleSaveButton.Disabled = !interfaceEnabled || !jobTitleDirty;
 
             JobPresetOptionButton.Disabled = !interfaceEnabled;
+            // RS14-start
             SelectAllButton.Disabled = !interfaceEnabled;
             DeselectAllButton.Disabled = !interfaceEnabled;
-
+            // RS14-end
             _accessButtons.UpdateState(state.TargetIdAccessList?.ToList() ??
                                        new List<ProtoId<AccessLevelPrototype>>(),
                                        state.AllowedModifyAccessList?.ToList() ??
