@@ -129,6 +129,18 @@ namespace Content.Client.Access.UI
             {
                 button.OnPressed += _ => SubmitData();
             }
+
+            SelectAllButton.OnPressed += _ =>
+            {
+                SetAllAccess(true);
+                SubmitData();
+            };
+
+            DeselectAllButton.OnPressed += _ =>
+            {
+                SetAllAccess(false);
+                SubmitData();
+            };
         }
 
         private void ClearAllAccess()
@@ -139,6 +151,16 @@ namespace Content.Client.Access.UI
                 {
                     button.Pressed = false;
                 }
+            }
+        }
+
+        /// <param name="enabled">If true, every individual access button will be pressed. If false, each will be depressed.</param>
+        private void SetAllAccess(bool enabled)
+        {
+            foreach (var button in _accessButtons.ButtonsList.Values)
+            {
+                if (!button.Disabled && button.Pressed != enabled)
+                    button.Pressed = enabled;
             }
         }
 
@@ -221,6 +243,8 @@ namespace Content.Client.Access.UI
             JobTitleSaveButton.Disabled = !interfaceEnabled || !jobTitleDirty;
 
             JobPresetOptionButton.Disabled = !interfaceEnabled;
+            SelectAllButton.Disabled = !interfaceEnabled;
+            DeselectAllButton.Disabled = !interfaceEnabled;
 
             _accessButtons.UpdateState(state.TargetIdAccessList?.ToList() ??
                                        new List<ProtoId<AccessLevelPrototype>>(),
