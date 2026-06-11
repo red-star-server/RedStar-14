@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxPaper
-  mapName: 'NTTG Пейпер'
+  mapName: 'USSP Пейпер'
   mapPath: /Maps/_CorvaxGoob/Stations/Paper/corvax_paper.yml
   maxRandomOffset: 0
   randomRotation: false

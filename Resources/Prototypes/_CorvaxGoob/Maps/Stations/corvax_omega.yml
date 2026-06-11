@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxOmega
-  mapName: 'NTRK Омега'
+  mapName: 'USSP Омега'
   mapPath: /Maps/_CorvaxGoob/Stations/Omega/corvax_omega.yml
   maxRandomOffset: 0
   randomRotation: false

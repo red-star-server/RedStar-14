@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxBox
-  mapName: 'NTTG Бокс'
+  mapName: 'USSP Бокс'
   mapPath: /Maps/_CorvaxGoob/Stations/Box/corvax_box.yml
   maxRandomOffset: 0
   randomRotation: false

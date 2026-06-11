@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxAmber
-  mapName: 'NT14-SB Амбер'
+  mapName: 'USSP Амбер'
   mapPath: /Maps/_CorvaxGoob/Stations/Amber/corvax_amber.yml
   maxRandomOffset: 0
   randomRotation: false

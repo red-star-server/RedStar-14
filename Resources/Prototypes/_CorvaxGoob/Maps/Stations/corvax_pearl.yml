@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxPearl
-  mapName: 'NTSR Пёрл'
+  mapName: 'USSP Пёрл'
   mapPath: /Maps/_CorvaxGoob/Stations/Pearl/corvax_pearl.yml
   maxRandomOffset: 0
   randomRotation: false

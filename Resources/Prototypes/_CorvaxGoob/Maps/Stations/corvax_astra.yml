@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxAstra
-  mapName: 'NTMT Астра'
+  mapName: 'USSP Астра'
   mapPath: /Maps/_CorvaxGoob/Stations/Astra/corvax_astra.yml
   maxRandomOffset: 0
   randomRotation: false

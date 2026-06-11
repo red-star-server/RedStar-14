@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxGlacier
-  mapName: 'NTDZX Гласир'
+  mapName: 'USSP Гласир'
   mapPath: /Maps/_CorvaxGoob/Stations/Glacier/corvax_glacier.yml
   maxRandomOffset: 0
   randomRotation: false

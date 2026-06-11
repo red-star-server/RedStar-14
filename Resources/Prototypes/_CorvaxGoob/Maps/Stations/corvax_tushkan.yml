@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxTushkan
-  mapName: 'NTTA Тушканчик'
+  mapName: 'USSP Тушканчик'
   mapPath: /Maps/_CorvaxGoob/Stations/Tushkan/corvax_tushkan.yml
   maxRandomOffset: 0
   randomRotation: false

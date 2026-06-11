@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxOutpost
-  mapName: 'NTKVA Аутпост'
+  mapName: 'USSP Аутпост'
   mapPath: /Maps/_CorvaxGoob/Stations/Outpost/corvax_outpost.yml
   maxRandomOffset: 0
   randomRotation: false

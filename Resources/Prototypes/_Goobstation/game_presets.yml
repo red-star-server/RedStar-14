@@ -165,7 +165,7 @@
     - CalmDynamic
     - SubGamemodesRule
     - RareIonStormScheduler
-    - SpaceTrafficControlFriendlyEventScheduler
+    #- SpaceTrafficControlFriendlyEventScheduler
 
 - type: gamePreset
   id: TheGuide

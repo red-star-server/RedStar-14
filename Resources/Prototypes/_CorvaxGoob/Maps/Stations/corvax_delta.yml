@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxDelta
-  mapName: 'NTTG Дельта'
+  mapName: 'USSP Дельта'
   mapPath: /Maps/_CorvaxGoob/Stations/Delta/corvax_delta.yml
   maxRandomOffset: 0
   randomRotation: false

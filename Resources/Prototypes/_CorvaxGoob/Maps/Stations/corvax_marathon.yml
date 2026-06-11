@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxMarathon
-  mapName: 'NTDC Марафон'
+  mapName: 'USSP Марафон'
   mapPath: /Maps/_CorvaxGoob/Stations/Marathon/corvax_marathon.yml
   maxRandomOffset: 0
   randomRotation: false

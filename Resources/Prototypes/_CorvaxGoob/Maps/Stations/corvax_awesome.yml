@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxAwesome
-  mapName: 'NTTBK Авесом'
+  mapName: 'USSP Авесом'
   mapPath: /Maps/_CorvaxGoob/Stations/Awesome/corvax_awesome.yml
   maxRandomOffset: 0
   randomRotation: false

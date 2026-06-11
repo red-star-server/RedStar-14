@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxSilly
-  mapName: 'NTABK Силли'
+  mapName: 'USSP Силли'
   mapPath: /Maps/_CorvaxGoob/Stations/Silly/corvax_silly.yml
   maxRandomOffset: 0
   randomRotation: false

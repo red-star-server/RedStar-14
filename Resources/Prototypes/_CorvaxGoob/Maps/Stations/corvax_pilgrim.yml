@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxPilgrim
-  mapName: 'NTTA Пилигрим'
+  mapName: 'USSP Пилигрим'
   mapPath: /Maps/_CorvaxGoob/Stations/Pilgrim/corvax_pilgrim.yml
   maxRandomOffset: 0
   randomRotation: false

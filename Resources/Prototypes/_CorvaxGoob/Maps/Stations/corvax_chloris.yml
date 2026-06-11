@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxChloris
-  mapName: 'NTLPK Хлорис'
+  mapName: 'USSP Хлорис'
   mapPath: /Maps/_CorvaxGoob/Stations/Chloris/corvax_chloris.yml
   maxRandomOffset: 0
   randomRotation: false

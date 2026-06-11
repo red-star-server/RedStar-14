@@ -1,6 +1,6 @@
 - type: gameMap
   id: CorvaxMascara
-  mapName: 'NTSX Маскара'
+  mapName: 'USSP Маскара'
   mapPath: /Maps/_CorvaxGoob/Stations/Mascara/corvax_mascara.yml
   maxRandomOffset: 0
   randomRotation: false
