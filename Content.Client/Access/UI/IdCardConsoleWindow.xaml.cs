@@ -129,7 +129,7 @@ namespace Content.Client.Access.UI
             {
                 button.OnPressed += _ => SubmitData();
             }
-
+            // RS14-start
             SelectAllButton.OnPressed += _ =>
             {
                 SetAllAccess(true);
@@ -142,7 +142,7 @@ namespace Content.Client.Access.UI
                 SubmitData();
             };
         }
-
+        // RS14-end
         private void ClearAllAccess()
         {
             foreach (var button in _accessButtons.ButtonsList.Values)
