@@ -3,6 +3,53 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
+  id: WeaponEnergyCrossbow
+  name: энергетический мини-арбалет
+  description: Маленькое, скрытное, смертоносное устройство.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _RedStar/Objects/Weapons/Guns/Bow/crossbow.rsi
+    layers:
+    - state: icon-0
+      map: ["enum.GunVisualLayers.Base"]
+    - state: icon-1
+      map: ["enum.GunVisualLayers.Mag"]
+      visible: false
+  - type: Item
+    size: Small
+  - type: Gun
+    fireRate: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -14
+  - type: AmmoCounter
+  - type: RechargeBasicEntityAmmo
+    rechargeSound:
+      path: /Audio/Magic/forcewall.ogg
+      params:
+        volume: -12
+    rechargeCooldown: 1.5
+  - type: BasicEntityAmmoProvider
+    proto: BulletEnergyCrossbow
+    capacity: 1
+    count: 1
+  - type: MagazineVisuals
+    magState: icon
+    steps: 2
+    zeroVisible: true
+  - type: Appearance
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - Belt
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
   id: WeaponEnergyCrossbowLarge
   name: энергетический арбалет
   description: Полноразмерная версия энергетического арбалета. Мощный, но медленный.
@@ -33,7 +80,7 @@
     rechargeSound:
       path: /Audio/Magic/forcewall.ogg
       params:
-        volume: -50
+        volume: -12
     rechargeCooldown: 2.5
   - type: BasicEntityAmmoProvider
     proto: BulletEnergyCrossbowLarge
