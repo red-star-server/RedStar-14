@@ -35,6 +35,6 @@
   - PKAUpgradeRange
   - PKAUpgradeFireRate
   - PKAUpgradeSpace
-  position: 0,-7
+  position: 1,0
   technologyPrerequisites:
-  - MassExcavation
+  - SalvageWeapons # RS14
