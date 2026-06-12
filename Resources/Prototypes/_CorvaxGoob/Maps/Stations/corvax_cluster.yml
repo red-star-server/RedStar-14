@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxCluster
-  mapName: 'NGT Кластер'
+  mapName: 'USSP Кластер'
   mapPath: /Maps/_CorvaxGoob/Stations/Cluster/corvax_cluster.yml
   minPlayers: 0
   maxPlayers: 25

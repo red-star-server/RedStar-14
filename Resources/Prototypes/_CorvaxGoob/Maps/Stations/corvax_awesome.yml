@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxAwesome
-  mapName: 'NTTBK Авесом'
+  mapName: 'USSP Авесом'
   mapPath: /Maps/_CorvaxGoob/Stations/Awesome/corvax_awesome.yml
   maxRandomOffset: 0
   randomRotation: false

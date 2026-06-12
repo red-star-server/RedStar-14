@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxOutpost
-  mapName: 'NTKVA Аутпост'
+  mapName: 'USSP Аутпост'
   mapPath: /Maps/_CorvaxGoob/Stations/Outpost/corvax_outpost.yml
   maxRandomOffset: 0
   randomRotation: false

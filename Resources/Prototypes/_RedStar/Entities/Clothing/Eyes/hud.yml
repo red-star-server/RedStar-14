@@ -1,0 +1,19 @@
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons, BaseCommandContraband]
+  id: ClothingEyesHudAdvanced
+  name: advanced hud
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Eyes/HUD/advanced_hud.rsi
+  - type: Clothing
+    sprite: _RedStar/Clothing/Eyes/HUD/advanced_hud.rsi
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+    - SiliconRadiation # Goobstation - Make IPCs take radiation
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5

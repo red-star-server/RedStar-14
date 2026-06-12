@@ -27,7 +27,7 @@ public sealed class SunShadowSystem : SharedSunShadowSystem
             return;
 
         var mapQuery = AllEntityQuery<SunShadowCycleComponent, SunShadowComponent>();
-        while (mapQuery.MoveNext(out var uid,  out var cycle, out var shadow))
+        while (mapQuery.MoveNext(out var uid, out var cycle, out var shadow))
         {
             if (!cycle.Running || cycle.Directions.Count == 0)
                 continue;
@@ -51,47 +51,68 @@ public sealed class SunShadowSystem : SharedSunShadowSystem
     {
         // So essentially the values are stored as the percentages of the total duration just so it adjusts the speed
         // dynamically and we don't have to manually handle it.
-        // It will lerp from each value to the next one with angle and length handled separately
-        var ratio = (float) (time / entity.Comp.Duration.TotalSeconds);
+        // It will lerp from each value to the next one with angle and length handled separately.
+        // RS14-start
+        var directions = entity.Comp.Directions;
 
-        for (var i = entity.Comp.Directions.Count - 1; i >= 0; i--)
+        if (directions.Count == 0 || entity.Comp.Duration.TotalSeconds <= 0)
+            return (Vector2.Zero, 0f);
+
+        if (directions.Count == 1)
+            return (directions[0].Direction, directions[0].Alpha);
+
+        var ratio = (float)(time / entity.Comp.Duration.TotalSeconds);
+        ratio %= 1f;
+
+        if (ratio < 0f)
+            ratio += 1f;
+
+        var index = -1;
+
+        for (var i = directions.Count - 1; i >= 0; i--)
         {
-            var dir = entity.Comp.Directions[i];
-
-            if (ratio > dir.Ratio)
+            if (ratio >= directions[i].Ratio)
             {
-                var next = entity.Comp.Directions[(i + 1) % entity.Comp.Directions.Count];
-                float nextRatio;
-
-                // Last entry
-                if (i == entity.Comp.Directions.Count - 1)
-                {
-                    nextRatio = next.Ratio + 1f;
-                }
-                else
-                {
-                    nextRatio = next.Ratio;
-                }
-
-                var range = nextRatio - dir.Ratio;
-                var diff = (ratio - dir.Ratio) / range;
-                DebugTools.Assert(diff is >= 0f and <= 1f);
-
-                // We lerp angle + length separately as we don't want a straight-line lerp and want the rotation to be consistent.
-                var currentAngle = dir.Direction.ToAngle();
-                var nextAngle = next.Direction.ToAngle();
-
-                var angle = Angle.Lerp(currentAngle, nextAngle, diff);
-                // This is to avoid getting weird issues where the angle gets pretty close but length still noticeably catches up.
-                var lengthDiff = MathF.Pow(diff, 1f / 2f);
-                var length = float.Lerp(dir.Direction.Length(), next.Direction.Length(), lengthDiff);
-
-                var vector = angle.ToVec() * length;
-                var alpha = float.Lerp(dir.Alpha, next.Alpha, diff);
-                return (vector, alpha);
+                index = i;
+                break;
             }
         }
 
-        throw new InvalidOperationException();
+        // If ratio is before the first entry, interpolate from the last entry to the first entry.
+        if (index == -1)
+        {
+            index = directions.Count - 1;
+            ratio += 1f;
+        }
+
+        var dir = directions[index];
+        var nextIndex = (index + 1) % directions.Count;
+        var next = directions[nextIndex];
+
+        var nextRatio = next.Ratio;
+
+        if (nextIndex == 0)
+            nextRatio += 1f;
+
+        var range = nextRatio - dir.Ratio;
+
+        if (range <= 0f)
+            return (dir.Direction, dir.Alpha);
+
+        var diff = (ratio - dir.Ratio) / range;
+        diff = Math.Clamp(diff, 0f, 1f);
+        // RS14-end
+        // We lerp angle + length separately as we don't want a straight-line lerp and want the rotation to be consistent.
+        var currentAngle = dir.Direction.ToAngle();
+        var nextAngle = next.Direction.ToAngle();
+
+        var angle = Angle.Lerp(currentAngle, nextAngle, diff);
+        // This is to avoid getting weird issues where the angle gets pretty close but length still noticeably catches up.
+        var lengthDiff = MathF.Pow(diff, 1f / 2f);
+        var length = float.Lerp(dir.Direction.Length(), next.Direction.Length(), lengthDiff);
+
+        var vector = angle.ToVec() * length;
+        var alpha = float.Lerp(dir.Alpha, next.Alpha, diff);
+        return (vector, alpha);
     }
 }

@@ -76,6 +76,7 @@
   - BasicCyberneticHeart
   - BasicCyberneticLungs
   - BasicCyberneticLiver
+  - BasicCyberneticStomach # RS14
 
 - type: latheRecipePack
   id: AdvancedCybernetics
@@ -89,3 +90,4 @@
   - DexLeftHand
   - DexRightHand
   - DiagnosticCyberneticEyes
+  - AdvancedCyberneticEyes # RS14

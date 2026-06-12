@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxChloris
-  mapName: 'NTLPK Хлорис'
+  mapName: 'USSP Хлорис'
   mapPath: /Maps/_CorvaxGoob/Stations/Chloris/corvax_chloris.yml
   maxRandomOffset: 0
   randomRotation: false

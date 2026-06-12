@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxAvrite
-  mapName: 'NTSY Аврит'
+  mapName: 'USSP Аврит'
   mapPath: /Maps/_CorvaxGoob/Stations/Avrite/corvax_avrite.yml
   maxRandomOffset: 0
   randomRotation: false

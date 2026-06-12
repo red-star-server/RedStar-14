@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxMarathon
-  mapName: 'NTDC Марафон'
+  mapName: 'USSP Марафон'
   mapPath: /Maps/_CorvaxGoob/Stations/Marathon/corvax_marathon.yml
   maxRandomOffset: 0
   randomRotation: false

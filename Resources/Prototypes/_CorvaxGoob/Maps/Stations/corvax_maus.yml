@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxMaus
-  mapName: 'NTMG Маус'
+  mapName: 'USSP Маус'
   mapPath: /Maps/_CorvaxGoob/Stations/Maus/corvax_maus.yml
   maxRandomOffset: 0
   randomRotation: false

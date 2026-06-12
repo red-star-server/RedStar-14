@@ -15,7 +15,7 @@
 - type: latheRecipePack
   id: SecurityEquipmentStatic
   recipes:
-  - ClothingEyesHudSecurity
+  #- ClothingEyesHudSecurity # RS14
   - ForensicPad
   - Handcuffs
   - TargetClown
@@ -28,6 +28,7 @@
   id: SecurityPracticeStatic
   recipes:
   - BoxShotgunPractice
+  - BoxShotgunFlare #CorvaxGoob: add box
   # - MagazineBoxLightRiflePractice # Goobstation - remove light rifle
   - MagazineBoxMagnumPractice
   - MagazineBoxPistolPractice
@@ -104,6 +105,7 @@
   - PowerCageSmall
   - TelescopicShield
   - ClothingBackpackHarmpack
+  - ClothingEyesHudSecurity # RS14
 
 - type: latheRecipePack
   id: SecurityBoards

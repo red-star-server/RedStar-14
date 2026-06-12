@@ -61,6 +61,22 @@
                 {
             "name": "outerClothing",
             "directions": 4
+        },
+        {
+            "name": "socks",
+            "directions": 4
+        },
+        {
+            "name": "finger",
+            "directions": 4
+        },
+        {
+            "name": "underweart",
+            "directions": 4
+        },
+        {
+            "name": "underwearb",
+            "directions": 4
         }
     ]
 }

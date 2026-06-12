@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxPacked
-  mapName: 'NTJU Пакет'
+  mapName: 'USSP Пакет'
   mapPath: /Maps/_CorvaxGoob/Stations/Packed/corvax_packed.yml
   maxRandomOffset: 0
   randomRotation: false

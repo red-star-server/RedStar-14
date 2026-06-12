@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxPilgrim
-  mapName: 'NTTA Пилигрим'
+  mapName: 'USSP Пилигрим'
   mapPath: /Maps/_CorvaxGoob/Stations/Pilgrim/corvax_pilgrim.yml
   maxRandomOffset: 0
   randomRotation: false
