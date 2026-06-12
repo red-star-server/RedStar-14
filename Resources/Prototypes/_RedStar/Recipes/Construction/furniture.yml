@@ -16,7 +16,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: раковина
   id: SinkEmpty
   graph: SinkEmpty
   startNode: start
@@ -33,7 +32,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: раковина (широкая)
   id: SinkWideEmpty
   graph: SinkWideEmpty
   startNode: start
