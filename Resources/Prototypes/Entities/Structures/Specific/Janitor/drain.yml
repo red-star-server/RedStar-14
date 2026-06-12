@@ -68,6 +68,6 @@
                 collection: MetalBreak
     # RS14-start
     - type: Construction
-      graph: FloorDrainEmpty
+      graph: FloorDrain
       node: FloorDrain
     # RS14-end
