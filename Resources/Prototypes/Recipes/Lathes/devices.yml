@@ -235,6 +235,7 @@
     Steel: 500
     Glass: 400
     Silver: 200
+    RSCrystal: 50 # RS14
 
 - type: latheRecipe
   id: DeviceQuantumSpinInverter
@@ -244,6 +245,7 @@
     Steel: 700
     Glass: 100
     Uranium: 100
+    RSCrystal: 25 # RS14
 
 - type: latheRecipe
   id: DeviceDesynchronizer
@@ -275,6 +277,7 @@
     Steel: 500
     Glass: 400
     Silver: 100
+    RSCrystal: 50 # RS14
 
 - type: latheRecipe
   id: WeaponGrapplingGun

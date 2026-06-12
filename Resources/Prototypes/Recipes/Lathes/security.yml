@@ -295,6 +295,7 @@
     Glass: 1000
     Gold: 500
     Uranium: 300
+    BSCrystal: 50 # RS14
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
@@ -304,6 +305,7 @@
     Steel: 1250
     Plastic: 750
     Gold: 350
+    BSCrystal: 50 # RS14
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
@@ -314,6 +316,7 @@
     Glass: 500
     Plastic: 250
     Gold: 250
+    RSCrystal: 50 # RS14
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
@@ -324,6 +327,7 @@
     Glass: 500
     Plastic: 500
     Gold: 500
+    RSCrystal: 50 # RS14
 
 # Sidearms
 - type: latheRecipe
