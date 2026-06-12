@@ -37,9 +37,6 @@
     rarePrototypes:
       - PosterBroken
     rareChance: 0.05
-  - type: Construction #RedStar
-    graph: PosterGraph
-    node: Poster
 
 - type: entity
   parent: MarkerBase
