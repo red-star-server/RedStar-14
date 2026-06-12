@@ -86,7 +86,7 @@
 
 - type: entity
   abstract: true
-  parent: UnsensoredClothingUniformBase
+  parent: [UnsensoredClothingUniformBase, AllowSuitStorageClothing] # RS14
   id: ClothingUniformBase
   components:
   - type: SuitSensor

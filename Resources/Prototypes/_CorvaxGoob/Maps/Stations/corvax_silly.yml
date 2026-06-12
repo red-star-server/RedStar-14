@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxSilly
-  mapName: 'NTABK Силли'
+  mapName: 'USSP Силли'
   mapPath: /Maps/_CorvaxGoob/Stations/Silly/corvax_silly.yml
   maxRandomOffset: 0
   randomRotation: false

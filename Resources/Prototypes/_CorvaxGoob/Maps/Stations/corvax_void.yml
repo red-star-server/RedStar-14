@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxVoid
-  mapName: 'NTKF Войд'
+  mapName: 'USSP Войд'
   mapPath: /Maps/_CorvaxGoob/Stations/Void/corvax_void.yml
   maxRandomOffset: 0
   randomRotation: false

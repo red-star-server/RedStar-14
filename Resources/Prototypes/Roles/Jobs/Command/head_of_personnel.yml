@@ -222,7 +222,7 @@
     #gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetAltCommand
     belt: BoxFolderClipboard
-    eyes: ClothingEyesHudCommand
+    #eyes: ClothingEyesHudCommand CorvaxGoob
     socks: ClothingUnderwearSocksHeadOfPersonnel # RS14
   storage:
     back:

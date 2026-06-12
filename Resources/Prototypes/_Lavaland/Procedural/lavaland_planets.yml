@@ -49,7 +49,7 @@
   - OreDiamond
   - OreBSCrystal
   - OreRSCrystal # RS14
-  #- OreGibtonite # It's broken right now sadly because of how Gatherable works :(
+  - OreGibtonite # RS14
   addComponents:
   - type: FTLDestination
     whitelist: # TODO fix shuttles FTLing on planets and remove this whitelist

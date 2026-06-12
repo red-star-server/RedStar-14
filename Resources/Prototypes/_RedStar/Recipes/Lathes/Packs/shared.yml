@@ -1,0 +1,6 @@
+- type: latheRecipePack
+  id: HudVisor
+  recipes:
+  - ClothingEyesHudDiagnostic
+  - ClothingEyesHudMedical
+  - ClothingEyesHudAdvanced

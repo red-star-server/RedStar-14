@@ -207,6 +207,7 @@
     - GrenadeTriggersStatic # Goobstation - Roundstart Grenade Tech
     - MiscSignallersStatic
     dynamicPacks:
+    - HudVisor # RS14
     - AdvancedTools
     - ScienceEquipment
     - ScienceClothing

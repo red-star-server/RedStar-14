@@ -19,11 +19,11 @@
   discipline: Experimental
   tier: 2
   cost: 10000
-  position: -5,-1
+  position: -6,-1 # RS14
   recipeUnlocks:
   - ClothingEyesNightVisionGoggles
   technologyPrerequisites:
-  - ModsuitsTech
+  - HUD # RS14
 
 - type: technology
   id: ThermalVisionTech
@@ -34,9 +34,9 @@
   discipline: Experimental
   tier: 2
   cost: 10000
-  position: -6,-1
+  position: -7,-1 # RS14
   recipeUnlocks:
   - ClothingEyesThermalVisionGoggles
   - ClothingEyesGlassesSecurityContraDetect
   technologyPrerequisites:
-  - ModsuitsTech
+  - HUD # RS14

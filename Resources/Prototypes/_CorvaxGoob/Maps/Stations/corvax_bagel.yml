@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxBagel
-  mapName: 'NT14 Багель'
+  mapName: 'USSP Багель'
   mapPath: /Maps/_CorvaxGoob/Stations/Bagel/corvax_bagel.yml
   maxRandomOffset: 0
   randomRotation: false
@@ -25,9 +29,9 @@
             NanotrasenCareerTrainer: [ 1, 1 ] # RS14-value: NanotrasenRepresentative -> NanotrasenCareerTrainer
             # cargo
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 2, 2 ]
+            SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
-            ShaftMiner: [ 2, 2 ]
+            ShaftMiner: [ 3, 3 ]
             # engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]

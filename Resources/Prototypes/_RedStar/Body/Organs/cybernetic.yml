@@ -1,0 +1,86 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Eyes
+
+- type: entity
+  parent: BasicCyberneticEyes
+  id: AdvancedCyberneticEyes
+  name: cybernetic advanced eyes
+  description: A pair of cybernetic eyes that enhance your vision, featuring an integrated AdvancedHUD.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Mobs/Species/Misc/Cybernetics/organs.rsi
+    state: eyes-advanced
+  - type: Organ
+    onAdd:
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: FlashImmunity
+    - type: EyeProtection
+    - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - SiliconRadiation
+    - type: ShowHealthIcons
+      damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - SiliconRadiation
+
+# Stomach
+
+- type: entity
+  parent: BaseCyberneticOrgan
+  id: BasicCyberneticStomach
+  name: cybernetic stomach
+  description: An advanced synthetic stomach capable of digesting almost anything that living beings can consume.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Mobs/Species/Misc/Cybernetics/organs.rsi
+    state: stomach
+  - type: Organ
+    intCap: 50
+    integrity: 50
+    integrityThresholds:
+      Normal: 50
+      Damaged: 20
+      Destroyed: 0
+    slotId: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - Trash
+      - Meat
+      - Vegetable
+      - Fruit
+      - ClothMade
+      - Paper
+      - Pill
+      - ReptilianFood
+      - Crayon
+    isSpecialDigestibleExclusive: false
+  - type: Metabolizer
+    maxPoisonsProcessable: 5
+    metabolizerTypes: [ Cybernetic ]
+    groups:
+    - id: Food
+    - id: Drink
+    - id: Poison
+      rateModifier: 0.5
+  - type: Tag
+    tags:
+    - Stomach
+

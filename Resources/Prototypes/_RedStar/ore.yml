@@ -1,5 +1,5 @@
 - type: ore
   id: OreRSCrystal
-  oreEntity: RawRSCrystalOre1
+  oreEntity: RawRSCrystalOre1Unprocessed # Lavaland Change
   minOreYield: 1
   maxOreYield: 2

@@ -1,6 +1,10 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: gameMap
   id: CorvaxAstra
-  mapName: 'NTMT Астра'
+  mapName: 'USSP Астра'
   mapPath: /Maps/_CorvaxGoob/Stations/Astra/corvax_astra.yml
   maxRandomOffset: 0
   randomRotation: false
