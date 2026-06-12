@@ -7,7 +7,7 @@
   - type: Projectile
     damage:
       types:
-        Poison: 20
+        Poison: 5
         Caustic: 5
   - type: StaminaDamageOnCollide
     damage: 15
