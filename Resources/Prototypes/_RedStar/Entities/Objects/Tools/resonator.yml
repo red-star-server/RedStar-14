@@ -1,0 +1,116 @@
+- type: entity
+  parent: [ BaseItem, PowerCellSlotMediumItem ]
+  id: Resonator
+  name: resonator
+  description: A compact battery-powered mining tool that places delayed resonance fields into ore-bearing rock.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Objects/Tools/resonator.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _RedStar/Objects/Tools/resonator.rsi
+    storedRotation: -90
+  - type: Resonator
+    fieldPrototype: ResonanceField
+    maxFields: 3
+    timerDelay: 2
+    maxChainTargets: 10
+    placeSound:
+      path: /Audio/Machines/quickbeep.ogg
+      params:
+        volume: -2
+    burstSound:
+      path: /Audio/Effects/break_stone.ogg
+      params:
+        volume: -1
+    burstEffectPrototype: EffectGravityPulse
+    tileRearmDelay: 0.35
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 0
+    useRate: 80
+  - type: UseDelay
+    delay: 0.35
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
+      Plastic: 100
+      Silver: 50
+
+- type: entity
+  parent: Resonator
+  id: ResonatorEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  parent: Resonator
+  id: ResonatorUpgraded
+  name: upgraded resonator
+  description: An improved mining resonator that can maintain more fields and break longer rock cascades.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Objects/Tools/resonator_upgraded.rsi
+    state: icon
+  - type: Item
+    sprite: _RedStar/Objects/Tools/resonator_upgraded.rsi
+  - type: Resonator
+    fieldPrototype: ResonanceField
+    maxFields: 6
+    timerDelay: 2
+    maxChainTargets: 24
+    placeSound:
+      path: /Audio/Machines/quickbeep.ogg
+      params:
+        volume: -2
+    burstSound:
+      path: /Audio/Effects/break_stone.ogg
+      params:
+        volume: -1
+    burstEffectPrototype: EffectGravityPulse
+    tileRearmDelay: 0.35
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 0
+    useRate: 100
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Plastic: 100
+      Silver: 100
+      Diamond: 100
+
+- type: entity
+  parent: ResonatorUpgraded
+  id: ResonatorUpgradedEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: ResonanceField
+  name: resonance field
+  description: A humming field of stored mining resonance.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - shader: unshaded
+      sprite: Effects/chronofield.rsi
+      state: chronofield
+  - type: ResonanceField
+  - type: Tag
+    tags:
+    - HideContextMenu

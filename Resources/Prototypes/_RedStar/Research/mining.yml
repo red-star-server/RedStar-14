@@ -1,0 +1,15 @@
+- type: technology
+  id: AdvancedExcavation
+  name: research-technology-advanced-excavation
+  icon:
+    sprite: _RedStar/Objects/Tools/jackhammer.rsi
+    state: jackhammer
+  discipline: Industrial
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - Jackhammer
+  - OreBagOfHolding
+  position: 0,-7
+  technologyPrerequisites:
+  - MassExcavation

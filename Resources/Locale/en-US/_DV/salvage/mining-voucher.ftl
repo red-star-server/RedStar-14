@@ -18,9 +18,7 @@ mining-voucher-extraction-description =
 mining-voucher-resonator-name = Resonator Kit
 mining-voucher-resonator-description =
     Contains a resonator and a pocket fire extinguisher.
-    The resonator is a handheld device that creates small fields
-    of energy that resonate until they detonate, crushing rock.
-    It does increased damage in low pressure.
+    Resonators are a decent alternative to pickaxe/KPA mining, as they cause cascades of rocks to be destroyed.
 
 mining-voucher-survival-name = Survival Kit
 mining-voucher-survival-description =

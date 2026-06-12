@@ -1,0 +1,83 @@
+- type: entity
+  parent: Pickaxe
+  id: DiamondPickaxe
+  name: diamond pickaxe
+  description: A diamond-tipped pickaxe built to split rock faster than the standard model.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Objects/Tools/diamond_pickaxe.rsi
+    state: pickaxe
+  - type: MeleeWeapon
+    attackRate: 1.1
+    animationRotation: -45
+    wideAnimationRotation: -135
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+      params:
+        volume: -3
+    damage:
+      groups:
+        Brute: 7
+      types:
+        Structural: 12
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      groups:
+        Brute: 18
+      types:
+        Structural: 50
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: _RedStar/Objects/Tools/diamond_pickaxe.rsi
+    storedRotation: -45
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Wood: 125
+      Diamond: 100
+
+- type: entity
+  parent: BaseItem
+  id: Jackhammer
+  name: jackhammer
+  description: A heavy mining tool that tears through broad faces of rock with diamond drill efficiency.
+  components:
+  - type: Item
+    size: Normal
+    sprite: _RedStar/Objects/Tools/jackhammer.rsi
+    storedRotation: -90
+  - type: Tag
+    tags:
+    - Pickaxe
+    - MiningDrill
+  - type: Sprite
+    sprite: _RedStar/Objects/Tools/jackhammer.rsi
+    state: jackhammer
+  - type: MeleeWeapon
+    autoAttack: true
+    angle: 100
+    animation: WeaponArcThrust
+    wideAnimation: WeaponArcThrust
+    missAnimation: WeaponArcThrust
+    animationRotation: -90
+    wideAnimationRotation: -90
+    soundHit:
+      path: "/Audio/Items/drill_hit.ogg"
+    attackRate: 4
+    heavyStaminaCost: 0
+    damage:
+      groups:
+        Brute: 6
+      types:
+        Structural: 31
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 300
+      Plastic: 100
+      Silver: 50
+      Diamond: 100
+      RSCrystal: 50

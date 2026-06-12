@@ -119,7 +119,8 @@
     cost: 2000
   - id: ClothingOuterHardsuitSalvage
     cost: 2000
-    #TODO: super resonator for 2500
+  - id: ResonatorUpgraded # RS14
+    cost: 2500 # RS14
   - id: ClothingOuterHardsuitLuxury
     cost: 3000 #still costs more than just buying it with spesos you got from vendor but whatever
   - id: MedkitCombatFilled

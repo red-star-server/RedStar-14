@@ -1,0 +1,23 @@
+- type: latheRecipe
+  id: DiamondPickaxe
+  result: DiamondPickaxe
+  categories:
+  - Tools
+  completetime: 3
+  materials:
+    Steel: 500
+    Wood: 250
+    Diamond: 200
+
+- type: latheRecipe
+  id: Jackhammer
+  result: Jackhammer
+  categories:
+  - Tools
+  completetime: 4
+  materials:
+    Steel: 800
+    Plastic: 300
+    Silver: 100
+    Diamond: 200
+    RSCrystal: 100

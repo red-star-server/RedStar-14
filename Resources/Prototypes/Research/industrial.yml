@@ -82,6 +82,7 @@
   cost: 10000 # Goobstation
   recipeUnlocks:
   - MiningDrill
+  - Resonator # RS14
   - WeaponPlasmaCutter # Goobstation
   - MechEquipmentDrill # Goobstation
   - MineralScannerEmpty
@@ -316,8 +317,10 @@
   tier: 2
   cost: 12500
   recipeUnlocks:
-    - OreBagOfHolding
+    # RS14: OreBagOfHolding moved to AdvancedExcavation.
     - MiningDrillDiamond
+    - ResonatorUpgraded # RS14
+    - DiamondPickaxe # RS14
     - AdvancedMineralScannerEmpty
     - BorgModuleAdvancedMining
     - MechEquipmentDrillDiamond # Goobstation

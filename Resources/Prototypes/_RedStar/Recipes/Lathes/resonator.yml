@@ -1,0 +1,22 @@
+- type: latheRecipe
+  id: Resonator
+  result: ResonatorEmpty
+  categories:
+  - Tools
+  completetime: 3
+  materials:
+    Steel: 500
+    Plastic: 200
+    Silver: 100
+
+- type: latheRecipe
+  id: ResonatorUpgraded
+  result: ResonatorUpgradedEmpty
+  categories:
+  - Tools
+  completetime: 3
+  materials:
+    Steel: 700
+    Plastic: 300
+    Silver: 200
+    Diamond: 100

@@ -33,6 +33,19 @@
   - BoxMarkerBeacons
   - ClothingBeltSalvageWebbing
 
+# RS14-start
+- type: thiefBackpackSet
+  id: MiningResonator
+  name: mining-voucher-resonator-name
+  description: mining-voucher-resonator-description
+  sprite:
+    sprite: _RedStar/Objects/Tools/resonator.rsi
+    state: icon
+  content:
+  - Resonator
+  - FireExtinguisherMini
+# RS14-end
+
 - type: thiefBackpackSet
   id: MiningSurvival
   name: mining-voucher-survival-name
