@@ -243,6 +243,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (_net.IsServer)
             _popup.PopupEntity(popupString, uid);
 
+        RefreshPilotHandVirtualItems((uid, component)); // RS14
         Dirty(uid, component);
     }
 
