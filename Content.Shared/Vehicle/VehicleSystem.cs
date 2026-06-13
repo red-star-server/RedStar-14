@@ -103,18 +103,24 @@ public sealed partial class VehicleSystem : EntitySystem
 
     private void OnVehicleShutdown(Entity<VehicleComponent> ent, ref ComponentShutdown args)
     {
+        if (_timing.ApplyingState) // RS14
+            return; // RS14
+
         TryRemoveOperator(ent);
     }
 
     private void OnVehicleGetAdditionalAccess(Entity<VehicleComponent> ent, ref GetAdditionalAccessEvent args)
     {
         // Vehicles inherit access from whoever is driving them
-        if (ent.Comp.Operator is { } operatorUid)
+        if (ent.Comp.Operator is { } operatorUid && Exists(operatorUid)) // RS14
             args.Entities.Add(operatorUid);
     }
 
     private void OnOperatorShutdown(Entity<VehicleOperatorComponent> ent, ref ComponentShutdown args)
     {
+        if (_timing.ApplyingState) // RS14
+            return; // RS14
+
         TryRemoveOperator((ent, ent));
     }
 

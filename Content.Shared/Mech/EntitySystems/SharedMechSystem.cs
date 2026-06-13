@@ -44,6 +44,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Popups;
+using Content.Shared.Storage.Components;
 using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
 using Content.Shared.Weapons.Melee;
@@ -94,6 +95,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
         SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<MechComponent, DestructionEventArgs>(OnDestruction);
+        SubscribeLocalEvent<MechComponent, EntityStorageIntoContainerAttemptEvent>(OnEntityStorageDump); // RS14
         SubscribeLocalEvent<MechComponent, DragDropTargetEvent>(OnDragDrop);
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<MechComponent, GotEmaggedEvent>(OnEmagged);
@@ -153,6 +155,13 @@ public abstract partial class SharedMechSystem : EntitySystem
     {
         BreakMech(uid, component);
     }
+
+    // RS14-start
+    private void OnEntityStorageDump(Entity<MechComponent> ent, ref EntityStorageIntoContainerAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
+    // RS14-end
 
     private void SetupUser(EntityUid mech, EntityUid pilot, MechComponent? component = null)
     {
@@ -290,8 +299,10 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        if (!Resolve(toRemove, ref equipmentComponent))
+        // RS14-start
+        if (!Resolve(toRemove, ref equipmentComponent) && !forced)
             return;
+        // RS14-end
 
         if (!forced)
         {
@@ -307,7 +318,9 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.CurrentSelectedEquipment == toRemove)
             CycleEquipment(uid, component);
 
-        equipmentComponent.EquipmentOwner = null;
+        if (equipmentComponent != null) // RS14
+            equipmentComponent.EquipmentOwner = null; // RS14
+
         _container.Remove(toRemove, component.EquipmentContainer);
         UpdateUserInterface(uid, component);
     }
