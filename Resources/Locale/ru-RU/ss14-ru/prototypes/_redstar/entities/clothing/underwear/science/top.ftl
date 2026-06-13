@@ -1,5 +1,5 @@
 ent-ClothingUnderwearTopBraResearchAssistant = бра младшего научного сотрудника
-    .desc = Cтандартное нижнее бельё младшего научного сотрудника.
+    .desc = Стандартное нижнее бельё младшего научного сотрудника.
 ent-ClothingUnderwearTopBraResearchDirector = бра главного научного сотрудника
     .desc = Cтандартное нижнее бельё главного научного сотрудника.
 ent-ClothingUnderwearTopBraScientist = бра научного сотрудника

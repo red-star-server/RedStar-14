@@ -1,5 +1,5 @@
 ent-ClothingUnderwearBottomBoxersChemist = боксеры химика
-    .desc = Cтандартное нижнее бельё химика.
+    .desc = Стандартное нижнее бельё химика.
 ent-ClothingUnderwearBottomBoxersChiefMedicalOfficer = боксеры главного врача
     .desc = Cтандартное нижнее бельё главного врача.
 ent-ClothingUnderwearBottomBoxersMedicalDoctor = боксеры врача
