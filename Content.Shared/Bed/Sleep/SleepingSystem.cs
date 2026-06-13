@@ -106,6 +106,7 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<SleepingComponent, ConsciousAttemptEvent>(OnConsciousAttempt);
         SubscribeLocalEvent<SleepingComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<SleepingComponent, GetVerbsEvent<AlternativeVerb>>(AddWakeVerb);
+        SubscribeLocalEvent<SleepingComponent, GetVerbsEvent<Verb>>(AddBedWakeVerb); // RS14
         SubscribeLocalEvent<SleepingComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<SleepingComponent, StunEndAttemptEvent>(OnStunEndAttempt);
         SubscribeLocalEvent<SleepingComponent, StandUpAttemptEvent>(OnStandUpAttempt);
@@ -239,6 +240,11 @@ public sealed partial class SleepingSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
+        // RS14-start: do not let alt-interact wake patients lying on beds/operating tables while opening the context menu
+        if (IsBuckledToDownStrap(ent))
+            return;
+        // RS14-end
+
         var user = args.User;
         AlternativeVerb verb = new()
         {
@@ -252,6 +258,34 @@ public sealed partial class SleepingSystem : EntitySystem
 
         args.Verbs.Add(verb);
     }
+
+    // RS14-start
+    private void AddBedWakeVerb(Entity<SleepingComponent> ent, ref GetVerbsEvent<Verb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess || !IsBuckledToDownStrap(ent))
+            return;
+
+        var user = args.User;
+        Verb verb = new()
+        {
+            Act = () =>
+            {
+                TryWakeWithCooldown((ent, ent.Comp), user: user);
+            },
+            Text = Loc.GetString("action-name-wake"),
+            Priority = 2
+        };
+
+        args.Verbs.Add(verb);
+    }
+
+    private bool IsBuckledToDownStrap(EntityUid uid)
+    {
+        return TryComp<BuckleComponent>(uid, out var buckle)
+            && TryComp<StrapComponent>(buckle.BuckledTo, out var strap)
+            && strap.Position == StrapPosition.Down;
+    }
+    // RS14-end
 
     /// <summary>
     /// When you click on a sleeping person with an empty hand, try to wake them.

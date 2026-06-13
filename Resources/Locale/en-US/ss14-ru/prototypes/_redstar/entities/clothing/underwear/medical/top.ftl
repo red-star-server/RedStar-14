@@ -12,3 +12,7 @@ ent-ClothingUnderwearTopBraPsychologist = psychologist's bra
     .desc = Standard psychologist's underwear.
 ent-ClothingUnderwearTopBraSeniorPhysician = senior physician's bra
     .desc = Standard senior physician's underwear.
+ent-ClothingUnderwearTopBraSurgeon = surgeon's bra
+    .desc = Standard surgeon's underwear.
+ent-ClothingUnderwearTopBraVirologist = virologist's bra
+    .desc = Standard virologist's underwear.

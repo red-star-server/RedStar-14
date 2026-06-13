@@ -55,6 +55,24 @@
 
 - type: entity
   parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersSurgeon
+  name: surgeon's boxers
+  description: Standard surgeon's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/surgeon/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersVirologist
+  name: virologist's boxers
+  description: Standard virologist's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/virologist/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
   id: ClothingUnderwearBottomBoxersSeniorPhysician
   name: senior physician's boxers
   description: Standard senior physician's underwear.
@@ -116,6 +134,24 @@
   components:
   - type: Sprite
     sprite: _RedStar/Clothing/Underwear/Medical/psychologist/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesSurgeon
+  name: surgeon's panties
+  description: Standard surgeon's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/surgeon/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesVirologist
+  name: virologist's panties
+  description: Standard virologist's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/virologist/women/pants.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase

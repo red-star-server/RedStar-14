@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: roleLoadout
   id: JobMagistrate
   groups:
@@ -26,6 +30,7 @@
   - Animals
   - SurvivalMedical
   - GroupSpeciesBreathToolMedical
+  - SurgeonUnderwear # RS14
   - MedicalDoctorEnvirohelm
   - MedicalDoctorEnvirosuit
   - MedicalDoctorEnvirogloves
@@ -47,6 +52,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathToolSecurity
+  - WardenHelperUnderwear # RS14
   - WardenEnvirohelm
   - WardenEnvirosuit
   - WardenEnvirogloves
@@ -67,6 +73,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathToolSecurity
+  - PilotUnderwear # RS14
   - SecurityOfficerEnvirohelm
   - SecurityOfficerEnvirosuit
   - SecurityOfficerEnvirogloves

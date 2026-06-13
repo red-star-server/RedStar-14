@@ -6,3 +6,5 @@ ent-ClothingUnderwearSocksSalvage = salvage specialist's socks
     .desc = Standard salvage specialist's socks.
 ent-ClothingUnderwearSocksSeniorCourier = senior courier's socks
     .desc = Standard senior courier's socks.
+ent-ClothingUnderwearSocksShaftMiner = shaft miner's socks
+    .desc = Standard shaft miner's socks.

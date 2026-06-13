@@ -10,6 +10,15 @@
 
 - type: entity
   parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersNanotrasenCareerTrainer
+  name: nanotrasen career trainer's boxers
+  description: Standard nanotrasen career trainer's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Centcomm/trainer/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
   id: ClothingUnderwearBottomBoxersLawyer
   name: lawyer's boxers
   description: Standard lawyer's underwear.
@@ -35,6 +44,15 @@
   components:
   - type: Sprite
     sprite: _RedStar/Clothing/Underwear/Law/representative/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesNanotrasenCareerTrainer
+  name: nanotrasen career trainer's panties
+  description: Standard nanotrasen career trainer's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Centcomm/trainer/women/pants.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase

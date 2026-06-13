@@ -150,6 +150,7 @@
   - Animals
   - GroupSpeciesBreathTool
   - Survival
+  - NanotrasenCareerTrainerUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - NanotrasenTrainerEnvirohelm # RS14
   - NanotrasenTrainerEnvirosuit # RS14
@@ -161,6 +162,7 @@
   - SurvivalSyndicate
   - GroupHonkopsMask
   - GroupPocketTankDouble
+  - NuclearOperativeUnderwear # RS14
 
 - type: roleLoadout
   id: JobRoboticist
@@ -276,6 +278,7 @@
    - SurvivalMedical
    - Trinkets
    - GroupSpeciesBreathToolMedical
+   - VirologistUnderwear # RS14
    - VirologyEnvirohelm
    - VirologyEnvirosuit
    - VirologyEnvirogloves

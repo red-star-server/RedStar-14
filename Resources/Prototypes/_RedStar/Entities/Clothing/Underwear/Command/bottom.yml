@@ -15,7 +15,7 @@
   description: Standard CBURN's underwear.
   components:
   - type: Sprite
-    sprite: _RedStar/Clothing/Underwear/Command/cburn/man.rsi
+    sprite: _RedStar/Clothing/Underwear/Centcomm/cburn/man.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase
@@ -24,7 +24,7 @@
   description: Standard CentCom's underwear.
   components:
   - type: Sprite
-    sprite: _RedStar/Clothing/Underwear/Command/centcomm/man.rsi
+    sprite: _RedStar/Clothing/Underwear/Centcomm/centcomm/man.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase
@@ -33,7 +33,7 @@
   description: Standard black boxers.
   components:
   - type: Sprite
-    sprite: _RedStar/Clothing/Underwear/Command/death_squad/man.rsi
+    sprite: _RedStar/Clothing/Underwear/Centcomm/death_squad/man.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase
@@ -42,7 +42,7 @@
   description: Standard ERT's underwear.
   components:
   - type: Sprite
-    sprite: _RedStar/Clothing/Underwear/Command/ert/man.rsi
+    sprite: _RedStar/Clothing/Underwear/Centcomm/ert/man.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase
@@ -70,7 +70,7 @@
   description: Standard CBURN's underwear.
   components:
   - type: Sprite
-    sprite: _RedStar/Clothing/Underwear/Command/cburn/women/pants.rsi
+    sprite: _RedStar/Clothing/Underwear/Centcomm/cburn/women/pants.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase
@@ -79,7 +79,7 @@
   description: Standard CentCom's underwear.
   components:
   - type: Sprite
-    sprite: _RedStar/Clothing/Underwear/Command/centcomm/women/pants.rsi
+    sprite: _RedStar/Clothing/Underwear/Centcomm/centcomm/women/pants.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase
@@ -88,7 +88,7 @@
   description: Standard death squad's underwear.
   components:
   - type: Sprite
-    sprite: _RedStar/Clothing/Underwear/Command/death_squad/women/pants.rsi
+    sprite: _RedStar/Clothing/Underwear/Centcomm/death_squad/women/pants.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase
@@ -97,7 +97,7 @@
   description: Standard ERT's underwear.
   components:
   - type: Sprite
-    sprite: _RedStar/Clothing/Underwear/Command/ert/women/pants.rsi
+    sprite: _RedStar/Clothing/Underwear/Centcomm/ert/women/pants.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase

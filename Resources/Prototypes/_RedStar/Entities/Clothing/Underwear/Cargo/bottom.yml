@@ -28,6 +28,15 @@
 
 - type: entity
   parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersShaftMiner
+  name: shaft miner's boxers
+  description: Standard shaft miner's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Cargo/miner/man.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
   id: ClothingUnderwearBottomBoxersSeniorCourier
   name: senior courier's boxers
   description: Standard senior courier's underwear.
@@ -62,6 +71,15 @@
   components:
   - type: Sprite
     sprite: _RedStar/Clothing/Underwear/Cargo/salvage_specialist/women/pants.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesShaftMiner
+  name: shaft miner's panties
+  description: Standard shaft miner's underwear.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Cargo/miner/women/pants.rsi
 
 - type: entity
   parent: ClothingUnderwearBottomBase

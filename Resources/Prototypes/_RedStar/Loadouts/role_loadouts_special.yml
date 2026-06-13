@@ -1,0 +1,141 @@
+- type: roleLoadout
+  id: JobCentralCommandOfficial
+  groups:
+  - Inventory
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - CentcommUnderwear
+
+- type: roleLoadout
+  id: JobNavyOfficer
+  groups:
+  - Inventory
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - CentcommUnderwear
+
+- type: roleLoadout
+  id: JobNavyCaptain
+  groups:
+  - Inventory
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - CentcommUnderwear
+
+- type: roleLoadout
+  id: JobNavyOfficerUndercover
+  groups:
+  - Inventory
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - CentcommUnderwear
+
+- type: roleLoadout
+  id: JobSpecialOperationsOfficer
+  groups:
+  - Inventory
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - CentcommUnderwear
+
+- type: roleLoadout
+  id: JobDiplomat
+  groups:
+  - Inventory
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - CentcommUnderwear
+
+- type: roleLoadout
+  id: JobInspector
+  groups:
+  - Inventory
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - CentcommUnderwear
+
+- type: roleLoadout
+  id: JobOuterCommander
+  groups:
+  - Inventory
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - CentcommUnderwear
+
+- type: roleLoadout
+  id: JobDeathSquad
+  groups:
+  - Inventory
+  - GroupEVATank
+  - SurvivalExtended
+  - DeathSquadUnderwear
+
+- type: roleLoadout
+  id: JobERTLeader
+  groups:
+  - Inventory
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - ERTUnderwear
+
+- type: roleLoadout
+  id: JobERTChaplain
+  groups:
+  - Inventory
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - ERTUnderwear
+
+- type: roleLoadout
+  id: JobERTJanitor
+  groups:
+  - Inventory
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - ERTUnderwear
+
+- type: roleLoadout
+  id: JobERTEngineer
+  groups:
+  - Inventory
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - ERTUnderwear
+
+- type: roleLoadout
+  id: JobERTSecurity
+  groups:
+  - Inventory
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - ERTUnderwear
+
+- type: roleLoadout
+  id: JobERTMedical
+  groups:
+  - Inventory
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - ERTUnderwear
+
+- type: roleLoadout
+  id: JobCBURN
+  groups:
+  - Inventory
+  - GroupEVATank
+  - SurvivalExtended
+  - CBURNUnderwear

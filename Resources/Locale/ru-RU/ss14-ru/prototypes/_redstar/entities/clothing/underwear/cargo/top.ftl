@@ -1,8 +1,10 @@
 ent-ClothingUnderwearTopBraCargoTechnician = бра грузчика
-    .desc = Cтандартное нижнее бельё грузчика.
+    .desc = Стандартное нижнее бельё грузчика.
 ent-ClothingUnderwearTopBraQuartermaster = бра завхоза
-    .desc = Cтандартное нижнее бельё заведующего хозяйством.
-ent-ClothingUnderwearTopBraSalvageSpecialist = бра шахтёра
-    .desc = Cтандартное нижнее бельё шахтёра.
+    .desc = Стандартное нижнее бельё заведующего хозяйством.
+ent-ClothingUnderwearTopBraSalvageSpecialist = бра утилизатора
+    .desc = Стандартное нижнее бельё утилизатора.
 ent-ClothingUnderwearTopBraSeniorCourier = бра ведущего логиста
     .desc = Стандартное нижнее бельё ведущего логиста.
+ent-ClothingUnderwearTopBraShaftMiner = бра шахтёра
+    .desc = Стандартное нижнее бельё шахтёра.

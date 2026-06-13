@@ -14,3 +14,7 @@ ent-ClothingUnderwearBottomPantiesSalvageSpecialist = salvage specialist's panti
     .desc = Standard salvage specialist's underwear.
 ent-ClothingUnderwearBottomPantiesSeniorCourier = senior courier's panties
     .desc = Standard senior courier's underwear.
+ent-ClothingUnderwearBottomBoxersShaftMiner = shaft miner's boxers
+    .desc = Standard shaft miner's underwear.
+ent-ClothingUnderwearBottomPantiesShaftMiner = shaft miner's panties
+    .desc = Standard shaft miner's underwear.

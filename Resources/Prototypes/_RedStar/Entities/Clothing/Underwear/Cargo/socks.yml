@@ -27,6 +27,15 @@
 
 - type: entity
   parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksShaftMiner
+  name: shaft miner's socks
+  description: Standard shaft miner's socks.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Cargo/miner/socks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
   id: ClothingUnderwearSocksSeniorCourier
   name: senior courier's socks
   description: Standard senior courier's socks.
