@@ -1882,6 +1882,7 @@
     - MiningExtraction
     - MiningSurvival
     - MiningMedical
+    - MiningResonator # RS14
     #- MiningDrone
   - type: Wires # DeltaV: Use shop vendor wires layout
     layoutId: ShopVendor

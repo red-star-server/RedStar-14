@@ -160,12 +160,14 @@ public sealed class SecretPlusSystem : GameRuleSystem<SecretPlusComponent>
         if (selectedRules == null)
             return;
 
-        var available = _event.AvailableEvents(scheduler.Comp.IgnoreTimings,
-                            scheduler.Comp.IgnoreTimings ? int.MaxValue : null,
-                            scheduler.Comp.IgnoreTimings ? TimeSpan.MaxValue : null,
-                            1f / GetRamping(scheduler));
+        var playerCount = scheduler.Comp.IgnoreTimings ? int.MaxValue : count.Players;
+        var currentTime = scheduler.Comp.IgnoreTimings ? TimeSpan.MaxValue : _ticker.RoundDuration();
 
-        if (!_event.TryBuildLimitedEvents(selectedRules.ScheduledGameRules, available, out var possibleEvents))
+        if (!_event.TryBuildLimitedEvents(selectedRules.ScheduledGameRules,
+                out var possibleEvents,
+                currentTime,
+                playerCount,
+                1f / GetRamping(scheduler)))
             return;
 
         foreach (var entry in possibleEvents)

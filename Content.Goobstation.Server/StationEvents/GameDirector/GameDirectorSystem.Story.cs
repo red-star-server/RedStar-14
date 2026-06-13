@@ -45,7 +45,7 @@ public sealed partial class GameDirectorSystem
         if (selectedRules == null)
             return;
 
-        if(!_event.TryBuildLimitedEvents(selectedRules.ScheduledGameRules, _event.AvailableEvents(), out var possibleEvents))
+        if (!_event.TryBuildLimitedEvents(selectedRules.ScheduledGameRules, out var possibleEvents))
             return;
 
         foreach (var (proto, stationEvent) in possibleEvents)
