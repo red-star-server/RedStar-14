@@ -44,7 +44,7 @@ public sealed class PartAssemblySystem : EntitySystem
 
     private void OnInteractUsing(EntityUid uid, PartAssemblyComponent component, InteractUsingEvent args)
     {
-        if (!TryInsertPart(args.Used, uid, component, args.User)) // RS14
+        if (!TryInsertPart(args.Used, uid, args.User, component)) // RS14
             return;
         args.Handled = true;
     }
@@ -61,7 +61,7 @@ public sealed class PartAssemblySystem : EntitySystem
     /// <summary>
     /// Attempts to insert a part into the current assembly, starting one if there is none.
     /// </summary>
-    public bool TryInsertPart(EntityUid part, EntityUid uid, PartAssemblyComponent? component = null, EntityUid? user = null) // RS14
+    public bool TryInsertPart(EntityUid part, EntityUid uid, EntityUid user, PartAssemblyComponent? component = null) // RS14
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -93,8 +93,7 @@ public sealed class PartAssemblySystem : EntitySystem
             return false;
 
         // RS14-start
-        if (user is { } userUid
-            && !_skills.HasSkill(userUid, RoboticsSkill)
+        if (!_skills.HasSkill(user, RoboticsSkill)
             && _random.Prob(RoboticsAssemblyFailureChanceWithoutSkill))
         {
             return false;

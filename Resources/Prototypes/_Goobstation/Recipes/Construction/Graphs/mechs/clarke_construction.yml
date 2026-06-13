@@ -7,6 +7,7 @@
 
 - type: constructionGraph
   id: Clarke
+  start: start
   graph:
   - node: start
     edges:
