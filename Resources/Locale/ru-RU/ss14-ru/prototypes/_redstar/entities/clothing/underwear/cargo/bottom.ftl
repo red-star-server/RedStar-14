@@ -14,3 +14,7 @@ ent-ClothingUnderwearBottomPantiesSalvageSpecialist = стринги шахтё�
     .desc = Cтандартное нижнее бельё шахтёра.
 ent-ClothingUnderwearBottomPantiesSeniorCourier = стринги ведущего логиста
     .desc = Cтандартное нижнее бельё ведущего логиста.
+ent-ClothingUnderwearBottomBoxersShaftMiner = боксеры лаваленд-шахтера
+    .desc = Cтандартное нижнее бельё лаваленд-шахтера.
+ent-ClothingUnderwearBottomPantiesShaftMiner = стринги лаваленд-шахтера
+    .desc = Cтандартное нижнее бельё лаваленд-шахтера.

@@ -12,3 +12,7 @@ ent-ClothingUnderwearSocksPsychologist = psychologist's socks
     .desc = Standard psychologist's socks.
 ent-ClothingUnderwearSocksSeniorPhysician = senior physician's socks
     .desc = Standard senior physician's socks.
+ent-ClothingUnderwearSocksSurgeon = surgeon's socks
+    .desc = Standard surgeon's socks.
+ent-ClothingUnderwearSocksVirologist = virologist's socks
+    .desc = Standard virologist's socks.

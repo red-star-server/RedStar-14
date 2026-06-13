@@ -925,7 +925,7 @@
         settings: default
     - type: Loadout
       prototypes: [ PirateScoonerAltA, PirateScoonerAltB, PirateScoonerAltC, PirateScoonerAltD ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalPirate ] # RS14
 
 - type: randomHumanoidSettings
   id: PirateCaptainScooner
@@ -944,7 +944,7 @@
         settings: default
     - type: Loadout
       prototypes: [ PirateCaptainScooner ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalPirate ] # RS14
 
 ### Other
 

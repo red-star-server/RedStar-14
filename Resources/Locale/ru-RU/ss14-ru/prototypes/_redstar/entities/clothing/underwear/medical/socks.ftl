@@ -12,3 +12,7 @@ ent-ClothingUnderwearSocksPsychologist = носки психиатра
     .desc = Стандартные носки психиатра.
 ent-ClothingUnderwearSocksSeniorPhysician = носки врача-методиста
     .desc = Стандартные носки врача-методиста.
+ent-ClothingUnderwearSocksSurgeon = носки хирурга
+    .desc = Стандартные носки хирурга.
+ent-ClothingUnderwearSocksVirologist = носки вирусолога
+    .desc = Стандартные носки вирусолога.

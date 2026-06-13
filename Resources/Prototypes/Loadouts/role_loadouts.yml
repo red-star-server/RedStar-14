@@ -226,6 +226,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - ServiceWorkerUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ServiceWorkerEnvirohelm
   - ServiceWorkerEnvirosuit
@@ -870,6 +871,7 @@
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
+  - ZookeeperUnderwear # RS14
   # Goobstation - EE Plasmeme Change.
   - ZookeeperEnvirohelm
   - ZookeeperEnvirosuit
@@ -988,6 +990,7 @@
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupTankHarness
+  - SyndicateAgentUnderwear # RS14
 
 - type: roleLoadout
   id: RoleSurvivalNukie
@@ -995,9 +998,62 @@
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
+  - NuclearOperativeUnderwear # RS14
 
 - type: roleLoadout
   id: RoleSurvivalEVA
   groups:
   - GroupEVATank
   - SurvivalExtended
+
+- type: roleLoadout
+  id: RoleSurvivalCentcomm
+  groups:
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - CentcommUnderwear # RS14
+
+- type: roleLoadout
+  id: RoleSurvivalCentcommEVA
+  groups:
+  - GroupEVATank
+  - SurvivalExtended
+  - CentcommUnderwear # RS14
+
+- type: roleLoadout
+  id: RoleSurvivalERT
+  groups:
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - ERTUnderwear # RS14
+
+- type: roleLoadout
+  id: RoleSurvivalERTEVA
+  groups:
+  - GroupEVATank
+  - SurvivalExtended
+  - ERTUnderwear # RS14
+
+- type: roleLoadout
+  id: RoleSurvivalCBURNEVA
+  groups:
+  - GroupEVATank
+  - SurvivalExtended
+  - CBURNUnderwear # RS14
+
+- type: roleLoadout
+  id: RoleSurvivalDeathSquadEVA
+  groups:
+  - GroupEVATank
+  - SurvivalExtended
+  - DeathSquadUnderwear # RS14
+
+- type: roleLoadout
+  id: RoleSurvivalPirate
+  groups:
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+  - PirateUnderwear # RS14

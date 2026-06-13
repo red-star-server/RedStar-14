@@ -27,6 +27,7 @@
   id: ResearchDirectorEnvirohelm
   name: loadout-group-research-director-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ResearchDirectorEnvirohelm
@@ -35,6 +36,7 @@
   id: ResearchDirectorEnvirosuit
   name: loadout-group-research-director-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ResearchDirectorEnvirosuit
@@ -43,6 +45,7 @@
   id: ResearchDirectorEnvirogloves
   name: loadout-group-research-director-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ResearchDirectorEnvirogloves
@@ -55,6 +58,7 @@
   id: ScientistEnvirohelm
   name: loadout-group-scientist-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ScientistEnvirohelm
@@ -64,6 +68,7 @@
   id: ScientistEnvirosuit
   name: loadout-group-scientist-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ScientistEnvirosuit
@@ -73,6 +78,7 @@
   id: ScientistEnvirogloves
   name: loadout-group-scientist-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - RoboticistEnvirogloves
@@ -84,6 +90,7 @@
   id: ResearchAssistantEnvirohelm
   name: loadout-group-research-assistant-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirohelm
@@ -92,6 +99,7 @@
   id: ResearchAssistantEnvirosuit
   name: loadout-group-research-assistant-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirosuit
@@ -100,6 +108,7 @@
   id: ResearchAssistantEnvirogloves
   name: loadout-group-research-assistant-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -110,6 +119,7 @@
   id: ChiefMedicalOfficerEnvirohelm
   name: loadout-group-chief-medical-officer-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChiefMedicalOfficerEnvirohelm
@@ -118,6 +128,7 @@
   id: ChiefMedicalOfficerEnvirosuit
   name: loadout-group-chief-medical-officer-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChiefMedicalOfficerEnvirosuit
@@ -126,6 +137,7 @@
   id: ChiefMedicalOfficerEnvirogloves
   name: loadout-group-chief-medical-officer-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -137,6 +149,7 @@
   id: MedicalDoctorEnvirohelm
   name: loadout-group-medical-doctor-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - MedicalDoctorEnvirohelm
@@ -145,6 +158,7 @@
   id: MedicalDoctorEnvirosuit
   name: loadout-group-medical-doctor-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - MedicalDoctorEnvirosuit
@@ -153,6 +167,7 @@
   id: MedicalDoctorEnvirogloves
   name: loadout-group-medical-doctor-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -164,6 +179,7 @@
   id: MedicalInternEnvirohelm
   name: loadout-group-medical-intern-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - MedicalDoctorEnvirohelm
@@ -172,6 +188,7 @@
   id: MedicalInternEnvirosuit
   name: loadout-group-medical-intern-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - MedicalDoctorEnvirosuit
@@ -180,6 +197,7 @@
   id: MedicalInternEnvirogloves
   name: loadout-group-medical-intern-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -190,6 +208,7 @@
   id: ParamedicEnvirohelm
   name: loadout-group-paramedic-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ParamedicEnvirohelm
@@ -198,6 +217,7 @@
   id: ParamedicEnvirosuit
   name: loadout-group-paramedic-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ParamedicEnvirosuit
@@ -206,6 +226,7 @@
   id: ParamedicEnvirogloves
   name: loadout-group-paramedic-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -217,6 +238,7 @@
   id: PsychologistEnvirohelm
   name: loadout-group-psychologist-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - PsychologistEnvirohelm
@@ -225,6 +247,7 @@
   id: PsychologistEnvirosuit
   name: loadout-group-psychologist-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - PsychologistEnvirosuit
@@ -233,6 +256,7 @@
   id: PsychologistEnvirogloves
   name: loadout-group-psychologist-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -243,6 +267,7 @@
   id: CargoTechnicianEnvirohelm
   name: loadout-group-cargo-technician-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CargoTechnicianEnvirohelm
@@ -252,6 +277,7 @@
   id: CargoTechnicianEnvirosuit
   name: loadout-group-cargo-technician-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CargoTechnicianEnvirosuit
@@ -261,6 +287,7 @@
   id: CargoTechnicianEnvirogloves
   name: loadout-group-cargo-technician-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CargoTechnicianEnvirogloves
@@ -272,6 +299,7 @@
   id: QuartermasterEnvirohelm
   name: loadout-group-quartermaster-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - QuartermasterEnvirohelm
@@ -280,6 +308,7 @@
   id: QuartermasterEnvirosuit
   name: loadout-group-quartermaster-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - QuartermasterEnvirosuit
@@ -288,6 +317,7 @@
   id: QuartermasterEnvirogloves
   name: loadout-group-quartermaster-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CargoTechnicianEnvirogloves
@@ -298,6 +328,7 @@
   id: StationEngineerEnvirohelm
   name: loadout-group-station-engineer-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - StationEngineerEnvirohelm
@@ -306,6 +337,7 @@
   id: StationEngineerEnvirosuit
   name: loadout-group-station-engineer-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - StationEngineerEnvirosuit
@@ -314,6 +346,7 @@
   id: StationEngineerEnvirogloves
   name: loadout-group-station-engineer-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - StationEngineerEnvirogloves
@@ -324,6 +357,7 @@
   id: TechnicalAssistantEnvirohelm
   name: loadout-group-technical-assistant-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - StationEngineerEnvirohelm
@@ -332,6 +366,7 @@
   id: TechnicalAssistantEnvirosuit
   name: loadout-group-technical-assistant-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - StationEngineerEnvirosuit
@@ -340,6 +375,7 @@
   id: TechnicalAssistantEnvirogloves
   name: loadout-group-technical-assistant-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - StationEngineerEnvirogloves
@@ -350,6 +386,7 @@
   id: AtmosEnvirohelm
   name: loadout-group-atmos-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - AtmosEnvirohelm
@@ -358,6 +395,7 @@
   id: AtmosEnvirosuit
   name: loadout-group-atmos-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - AtmosEnvirosuit
@@ -366,6 +404,7 @@
   id: AtmosEnvirogloves
   name: loadout-group-atmos-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - AtmosEnvirogloves
@@ -376,6 +415,7 @@
   id: ChiefEngineerEnvirohelm
   name: loadout-group-chief-engineer-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChiefEngineerEnvirohelm
@@ -384,6 +424,7 @@
   id: ChiefEngineerEnvirosuit
   name: loadout-group-chief-engineer-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChiefEngineerEnvirosuit
@@ -392,6 +433,7 @@
   id: ChiefEngineerEnvirogloves
   name: loadout-group-chief-engineer-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChiefEngineerEnvirogloves
@@ -402,6 +444,7 @@
   id: SecurityOfficerEnvirohelm
   name: loadout-group-security-officer-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - SecurityOfficerEnvirohelm
@@ -410,6 +453,7 @@
   id: SecurityOfficerEnvirosuit
   name: loadout-group-security-officer-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - SecurityOfficerEnvirosuit
@@ -418,6 +462,7 @@
   id: SecurityOfficerEnvirogloves
   name: loadout-group-security-officer-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BlackEnvirogloves
@@ -428,6 +473,7 @@
   id: SecurityCadetEnvirohelm
   name: loadout-group-security-cadet-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - SecurityOfficerEnvirohelm
@@ -436,6 +482,7 @@
   id: SecurityCadetEnvirosuit
   name: loadout-group-security-cadet-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - SecurityOfficerEnvirosuit
@@ -444,6 +491,7 @@
   id: SecurityCadetEnvirogloves
   name: loadout-group-security-cadet-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BlackEnvirogloves
@@ -454,6 +502,7 @@
   id: DetectiveEnvirohelm
   name: loadout-group-detective-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - DetectiveEnvirohelm
@@ -462,6 +511,7 @@
   id: DetectiveEnvirosuit
   name: loadout-group-detective-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - DetectiveEnvirosuit
@@ -470,6 +520,7 @@
   id: DetectiveEnvirogloves
   name: loadout-group-detective-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - DetectiveEnvirogloves
@@ -488,6 +539,7 @@
   id: WardenEnvirohelm
   name: loadout-group-warden-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WardenEnvirohelm
@@ -496,6 +548,7 @@
   id: WardenEnvirosuit
   name: loadout-group-warden-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WardenEnvirosuit
@@ -504,6 +557,7 @@
   id: WardenEnvirogloves
   name: loadout-group-warden-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BlackEnvirogloves
@@ -514,6 +568,7 @@
   id: HoPEnvirohelm
   name: loadout-group-hop-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - HoPEnvirohelm
@@ -522,6 +577,7 @@
   id: HoPEnvirosuit
   name: loadout-group-hop-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - HoPEnvirosuit
@@ -530,6 +586,7 @@
   id: HoPEnvirogloves
   name: loadout-group-hop-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - HoPEnvirogloves
@@ -548,6 +605,7 @@
   id: CentComOfficerEnvirohelm
   name: loadout-group-centcom-officer-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CentComOfficerEnvirohelm
@@ -556,6 +614,7 @@
   id: CentComOfficerEnvirosuit
   name: loadout-group-centcom-officer-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CentComOfficerEnvirosuit
@@ -564,6 +623,7 @@
   id: CentComOfficerEnvirogloves
   name: loadout-group-centcom-officer-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BlackEnvirogloves
@@ -574,6 +634,7 @@
   id: BotanistEnvirohelm
   name: loadout-group-botanist-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BotanistEnvirohelm
@@ -582,6 +643,7 @@
   id: BotanistEnvirosuit
   name: loadout-group-botanist-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BotanistEnvirosuit
@@ -590,6 +652,7 @@
   id: BotanistEnvirogloves
   name: loadout-group-botanist-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - LeatherEnvirogloves
@@ -600,6 +663,7 @@
   id: ChaplainEnvirohelm
   name: loadout-group-chaplain-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChaplainEnvirohelm
@@ -608,6 +672,7 @@
   id: ChaplainEnvirosuit
   name: loadout-group-chaplain-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChaplainEnvirosuit
@@ -616,6 +681,7 @@
   id: ChaplainEnvirogloves
   name: loadout-group-chaplain-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BlackEnvirogloves
@@ -626,6 +692,7 @@
   id: ClownEnvirohelm
   name: loadout-group-clown-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ClownEnvirohelm
@@ -634,6 +701,7 @@
   id: ClownEnvirosuit
   name: loadout-group-clown-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ClownEnvirosuit
@@ -642,6 +710,7 @@
   id: ClownEnvirogloves
   name: loadout-group-clown-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ClownEnvirogloves
@@ -652,6 +721,7 @@
   id: ChefEnvirohelm
   name: loadout-group-chef-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirohelm
@@ -660,6 +730,7 @@
   id: ChefEnvirosuit
   name: loadout-group-chef-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChefEnvirosuit
@@ -668,6 +739,7 @@
   id: ChefEnvirogloves
   name: loadout-group-chef-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -678,6 +750,7 @@
   id: JanitorEnvirohelm
   name: loadout-group-janitor-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - JanitorEnvirohelm
@@ -686,6 +759,7 @@
   id: JanitorEnvirosuit
   name: loadout-group-janitor-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - JanitorEnvirosuit
@@ -694,6 +768,7 @@
   id: JanitorEnvirogloves
   name: loadout-group-janitor-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - JanitorEnvirogloves
@@ -704,6 +779,7 @@
   id: LibrarianEnvirohelm
   name: loadout-group-librarian-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - AncientVoidEnvirohelm
@@ -712,6 +788,7 @@
   id: LibrarianEnvirosuit
   name: loadout-group-librarian-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - AncientVoidEnvirosuit
@@ -720,6 +797,7 @@
   id: LibrarianEnvirogloves
   name: loadout-group-librarian-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - PrototypeEnvirogloves
@@ -730,6 +808,7 @@
   id: MimeEnvirohelm
   name: loadout-group-mime-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - MimeEnvirohelm
@@ -738,6 +817,7 @@
   id: MimeEnvirosuit
   name: loadout-group-mime-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - MimeEnvirosuit
@@ -746,6 +826,7 @@
   id: MimeEnvirogloves
   name: loadout-group-mime-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -764,6 +845,7 @@
   id: AssistantEnvirohelm
   name: loadout-group-assistant-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - GreyEnvirohelm
@@ -772,6 +854,7 @@
   id: AssistantEnvirosuit
   name: loadout-group-assistant-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - GreyEnvirosuit
@@ -780,6 +863,7 @@
   id: AssistantEnvirogloves
   name: loadout-group-assistant-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - DarkGreyEnvirogloves
@@ -790,6 +874,7 @@
   id: MusicianEnvirohelm
   name: loadout-group-musician-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - MusicianEnvirohelm
@@ -798,6 +883,7 @@
   id: MusicianEnvirosuit
   name: loadout-group-musician-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - MusicianEnvirosuit
@@ -806,6 +892,7 @@
   id: MusicianEnvirogloves
   name: loadout-group-musician-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -816,6 +903,7 @@
   id: ServiceWorkerEnvirohelm
   name: loadout-group-service-worker-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - DarkGreenEnvirohelm
@@ -824,6 +912,7 @@
   id: ServiceWorkerEnvirosuit
   name: loadout-group-service-worker-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - DarkGreenEnvirosuit
@@ -832,6 +921,7 @@
   id: ServiceWorkerEnvirogloves
   name: loadout-group-service-worker-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - DarkGreenEnvirogloves
@@ -842,6 +932,7 @@
   id: BartenderEnvirohelm
   name: loadout-group-bartender-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirohelm
@@ -850,6 +941,7 @@
   id: BartenderEnvirosuit
   name: loadout-group-bartender-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - Enviroslacks
@@ -858,6 +950,7 @@
   id: BartenderEnvirogloves
   name: loadout-group-service-worker-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -868,6 +961,7 @@
   id: LawyerEnvirohelm
   name: loadout-group-lawyer-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirohelm
@@ -876,6 +970,7 @@
   id: LawyerEnvirosuit
   name: loadout-group-lawyer-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - Enviroslacks
@@ -884,6 +979,7 @@
   id: LawyerEnvirogloves
   name: loadout-group-lawyer-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -952,6 +1048,7 @@
   id: NanotrasenRepresentativeEnvirohelm
   name: loadout-group-ntr-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - NanotrasenRepresentativeEnvirohelm
@@ -960,6 +1057,7 @@
   id: NanotrasenRepresentativeEnvirosuit
   name: loadout-group-ntr-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - NanotrasenRepresentativeEnvirosuit
@@ -968,6 +1066,7 @@
   id: NanotrasenRepresentativeEnvirogloves
   name: loadout-group-ntr-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BlackEnvirogloves
@@ -1038,6 +1137,7 @@
   id: BlueshieldOfficerEnvirohelm
   name: loadout-group-bso-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BlueshieldOfficerEnvirohelm
@@ -1046,6 +1146,7 @@
   id: BlueshieldOfficerEnvirosuit
   name: loadout-group-bso-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BlueshieldOfficerEnvirosuit
@@ -1054,6 +1155,7 @@
   id: BlueshieldOfficerEnvirogloves
   name: loadout-group-bso-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CombatEnvirogloves
@@ -1123,6 +1225,7 @@
   id: NanotrasenTrainerEnvirohelm
   name: loadout-group-nct-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - NanotrasenTrainerEnvirohelm
@@ -1131,6 +1234,7 @@
   id: NanotrasenTrainerEnvirosuit
   name: loadout-group-nct-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - NanotrasenTrainerEnvirosuit
@@ -1148,6 +1252,7 @@
   id: ReporterEnvirohelm
   name: loadout-group-reporter-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ReporterEnvirohelm
@@ -1156,6 +1261,7 @@
   id: ReporterEnvirosuit
   name: loadout-group-reporter-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ReporterEnvirosuit
@@ -1164,6 +1270,7 @@
   id: ReporterEnvirogloves
   name: loadout-group-reporter-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ReporterEnvirogloves
@@ -1196,6 +1303,7 @@
   id: CaptainEnvirohelm
   name: loadout-group-captain-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CaptainEnvirohelm
@@ -1204,6 +1312,7 @@
   id: CaptainEnvirosuit
   name: loadout-group-captain-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CaptainEnvirosuit
@@ -1212,6 +1321,7 @@
   id: CaptainEnvirogloves
   name: loadout-group-captain-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CaptainEnvirogloves
@@ -1295,6 +1405,7 @@
   id: SalvageEnvirohelm
   name: loadout-group-salvage-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - SalvageEnvirohelm
@@ -1303,6 +1414,7 @@
   id: SalvageEnvirosuit
   name: loadout-group-salvage-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - SalvageEnvirosuit
@@ -1311,6 +1423,7 @@
   id: SalvageEnvirogloves
   name: loadout-group-salvage-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - SalvageEnvirogloves
@@ -1337,6 +1450,7 @@
   id: ChemistEnvirohelm
   name: loadout-group-chemist-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChemistEnvirohelm
@@ -1345,6 +1459,7 @@
   id: ChemistEnvirosuit
   name: loadout-group-chemist-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ChemistEnvirosuit
@@ -1353,6 +1468,7 @@
   id: ChemistEnvirogloves
   name: loadout-group-chemist-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves
@@ -1372,6 +1488,7 @@
   id: HeadofSecurityEnvirohelm
   name: loadout-group-head-of-security-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - HeadofSecurityEnvirohelm
@@ -1380,6 +1497,7 @@
   id: HeadofSecurityEnvirosuit
   name: loadout-group-head-of-security-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - HeadofSecurityEnvirosuit
@@ -1388,6 +1506,7 @@
   id: HeadofSecurityEnvirogloves
   name: loadout-group-head-of-security-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - CombatEnvirogloves
@@ -1448,6 +1567,7 @@
   id: BrigmedicEnvirohelm
   name: loadout-group-brigmedic-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BrigmedicEnvirohelm
@@ -1456,6 +1576,7 @@
   id: BrigmedicEnvirosuit
   name: loadout-group-brigmedic-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BrigmedicEnvirosuit
@@ -1464,6 +1585,7 @@
   id: BrigmedicEnvirogloves
   name: loadout-group-brigmedic-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BlackEnvirogloves
@@ -1500,6 +1622,7 @@
   id: ZookeeperEnvirohelm
   name: loadout-group-zookeeper-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ZookeeperEnvirohelm
@@ -1508,6 +1631,7 @@
   id: ZookeeperEnvirosuit
   name: loadout-group-zookeeper-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - ZookeeperEnvirosuit
@@ -1516,6 +1640,7 @@
   id: ZookeeperEnvirogloves
   name: loadout-group-zookeeper-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - PurpleEnvirogloves
@@ -1526,6 +1651,7 @@
   id: BoxerEnvirohelm
   name: loadout-group-boxer-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BoxerEnvirohelm
@@ -1534,6 +1660,7 @@
   id: BoxerEnvirosuit
   name: loadout-group-boxer-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - BoxerEnvirosuit
@@ -1583,6 +1710,7 @@
   id: VirologyEnvirohelm
   name: loadout-group-virology-envirohelm
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - VirologistEnvirohelm
@@ -1591,6 +1719,7 @@
   id: VirologyEnvirosuit
   name: loadout-group-virology-envirosuit
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - VirologistEnvirosuit
@@ -1599,6 +1728,7 @@
   id: VirologyEnvirogloves
   name: loadout-group-virology-envirogloves
   minLimit: 1
+  hidden: true
   maxLimit: 1
   loadouts:
   - WhiteEnvirogloves

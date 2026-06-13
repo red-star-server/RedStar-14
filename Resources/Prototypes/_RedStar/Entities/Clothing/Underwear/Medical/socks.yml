@@ -54,6 +54,24 @@
 
 - type: entity
   parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksSurgeon
+  name: surgeon's socks
+  description: Standard surgeon's socks.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/surgeon/socks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksVirologist
+  name: virologist's socks
+  description: Standard virologist's socks.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Underwear/Medical/virologist/socks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
   id: ClothingUnderwearSocksSeniorPhysician
   name: senior physician's socks
   description: Standard senior physician's socks.

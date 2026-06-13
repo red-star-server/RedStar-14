@@ -12,3 +12,7 @@ ent-ClothingUnderwearSocksSeniorOfficer = senior officer's socks
     .desc = Standard senior officer's socks.
 ent-ClothingUnderwearSocksWarden = warden's socks
     .desc = Standard warden's socks.
+ent-ClothingUnderwearSocksPilot = pilot's socks
+    .desc = Standard pilot's socks.
+ent-ClothingUnderwearSocksWardenHelper = warden assistant's socks
+    .desc = Standard warden assistant's socks.

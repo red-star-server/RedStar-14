@@ -6,3 +6,5 @@ ent-ClothingUnderwearTopBraSalvageSpecialist = salvage specialist's bra
     .desc = Standard salvage specialist's underwear.
 ent-ClothingUnderwearTopBraSeniorCourier = senior courier's bra
     .desc = Standard senior courier's underwear.
+ent-ClothingUnderwearTopBraShaftMiner = shaft miner's bra
+    .desc = Standard shaft miner's underwear.

@@ -12,3 +12,7 @@ ent-ClothingUnderwearTopBraPsychologist = бра психиатра
     .desc = Cтандартное нижнее бельё психиатра.
 ent-ClothingUnderwearTopBraSeniorPhysician = бра ведущего врача
     .desc = Cтандартное нижнее бельё ведущего врача.
+ent-ClothingUnderwearTopBraSurgeon = бра хирурга
+    .desc = Cтандартное нижнее бельё хирурга.
+ent-ClothingUnderwearTopBraVirologist = бра вирусолога
+    .desc = Cтандартное нижнее бельё вирусолога.

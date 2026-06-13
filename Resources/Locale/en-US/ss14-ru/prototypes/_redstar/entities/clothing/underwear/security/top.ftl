@@ -12,3 +12,7 @@ ent-ClothingUnderwearTopBraSeniorOfficer = senior officer's bra
     .desc = Standard senior officer's underwear.
 ent-ClothingUnderwearTopBraWarden = warden's bra
     .desc = Standard warden's underwear.
+ent-ClothingUnderwearTopBraPilot = pilot's bra
+    .desc = Standard pilot's underwear.
+ent-ClothingUnderwearTopBraWardenHelper = warden assistant's bra
+    .desc = Standard warden assistant's underwear.

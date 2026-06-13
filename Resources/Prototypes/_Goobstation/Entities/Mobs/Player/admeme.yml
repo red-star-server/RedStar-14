@@ -83,7 +83,7 @@
       settings: short
   - type: Loadout
     prototypes: [ NavyOfficerGear ]
-    roleLoadout: [ RoleSurvivalEVA ]
+    roleLoadout: [ RoleSurvivalCentcommEVA ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesMilitaryFirstLeader
@@ -124,7 +124,7 @@
       settings: short
   - type: Loadout
     prototypes: [ NavyCaptainGear ]
-    roleLoadout: [ RoleSurvivalEVA ]
+    roleLoadout: [ RoleSurvivalCentcommEVA ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesMilitaryFirstHighRank
@@ -165,7 +165,7 @@
       settings: short
   - type: Loadout
     prototypes: [  NavyOfficerUndercoverGear ]
-    roleLoadout: [ RoleSurvivalEVA ]
+    roleLoadout: [ RoleSurvivalCentcommEVA ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesMilitaryFirstLeader
@@ -206,7 +206,7 @@
       settings: short
   - type: Loadout
     prototypes: [ SpecialOperationsOfficerGear ]
-    roleLoadout: [ RoleSurvivalEVA ]
+    roleLoadout: [ RoleSurvivalCentcommEVA ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesMilitaryFirstHighRank
@@ -247,7 +247,7 @@
       settings: short
   - type: Loadout
     prototypes: [ DiplomatGear ]
-    roleLoadout: [ RoleSurvivalEVA ]
+    roleLoadout: [ RoleSurvivalCentcommEVA ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesMilitaryFirstPolitical
@@ -288,7 +288,7 @@
       settings: short
   - type: Loadout
     prototypes: [ InspectorGear ]
-    roleLoadout: [ RoleSurvivalEVA ]
+    roleLoadout: [ RoleSurvivalCentcommEVA ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesFirstInspector

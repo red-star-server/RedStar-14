@@ -10,3 +10,7 @@ ent-ClothingUnderwearBottomPantiesLawyer = стринги юриста
     .desc = Cтандартное нижнее бельё юриста.
 ent-ClothingUnderwearBottomPantiesMagistrate = стринги судьи
     .desc = Cтандартное нижнее бельё судьи.
+ent-ClothingUnderwearBottomBoxersNanotrasenCareerTrainer = боксеры карьерного инструктора Nanotrasen
+    .desc = Cтандартное нижнее бельё карьерного инструктора Nanotrasen.
+ent-ClothingUnderwearBottomPantiesNanotrasenCareerTrainer = стринги карьерного инструктора Nanotrasen
+    .desc = Cтандартное нижнее бельё карьерного инструктора Nanotrasen.

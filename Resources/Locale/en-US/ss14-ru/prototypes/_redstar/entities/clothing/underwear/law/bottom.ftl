@@ -10,3 +10,7 @@ ent-ClothingUnderwearBottomPantiesLawyer = lawyer's panties
     .desc = Standard lawyer's underwear.
 ent-ClothingUnderwearBottomPantiesMagistrate = magistrate's panties
     .desc = Standard magistrate's underwear.
+ent-ClothingUnderwearBottomBoxersNanotrasenCareerTrainer = nanotrasen career trainer's boxers
+    .desc = Standard nanotrasen career trainer's underwear.
+ent-ClothingUnderwearBottomPantiesNanotrasenCareerTrainer = nanotrasen career trainer's panties
+    .desc = Standard nanotrasen career trainer's underwear.

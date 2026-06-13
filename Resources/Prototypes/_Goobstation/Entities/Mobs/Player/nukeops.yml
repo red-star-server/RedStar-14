@@ -12,7 +12,7 @@
   - type: NukeOperative
   - type: Loadout
     prototypes: [ SyndicateOperativeGearBaseSuit ]
-    roleLoadout: [ RoleSurvivalSyndicate ]
+    roleLoadout: [ RoleSurvivalNukie ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicatePrefix
@@ -33,7 +33,7 @@
   - type: NukeOperative
   - type: Loadout
     prototypes: [ SyndicateOperativeGearEliteSuit ]
-    roleLoadout: [ RoleSurvivalSyndicate ]
+    roleLoadout: [ RoleSurvivalNukie ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicatePrefix
@@ -54,7 +54,7 @@
   - type: NukeOperative
   - type: Loadout
     prototypes: [ SyndicateOperativeGearJuggSuit ]
-    roleLoadout: [ RoleSurvivalSyndicate ]
+    roleLoadout: [ RoleSurvivalNukie ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicatePrefix
@@ -75,7 +75,7 @@
   - type: NukeOperative
   - type: Loadout
     prototypes: [ SyndicateOperativeGearCommanderSuit ]
-    roleLoadout: [ RoleSurvivalSyndicate ]
+    roleLoadout: [ RoleSurvivalNukie ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicatePrefix
@@ -96,7 +96,7 @@
   - type: NukeOperative
   - type: Loadout
     prototypes: [ SyndicateOperativeGearStealthSuit ]
-    roleLoadout: [ RoleSurvivalSyndicate ]
+    roleLoadout: [ RoleSurvivalNukie ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicatePrefix
@@ -117,7 +117,7 @@
   - type: NukeOperative
   - type: Loadout
     prototypes: [ SyndicateOperativeGearMedicSuit ]
-    roleLoadout: [ RoleSurvivalSyndicate ]
+    roleLoadout: [ RoleSurvivalNukie ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicatePrefix
@@ -138,7 +138,7 @@
   - type: NukeOperative
   - type: Loadout
     prototypes: [ SyndicateOperativeGearDreadSuit ]
-    roleLoadout: [ RoleSurvivalSyndicate ]
+    roleLoadout: [ RoleSurvivalNukie ] # RS14
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicatePrefix

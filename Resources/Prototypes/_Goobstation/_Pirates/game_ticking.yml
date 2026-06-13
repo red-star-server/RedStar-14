@@ -55,6 +55,8 @@
       - MindRolePirate
       grantAllSkills: true # RS14
       startingGear: PirateGear
+      roleLoadout:
+      - RoleSurvivalPirate # RS14
       components:
       - type: RandomMetadata
         nameSegments:
