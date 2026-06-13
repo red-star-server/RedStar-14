@@ -1406,10 +1406,6 @@ namespace Content.Shared.Interaction
         {
             // Get list of alt-interact verbs
             var verbs = _verbSystem.GetLocalVerbs(target, user, typeof(AlternativeVerb));
-            // RS14-start
-            if (verbs.Count == 0)
-                verbs = _verbSystem.GetLocalVerbs(target, user, typeof(UtilityVerb));
-            // RS14-end
             if (verbs.Count == 0)
                 return false;
 
