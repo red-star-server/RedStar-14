@@ -6,5 +6,5 @@ ent-ClothingUnderwearSocksSalvage = носки шахтёра
     .desc = Стандартные носки шахтёра.
 ent-ClothingUnderwearSocksSeniorCourier = носки ведущего логиста
     .desc = Стандартные носки ведущего утилизатора.
-ent-ClothingUnderwearSocksShaftMiner = носки шахтера
-    .desc = Стандартные носки шахтера.
+ent-ClothingUnderwearSocksShaftMiner = носки шахтёра
+    .desc = Стандартные носки шахтёра.

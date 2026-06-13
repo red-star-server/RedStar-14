@@ -6,5 +6,5 @@ ent-ClothingUnderwearTopBraSalvageSpecialist = бра шахтёра
     .desc = Стандартное нижнее бельё шахтёра.
 ent-ClothingUnderwearTopBraSeniorCourier = бра ведущего логиста
     .desc = Стандартное нижнее бельё ведущего логиста.
-ent-ClothingUnderwearTopBraShaftMiner = бра шахтера
+ent-ClothingUnderwearTopBraShaftMiner = бра шахтёра
     .desc = Стандартное нижнее бельё шахтёра.
