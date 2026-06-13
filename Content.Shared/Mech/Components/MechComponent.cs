@@ -148,6 +148,14 @@ public sealed partial class MechComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float BatteryRemovalDelay = 2;
 
+    // RS14-start
+    /// <summary>
+    /// Energy consumed while the mech is actively moving, in charge units per second.
+    /// </summary>
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public float MovementEnergyPerSecond = 5f;
+    // RS14-end
+
     /// <summary>
     /// Whether or not the mech is airtight.
     /// </summary>
@@ -190,3 +198,11 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechEjectActionEntity;
     [DataField, AutoNetworkedField] public EntityUid? ToggleActionEntity; //Goobstation Mech Lights toggle action
 }
+
+// RS14-start
+/// <summary>
+/// Raised to enable or disable active movement energy drain for this mech.
+/// </summary>
+[ByRefEvent]
+public readonly record struct MechMovementDrainToggleEvent(bool Enabled);
+// RS14-end

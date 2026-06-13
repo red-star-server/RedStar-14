@@ -5,9 +5,12 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Shared.Construction.Components;
+using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes; // RS14
+using Robust.Shared.Random; // RS14
 
 namespace Content.Shared.Construction;
 
@@ -17,7 +20,14 @@ namespace Content.Shared.Construction;
 public sealed class PartAssemblySystem : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly IRobustRandom _random = default!; // RS14
+
+    // RS14-start
+    private const float RoboticsAssemblyFailureChanceWithoutSkill = 0.35f;
+    private static readonly ProtoId<SkillPrototype> RoboticsSkill = "Robotics";
+    // RS14-end
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -34,7 +44,7 @@ public sealed class PartAssemblySystem : EntitySystem
 
     private void OnInteractUsing(EntityUid uid, PartAssemblyComponent component, InteractUsingEvent args)
     {
-        if (!TryInsertPart(args.Used, uid, component))
+        if (!TryInsertPart(args.Used, uid, component, args.User)) // RS14
             return;
         args.Handled = true;
     }
@@ -51,7 +61,7 @@ public sealed class PartAssemblySystem : EntitySystem
     /// <summary>
     /// Attempts to insert a part into the current assembly, starting one if there is none.
     /// </summary>
-    public bool TryInsertPart(EntityUid part, EntityUid uid, PartAssemblyComponent? component = null)
+    public bool TryInsertPart(EntityUid part, EntityUid uid, PartAssemblyComponent? component = null, EntityUid? user = null) // RS14
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -81,6 +91,15 @@ public sealed class PartAssemblySystem : EntitySystem
 
         if (!IsPartValid(uid, part, assemblyId, component))
             return false;
+
+        // RS14-start
+        if (user is { } userUid
+            && !_skills.HasSkill(userUid, RoboticsSkill)
+            && _random.Prob(RoboticsAssemblyFailureChanceWithoutSkill))
+        {
+            return false;
+        }
+        // RS14-end
 
         component.CurrentAssembly = assemblyId;
         _container.Insert(part, component.PartsContainer);
