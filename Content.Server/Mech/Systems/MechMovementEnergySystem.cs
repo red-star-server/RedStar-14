@@ -8,7 +8,6 @@ using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Mech.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Vehicle;
-using Content.Shared.Vehicle.Components;
 
 namespace Content.Server.Mech.Systems;
 
@@ -26,14 +25,8 @@ public sealed class MechMovementEnergySystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MechComponent, VehicleOperatorSetEvent>(OnOperatorSet);
         SubscribeLocalEvent<MechComponent, MechMovementDrainToggleEvent>(OnDrainToggle);
         SubscribeLocalEvent<MechComponent, ComponentShutdown>(OnShutdown);
-    }
-
-    private void OnOperatorSet(Entity<MechComponent> ent, ref VehicleOperatorSetEvent args)
-    {
-        SetDrainEnabled(ent.Owner, args.NewOperator != null);
     }
 
     private void OnDrainToggle(Entity<MechComponent> ent, ref MechMovementDrainToggleEvent args)

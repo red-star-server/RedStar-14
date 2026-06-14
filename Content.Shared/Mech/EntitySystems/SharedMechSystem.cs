@@ -300,7 +300,14 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         if (Resolve(toInsert, ref moduleComponent, false))
         {
-            if (component.ModuleContainer.ContainedEntities.Count >= component.MaxModuleAmount)
+            var usedModuleSize = 0;
+            foreach (var moduleUid in component.ModuleContainer.ContainedEntities)
+            {
+                if (TryComp<MechModuleComponent>(moduleUid, out var installedModule))
+                    usedModuleSize += installedModule.Size;
+            }
+
+            if (usedModuleSize + moduleComponent.Size > component.MaxModuleAmount)
                 return;
 
             if (_whitelistSystem.IsWhitelistFail(component.ModuleWhitelist, toInsert))
@@ -654,6 +661,9 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         UpdateAppearance(ent, ent);
         UpdateUserInterface(ent, ent);
+
+        var drainEv = new MechMovementDrainToggleEvent(args.NewOperator != null);
+        RaiseLocalEvent(ent, ref drainEv);
     }
     // RS14-end
 }

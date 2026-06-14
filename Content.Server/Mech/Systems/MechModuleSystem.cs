@@ -47,7 +47,7 @@ public sealed class MechModuleSystem : EntitySystem
             return;
         }
 
-        if (mechComp.ModuleContainer.ContainedEntities.Count >= mechComp.MaxModuleAmount)
+        if (GetUsedModuleSize(mechComp.ModuleContainer.ContainedEntities) + ent.Comp.Size > mechComp.MaxModuleAmount)
         {
             _popup.PopupEntity(Loc.GetString("mech-module-slot-full-popup"), args.User, args.User);
             return;
@@ -88,6 +88,19 @@ public sealed class MechModuleSystem : EntitySystem
         }
 
         return false;
+    }
+
+    private int GetUsedModuleSize(IReadOnlyList<EntityUid> installed)
+    {
+        var usedModuleSize = 0;
+
+        foreach (var installedModule in installed)
+        {
+            if (TryComp<MechModuleComponent>(installedModule, out var module))
+                usedModuleSize += module.Size;
+        }
+
+        return usedModuleSize;
     }
 
     private void OnInsert(Entity<MechModuleComponent> ent, ref InsertModuleEvent args)
