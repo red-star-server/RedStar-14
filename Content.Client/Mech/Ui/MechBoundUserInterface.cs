@@ -33,10 +33,23 @@ public sealed class MechBoundUserInterface : BoundUserInterface
         _menu = this.CreateWindowCenteredLeft<MechMenu>();
         _menu.SetEntity(Owner);
 
-        _menu.OnRemoveButtonPressed += uid =>
+        _menu.OnRemoveEquipmentButtonPressed += uid =>
         {
             SendMessage(new MechEquipmentRemoveMessage(EntMan.GetNetEntity(uid)));
         };
+        _menu.OnRemoveModuleButtonPressed += uid =>
+        {
+            SendMessage(new MechModuleRemoveMessage(EntMan.GetNetEntity(uid)));
+        };
+
+        // RS14-start
+        _menu.OnDnaLockRegister += () => SendMessage(new MechDnaLockRegisterMessage());
+        _menu.OnDnaLockToggle += () => SendMessage(new MechDnaLockToggleMessage());
+        _menu.OnDnaLockReset += () => SendMessage(new MechDnaLockResetMessage());
+        _menu.OnCardLockRegister += () => SendMessage(new MechCardLockRegisterMessage());
+        _menu.OnCardLockToggle += () => SendMessage(new MechCardLockToggleMessage());
+        _menu.OnCardLockReset += () => SendMessage(new MechCardLockResetMessage());
+        // RS14-end
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -46,7 +59,7 @@ public sealed class MechBoundUserInterface : BoundUserInterface
         if (state is not MechBoundUiState msg)
             return;
         UpdateEquipmentControls(msg);
-        _menu?.UpdateMechStats();
+        _menu?.UpdateMechStats(msg);
         _menu?.UpdateEquipmentView();
     }
 

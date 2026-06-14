@@ -54,6 +54,9 @@
       components:
       - Zombie
       - ZombieBlob
+  # RS14-start
+  - type: MechLock
+  # RS14-end
   - type: MechAir
   - type: AirFilter
     # everything except oxygen and nitrogen

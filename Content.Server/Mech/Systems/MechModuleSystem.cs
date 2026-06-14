@@ -22,6 +22,7 @@ public sealed class MechModuleSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly VehicleSystem _vehicle = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly MechLockSystem _mechLock = default!;
 
     public override void Initialize()
     {
@@ -39,6 +40,9 @@ public sealed class MechModuleSystem : EntitySystem
             return;
 
         if (mechComp.Broken)
+            return;
+
+        if (!_mechLock.CheckAccessWithFeedback(mech, args.User))
             return;
 
         if (_vehicle.HasOperator(mech))

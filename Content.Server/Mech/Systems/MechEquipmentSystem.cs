@@ -32,6 +32,7 @@ public sealed class MechEquipmentSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly VehicleSystem _vehicle = default!; // RS14
+    [Dependency] private readonly MechLockSystem _mechLock = default!; // RS14
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -50,6 +51,9 @@ public sealed class MechEquipmentSystem : EntitySystem
             return;
 
         if (mechComp.Broken)
+            return;
+
+        if (!_mechLock.CheckAccessWithFeedback(mech, args.User)) // RS14
             return;
 
         if (args.User == _vehicle.GetOperatorOrNull(mech)) // RS14

@@ -75,6 +75,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
     [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
+    [Dependency] private readonly MechLockSystem _mechLock = default!; // RS14
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
     // RS14-start
@@ -100,8 +101,10 @@ public sealed partial class MechSystem : SharedMechSystem
 
         SubscribeLocalEvent<MechComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<MechComponent, MechEquipmentRemoveMessage>(OnRemoveEquipmentMessage);
+        SubscribeLocalEvent<MechComponent, MechModuleRemoveMessage>(OnRemoveModuleMessage); // RS14
 
         SubscribeLocalEvent<MechComponent, VehicleCanRunEvent>(OnMechCanMoveEvent); // RS14
+        SubscribeLocalEvent<MechComponent, AttemptChangePanelEvent>(OnAttemptChangePanel); // RS14
 
 
         // RS14-start
@@ -123,10 +126,19 @@ public sealed partial class MechSystem : SharedMechSystem
     {
         if (component.Broken || component.Integrity <= 0 || component.Energy <= 0)
             args.CanRun = false; // RS14
+
+        if (Vehicle.GetOperatorOrNull(uid) is { } operatorUid &&
+            !_mechLock.CheckAccess(uid, operatorUid))
+        {
+            args.CanRun = false;
+        }
     }
 
     private void OnInteractUsing(EntityUid uid, MechComponent component, InteractUsingEvent args)
     {
+        if (!_mechLock.CheckAccessWithFeedback(uid, args.User))
+            return;
+
         if (TryComp<WiresPanelComponent>(uid, out var panel) && !panel.Open)
             return;
 
@@ -166,6 +178,9 @@ public sealed partial class MechSystem : SharedMechSystem
         if (args.Cancelled || args.Handled)
             return;
 
+        if (!_mechLock.CheckAccessWithFeedback(uid, args.User))
+            return;
+
         RemoveBattery(uid, component);
         Vehicle.RefreshCanRun(uid); // RS14
 
@@ -200,24 +215,53 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnRemoveEquipmentMessage(EntityUid uid, MechComponent component, MechEquipmentRemoveMessage args)
     {
+        if (!_mechLock.CheckAccessWithFeedback(uid, args.Actor))
+            return;
+
         var equip = GetEntity(args.Equipment);
 
         if (!Exists(equip) || Deleted(equip))
             return;
 
-        // RS14-start
-        if (!component.EquipmentContainer.ContainedEntities.Contains(equip) &&
-            !component.ModuleContainer.ContainedEntities.Contains(equip))
+        if (!component.EquipmentContainer.ContainedEntities.Contains(equip))
             return;
-        // RS14-end
 
         RemoveEquipment(uid, equip, component);
     }
 
+    // RS14-start
+    private void OnRemoveModuleMessage(EntityUid uid, MechComponent component, MechModuleRemoveMessage args)
+    {
+        if (!_mechLock.CheckAccessWithFeedback(uid, args.Actor))
+            return;
+
+        var module = GetEntity(args.Module);
+
+        if (!Exists(module) || Deleted(module))
+            return;
+
+        if (!component.ModuleContainer.ContainedEntities.Contains(module))
+            return;
+
+        RemoveEquipment(uid, module, component);
+    }
+    // RS14-end
+
     private void OnOpenUi(EntityUid uid, MechComponent component, MechOpenUiEvent args)
     {
         args.Handled = true;
+        if (!_mechLock.CheckAccessWithFeedback(uid, args.Performer))
+            return;
+
         ToggleMechUi(uid, component);
+    }
+
+    private void OnAttemptChangePanel(EntityUid uid, MechComponent component, ref AttemptChangePanelEvent args)
+    {
+        if (args.User == null || _mechLock.CheckAccessWithFeedback(uid, args.User.Value))
+            return;
+
+        args.Cancelled = true;
     }
 
     private void OnToolUseAttempt(EntityUid uid, VehicleOperatorComponent component, ref ToolUserAttemptUseEvent args) // RS14
@@ -238,6 +282,9 @@ public sealed partial class MechSystem : SharedMechSystem
                 Text = Loc.GetString("mech-verb-enter"),
                 Act = () =>
                 {
+                    if (!_mechLock.CheckAccessWithFeedback(uid, args.User))
+                        return;
+
                     // RS14-start
                     var delay = component.EntryDelay;
                     if (!_skills.HasSkill(args.User, ExosuitsSkill))
@@ -255,7 +302,13 @@ public sealed partial class MechSystem : SharedMechSystem
             };
             var openUiVerb = new AlternativeVerb //can't hijack someone else's mech
             {
-                Act = () => ToggleMechUi(uid, component, args.User),
+                Act = () =>
+                {
+                    if (!_mechLock.CheckAccessWithFeedback(uid, args.User))
+                        return;
+
+                    ToggleMechUi(uid, component, args.User);
+                },
                 Text = Loc.GetString("mech-ui-open-verb")
             };
             args.Verbs.Add(enterVerb);
@@ -275,6 +328,9 @@ public sealed partial class MechSystem : SharedMechSystem
                         TryEject(uid, component);
                         return;
                     }
+
+                    if (!_mechLock.CheckAccessWithFeedback(uid, args.User))
+                        return;
 
                     var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, component.ExitDelay, new MechExitEvent(), uid, target: uid)
                     {
@@ -304,6 +360,9 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
+        if (!_mechLock.CheckAccessWithFeedback(uid, args.User))
+            return;
+
         // RS14-start
         if (!TryInsert(uid, args.User, component))
         {
@@ -319,6 +378,13 @@ public sealed partial class MechSystem : SharedMechSystem
     {
         if (args.Cancelled || args.Handled)
             return;
+
+        if (Vehicle.GetOperatorOrNull(uid) is { } operatorUid &&
+            args.User != operatorUid &&
+            !_mechLock.CheckAccessWithFeedback(uid, args.User))
+        {
+            return;
+        }
 
         if (!TryEject(uid, component)) // RS14
             return;
@@ -406,6 +472,19 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             EquipmentStates = ev.States
         };
+
+        if (TryComp<MechLockComponent>(uid, out var lockComp))
+        {
+            state.HasLock = true;
+            state.IsLocked = lockComp.IsLocked;
+            state.DnaLockRegistered = lockComp.DnaLockRegistered;
+            state.DnaLockActive = lockComp.DnaLockActive;
+            state.DnaLockOwner = lockComp.OwnerDna;
+            state.CardLockRegistered = lockComp.CardLockRegistered;
+            state.CardLockActive = lockComp.CardLockActive;
+            state.CardLockOwner = lockComp.OwnerJobTitle;
+        }
+
         _ui.SetUiState(uid, MechUiKey.Key, state);
     }
 

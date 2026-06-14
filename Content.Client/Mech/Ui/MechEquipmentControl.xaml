@@ -22,6 +22,12 @@ SPDX-License-Identifier: MIT
                     Scale="1 1"
                     RectClipContent="True"/>
                 <RichTextLabel Name="EquipmentName" VerticalAlignment="Center"/>
+                <!-- RS14-start -->
+                <Label Name="EquipmentSize"
+                       Margin="6 0 0 0"
+                       VerticalAlignment="Center"
+                       Visible="False" />
+                <!-- RS14-end -->
                 <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextureButton Name="RemoveButton" Scale="0.5 0.5"></TextureButton>
                 </BoxContainer>

@@ -16,10 +16,14 @@ public sealed partial class MechEquipmentControl : Control
 {
     public event Action? OnRemoveButtonPressed;
 
-    public MechEquipmentControl(EntityUid entity, string itemName, Control? fragment)
+    public MechEquipmentControl(EntityUid entity, string itemName, Control? fragment, int? size = null)
     {
         RobustXamlLoader.Load(this);
         EquipmentName.SetMessage(itemName);
+        EquipmentSize.Text = size == null
+            ? string.Empty
+            : Loc.GetString("mech-equipment-size-display", ("size", size.Value));
+        EquipmentSize.Visible = size != null;
         EquipmentView.SetEntity(entity);
         RemoveButton.TexturePath = "/Textures/Interface/Nano/cross.svg.png";
 

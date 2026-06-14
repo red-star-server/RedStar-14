@@ -45,3 +45,32 @@ mech-construction-guide-string = All mech parts must be attached to the harness.
 mech-generator-output-label = Output: {$rate} W
 mech-generator-fuel-label = Fuel ({$name}): {$amount}
 mech-generator-eject-fuel-button = Eject fuel
+
+# RS14-start
+mech-module-slot-display = Open Module Slots: {$amount}
+mech-equipment-size-display = Size: {$size}
+mech-equipment-section = Equipment
+mech-module-section = Modules
+mech-lock-status-locked = Lock status: locked
+mech-lock-status-unlocked = Lock status: unlocked
+mech-lock-dna-label = DNA lock
+mech-lock-card-label = ID lock
+mech-lock-register = Register
+mech-lock-activate = Activate
+mech-lock-deactivate = Deactivate
+mech-lock-reset = Reset
+mech-lock-not-registered = Not registered
+mech-lock-owner-unknown = unknown
+mech-lock-dna-info = Registered DNA: {$owner}
+mech-lock-card-info = Registered access: {$owner}
+mech-lock-access-denied-popup = Access denied. This mech is locked.
+mech-lock-no-dna-popup = DNA lock cannot be registered.
+mech-lock-no-card-popup = ID lock cannot be registered without an ID card.
+mech-lock-dna-registered-popup = DNA lock registered.
+mech-lock-card-registered-popup = ID lock registered.
+mech-lock-card-no-access-popup = ID card has no access tags to register.
+mech-lock-activated-popup = Lock activated.
+mech-lock-deactivated-popup = Lock deactivated.
+mech-lock-reset-success-popup = Lock reset.
+mech-lock-already-registered-popup = This lock is already registered.
+# RS14-end

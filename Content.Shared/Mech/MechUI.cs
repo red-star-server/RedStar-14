@@ -53,6 +53,22 @@ public sealed class MechEquipmentRemoveMessage : BoundUserInterfaceMessage
     }
 }
 
+// RS14-start
+/// <summary>
+/// UI event raised to remove a passive module from a mech.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class MechModuleRemoveMessage : BoundUserInterfaceMessage
+{
+    public NetEntity Module;
+
+    public MechModuleRemoveMessage(NetEntity module)
+    {
+        Module = module;
+    }
+}
+// RS14-end
+
 /// <summary>
 /// base for all mech ui messages
 /// </summary>
@@ -117,6 +133,16 @@ public sealed class MechSoundboardPlayMessage : MechEquipmentUiMessage
 public sealed class MechBoundUiState : BoundUserInterfaceState
 {
     public Dictionary<NetEntity, BoundUserInterfaceState> EquipmentStates = new();
+    // RS14-start
+    public bool HasLock;
+    public bool IsLocked;
+    public bool DnaLockRegistered;
+    public bool DnaLockActive;
+    public string? DnaLockOwner;
+    public bool CardLockRegistered;
+    public bool CardLockActive;
+    public string? CardLockOwner;
+    // RS14-end
 }
 
 [Serializable, NetSerializable]
@@ -155,4 +181,22 @@ public sealed class MechGeneratorEjectFuelMessage : MechEquipmentUiMessage
         Equipment = equipment;
     }
 }
+
+[Serializable, NetSerializable]
+public sealed class MechDnaLockRegisterMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class MechDnaLockToggleMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class MechDnaLockResetMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class MechCardLockRegisterMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class MechCardLockToggleMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class MechCardLockResetMessage : BoundUserInterfaceMessage;
 // RS14-end
