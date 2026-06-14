@@ -84,5 +84,22 @@ public sealed partial class MechMenu : FancyWindow
 
             EquipmentControlContainer.AddChild(control);
         }
+
+        // RS14-start
+        foreach (var ent in mechComp.ModuleContainer.ContainedEntities)
+        {
+            if (!_ent.TryGetComponent<MetaDataComponent>(ent, out var metaData))
+                continue;
+
+            var uicomp = _ent.GetComponentOrNull<UIFragmentComponent>(ent);
+            var ui = uicomp?.Ui?.GetUIFragmentRoot();
+
+            var control = new MechEquipmentControl(ent, metaData.EntityName, ui);
+
+            control.OnRemoveButtonPressed += () => OnRemoveButtonPressed?.Invoke(ent);
+
+            EquipmentControlContainer.AddChild(control);
+        }
+        // RS14-end
     }
 }

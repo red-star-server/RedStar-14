@@ -66,6 +66,21 @@ public sealed class MechBoundUserInterface : BoundUserInterface
                     ui.UpdateState(estate);
             }
         }
+
+        // RS14-start
+        foreach (var ent in mechComp.ModuleContainer.ContainedEntities)
+        {
+            var ui = GetEquipmentUi(ent);
+            if (ui == null)
+                continue;
+
+            foreach (var (attached, estate) in state.EquipmentStates)
+            {
+                if (ent == EntMan.GetEntity(attached))
+                    ui.UpdateState(estate);
+            }
+        }
+        // RS14-end
     }
 
     public UIFragment? GetEquipmentUi(EntityUid? uid)

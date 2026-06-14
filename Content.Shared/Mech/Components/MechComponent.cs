@@ -129,6 +129,29 @@ public sealed partial class MechComponent : Component
     [ViewVariables]
     public readonly string EquipmentContainerId = "mech-equipment-container";
 
+    // RS14-start
+    /// <summary>
+    /// The maximum amount of passive modules that can be installed in the mech.
+    /// </summary>
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public int MaxModuleAmount = 4;
+
+    /// <summary>
+    /// A container for storing passive module entities.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public Container ModuleContainer = default!;
+
+    [ViewVariables]
+    public readonly string ModuleContainerId = "mech-passive-module-container";
+
+    /// <summary>
+    /// A whitelist for inserting module items.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? ModuleWhitelist;
+    // RS14-end
+
     /// <summary>
     /// How long it takes to enter the mech.
     /// </summary>
@@ -172,6 +195,14 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [DataField]
     public List<EntProtoId> StartingEquipment = new();
+
+    // RS14-start
+    /// <summary>
+    /// The passive modules that the mech initially has when it spawns.
+    /// </summary>
+    [DataField]
+    public List<EntProtoId> StartingModules = new();
+    // RS14-end
 
     #region Action Prototypes
     [DataField]

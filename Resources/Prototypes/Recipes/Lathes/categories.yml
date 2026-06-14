@@ -148,6 +148,12 @@
   id: Mech
   name: lathe-category-mechs
 
+# RS14-start
+- type: latheCategory
+  id: MechModule
+  name: lathe-category-mech-modules
+# RS14-end
+
 - type: latheCategory
   id: Modules
   name: lathe-category-modules

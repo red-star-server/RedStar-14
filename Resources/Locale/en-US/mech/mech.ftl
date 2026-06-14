@@ -14,6 +14,14 @@ mech-verb-exit = Remove pilot
 
 mech-equipment-begin-install = Installing the {THE($item)}...
 mech-equipment-finish-install = Finished installing the {THE($item)}
+# RS14-start
+mech-module-begin-install = Installing the {THE($item)}...
+mech-module-finish-install = Finished installing the {THE($item)}
+mech-module-slot-full-popup = The mech has no free module slots.
+mech-module-whitelist-fail-popup = This module cannot be installed in this mech.
+mech-cannot-modify-closed-popup = Open the mech before modifying it.
+mech-duplicate-installed-popup = That module is already installed.
+# RS14-end
 
 mech-equipment-select-popup = {$item} selected
 mech-equipment-select-none-popup = Nothing selected

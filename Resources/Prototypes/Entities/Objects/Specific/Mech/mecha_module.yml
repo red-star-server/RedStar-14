@@ -1,0 +1,64 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: MIT
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: MechModuleBase
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_modules.rsi
+  - type: Item
+    sprite: Objects/Specific/Mech/mecha_modules.rsi
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: MechModule
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: entity
+  parent: [ MechModuleBase, IndustrialMechEquipment ]
+  id: MechModuleFan
+  name: exosuit fan module
+  description: Draws outside air into the cabin to maintain a breathable atmosphere. Features a built-in filter.
+  components:
+  - type: Sprite
+    state: mecha_fan
+  - type: MechFanModule
+    filterGases: [ Plasma, CarbonDioxide, NitrousOxide ]
+
+- type: entity
+  parent: [ MechModuleBase, IndustrialMechEquipment ]
+  id: MechModuleAirTank
+  name: exosuit air tank module
+  description: A special air canister capable of holding a large amount of air.
+  components:
+  - type: Sprite
+    state: mecha_air_tank
+  - type: MechAirTankModule
+  - type: GasTank
+    outputPressure: 101.3
+    air:
+      volume: 25
+
+- type: entity
+  parent: [ MechModuleBase, SpecialMechEquipment ]
+  id: MechModuleHorn
+  name: mech horn module
+  description: An enhanced bike horn that plays a hilarious array of sounds for the enjoyment of the crew. HONK!
+  components:
+  - type: Sprite
+    state: mecha_honker
+  - type: MechSoundboard
+    sounds:
+    - collection: BikeHorn
+    - collection: CluwneHorn
+    - collection: TrollAnimals
+    - collection: TrollBeeping
+    - collection: TrollEsword
+  - type: UIFragment
+    ui: !type:MechSoundboardUi
+  - type: UseDelay
+    delay: 0.5

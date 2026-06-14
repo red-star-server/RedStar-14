@@ -280,6 +280,10 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
+  # RS14-start
+  - MechModuleFan
+  - MechModuleAirTank
+  # RS14-end
   technologyPrerequisites:
   - AtmosphericTech
   # Goobstation R&D Console rework start

@@ -49,6 +49,8 @@ lathe-category-industrial-tile = Industrial
 
 # Science
 lathe-category-mechs = Mechs
+# RS14
+lathe-category-mech-modules = Mech modules
 lathe-category-modules = Modules
 lathe-category-robotics = Robotics
 

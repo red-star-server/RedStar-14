@@ -44,6 +44,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
+using Content.Shared.Mech.Module.Components;
 using Content.Shared.Popups;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
@@ -181,6 +182,14 @@ public sealed partial class MechSystem : SharedMechSystem
             InsertEquipment(uid, ent, component);
         }
 
+        // RS14-start
+        foreach (var module in component.StartingModules)
+        {
+            var ent = Spawn(module, xform.Coordinates);
+            InsertEquipment(uid, ent, component);
+        }
+        // RS14-end
+
         // TODO: this should just be damage and battery
         component.Integrity = component.MaxIntegrity;
         component.Energy = component.MaxEnergy;
@@ -196,8 +205,11 @@ public sealed partial class MechSystem : SharedMechSystem
         if (!Exists(equip) || Deleted(equip))
             return;
 
-        if (!component.EquipmentContainer.ContainedEntities.Contains(equip))
+        // RS14-start
+        if (!component.EquipmentContainer.ContainedEntities.Contains(equip) &&
+            !component.ModuleContainer.ContainedEntities.Contains(equip))
             return;
+        // RS14-end
 
         RemoveEquipment(uid, equip, component);
     }
@@ -359,6 +371,9 @@ public sealed partial class MechSystem : SharedMechSystem
     {
         var ev = new MechEquipmentUiMessageRelayEvent(args);
         var allEquipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
+        // RS14-start
+        allEquipment.AddRange(component.ModuleContainer.ContainedEntities);
+        // RS14-end
         var argEquip = GetEntity(args.Equipment);
 
         foreach (var equipment in allEquipment)
@@ -380,6 +395,12 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             RaiseLocalEvent(ent, ev);
         }
+        // RS14-start
+        foreach (var ent in component.ModuleContainer.ContainedEntities)
+        {
+            RaiseLocalEvent(ent, ev);
+        }
+        // RS14-end
 
         var state = new MechBoundUiState
         {

@@ -257,6 +257,8 @@
   - HonkerPeripheralsElectronics
   - HonkerTargetingElectronics
   - MechEquipmentHorn
+  # RS14
+  - MechModuleHorn
   # Goobstation R&D Console rework start
   position: 0,6
   technologyPrerequisites:

@@ -7,6 +7,7 @@ using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
+using Content.Shared.Mech.Module.Components;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Mech.EntitySystems;
@@ -16,23 +17,25 @@ public abstract partial class SharedMechSystem
     // RS14-start
     public void InsertEquipment(Entity<MechComponent?> ent,
         EntityUid toInsert,
-        MechEquipmentComponent? equipmentComponent = null)
+        MechEquipmentComponent? equipmentComponent = null,
+        MechModuleComponent? moduleComponent = null)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
-        InsertEquipment(ent.Owner, toInsert, ent.Comp, equipmentComponent);
+        InsertEquipment(ent.Owner, toInsert, ent.Comp, equipmentComponent, moduleComponent);
     }
 
     public void RemoveEquipment(Entity<MechComponent?> ent,
         EntityUid toRemove,
         MechEquipmentComponent? equipmentComponent = null,
-        bool forced = false)
+        bool forced = false,
+        MechModuleComponent? moduleComponent = null)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
-        RemoveEquipment(ent.Owner, toRemove, ent.Comp, equipmentComponent, forced);
+        RemoveEquipment(ent.Owner, toRemove, ent.Comp, equipmentComponent, forced, moduleComponent);
     }
 
     public bool TryChangeEnergy(Entity<MechComponent?> ent, FixedPoint2 delta)

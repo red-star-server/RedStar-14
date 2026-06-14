@@ -668,6 +668,8 @@
     - BorgModules
     - MechParts
     - MechEquipment
+    # RS14
+    - MechModule
     # Goobstation Packs
     - MechPartsGoob
     - Modsuits

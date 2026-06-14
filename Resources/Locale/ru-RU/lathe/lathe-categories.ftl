@@ -36,6 +36,8 @@ lathe-category-precious-tile = Драгоценная
 lathe-category-industrial-tile = Промышленная
 # Science
 lathe-category-mechs = Мехи
+# RS14
+lathe-category-mech-modules = Модули мехов
 lathe-category-modules = Модули
 lathe-category-robotics = Робототехника
 # Security TechFab

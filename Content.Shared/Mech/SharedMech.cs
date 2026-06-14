@@ -46,6 +46,26 @@ public readonly record struct MechEquipmentRemovedEvent(EntityUid Mech)
     public readonly EntityUid Mech = Mech;
 }
 
+// RS14-start
+/// <summary>
+/// Event raised on a module when it is inserted into a mech.
+/// </summary>
+[ByRefEvent]
+public readonly record struct MechModuleInsertedEvent(EntityUid Mech)
+{
+    public readonly EntityUid Mech = Mech;
+}
+
+/// <summary>
+/// Event raised on a module when it is removed from a mech.
+/// </summary>
+[ByRefEvent]
+public readonly record struct MechModuleRemovedEvent(EntityUid Mech)
+{
+    public readonly EntityUid Mech = Mech;
+}
+// RS14-end
+
 /// <summary>
 /// Raised on the mech equipment before it is going to be removed.
 /// </summary>

@@ -43,6 +43,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
+using Content.Shared.Mech.Module.Components;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Vehicle;
@@ -147,6 +148,9 @@ public abstract partial class SharedMechSystem : EntitySystem
     {
         component.PilotSlot = _container.EnsureContainer<ContainerSlot>(uid, component.PilotSlotId);
         component.EquipmentContainer = _container.EnsureContainer<Container>(uid, component.EquipmentContainerId);
+        // RS14-start
+        component.ModuleContainer = _container.EnsureContainer<Container>(uid, component.ModuleContainerId);
+        // RS14-end
         component.BatterySlot = _container.EnsureContainer<ContainerSlot>(uid, component.BatterySlotId);
         UpdateAppearance(uid, component);
     }
@@ -217,6 +221,14 @@ public abstract partial class SharedMechSystem : EntitySystem
             RemoveEquipment(uid, ent, component, forced: true);
         }
 
+        // RS14-start
+        var modules = new List<EntityUid>(component.ModuleContainer.ContainedEntities);
+        foreach (var ent in modules)
+        {
+            RemoveEquipment(uid, ent, component, forced: true);
+        }
+        // RS14-end
+
         component.Broken = true;
         UpdateAppearance(uid, component);
     }
@@ -264,25 +276,43 @@ public abstract partial class SharedMechSystem : EntitySystem
     /// <param name="component"></param>
     /// <param name="equipmentComponent"></param>
     public void InsertEquipment(EntityUid uid, EntityUid toInsert, MechComponent? component = null,
-        MechEquipmentComponent? equipmentComponent = null)
+        MechEquipmentComponent? equipmentComponent = null, MechModuleComponent? moduleComponent = null) // RS14
     {
         if (!Resolve(uid, ref component))
             return;
 
-        if (!Resolve(toInsert, ref equipmentComponent))
-            return;
+        // RS14-start
+        if (Resolve(toInsert, ref equipmentComponent, false))
+        {
+            if (component.EquipmentContainer.ContainedEntities.Count >= component.MaxEquipmentAmount)
+                return;
 
-        if (component.EquipmentContainer.ContainedEntities.Count >= component.MaxEquipmentAmount)
-            return;
+            if (_whitelistSystem.IsWhitelistFail(component.EquipmentWhitelist, toInsert))
+                return;
 
-        if (_whitelistSystem.IsWhitelistFail(component.EquipmentWhitelist, toInsert))
+            equipmentComponent.EquipmentOwner = uid;
+            _container.Insert(toInsert, component.EquipmentContainer);
+            var ev = new MechEquipmentInsertedEvent(uid);
+            RaiseLocalEvent(toInsert, ref ev);
+            UpdateUserInterface(uid, component);
             return;
+        }
 
-        equipmentComponent.EquipmentOwner = uid;
-        _container.Insert(toInsert, component.EquipmentContainer);
-        var ev = new MechEquipmentInsertedEvent(uid);
-        RaiseLocalEvent(toInsert, ref ev);
-        UpdateUserInterface(uid, component);
+        if (Resolve(toInsert, ref moduleComponent, false))
+        {
+            if (component.ModuleContainer.ContainedEntities.Count >= component.MaxModuleAmount)
+                return;
+
+            if (_whitelistSystem.IsWhitelistFail(component.ModuleWhitelist, toInsert))
+                return;
+
+            moduleComponent.ModuleOwner = uid;
+            _container.Insert(toInsert, component.ModuleContainer);
+            var ev = new MechModuleInsertedEvent(uid);
+            RaiseLocalEvent(toInsert, ref ev);
+            UpdateUserInterface(uid, component);
+        }
+        // RS14-end
     }
 
     /// <summary>
@@ -294,17 +324,20 @@ public abstract partial class SharedMechSystem : EntitySystem
     /// <param name="equipmentComponent"></param>
     /// <param name="forced">Whether or not the removal can be cancelled</param>
     public void RemoveEquipment(EntityUid uid, EntityUid toRemove, MechComponent? component = null,
-        MechEquipmentComponent? equipmentComponent = null, bool forced = false)
+        MechEquipmentComponent? equipmentComponent = null, bool forced = false, MechModuleComponent? moduleComponent = null) // RS14
     {
         if (!Resolve(uid, ref component))
             return;
 
         // RS14-start
-        if (!Resolve(toRemove, ref equipmentComponent) && !forced)
+        var isEquipment = Resolve(toRemove, ref equipmentComponent, false);
+        var isModule = Resolve(toRemove, ref moduleComponent, false);
+
+        if (!isEquipment && !isModule && !forced)
             return;
         // RS14-end
 
-        if (!forced)
+        if (!forced && isEquipment)
         {
             var attemptev = new AttemptRemoveMechEquipmentEvent();
             RaiseLocalEvent(toRemove, ref attemptev);
@@ -312,16 +345,33 @@ public abstract partial class SharedMechSystem : EntitySystem
                 return;
         }
 
-        var ev = new MechEquipmentRemovedEvent(uid);
-        RaiseLocalEvent(toRemove, ref ev);
+        // RS14-start
+        if (isEquipment)
+        {
+            var ev = new MechEquipmentRemovedEvent(uid);
+            RaiseLocalEvent(toRemove, ref ev);
 
-        if (component.CurrentSelectedEquipment == toRemove)
-            CycleEquipment(uid, component);
+            if (component.CurrentSelectedEquipment == toRemove)
+                CycleEquipment(uid, component);
 
-        if (equipmentComponent != null) // RS14
-            equipmentComponent.EquipmentOwner = null; // RS14
+            equipmentComponent!.EquipmentOwner = null;
+            _container.Remove(toRemove, component.EquipmentContainer);
+        }
+        else if (isModule)
+        {
+            var ev = new MechModuleRemovedEvent(uid);
+            RaiseLocalEvent(toRemove, ref ev);
 
-        _container.Remove(toRemove, component.EquipmentContainer);
+            moduleComponent!.ModuleOwner = null;
+            _container.Remove(toRemove, component.ModuleContainer);
+        }
+        else
+        {
+            _container.Remove(toRemove, component.EquipmentContainer);
+            _container.Remove(toRemove, component.ModuleContainer);
+        }
+        // RS14-end
+
         UpdateUserInterface(uid, component);
     }
 
