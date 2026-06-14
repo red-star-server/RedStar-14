@@ -179,14 +179,18 @@ public sealed partial class MechComponent : Component
     public float MovementEnergyPerSecond = 5f;
     // RS14-end
 
+    // RS14-start
     /// <summary>
-    /// Whether or not the mech is airtight.
+    /// Whether this mech has a pressurized cabin capability.
     /// </summary>
-    /// <remarks>
-    /// This needs to be redone
-    /// when mech internals are added
-    /// </remarks>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public bool CanAirtight = true;
+    // RS14-end
+
+    /// <summary>
+    /// Whether or not the mech is currently airtight.
+    /// </summary>
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public bool Airtight;
 
     /// <summary>

@@ -53,6 +53,7 @@ public sealed partial class MechFanModuleComponent : Component
 public enum MechFanState : byte
 {
     Off,
-    Intake,
-    Exhaust
+    On,
+    Idle,
+    Na
 }

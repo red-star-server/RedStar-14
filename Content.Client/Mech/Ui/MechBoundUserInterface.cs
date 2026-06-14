@@ -50,6 +50,10 @@ public sealed class MechBoundUserInterface : BoundUserInterface
         _menu.OnCardLockRegister += () => SendMessage(new MechCardLockRegisterMessage());
         _menu.OnCardLockToggle += () => SendMessage(new MechCardLockToggleMessage());
         _menu.OnCardLockReset += () => SendMessage(new MechCardLockResetMessage());
+        _menu.OnCabinPurge += () => SendMessage(new MechCabinAirMessage());
+        _menu.OnAirtightToggle += isAirtight => SendMessage(new MechAirtightMessage(isAirtight));
+        _menu.OnFanToggle += isActive => SendMessage(new MechFanToggleMessage(isActive));
+        _menu.OnFilterToggle += enabled => SendMessage(new MechFilterToggleMessage(enabled));
         // RS14-end
     }
 

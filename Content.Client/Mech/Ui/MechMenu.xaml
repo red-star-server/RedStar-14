@@ -47,6 +47,29 @@ SPDX-License-Identifier: MIT
                        HorizontalAlignment="Left"
                        Access="Public"
                        HorizontalExpand="True" />
+                <PanelContainer Name="CabinControlsContainer" Margin="0 6 0 0">
+                    <BoxContainer Orientation="Vertical" Margin="6 6 6 6">
+                        <Label Text="{Loc 'mech-cabin-section'}" StyleClasses="LabelHeading" />
+                        <GridContainer Columns="2" HSeparationOverride="8" VSeparationOverride="3">
+                            <Label Text="{Loc 'mech-cabin-pressure-label'}" />
+                            <Label Name="CabinPressureLabel" />
+                            <Label Text="{Loc 'mech-cabin-temperature-label'}" />
+                            <Label Name="CabinTemperatureLabel" />
+                            <Label Text="{Loc 'mech-tank-pressure-label'}" />
+                            <Label Name="TankPressureLabel" />
+                            <Label Text="{Loc 'mech-fan-state-label'}" />
+                            <Label Name="FanStateLabel" />
+                        </GridContainer>
+                        <BoxContainer Orientation="Horizontal" Margin="0 4 0 0">
+                            <Button Name="AirtightToggleButton" ToggleMode="True" />
+                            <Button Name="CabinPurgeButton" Text="{Loc 'mech-cabin-purge-button'}" />
+                        </BoxContainer>
+                        <BoxContainer Orientation="Horizontal" Margin="0 4 0 0">
+                            <Button Name="FanToggleButton" ToggleMode="True" />
+                            <Button Name="FilterToggleButton" ToggleMode="True" />
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
                 <!-- RS14-end -->
             </BoxContainer>
             <SpriteView Name="MechView"

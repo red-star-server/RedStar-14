@@ -31,11 +31,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
-using Content.Server.Mech.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared._RedStar.Skills; // RS14
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
@@ -65,7 +64,6 @@ namespace Content.Server.Mech.Systems;
 /// <inheritdoc/>
 public sealed partial class MechSystem : SharedMechSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
@@ -109,12 +107,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         // RS14-start
         SubscribeLocalEvent<VehicleOperatorComponent, ToolUserAttemptUseEvent>(OnToolUseAttempt);
-        SubscribeLocalEvent<VehicleOperatorComponent, InhaleLocationEvent>(OnInhale);
-        SubscribeLocalEvent<VehicleOperatorComponent, ExhaleLocationEvent>(OnExhale);
-        SubscribeLocalEvent<VehicleOperatorComponent, AtmosExposedGetAirEvent>(OnExpose);
         // RS14-end
-
-        SubscribeLocalEvent<MechAirComponent, GetFilterAirEvent>(OnGetFilterAir);
 
         #region Equipment UI message relays
         SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
@@ -485,6 +478,42 @@ public sealed partial class MechSystem : SharedMechSystem
             state.CardLockOwner = lockComp.OwnerJobTitle;
         }
 
+        // RS14-start
+        state.CanAirtight = component.CanAirtight;
+        state.IsAirtight = component.Airtight;
+        state.CabinPurgeAvailable = true;
+
+        if (TryComp<MechCabinAirComponent>(uid, out var cabin))
+        {
+            state.CabinPressureLevel = cabin.Air.Pressure;
+            state.CabinTemperature = cabin.Air.Temperature;
+        }
+
+        foreach (var module in component.ModuleContainer.ContainedEntities)
+        {
+            if (TryComp<MechFanModuleComponent>(module, out var fan))
+            {
+                state.HasFanModule = true;
+                state.FanActive = fan.IsActive;
+                state.FanState = fan.State;
+                state.FilterEnabled = fan.FilterEnabled;
+            }
+
+            if (HasComp<MechAirTankModuleComponent>(module) &&
+                TryComp<GasTankComponent>(module, out var tank))
+            {
+                state.HasGasModule = true;
+                state.TankPressure = tank.Air.Pressure;
+
+                var pressure = MathF.Max(tank.Air.Pressure, 0.01f);
+                state.GasAmountLiters = tank.Air.TotalMoles * Atmospherics.R * tank.Air.Temperature / pressure;
+            }
+        }
+
+        if (TryComp<MechCabinPurgeComponent>(uid, out var purge))
+            state.CabinPurgeAvailable = purge.CooldownRemaining <= 0;
+        // RS14-end
+
         _ui.SetUiState(uid, MechUiKey.Key, state);
     }
 
@@ -555,66 +584,4 @@ public sealed partial class MechSystem : SharedMechSystem
         UpdateUserInterface(uid, component);
     }
 
-    #region Atmos Handling
-    private void OnInhale(EntityUid uid, VehicleOperatorComponent component, InhaleLocationEvent args) // RS14
-    {
-        // RS14-start
-        if (component.Vehicle is not { } vehicle ||
-            !TryComp<MechComponent>(vehicle, out var mech) ||
-            !TryComp<MechAirComponent>(vehicle, out var mechAir))
-        // RS14-end
-        {
-            return;
-        }
-
-        if (mech.Airtight)
-            args.Gas = mechAir.Air;
-    }
-
-    private void OnExhale(EntityUid uid, VehicleOperatorComponent component, ExhaleLocationEvent args) // RS14
-    {
-        // RS14-start
-        if (component.Vehicle is not { } vehicle ||
-            !TryComp<MechComponent>(vehicle, out var mech) ||
-            !TryComp<MechAirComponent>(vehicle, out var mechAir))
-        // RS14-end
-        {
-            return;
-        }
-
-        if (mech.Airtight)
-            args.Gas = mechAir.Air;
-    }
-
-    private void OnExpose(EntityUid uid, VehicleOperatorComponent component, ref AtmosExposedGetAirEvent args) // RS14
-    {
-        if (args.Handled || component.Vehicle is not { } vehicle) // RS14
-            return;
-
-        if (!TryComp(vehicle, out MechComponent? mech)) // RS14
-            return;
-
-        if (mech.Airtight && TryComp(vehicle, out MechAirComponent? air)) // RS14
-        {
-            args.Handled = true;
-            args.Gas = air.Air;
-            return;
-        }
-
-        args.Gas =  _atmosphere.GetContainingMixture(vehicle, excite: args.Excite); // RS14
-        args.Handled = true;
-    }
-
-    private void OnGetFilterAir(EntityUid uid, MechAirComponent comp, ref GetFilterAirEvent args)
-    {
-        if (args.Air != null)
-            return;
-
-        // only airtight mechs get internal air
-        if (!TryComp<MechComponent>(uid, out var mech) || !mech.Airtight)
-            return;
-
-        args.Air = comp.Air;
-    }
-    #endregion
 }

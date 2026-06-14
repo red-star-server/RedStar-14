@@ -8,6 +8,7 @@
 
 using Robust.Shared.Serialization;
 using Content.Shared.Materials;
+using Content.Shared.Mech.Module.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Mech;
@@ -65,6 +66,56 @@ public sealed class MechModuleRemoveMessage : BoundUserInterfaceMessage
     public MechModuleRemoveMessage(NetEntity module)
     {
         Module = module;
+    }
+}
+
+/// <summary>
+/// UI event raised to purge the mech cabin air.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class MechCabinAirMessage : BoundUserInterfaceMessage
+{
+}
+
+/// <summary>
+/// UI event raised to toggle airtight mode on a mech.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class MechAirtightMessage : BoundUserInterfaceMessage
+{
+    public bool IsAirtight;
+
+    public MechAirtightMessage(bool isAirtight)
+    {
+        IsAirtight = isAirtight;
+    }
+}
+
+/// <summary>
+/// UI event raised to toggle the installed fan module.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class MechFanToggleMessage : BoundUserInterfaceMessage
+{
+    public bool IsActive;
+
+    public MechFanToggleMessage(bool isActive)
+    {
+        IsActive = isActive;
+    }
+}
+
+/// <summary>
+/// UI event raised to toggle the installed fan module's filter.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class MechFilterToggleMessage : BoundUserInterfaceMessage
+{
+    public bool Enabled;
+
+    public MechFilterToggleMessage(bool enabled)
+    {
+        Enabled = enabled;
     }
 }
 // RS14-end
@@ -142,6 +193,18 @@ public sealed class MechBoundUiState : BoundUserInterfaceState
     public bool CardLockRegistered;
     public bool CardLockActive;
     public string? CardLockOwner;
+    public bool CanAirtight;
+    public bool IsAirtight;
+    public float CabinPressureLevel;
+    public float CabinTemperature;
+    public float TankPressure;
+    public float GasAmountLiters;
+    public bool CabinPurgeAvailable;
+    public bool HasFanModule;
+    public bool FanActive;
+    public MechFanState FanState = MechFanState.Off;
+    public bool FilterEnabled;
+    public bool HasGasModule;
     // RS14-end
 }
 

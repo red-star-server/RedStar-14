@@ -57,7 +57,9 @@
   # RS14-start
   - type: MechLock
   # RS14-end
-  - type: MechAir
+  # RS14-start
+  - type: MechCabinAir
+  # RS14-end
   - type: AirFilter
     # everything except oxygen and nitrogen
     gases:
