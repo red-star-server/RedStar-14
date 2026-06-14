@@ -38,7 +38,8 @@ public sealed class MechTeslaRelaySystem : EntitySystem
                 var telemetry = EnsureComp<MechEnergyAccumulatorComponent>(module);
                 var radius = generator.Tesla?.Radius ?? 0f;
                 var rate = generator.Tesla?.ChargeRate ?? 0f;
-                var previous = telemetry.Current;
+                var previousCurrent = telemetry.Current;
+                var previousMax = telemetry.Max;
 
                 telemetry.Max = rate;
                 telemetry.Current = 0f;
@@ -49,7 +50,8 @@ public sealed class MechTeslaRelaySystem : EntitySystem
                     _mech.TryChangeEnergy(mechUid, FixedPoint2.New(rate * frameTime), mech);
                 }
 
-                uiDirty |= Math.Abs(previous - telemetry.Current) > 0.01f;
+                uiDirty |= Math.Abs(previousCurrent - telemetry.Current) > 0.01f ||
+                           Math.Abs(previousMax - telemetry.Max) > 0.01f;
             }
 
             if (uiDirty)

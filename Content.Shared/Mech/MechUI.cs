@@ -7,6 +7,8 @@
 // SPDX-License-Identifier: MIT
 
 using Robust.Shared.Serialization;
+using Content.Shared.Materials;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Mech;
 
@@ -140,7 +142,7 @@ public sealed class MechGeneratorUiState : BoundUserInterfaceState
     public float ChargeCurrent;
     public float ChargeMax;
     public bool HasFuel;
-    public string? FuelName;
+    public ProtoId<MaterialPrototype>? FuelName;
     public float FuelAmount;
     public float FuelCapacity;
 }

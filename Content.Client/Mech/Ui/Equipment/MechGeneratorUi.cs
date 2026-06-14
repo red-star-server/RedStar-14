@@ -10,20 +10,22 @@ namespace Content.Client.Mech.Ui.Equipment;
 
 public sealed partial class MechGeneratorUi : UIFragment
 {
+    [NonSerialized]
     private MechGeneratorUiFragment? _fragment;
 
     public override Control GetUIFragmentRoot()
     {
-        return _fragment!;
+        return EnsureFragment();
     }
 
     public override void Setup(BoundUserInterface userInterface, EntityUid? fragmentOwner)
     {
+        var fragment = EnsureFragment();
+
         if (fragmentOwner == null)
             return;
 
-        _fragment = new MechGeneratorUiFragment();
-        _fragment.OnEjectFuelAction += () =>
+        fragment.OnEjectFuelAction += () =>
         {
             var entManager = IoCManager.Resolve<IEntityManager>();
             userInterface.SendMessage(new MechGeneratorEjectFuelMessage(entManager.GetNetEntity(fragmentOwner.Value)));
@@ -36,5 +38,10 @@ public sealed partial class MechGeneratorUi : UIFragment
             return;
 
         _fragment?.UpdateContents(generatorState);
+    }
+
+    private MechGeneratorUiFragment EnsureFragment()
+    {
+        return _fragment ??= new MechGeneratorUiFragment();
     }
 }

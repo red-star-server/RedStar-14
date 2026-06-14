@@ -36,13 +36,15 @@ public sealed class MechFuelGeneratorSystem : EntitySystem
                     continue;
 
                 var telemetry = EnsureComp<MechEnergyAccumulatorComponent>(module);
-                var previous = telemetry.Current;
+                var previousCurrent = telemetry.Current;
+                var previousMax = telemetry.Max;
                 telemetry.Current = 0f;
 
                 if (!TryComp<FuelGeneratorComponent>(module, out var fuelGenerator))
                 {
                     telemetry.Max = 0f;
-                    uiDirty |= Math.Abs(previous - telemetry.Current) > 0.01f;
+                    uiDirty |= Math.Abs(previousCurrent - telemetry.Current) > 0.01f ||
+                               Math.Abs(previousMax - telemetry.Max) > 0.01f;
                     continue;
                 }
 
@@ -50,7 +52,8 @@ public sealed class MechFuelGeneratorSystem : EntitySystem
 
                 if (_generator.GetFuel(module) <= 0 || _generator.GetIsClogged(module))
                 {
-                    uiDirty |= Math.Abs(previous - telemetry.Current) > 0.01f;
+                    uiDirty |= Math.Abs(previousCurrent - telemetry.Current) > 0.01f ||
+                               Math.Abs(previousMax - telemetry.Max) > 0.01f;
                     continue;
                 }
 
@@ -65,7 +68,8 @@ public sealed class MechFuelGeneratorSystem : EntitySystem
                 telemetry.Current = fuelGenerator.TargetPower;
                 _mech.TryChangeEnergy(mechUid, FixedPoint2.New(fuelGenerator.TargetPower * frameTime), mech);
 
-                uiDirty |= Math.Abs(previous - telemetry.Current) > 0.01f;
+                uiDirty |= Math.Abs(previousCurrent - telemetry.Current) > 0.01f ||
+                           Math.Abs(previousMax - telemetry.Max) > 0.01f;
             }
 
             if (uiDirty)
