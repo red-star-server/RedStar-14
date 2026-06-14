@@ -14,11 +14,14 @@ namespace Content.Client.Mech.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class MechEquipmentControl : Control
 {
+    public EntityUid Entity { get; }
+
     public event Action? OnRemoveButtonPressed;
 
     public MechEquipmentControl(EntityUid entity, string itemName, Control? fragment, int? size = null)
     {
         RobustXamlLoader.Load(this);
+        Entity = entity;
         EquipmentName.SetMessage(itemName);
         EquipmentSize.Text = size == null
             ? string.Empty

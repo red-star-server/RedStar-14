@@ -183,20 +183,32 @@ public sealed class MechGeneratorEjectFuelMessage : MechEquipmentUiMessage
 }
 
 [Serializable, NetSerializable]
-public sealed class MechDnaLockRegisterMessage : BoundUserInterfaceMessage;
+public sealed class MechDnaLockRegisterMessage : BoundUserInterfaceMessage
+{
+}
 
 [Serializable, NetSerializable]
-public sealed class MechDnaLockToggleMessage : BoundUserInterfaceMessage;
+public sealed class MechDnaLockToggleMessage : BoundUserInterfaceMessage
+{
+}
 
 [Serializable, NetSerializable]
-public sealed class MechDnaLockResetMessage : BoundUserInterfaceMessage;
+public sealed class MechDnaLockResetMessage : BoundUserInterfaceMessage
+{
+}
 
 [Serializable, NetSerializable]
-public sealed class MechCardLockRegisterMessage : BoundUserInterfaceMessage;
+public sealed class MechCardLockRegisterMessage : BoundUserInterfaceMessage
+{
+}
 
 [Serializable, NetSerializable]
-public sealed class MechCardLockToggleMessage : BoundUserInterfaceMessage;
+public sealed class MechCardLockToggleMessage : BoundUserInterfaceMessage
+{
+}
 
 [Serializable, NetSerializable]
-public sealed class MechCardLockResetMessage : BoundUserInterfaceMessage;
+public sealed class MechCardLockResetMessage : BoundUserInterfaceMessage
+{
+}
 // RS14-end

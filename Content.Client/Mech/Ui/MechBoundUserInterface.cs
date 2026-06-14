@@ -32,6 +32,7 @@ public sealed class MechBoundUserInterface : BoundUserInterface
 
         _menu = this.CreateWindowCenteredLeft<MechMenu>();
         _menu.SetEntity(Owner);
+        _menu.SetParentBui(this);
 
         _menu.OnRemoveEquipmentButtonPressed += uid =>
         {
@@ -58,9 +59,10 @@ public sealed class MechBoundUserInterface : BoundUserInterface
 
         if (state is not MechBoundUiState msg)
             return;
-        UpdateEquipmentControls(msg);
+
         _menu?.UpdateMechStats(msg);
         _menu?.UpdateEquipmentView();
+        UpdateEquipmentControls(msg);
     }
 
     public void UpdateEquipmentControls(MechBoundUiState state)
@@ -99,7 +101,6 @@ public sealed class MechBoundUserInterface : BoundUserInterface
     public UIFragment? GetEquipmentUi(EntityUid? uid)
     {
         var component = EntMan.GetComponentOrNull<UIFragmentComponent>(uid);
-        component?.Ui?.Setup(this, uid);
         return component?.Ui;
     }
 }

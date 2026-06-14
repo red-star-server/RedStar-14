@@ -109,6 +109,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         // RS14-end
         SubscribeLocalEvent<MechEquipmentComponent, ShotAttemptedEvent>(OnShotAttempted); // Goobstation
         Subs.CVar(_config, GoobCVars.MechGunOutsideMech, value => _canUseMechGunOutside = value, true); // Goobstation
+        SubscribeAllEvent<RequestMechEquipmentSelectEvent>(OnEquipmentSelectRequest); // RS14
 
         InitializeRelay();
     }
@@ -118,7 +119,11 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (args.Handled)
             return;
         args.Handled = true;
-        CycleEquipment(uid);
+
+        // RS14-start
+        var ev = new MechOpenEquipmentRadialEvent();
+        RaiseLocalEvent(uid, ev);
+        // RS14-end
     }
 
     private void OnEjectPilotEvent(EntityUid uid, MechComponent component, MechEjectPilotEvent args)
@@ -267,6 +272,43 @@ public abstract partial class SharedMechSystem : EntitySystem
         RefreshPilotHandVirtualItems((uid, component)); // RS14
         Dirty(uid, component);
     }
+
+    // RS14-start
+    private void OnEquipmentSelectRequest(RequestMechEquipmentSelectEvent args, EntitySessionEventArgs session)
+    {
+        var user = session.SenderSession.AttachedEntity;
+        if (user == null)
+            return;
+
+        if (!TryComp<VehicleOperatorComponent>(user.Value, out var vehicleOperator) ||
+            vehicleOperator.Vehicle == null)
+        {
+            return;
+        }
+
+        var mech = vehicleOperator.Vehicle.Value;
+        if (!TryComp<MechComponent>(mech, out var mechComp))
+            return;
+
+        if (args.Equipment == null)
+        {
+            mechComp.CurrentSelectedEquipment = null;
+            _popup.PopupClient(Loc.GetString("mech-equipment-select-none-popup"), mech, user.Value);
+        }
+        else
+        {
+            var equipment = GetEntity(args.Equipment.Value);
+            if (!Exists(equipment) || !mechComp.EquipmentContainer.ContainedEntities.Contains(equipment))
+                return;
+
+            mechComp.CurrentSelectedEquipment = equipment;
+            _popup.PopupClient(Loc.GetString("mech-equipment-select-popup", ("item", equipment)), mech, user.Value);
+        }
+
+        RefreshPilotHandVirtualItems((mech, mechComp));
+        Dirty(mech, mechComp);
+    }
+    // RS14-end
 
     /// <summary>
     /// Inserts an equipment item into the mech.

@@ -25,6 +25,7 @@ mech-duplicate-installed-popup = That module is already installed.
 
 mech-equipment-select-popup = {$item} selected
 mech-equipment-select-none-popup = Nothing selected
+mech-radial-no-equipment = No equipment
 
 mech-ui-open-verb = Open control panel
 

@@ -17,23 +17,23 @@ namespace Content.Client.Mech.Ui.Equipment;
 public sealed partial class MechSoundboardUi : UIFragment
 {
     private MechSoundboardUiFragment? _fragment;
+    private BoundUserInterface? _userInterface;
+    private EntityUid? _fragmentOwner;
 
     public override Control GetUIFragmentRoot()
     {
-        return _fragment!;
+        return EnsureFragment();
     }
 
     public override void Setup(BoundUserInterface userInterface, EntityUid? fragmentOwner)
     {
+        EnsureFragment();
+
         if (fragmentOwner == null)
             return;
 
-        _fragment = new MechSoundboardUiFragment();
-        _fragment.OnPlayAction += sound =>
-        {
-            // TODO: IDK dog
-            userInterface.SendMessage(new MechSoundboardPlayMessage(IoCManager.Resolve<IEntityManager>().GetNetEntity(fragmentOwner.Value), sound));
-        };
+        _userInterface = userInterface;
+        _fragmentOwner = fragmentOwner;
     }
 
     public override void UpdateState(BoundUserInterfaceState state)
@@ -42,5 +42,23 @@ public sealed partial class MechSoundboardUi : UIFragment
             return;
 
         _fragment?.UpdateContents(soundboardState);
+    }
+
+    private MechSoundboardUiFragment EnsureFragment()
+    {
+        if (_fragment != null)
+            return _fragment;
+
+        _fragment = new MechSoundboardUiFragment();
+        _fragment.OnPlayAction += OnPlayAction;
+        return _fragment;
+    }
+
+    private void OnPlayAction(int sound)
+    {
+        if (_userInterface == null || _fragmentOwner == null)
+            return;
+
+        _userInterface.SendMessage(new MechSoundboardPlayMessage(IoCManager.Resolve<IEntityManager>().GetNetEntity(_fragmentOwner.Value), sound));
     }
 }

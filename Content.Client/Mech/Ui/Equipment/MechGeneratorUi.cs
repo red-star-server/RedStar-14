@@ -12,6 +12,8 @@ public sealed partial class MechGeneratorUi : UIFragment
 {
     [NonSerialized]
     private MechGeneratorUiFragment? _fragment;
+    private BoundUserInterface? _userInterface;
+    private EntityUid? _fragmentOwner;
 
     public override Control GetUIFragmentRoot()
     {
@@ -20,16 +22,13 @@ public sealed partial class MechGeneratorUi : UIFragment
 
     public override void Setup(BoundUserInterface userInterface, EntityUid? fragmentOwner)
     {
-        var fragment = EnsureFragment();
+        EnsureFragment();
 
         if (fragmentOwner == null)
             return;
 
-        fragment.OnEjectFuelAction += () =>
-        {
-            var entManager = IoCManager.Resolve<IEntityManager>();
-            userInterface.SendMessage(new MechGeneratorEjectFuelMessage(entManager.GetNetEntity(fragmentOwner.Value)));
-        };
+        _userInterface = userInterface;
+        _fragmentOwner = fragmentOwner;
     }
 
     public override void UpdateState(BoundUserInterfaceState state)
@@ -42,6 +41,20 @@ public sealed partial class MechGeneratorUi : UIFragment
 
     private MechGeneratorUiFragment EnsureFragment()
     {
-        return _fragment ??= new MechGeneratorUiFragment();
+        if (_fragment != null)
+            return _fragment;
+
+        _fragment = new MechGeneratorUiFragment();
+        _fragment.OnEjectFuelAction += OnEjectFuelAction;
+        return _fragment;
+    }
+
+    private void OnEjectFuelAction()
+    {
+        if (_userInterface == null || _fragmentOwner == null)
+            return;
+
+        var entManager = IoCManager.Resolve<IEntityManager>();
+        _userInterface.SendMessage(new MechGeneratorEjectFuelMessage(entManager.GetNetEntity(_fragmentOwner.Value)));
     }
 }

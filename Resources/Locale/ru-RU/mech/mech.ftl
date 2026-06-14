@@ -12,6 +12,7 @@ mech-duplicate-installed-popup = Такой модуль уже установл
 # RS14-end
 mech-equipment-select-popup = Выбрано следующее: { $item }
 mech-equipment-select-none-popup = Ничего не выбрано
+mech-radial-no-equipment = Без оборудования
 mech-ui-open-verb = Открыть панель управления
 mech-menu-title = Панель управления меха
 mech-integrity-display = Целостность: { $amount }%
