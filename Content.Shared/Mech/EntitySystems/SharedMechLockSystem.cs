@@ -298,23 +298,8 @@ public abstract partial class SharedMechLockSystem : EntitySystem
         // Check card lock - if active, user must have matching access tags
         if (component.CardLockActive && component.CardLockRegistered)
         {
-            if (TryFindIdCard(user, out var idCard))
-            {
-                if (component.CardAccessTags != null &&
-                    TryComp<AccessComponent>(idCard.Owner, out var access) &&
-                    access.Tags != null)
-                {
-                    var tags = access.Tags;
-                    foreach (var tag in tags)
-                    {
-                        if (component.CardAccessTags!.Contains(tag))
-                        {
-                            hasAccess = true;
-                            break;
-                        }
-                    }
-                }
-            }
+            if (HasMatchingCardAccess(user, component))
+                hasAccess = true;
         }
 
         // User has access if they can access at least one active lock type
@@ -350,25 +335,34 @@ public abstract partial class SharedMechLockSystem : EntitySystem
     private bool IsOwnerOfLock(EntityUid user, MechLockType lockType, MechLockComponent component)
     {
         var (isRegistered, _, ownerId) = GetLockState(lockType, component);
-        if (!isRegistered || ownerId == null)
+        if (!isRegistered)
             return false;
+
         switch (lockType)
         {
             case MechLockType.Dna:
+                if (ownerId == null)
+                    return false;
+
                 return TryComp<DnaComponent>(user, out var dnaComp) && dnaComp.DNA == ownerId;
             case MechLockType.Card:
-                if (component.CardAccessTags == null || component.CardAccessTags.Count == 0)
-                    return false;
-                if (!TryFindIdCard(user, out var idCard))
-                    return false;
-                if (!TryComp<AccessComponent>(idCard.Owner, out var access) || access == null || access.Tags == null)
-                    return false;
-
-                var tags = access.Tags;
-
-                return component.CardAccessTags.Any(tag => tags.Contains(tag));
+                return HasMatchingCardAccess(user, component);
         }
         return false;
+    }
+
+    private bool HasMatchingCardAccess(EntityUid user, MechLockComponent component)
+    {
+        if (component.CardAccessTags == null || component.CardAccessTags.Count == 0)
+            return false;
+
+        if (!TryFindIdCard(user, out var idCard))
+            return false;
+
+        if (!TryComp<AccessComponent>(idCard.Owner, out var access) || access.Tags == null)
+            return false;
+
+        return component.CardAccessTags.All(tag => access.Tags.Contains(tag));
     }
 
     private bool IsAnyOwner(EntityUid user, MechLockComponent component)
