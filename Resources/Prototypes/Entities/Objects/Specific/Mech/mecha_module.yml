@@ -42,3 +42,49 @@
     outputPressure: 101.3
     air:
       volume: 25
+
+# RS14-start
+- type: entity
+  parent: [ MechModuleBase, IndustrialMechEquipment ]
+  id: MechModuleTeslaRelay
+  name: tesla energy relay module
+  description: Connects the mech to nearby APCs and trickle-charges its battery.
+  components:
+  - type: Sprite
+    state: tesla
+  - type: MechGeneratorModule
+    generationType: TeslaRelay
+    tesla:
+      chargeRate: 20
+      radius: 3
+  - type: UIFragment
+    ui: !type:MechGeneratorUi
+
+- type: entity
+  parent: [ MechModuleBase, IndustrialMechEquipment ]
+  id: MechModulePlasmaGenerator
+  name: plasma generator module
+  description: Generates energy by consuming plasma sheets stored internally.
+  components:
+  - type: Sprite
+    state: tesla
+  - type: MechModule
+    size: 2
+  - type: MechGeneratorModule
+    generationType: FuelGenerator
+  - type: FuelGenerator
+    minTargetPower: 20
+    maxTargetPower: 50
+    targetPower: 40
+    optimalPower: 40
+    optimalBurnRate: 0.02
+    fuelEfficiencyConstant: 0.75
+  - type: SolidFuelGeneratorAdapter
+    fuelMaterial: Plasma
+    multiplier: 0.01
+  - type: MaterialStorage
+    storageLimit: 1000
+    materialWhiteList: [Plasma]
+  - type: UIFragment
+    ui: !type:MechGeneratorUi
+# RS14-end

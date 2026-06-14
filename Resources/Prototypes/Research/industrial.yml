@@ -368,6 +368,10 @@
   recipeUnlocks:
   - PowerCellMicroreactor
   - PowerCellHyper
+  # RS14-start
+  - MechModuleTeslaRelay
+  - MechModulePlasmaGenerator
+  # RS14-end
   technologyPrerequisites:
   - AdvancedToolsTechnology  # Goobstation R&D Console rework
   - AdvancedPowercells  # Goobstation R&D Console rework

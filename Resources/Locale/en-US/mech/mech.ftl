@@ -40,3 +40,8 @@ mech-no-enter = You cannot pilot this.
 mech-eject-pilot-alert = {$user} is pulling the pilot out of the {$item}!
 
 mech-construction-guide-string = All mech parts must be attached to the harness.
+
+# RS14
+mech-generator-output-label = Output: {$rate} W
+mech-generator-fuel-label = Fuel ({$name}): {$amount}
+mech-generator-eject-fuel-button = Eject fuel

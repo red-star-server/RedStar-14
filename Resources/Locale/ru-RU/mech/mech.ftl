@@ -20,3 +20,8 @@ mech-energy-missing = Энергия: ОТСУТСТВУЕТ
 mech-slot-display = Доступно слотов: { $amount }
 mech-no-enter = Вы не можете пилотировать это.
 mech-eject-pilot-alert = { $user } вытаскивает пилота из { $item }!
+
+# RS14
+mech-generator-output-label = Выработка: { $rate } Вт
+mech-generator-fuel-label = Топливо ({ $name }): { $amount }
+mech-generator-eject-fuel-button = Извлечь топливо

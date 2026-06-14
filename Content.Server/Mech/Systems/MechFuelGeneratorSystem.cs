@@ -1,0 +1,75 @@
+// SPDX-FileCopyrightText: 2026 RedStar Contributors
+//
+// SPDX-License-Identifier: MIT
+
+using Content.Server.Mech.Components;
+using Content.Server.Power.Generator;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Mech.Components;
+using Content.Shared.Mech.EntitySystems;
+using Content.Shared.Mech.Module.Components;
+using Content.Shared.Power.Generator;
+
+namespace Content.Server.Mech.Systems;
+
+/// <summary>
+/// Consumes stored solid fuel from mech generator modules and recharges their owner mech.
+/// </summary>
+public sealed class MechFuelGeneratorSystem : EntitySystem
+{
+    [Dependency] private readonly GeneratorSystem _generator = default!;
+    [Dependency] private readonly SharedMechSystem _mech = default!;
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<MechComponent>();
+        while (query.MoveNext(out var mechUid, out var mech))
+        {
+            var uiDirty = false;
+
+            foreach (var module in mech.ModuleContainer.ContainedEntities)
+            {
+                if (!TryComp<MechGeneratorModuleComponent>(module, out var generator) ||
+                    generator.GenerationType != MechGenerationType.FuelGenerator)
+                    continue;
+
+                var telemetry = EnsureComp<MechEnergyAccumulatorComponent>(module);
+                var previous = telemetry.Current;
+                telemetry.Current = 0f;
+
+                if (!TryComp<FuelGeneratorComponent>(module, out var fuelGenerator))
+                {
+                    telemetry.Max = 0f;
+                    uiDirty |= Math.Abs(previous - telemetry.Current) > 0.01f;
+                    continue;
+                }
+
+                telemetry.Max = fuelGenerator.TargetPower;
+
+                if (_generator.GetFuel(module) <= 0 || _generator.GetIsClogged(module))
+                {
+                    uiDirty |= Math.Abs(previous - telemetry.Current) > 0.01f;
+                    continue;
+                }
+
+                var efficiency = 1 / SharedGeneratorSystem.CalcFuelEfficiency(
+                    fuelGenerator.TargetPower,
+                    fuelGenerator.OptimalPower,
+                    fuelGenerator);
+
+                var burn = fuelGenerator.OptimalBurnRate * frameTime * efficiency;
+                RaiseLocalEvent(module, new GeneratorUseFuel(burn));
+
+                telemetry.Current = fuelGenerator.TargetPower;
+                _mech.TryChangeEnergy(mechUid, FixedPoint2.New(fuelGenerator.TargetPower * frameTime), mech);
+
+                uiDirty |= Math.Abs(previous - telemetry.Current) > 0.01f;
+            }
+
+            if (uiDirty)
+                _mech.UpdateMechUi(mechUid);
+        }
+    }
+}

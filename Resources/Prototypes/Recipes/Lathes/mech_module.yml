@@ -23,3 +23,25 @@
   parent: BaseMechModuleRecipe
   id: MechModuleAirTank
   result: MechModuleAirTank
+
+# RS14-start
+- type: latheRecipe
+  parent: BaseMechModuleRecipe
+  id: MechModuleTeslaRelay
+  result: MechModuleTeslaRelay
+  materials:
+    Steel: 500
+    Glass: 250
+    Plastic: 250
+    Gold: 200
+
+- type: latheRecipe
+  parent: BaseMechModuleRecipe
+  id: MechModulePlasmaGenerator
+  result: MechModulePlasmaGenerator
+  materials:
+    Steel: 500
+    Glass: 250
+    Plastic: 250
+    Plasma: 500
+# RS14-end

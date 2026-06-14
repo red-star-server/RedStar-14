@@ -132,3 +132,25 @@ public sealed class MechSoundboardUiState : BoundUserInterfaceState
 {
     public List<string> Sounds = new();
 }
+
+// RS14-start
+[Serializable, NetSerializable]
+public sealed class MechGeneratorUiState : BoundUserInterfaceState
+{
+    public float ChargeCurrent;
+    public float ChargeMax;
+    public bool HasFuel;
+    public string? FuelName;
+    public float FuelAmount;
+    public float FuelCapacity;
+}
+
+[Serializable, NetSerializable]
+public sealed class MechGeneratorEjectFuelMessage : MechEquipmentUiMessage
+{
+    public MechGeneratorEjectFuelMessage(NetEntity equipment)
+    {
+        Equipment = equipment;
+    }
+}
+// RS14-end

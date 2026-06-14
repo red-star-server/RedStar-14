@@ -86,4 +86,6 @@
   recipes:
     - MechModuleFan
     - MechModuleAirTank
+    - MechModuleTeslaRelay
+    - MechModulePlasmaGenerator
 # RS14-end
