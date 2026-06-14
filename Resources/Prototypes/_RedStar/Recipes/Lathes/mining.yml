@@ -25,3 +25,13 @@
     Silver: 100
     Diamond: 200
     RSCrystal: 100
+
+- type: latheRecipe
+  id: WeaponAdvPlasmaCutter
+  result: WeaponAdvPlasmaCutterEmpty
+  completetime: 5
+  materials:
+    Steel: 1000
+    Glass: 500
+    Plasma: 500
+
