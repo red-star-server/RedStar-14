@@ -122,7 +122,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         // RS14-start
         var ev = new MechOpenEquipmentRadialEvent();
-        RaiseLocalEvent(uid, ev);
+        RaiseLocalEvent(uid, ref ev);
         // RS14-end
     }
 

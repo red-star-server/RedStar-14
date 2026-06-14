@@ -28,12 +28,11 @@ public sealed partial class MechSoundboardUi : UIFragment
     public override void Setup(BoundUserInterface userInterface, EntityUid? fragmentOwner)
     {
         EnsureFragment();
+        _userInterface = userInterface;
+        _fragmentOwner = fragmentOwner;
 
         if (fragmentOwner == null)
             return;
-
-        _userInterface = userInterface;
-        _fragmentOwner = fragmentOwner;
     }
 
     public override void UpdateState(BoundUserInterfaceState state)

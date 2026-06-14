@@ -34,7 +34,7 @@ public sealed class MechEquipmentRadialUIController : UIController
         {
             new RadialMenuActionOption<string>(_ =>
                 {
-                    _entManager.RaisePredictiveEvent(new RequestMechEquipmentSelectEvent { Equipment = null });
+                    _entManager.RaisePredictiveEvent(new RequestMechEquipmentSelectEvent(null));
                 },
                 "no_equipment")
             {
@@ -55,10 +55,7 @@ public sealed class MechEquipmentRadialUIController : UIController
 
             options.Add(new RadialMenuActionOption<string>(_ =>
                 {
-                    _entManager.RaisePredictiveEvent(new RequestMechEquipmentSelectEvent
-                    {
-                        Equipment = _entManager.GetNetEntity(equipmentEntity)
-                    });
+                    _entManager.RaisePredictiveEvent(new RequestMechEquipmentSelectEvent(_entManager.GetNetEntity(equipmentEntity)));
                 },
                 metaData.EntityName)
             {
