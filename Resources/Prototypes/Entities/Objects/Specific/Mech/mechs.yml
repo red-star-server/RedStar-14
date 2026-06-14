@@ -151,6 +151,11 @@
       mech-passive-module-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
       paper_label: !type:ContainerSlot # Goobstation
+  # RS14-start
+  - type: MechEquipmentCharger
+    slotId: mech-equipment-container
+    chargeRate: 0.5
+  # RS14-end
   - type: Damageable
     damageContainer: Silicon # Goobstation
     damageModifierSet: LightArmor # Goobstation

@@ -31,6 +31,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Server.Construction; // RS14
+using Content.Server.Construction.Components; // RS14
+using Content.Server.Mech.Events; // RS14
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos;
@@ -45,6 +48,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mech.Module.Components;
 using Content.Shared.Popups;
+using Content.Shared.Repairable; // RS14
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
@@ -74,11 +78,13 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
     [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
     [Dependency] private readonly MechLockSystem _mechLock = default!; // RS14
+    [Dependency] private readonly ConstructionSystem _construction = default!; // RS14
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
     // RS14-start
     private const float ExosuitDelayModifierWithoutSkill = 1.8f;
     private const float MinimumGasDisplayPressure = 0.0001f;
+    private const string MechRepairGraph = "MechRepair";
     private static readonly ProtoId<SkillPrototype> ExosuitsSkill = "Exosuits";
     // RS14-end
 
@@ -99,6 +105,8 @@ public sealed partial class MechSystem : SharedMechSystem
 
 
         SubscribeLocalEvent<MechComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<MechComponent, RepairAttemptEvent>(OnRepairAttempt); // RS14
+        SubscribeLocalEvent<MechComponent, RepairMechEvent>(OnRepairMechEvent); // RS14
         SubscribeLocalEvent<MechComponent, MechEquipmentRemoveMessage>(OnRemoveEquipmentMessage);
         SubscribeLocalEvent<MechComponent, MechModuleRemoveMessage>(OnRemoveModuleMessage); // RS14
 
@@ -180,6 +188,28 @@ public sealed partial class MechSystem : SharedMechSystem
 
         args.Handled = true;
     }
+
+    // RS14-start
+    private void OnRepairAttempt(EntityUid uid, MechComponent component, ref RepairAttemptEvent args)
+    {
+        if (!component.Broken)
+            return;
+
+        args.Cancelled = true;
+
+        var construction = EnsureComp<ConstructionComponent>(uid);
+        if (_construction.ChangeGraph(uid, args.User, MechRepairGraph, "start", performActions: false, construction))
+            _construction.SetPathfindingTarget(uid, "repaired", construction);
+    }
+
+    private void OnRepairMechEvent(EntityUid uid, MechComponent component, RepairMechEvent args)
+    {
+        component.Broken = false;
+        SetIntegrity(uid, component.MaxIntegrity, component);
+        RemComp<ConstructionComponent>(uid);
+        Vehicle.RefreshCanRun(uid);
+    }
+    // RS14-end
 
     private void OnMapInit(EntityUid uid, MechComponent component, MapInitEvent args)
     {

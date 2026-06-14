@@ -17,6 +17,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Silicons.Borgs.Components; // RS14
+using Content.Shared.Mech.Components; // RS14
 using Robust.Shared.Prototypes; // RS14
 
 namespace Content.Shared.Repairable;
@@ -159,6 +160,13 @@ public sealed partial class RepairableSystem : EntitySystem
         if (!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0)
             return;
 
+        // RS14-start
+        var attempt = new RepairAttemptEvent(args.User);
+        RaiseLocalEvent(ent.Owner, ref attempt);
+        if (attempt.Cancelled)
+            return;
+        // RS14-end
+
         // If there is nothign to heal on a body, dont try it.
         if (TryComp<BodyComponent>(ent.Owner, out var bodyComp) && ent.Comp.Damage != null) // Goob Edit Start
         {
@@ -193,7 +201,8 @@ public sealed partial class RepairableSystem : EntitySystem
     private bool IsRoboticsRepair(EntityUid target)
     {
         return HasComp<SiliconComponent>(target)
-            || HasComp<BorgChassisComponent>(target);
+            || HasComp<BorgChassisComponent>(target)
+            || HasComp<MechComponent>(target);
     }
     // RS14-end
 }
