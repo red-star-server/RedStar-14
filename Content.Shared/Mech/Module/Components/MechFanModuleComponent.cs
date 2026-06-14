@@ -49,11 +49,29 @@ public sealed partial class MechFanModuleComponent : Component
     public HashSet<Gas> FilterGases = new();
 }
 
+/// <summary>
+/// Current operating state of a mech fan module.
+/// </summary>
 [Serializable, NetSerializable]
 public enum MechFanState : byte
 {
+    /// <summary>
+    /// The fan is turned off.
+    /// </summary>
     Off,
+
+    /// <summary>
+    /// The fan is actively moving gas.
+    /// </summary>
     On,
+
+    /// <summary>
+    /// The fan is enabled but cannot currently move gas.
+    /// </summary>
     Idle,
+
+    /// <summary>
+    /// The fan state is unavailable.
+    /// </summary>
     Na
 }

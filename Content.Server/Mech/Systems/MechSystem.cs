@@ -78,6 +78,7 @@ public sealed partial class MechSystem : SharedMechSystem
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
     // RS14-start
     private const float ExosuitDelayModifierWithoutSkill = 1.8f;
+    private const float MinimumGasDisplayPressure = 0.0001f;
     private static readonly ProtoId<SkillPrototype> ExosuitsSkill = "Exosuits";
     // RS14-end
 
@@ -505,8 +506,9 @@ public sealed partial class MechSystem : SharedMechSystem
                 state.HasGasModule = true;
                 state.TankPressure = tank.Air.Pressure;
 
-                var pressure = MathF.Max(tank.Air.Pressure, 0.01f);
-                state.GasAmountLiters = tank.Air.TotalMoles * Atmospherics.R * tank.Air.Temperature / pressure;
+                state.GasAmountLiters = tank.Air.Pressure > MinimumGasDisplayPressure
+                    ? tank.Air.TotalMoles * Atmospherics.R * tank.Air.Temperature / tank.Air.Pressure
+                    : 0f;
             }
         }
 
