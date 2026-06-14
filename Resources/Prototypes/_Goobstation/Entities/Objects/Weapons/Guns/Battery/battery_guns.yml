@@ -124,10 +124,11 @@
   - type: Sprite
     sprite: _Goobstation/Objects/Weapons/Guns/Battery/miniature_ebow.rsi
     layers:
-    - state: base
+    - state: icon-0
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: icon-1
       map: ["enum.GunVisualLayers.Mag"]
+      visible: false
   - type: Gun
     resetOnHandSelected: false
     soundGunshot:
@@ -141,10 +142,12 @@
     autoRecharge: true
     autoRechargeRate: 900
   - type: Appearance
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: true
+  # RS14-start
+  # - type: MagazineVisuals
+  #   magState: mag
+  #   steps: 2
+  #   zeroVisible: true
+  # RS14-end
   - type: Multishot
     missChance: 0
     spreadAddition: 10
