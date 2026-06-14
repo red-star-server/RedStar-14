@@ -15,24 +15,9 @@
     fireRate: 1.25
     soundGunshot:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/plasma_cutter.ogg
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,2,2
   - type: Battery
     maxCharge: 2500
     startingCharge: 2500
-  - type: MaterialEnergy
-    materialWhiteList: [Plasma]
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletPlasmaCutter
-    fireCost: 100
-  - type: Appearance
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 200
-      Glass: 125
-      Plasma: 150
 
 - type: entity
   parent: WeaponAdvPlasmaCutter
