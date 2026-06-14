@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+using Content.Shared.Construction;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Construction.Components;
@@ -11,6 +12,7 @@ namespace Content.Shared.Construction.Components;
 /// host populated with the parts for a completed assembly.
 /// </summary>
 [RegisterComponent]
+[Access(typeof(PartAssemblySystem))]
 public sealed partial class PartDisassemblyComponent : Component
 {
     /// <summary>

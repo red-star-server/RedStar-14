@@ -35,6 +35,7 @@ using Content.Server.Construction; // RS14
 using Content.Server.Construction.Components; // RS14
 using Content.Server.Mech.Events; // RS14
 using Content.Shared.Construction.Components; // RS14
+using Content.Shared.Construction.Prototypes; // RS14
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos;
@@ -87,8 +88,8 @@ public sealed partial class MechSystem : SharedMechSystem
     // RS14-start
     private const float ExosuitDelayModifierWithoutSkill = 1.8f;
     private const float MinimumGasDisplayPressure = 0.0001f;
-    private const string MechRepairGraph = "MechRepair";
-    private const string MechDisassembleGraph = "MechDisassemble";
+    private static readonly ProtoId<ConstructionGraphPrototype> MechRepairGraph = "MechRepair";
+    private static readonly ProtoId<ConstructionGraphPrototype> MechDisassembleGraph = "MechDisassemble";
     private static readonly ProtoId<SkillPrototype> ExosuitsSkill = "Exosuits";
     // RS14-end
 
@@ -220,7 +221,7 @@ public sealed partial class MechSystem : SharedMechSystem
         SetMechConstructionGraph(uid, component, MechRepairGraph, "repaired", args.User);
     }
 
-    private void SetMechConstructionGraph(EntityUid uid, MechComponent component, string graph, string? target, EntityUid? user = null)
+    private void SetMechConstructionGraph(EntityUid uid, MechComponent component, ProtoId<ConstructionGraphPrototype> graph, string? target, EntityUid? user = null)
     {
         var construction = EnsureComp<ConstructionComponent>(uid);
         if (_construction.ChangeGraph(uid, user, graph, "start", performActions: false, construction) && target != null)
@@ -229,7 +230,6 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnRepairMechEvent(EntityUid uid, MechComponent component, RepairMechEvent args)
     {
-        component.Broken = false;
         SetIntegrity(uid, component.MaxIntegrity, component);
         if (HasComp<PartDisassemblyComponent>(uid))
             SetMechConstructionGraph(uid, component, MechDisassembleGraph, "disassembled");

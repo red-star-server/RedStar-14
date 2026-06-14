@@ -53,8 +53,19 @@ public sealed class MechEquipmentSystem : MechInstallSystem
         if (args.Handled || args.Cancelled || args.Args.Target == null)
             return;
 
-        if (!TryFinishInstall(args.Args.User, args.Args.Target.Value, out _))
+        if (!TryFinishInstall(ent.Owner,
+                args.Args.User,
+                args.Args.Target.Value,
+                mech => mech.EquipmentContainer.ContainedEntities,
+                out var mechComp) ||
+            mechComp == null)
             return;
+
+        if (mechComp.EquipmentContainer.ContainedEntities.Count >= mechComp.MaxEquipmentAmount)
+        {
+            Popup.PopupClient(Loc.GetString("mech-equipment-slot-full-popup"), args.Args.User, args.Args.User);
+            return;
+        }
 
         Mech.InsertEquipment(args.Args.Target.Value, ent.Owner, equipmentComponent: ent.Comp);
         args.Handled = true;

@@ -10,12 +10,13 @@ namespace Content.Shared.Mech.Components;
 /// Stores mech recharge telemetry and the accumulated recharge rate for the current tick.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(EntitySystem))]
 public sealed partial class MechEnergyAccumulatorComponent : Component
 {
     /// <summary>
     /// Sum of recharge rates contributed this tick, in charge units per second.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public float PendingRechargeRate;
 
     /// <summary>

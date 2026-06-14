@@ -56,10 +56,15 @@ public sealed class MechChargerSystem : EntitySystem
                 if (transfer <= 0f)
                     continue;
 
+                var previousEnergy = mech.Energy;
                 if (!_mech.TryChangeEnergy(mechUid, -FixedPoint2.New(transfer), mech))
                     continue;
 
-                _battery.SetCharge(equipment, equipmentBattery.CurrentCharge + transfer, equipmentBattery);
+                var transferred = (previousEnergy - mech.Energy).Float();
+                if (transferred <= 0f)
+                    continue;
+
+                _battery.SetCharge(equipment, equipmentBattery.CurrentCharge + transferred, equipmentBattery);
             }
         }
     }

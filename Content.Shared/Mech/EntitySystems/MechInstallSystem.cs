@@ -52,9 +52,17 @@ public abstract class MechInstallSystem : EntitySystem
     /// <summary>
     /// Rechecks install preconditions when the do-after completes.
     /// </summary>
-    protected bool TryFinishInstall(EntityUid user, EntityUid target, out MechComponent? mechComp)
+    protected bool TryFinishInstall(
+        EntityUid item,
+        EntityUid user,
+        EntityUid target,
+        Func<MechComponent, IReadOnlyList<EntityUid>> getInstalled,
+        out MechComponent? mechComp)
     {
-        return TryPrepareInstall(user, target, out mechComp);
+        if (!TryPrepareInstall(user, target, out mechComp) || mechComp == null)
+            return false;
+
+        return !HasDuplicateInstalled(item, getInstalled(mechComp), user);
     }
 
     /// <summary>

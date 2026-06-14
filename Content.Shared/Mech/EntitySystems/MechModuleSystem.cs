@@ -66,8 +66,19 @@ public sealed class MechModuleSystem : MechInstallSystem
         if (args.Handled || args.Cancelled || args.Args.Target == null)
             return;
 
-        if (!TryFinishInstall(args.Args.User, args.Args.Target.Value, out _))
+        if (!TryFinishInstall(ent.Owner,
+                args.Args.User,
+                args.Args.Target.Value,
+                mech => mech.ModuleContainer.ContainedEntities,
+                out var mechComp) ||
+            mechComp == null)
             return;
+
+        if (GetUsedModuleSize(mechComp.ModuleContainer.ContainedEntities) + ent.Comp.Size > mechComp.MaxModuleAmount)
+        {
+            Popup.PopupClient(Loc.GetString("mech-module-slot-full-popup"), args.Args.User, args.Args.User);
+            return;
+        }
 
         Mech.InsertEquipment(args.Args.Target.Value, ent.Owner, moduleComponent: ent.Comp);
         args.Handled = true;
