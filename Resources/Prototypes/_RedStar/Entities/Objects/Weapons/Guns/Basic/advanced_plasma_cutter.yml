@@ -1,0 +1,40 @@
+- type: entity
+  name: advanced plasma cutter
+  parent: BaseWeaponBatterySmall
+  id: WeaponAdvPlasmaCutter
+  description: Basically, the plasma cutter, but with longer range, higher damage, bigger charge and a better look!
+  components:
+  - type: Sprite
+    sprite: _RedStar/Objects/Weapons/Guns/Battery/advcutter.rsi
+    state: icon
+  - type: Gun
+    fireRate: 1.25
+    soundGunshot:
+      path: /Audio/_Goobstation/Weapons/Guns/Gunshots/plasma_cutter.ogg
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,2
+  - type: Battery
+    maxCharge: 2500
+    startingCharge: 2500
+  - type: MaterialEnergy
+    materialWhiteList: [Plasma]
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletPlasmaCutter
+    fireCost: 100
+  - type: Appearance
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
+      Glass: 125
+      Plasma: 150
+
+- type: entity
+  parent: WeaponAdvPlasmaCutter
+  id: WeaponAdvPlasmaCutterEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    maxCharge: 2500
+    startingCharge: 0

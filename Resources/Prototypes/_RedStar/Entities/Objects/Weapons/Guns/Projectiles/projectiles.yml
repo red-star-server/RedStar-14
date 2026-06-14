@@ -1,0 +1,48 @@
+- type: entity
+  id: BulletAdvPlasmaCutter
+  name: advanced cutter bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: Now that's bad. Get out of the way.
+  components:
+  - type: Reflective
+    reflective:
+      - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/bullet_cutter.rsi
+    layers:
+    - state: icon
+      shader: unshaded
+  - type: GatheringProjectile
+    amount: 40
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Heat: 5
+  - type: StaminaDamageOnCollide
+    damage: 40
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: PointLight
+    radius: 2
+    color: purple
+    energy: 1
+
+- type: entity
+  id: BulletAdvPlasmaCutterStrong
+  parent: BulletAdvPlasmaCutter
+  components:
+  - type: GatheringProjectile
+  - type: Projectile
+    damage:
+      types:
+        Heat: 25
+        Structural: 200
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: PointLight
+    radius: 4
+    color: purple
+    energy: 2
