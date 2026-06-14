@@ -34,7 +34,7 @@
   id: BulletAdvPlasmaCutterStrong
   parent: BulletAdvPlasmaCutter
   components:
-  - type: GatheringProjectilea
+  - type: GatheringProjectile
   - type: Projectile
     damage:
       types:
