@@ -79,18 +79,19 @@ public sealed partial class MechMenu : FancyWindow
 
     public void UpdateMechStats(MechBoundUiState state)
     {
-        if (!_ent.TryGetComponent<MechComponent>(_mech, out var mechComp))
-            return;
+        var integrityPercent = state.MaxIntegrity > 0f
+            ? state.Integrity / state.MaxIntegrity
+            : 0f;
+        IntegrityDisplayBar.Value = integrityPercent;
+        IntegrityDisplay.Text = Loc.GetString(state.IsBroken
+            ? "mech-integrity-display-broken"
+            : "mech-integrity-display", ("amount", (int) (integrityPercent * 100)));
 
-        var integrityPercent = mechComp.Integrity / mechComp.MaxIntegrity;
-        IntegrityDisplayBar.Value = integrityPercent.Float();
-        IntegrityDisplay.Text = Loc.GetString("mech-integrity-display", ("amount", (integrityPercent*100).Int()));
-
-        if (mechComp.MaxEnergy != 0f)
+        if (state.MaxEnergy > 0f)
         {
-            var energyPercent = mechComp.Energy / mechComp.MaxEnergy;
-            EnergyDisplayBar.Value = energyPercent.Float();
-            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (energyPercent*100).Int()));
+            var energyPercent = state.Energy / state.MaxEnergy;
+            EnergyDisplayBar.Value = energyPercent;
+            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (int) (energyPercent * 100)));
         }
         else
         {
@@ -98,12 +99,13 @@ public sealed partial class MechMenu : FancyWindow
             EnergyDisplay.Text = Loc.GetString("mech-energy-missing");
         }
 
-        SlotDisplay.Text = Loc.GetString("mech-slot-display",
-            ("amount", mechComp.MaxEquipmentAmount - mechComp.EquipmentContainer.ContainedEntities.Count));
+        SlotDisplay.Text = Loc.GetString("mech-equipment-slot-display-label",
+            ("used", state.EquipmentUsed),
+            ("max", state.MaxEquipmentAmount));
 
-        var usedModuleSize = GetUsedModuleSize(mechComp.ModuleContainer.ContainedEntities);
-        ModuleSlotDisplay.Text = Loc.GetString("mech-module-slot-display",
-            ("amount", mechComp.MaxModuleAmount - usedModuleSize));
+        ModuleSlotDisplay.Text = Loc.GetString("mech-module-slot-display-label",
+            ("used", state.ModuleSpaceUsed),
+            ("max", state.ModuleSpaceMax));
 
         UpdateLockControls(state);
         UpdateCabinControls(state);

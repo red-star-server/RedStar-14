@@ -83,6 +83,14 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: RipleyMKIIHarness
+    assemblyId: RipleyMKII
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -141,6 +149,14 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: ClarkeHarness
+    assemblyId: Clarke
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -179,7 +195,8 @@
     startingEquipment:
       - WeaponMechSpecialBananaMortar
       - WeaponMechSpecialMousetrapMortar
-      - MechEquipmentHorn
+    startingModules:
+      - MechModuleHorn
 
 # Combat-Station Mechs
 
@@ -212,6 +229,14 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: GygaxHarness
+    assemblyId: Gygax
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -274,6 +299,14 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: DurandHarness
+    assemblyId: Durand
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 1

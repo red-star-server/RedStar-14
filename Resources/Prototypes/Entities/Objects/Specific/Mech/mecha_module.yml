@@ -88,3 +88,23 @@
   - type: UIFragment
     ui: !type:MechGeneratorUi
 # RS14-end
+
+- type: entity
+  parent: [ MechModuleBase, SpecialMechEquipment ]
+  id: MechModuleHorn
+  name: mech horn module
+  description: An enhanced bike horn that plays a hilarious array of sounds for the enjoyment of the crew. HONK!
+  components:
+  - type: Sprite
+    state: mecha_honker
+  - type: MechSoundboard
+    sounds:
+    - collection: BikeHorn
+    - collection: CluwneHorn
+    - collection: TrollAnimals
+    - collection: TrollBeeping
+    - collection: TrollEsword
+  - type: UIFragment
+    ui: !type:MechSoundboardUi
+  - type: UseDelay
+    delay: 0.5

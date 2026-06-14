@@ -15,6 +15,10 @@ mech-verb-exit = Remove pilot
 mech-equipment-begin-install = Installing the {THE($item)}...
 mech-equipment-finish-install = Finished installing the {THE($item)}
 # RS14-start
+mech-install-begin-popup = {$user} is installing the {THE($item)}...
+mech-cannot-insert-broken-popup = You cannot insert anything while the mech is broken.
+mech-equipment-slot-full-popup = The mech has no free equipment slots.
+mech-equipment-whitelist-fail-popup = This equipment cannot be installed in this mech.
 mech-module-begin-install = Installing the {THE($item)}...
 mech-module-finish-install = Finished installing the {THE($item)}
 mech-module-slot-full-popup = The mech has no free module slots.
@@ -32,6 +36,7 @@ mech-ui-open-verb = Open control panel
 mech-menu-title = mech control panel
 
 mech-integrity-display = Integrity: {$amount}%
+mech-integrity-display-broken = Integrity: {$amount}% (broken)
 mech-energy-display = Energy: {$amount}%
 mech-energy-missing = Energy: MISSING
 mech-slot-display = Open Slots: {$amount}
@@ -49,6 +54,8 @@ mech-generator-eject-fuel-button = Eject fuel
 
 # RS14-start
 mech-module-slot-display = Open Module Slots: {$amount}
+mech-equipment-slot-display-label = Equipment: {$used}/{$max}
+mech-module-slot-display-label = Modules: {$used}/{$max}
 mech-equipment-size-display = Size: {$size}
 mech-equipment-section = Equipment
 mech-module-section = Modules

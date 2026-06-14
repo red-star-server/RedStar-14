@@ -77,7 +77,7 @@
   id: MechEquipment
   recipes:
     - MechEquipmentGrabber
-    - MechEquipmentHorn
+    - MechModuleHorn # RS14
     - MechEquipmentGrabberSmall
 
 # RS14-start

@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Server.Mech.Components;
 using Content.Server.Power.Generator;
 using Content.Shared.Materials;
 using Content.Shared.Mech;
+using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Module.Components;
 using Content.Shared.Power.Generator;
 

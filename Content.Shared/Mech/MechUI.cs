@@ -185,6 +185,8 @@ public sealed class MechBoundUiState : BoundUserInterfaceState
 {
     public Dictionary<NetEntity, BoundUserInterfaceState> EquipmentStates = new();
     // RS14-start
+    public List<NetEntity> Equipment = new();
+    public List<NetEntity> Modules = new();
     public bool HasLock;
     public bool IsLocked;
     public bool DnaLockRegistered;
@@ -205,6 +207,16 @@ public sealed class MechBoundUiState : BoundUserInterfaceState
     public MechFanState FanState = MechFanState.Off;
     public bool FilterEnabled;
     public bool HasGasModule;
+    public int ModuleSpaceMax;
+    public int ModuleSpaceUsed;
+    public bool PilotPresent;
+    public float Integrity;
+    public float MaxIntegrity;
+    public float Energy;
+    public float MaxEnergy;
+    public int EquipmentUsed;
+    public int MaxEquipmentAmount;
+    public bool IsBroken;
     // RS14-end
 }
 

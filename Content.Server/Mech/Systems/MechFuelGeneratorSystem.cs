@@ -2,9 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Server.Mech.Components;
 using Content.Server.Power.Generator;
-using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mech.Module.Components;
@@ -66,7 +64,8 @@ public sealed class MechFuelGeneratorSystem : EntitySystem
                 RaiseLocalEvent(module, new GeneratorUseFuel(burn));
 
                 telemetry.Current = fuelGenerator.TargetPower;
-                _mech.TryChangeEnergy(mechUid, FixedPoint2.New(fuelGenerator.TargetPower * frameTime), mech);
+                var accumulator = EnsureComp<MechEnergyAccumulatorComponent>(mechUid);
+                accumulator.PendingRechargeRate += fuelGenerator.TargetPower;
 
                 uiDirty |= Math.Abs(previousCurrent - telemetry.Current) > 0.01f ||
                            Math.Abs(previousMax - telemetry.Max) > 0.01f;

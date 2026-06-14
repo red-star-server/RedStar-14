@@ -44,4 +44,12 @@
     Glass: 250
     Plastic: 250
     Plasma: 500
+
+- type: latheRecipe
+  parent: BaseMechModuleRecipe
+  id: MechModuleHorn
+  result: MechModuleHorn
+  materials:
+    Steel: 500
+    Bananium: 250
 # RS14-end

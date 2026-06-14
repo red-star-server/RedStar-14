@@ -2,13 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Server.Mech.Components;
 using Content.Server.Power.Components;
 using Content.Shared.APC;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mech.Module.Components;
-using Content.Goobstation.Maths.FixedPoint;
 
 namespace Content.Server.Mech.Systems;
 
@@ -47,7 +45,8 @@ public sealed class MechTeslaRelaySystem : EntitySystem
                 if (radius > 0f && rate > 0f && IsNearPoweredApc(mechUid, radius))
                 {
                     telemetry.Current = rate;
-                    _mech.TryChangeEnergy(mechUid, FixedPoint2.New(rate * frameTime), mech);
+                    var accumulator = EnsureComp<MechEnergyAccumulatorComponent>(mechUid);
+                    accumulator.PendingRechargeRate += rate;
                 }
 
                 uiDirty |= Math.Abs(previousCurrent - telemetry.Current) > 0.01f ||

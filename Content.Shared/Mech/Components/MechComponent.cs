@@ -16,9 +16,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Alert;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Mech.Components;
@@ -48,6 +50,14 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public FixedPoint2 MaxIntegrity = 250;
+
+    // RS14-start
+    /// <summary>
+    /// Health threshold below which the mech enters broken state instead of staying pilotable.
+    /// </summary>
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public FixedPoint2 BrokenThreshold = 25;
+    // RS14-end
 
     /// <summary>
     /// How much energy the mech has.
@@ -84,6 +94,44 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool Broken = false;
+
+    // RS14-start
+    /// <summary>
+    /// Sound played when the mech enters broken state.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? BrokenSound;
+
+    /// <summary>
+    /// Optional sound played after a pilot successfully enters the mech.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? EntrySuccessSound;
+
+    /// <summary>
+    /// Battery alert shown through the pilot alert relay while operating the mech.
+    /// </summary>
+    [DataField]
+    public ProtoId<AlertPrototype> BatteryAlert = "BorgBattery";
+
+    /// <summary>
+    /// Alert shown through the pilot alert relay when the mech has no battery.
+    /// </summary>
+    [DataField]
+    public ProtoId<AlertPrototype> NoBatteryAlert = "BorgBatteryNone";
+
+    /// <summary>
+    /// Health alert shown through the pilot alert relay while operating the mech.
+    /// </summary>
+    [DataField]
+    public ProtoId<AlertPrototype> HealthAlert = "MechaHealth";
+
+    /// <summary>
+    /// Alert shown through the pilot alert relay when the mech is broken.
+    /// </summary>
+    [DataField]
+    public ProtoId<AlertPrototype> BrokenAlert = "MechaBroken";
+    // RS14-end
 
     /// <summary>
     /// The slot the pilot is stored in.
@@ -212,7 +260,7 @@ public sealed partial class MechComponent : Component
     [DataField]
     public EntProtoId MechCycleAction = "ActionMechCycleEquipment";
     [DataField]
-    public EntProtoId ToggleAction = "ActionToggleLight"; //Goobstation Mech Lights toggle action
+    public EntProtoId ToggleAction = "ActionMechToggleLight"; // RS14
     [DataField]
     public EntProtoId MechUiAction = "ActionMechOpenUI";
     [DataField]
