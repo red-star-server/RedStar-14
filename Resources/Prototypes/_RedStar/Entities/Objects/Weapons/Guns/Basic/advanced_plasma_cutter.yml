@@ -15,6 +15,9 @@
     fireRate: 1.25
     soundGunshot:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/plasma_cutter.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletAdvPlasmaCutter
+    fireCost: 100
   - type: Battery
     maxCharge: 2500
     startingCharge: 2500
