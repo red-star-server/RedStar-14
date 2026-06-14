@@ -23,11 +23,3 @@
   parent: BaseMechModuleRecipe
   id: MechModuleAirTank
   result: MechModuleAirTank
-
-- type: latheRecipe
-  parent: BaseMechModuleRecipe
-  id: MechModuleHorn
-  result: MechModuleHorn
-  materials:
-    Steel: 500
-    Bananium: 250
