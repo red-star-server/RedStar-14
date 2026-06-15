@@ -33,7 +33,6 @@
 using System.Linq;
 using Content.Server.Construction; // RS14
 using Content.Server.Construction.Components; // RS14
-using Content.Server.Mech.Events; // RS14
 using Content.Shared.Construction.Components; // RS14
 using Content.Shared.Construction.Prototypes; // RS14
 using Content.Server.Power.Components;
@@ -48,6 +47,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
+using Content.Shared.Mech.Events; // RS14
 using Content.Shared.Mech.Module.Components;
 using Content.Shared.Popups;
 using Content.Shared.Repairable; // RS14

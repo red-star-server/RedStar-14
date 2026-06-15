@@ -39,6 +39,7 @@ using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
@@ -81,6 +82,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!; // RS14
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // RS14
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
@@ -107,6 +109,8 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<MechComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<MechComponent, VehicleOperatorSetEvent>(OnOperatorSet); // RS14
+        SubscribeLocalEvent<MechComponent, EntInsertedIntoContainerMessage>(OnContainerChanged); // RS14
+        SubscribeLocalEvent<MechComponent, EntRemovedFromContainerMessage>(OnContainerChanged); // RS14
 
         // RS14-start
         SubscribeLocalEvent<VehicleOperatorComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
@@ -896,11 +900,24 @@ public abstract partial class SharedMechSystem : EntitySystem
     }
 
     // RS14-start
+    private void OnContainerChanged(Entity<MechComponent> ent, ref EntInsertedIntoContainerMessage args)
+    {
+        if (args.Container == ent.Comp.PilotSlot)
+            SetBatterySlotLocked(ent.Owner, ent.Comp, true);
+    }
+
+    private void OnContainerChanged(Entity<MechComponent> ent, ref EntRemovedFromContainerMessage args)
+    {
+        if (args.Container == ent.Comp.PilotSlot)
+            SetBatterySlotLocked(ent.Owner, ent.Comp, false);
+    }
+
     private void OnOperatorSet(Entity<MechComponent> ent, ref VehicleOperatorSetEvent args)
     {
         if (args.OldOperator is { } oldOperator)
         {
             RemoveUser(ent, oldOperator);
+            SetBatterySlotLocked(ent.Owner, ent.Comp, false);
 
             var ev = new MechEjectedEvent(ent);
             RaiseLocalEvent(oldOperator, ev);
@@ -909,6 +926,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (args.NewOperator is { } newOperator)
         {
             SetupUser(ent, newOperator, ent);
+            SetBatterySlotLocked(ent.Owner, ent.Comp, true);
 
             var ev = new MechInsertedEvent(ent);
             RaiseLocalEvent(newOperator, ev);
@@ -919,6 +937,12 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         var drainEv = new MechMovementDrainToggleEvent(args.NewOperator != null);
         RaiseLocalEvent(ent, ref drainEv);
+    }
+
+    private void SetBatterySlotLocked(EntityUid uid, MechComponent component, bool locked)
+    {
+        if (TryComp<ItemSlotsComponent>(uid, out var slots))
+            _itemSlots.SetLock(uid, component.BatterySlotId, locked, slots);
     }
     // RS14-end
 }

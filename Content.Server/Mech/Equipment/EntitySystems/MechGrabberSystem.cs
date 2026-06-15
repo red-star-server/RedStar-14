@@ -85,7 +85,6 @@
 
 using System.Linq;
 using Content.Server.Interaction;
-using Content.Server.Mech.Equipment.Components;
 using Content.Server.Mech.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -129,6 +128,7 @@ public sealed class MechGrabberSystem : EntitySystem
         SubscribeLocalEvent<MechGrabberComponent, AttemptRemoveMechEquipmentEvent>(OnAttemptRemove);
 
         SubscribeLocalEvent<MechGrabberComponent, UserActivateInWorldEvent>(OnInteract);
+        SubscribeLocalEvent<MechGrabberComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<MechGrabberComponent, GrabberDoAfterEvent>(OnMechGrab);
     }
 
@@ -250,6 +250,60 @@ public sealed class MechGrabberSystem : EntitySystem
 
         args.Handled = true;
         component.AudioStream = _audio.PlayPvs(component.GrabSound, uid)?.Entity;
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.GrabDelay, new GrabberDoAfterEvent(), uid, target: target, used: uid)
+        {
+            BreakOnMove = true,
+            MultiplyDelay = false, // Goobstation
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs, out component.DoAfter);
+    }
+
+    private void OnAfterInteract(EntityUid uid, MechGrabberComponent component, AfterInteractEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (args.Target is not { } target)
+            return;
+
+        if (target == uid || component.DoAfter != null)
+            return;
+
+        if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComponent) ||
+            equipmentComponent.EquipmentOwner == null)
+            return;
+
+        var mech = equipmentComponent.EquipmentOwner.Value;
+
+        if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static ||
+            HasComp<WallMountComponent>(target) ||
+            HasComp<MobStateComponent>(target))
+        {
+            return;
+        }
+
+        if (_whitelist.IsBlacklistPass(component.Blacklist, target)) // Goobstation - added blacklist
+            return;
+
+        if (Transform(target).Anchored)
+            return;
+
+        if (component.ItemContainer.ContainedEntities.Count >= component.MaxContents)
+            return;
+
+        if (_vehicle.GetOperatorOrNull(mech) == target) // RS14
+            return;
+
+        if (!TryComp<MechComponent>(mech, out var mechComp) ||
+            mechComp.Energy + component.GrabEnergyDelta < 0)
+            return;
+
+        if (!_interaction.InRangeUnobstructed(mech, Transform(target).Coordinates))
+            return;
+
+        args.Handled = true;
+        component.AudioStream = _audio.PlayPredicted(component.GrabSound, uid, uid)?.Entity;
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.GrabDelay, new GrabberDoAfterEvent(), uid, target: target, used: uid)
         {
             BreakOnMove = true,
