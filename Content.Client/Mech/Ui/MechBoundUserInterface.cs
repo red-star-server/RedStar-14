@@ -64,19 +64,7 @@ public sealed class MechBoundUserInterface : BoundUserInterface
         if (state is not MechBoundUiState msg)
             return;
 
-        _menu?.UpdateMechStats(msg);
-        _menu?.UpdateEquipmentView(msg.Equipment, msg.Modules);
-        UpdateEquipmentControls(msg);
-    }
-
-    public void UpdateEquipmentControls(MechBoundUiState state)
-    {
-        foreach (var (attached, estate) in state.EquipmentStates)
-        {
-            var ent = EntMan.GetEntity(attached);
-            var ui = GetEquipmentUi(ent);
-            ui?.UpdateState(estate);
-        }
+        _menu?.UpdateState(msg);
     }
 
     public UIFragment? GetEquipmentUi(EntityUid? uid)

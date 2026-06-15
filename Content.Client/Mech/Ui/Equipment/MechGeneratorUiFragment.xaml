@@ -7,17 +7,25 @@ SPDX-License-Identifier: MIT
 <equipment:MechGeneratorUiFragment
     xmlns:equipment="clr-namespace:Content.Client.Mech.Ui.Equipment"
     xmlns="https://spacestation14.io"
-    Margin="1 0 2 0"
+    Margin="2 0 2 0"
     HorizontalExpand="True"
     VerticalExpand="True">
-    <BoxContainer Orientation="Vertical"
-                  HorizontalExpand="True"
-                  VerticalExpand="True">
-        <Label Name="OutputLabel"
-               StyleClasses="LabelSubText" />
-        <Label Name="FuelLabel"
-               StyleClasses="LabelSubText" />
-        <Button Name="EjectFuelButton"
-                Text="{Loc 'mech-generator-eject-fuel-button'}" />
-    </BoxContainer>
+    <GridContainer Columns="2"
+                   HorizontalExpand="True">
+        <BoxContainer Orientation="Vertical">
+            <Label Name="OutputLabel"
+                   StyleClasses="LabelSubText"
+                   FontColorOverride="White" />
+            <Label Name="FuelLabel"
+                   StyleClasses="LabelSubText"
+                   FontColorOverride="White" />
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical"
+                      HorizontalAlignment="Right"
+                      HorizontalExpand="True"
+                      VerticalAlignment="Center">
+            <Button Name="EjectFuelButton"
+                    Text="{Loc 'mech-generator-eject-fuel-button'}" />
+        </BoxContainer>
+    </GridContainer>
 </equipment:MechGeneratorUiFragment>

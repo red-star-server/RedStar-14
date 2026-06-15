@@ -35,10 +35,10 @@ mech-ui-open-verb = Open control panel
 
 mech-menu-title = mech control panel
 
-mech-integrity-display = Integrity: {$amount}%
-mech-integrity-display-broken = Integrity: {$amount}% (broken)
-mech-energy-display = Energy: {$amount}%
-mech-energy-missing = Energy: MISSING
+mech-integrity-display = {$amount} %
+mech-integrity-display-broken = BROKEN
+mech-energy-display = {$amount} %
+mech-energy-missing = MISSING
 mech-slot-display = Open Slots: {$amount}
 
 mech-no-enter = You cannot pilot this.
@@ -49,7 +49,7 @@ mech-construction-guide-string = All mech parts must be attached to the harness.
 
 # RS14
 mech-generator-output-label = Output: {$rate} W
-mech-generator-fuel-label = Fuel ({$name}): {$amount}
+mech-generator-fuel-label = Fuel: {$amount} ({$name})
 mech-generator-eject-fuel-button = Eject fuel
 
 # RS14-start
@@ -102,4 +102,37 @@ mech-fan-state-off = off
 mech-fan-state-on = running
 mech-fan-state-idle = idle
 mech-fan-state-na = unavailable
+
+# PR #39958 mech control panel layout
+mech-integrity-display-label = Integrity
+mech-energy-display-label = Energy
+mech-fan-status-label = Fan Status:
+mech-settings-no-access-label = Access denied
+mech-air-toggle-button = Toggle
+mech-airtight-unavailable-label = Not airtight cabin
+mech-fan-label = Fan:
+mech-filter-enabled-checkbox = Filter
+mech-fan-missing-label = No fan module
+mech-lock-register-button = Register Lock
+mech-lock-reset-tooltip = Reset
+mech-equipment-label = Equipment
+mech-modules-label = Modules
+mech-cabin-pressure-level-label = { $level } kPa
+mech-cabin-temperature-level-label = { $tempC } °C
+mech-no-airtight-status-label = unavailable
+mech-tank-pressure-level-label =
+    { $state ->
+        [ok] { $pressure } kPa
+       *[na] N/A
+    }
+mech-fan-status-level-label =
+    { $state ->
+        [on] Running
+        [idle] Idle
+        [off] Off
+       *[na] N/A
+    }
+mech-lock-not-set-label = Not set
+mech-lock-deactivate-button = Deactivate
+mech-lock-activate-button = Activate
 # RS14-end

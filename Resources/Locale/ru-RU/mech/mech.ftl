@@ -19,17 +19,17 @@ mech-equipment-select-none-popup = Ничего не выбрано
 mech-radial-no-equipment = Без оборудования
 mech-ui-open-verb = Открыть панель управления
 mech-menu-title = Панель управления меха
-mech-integrity-display = Целостность: { $amount }%
-mech-integrity-display-broken = Целостность: { $amount }% (сломан)
-mech-energy-display = Энергия: { $amount }%
-mech-energy-missing = Энергия: ОТСУТСТВУЕТ
+mech-integrity-display = { $amount } %
+mech-integrity-display-broken = СЛОМАН
+mech-energy-display = { $amount } %
+mech-energy-missing = ОТСУТСТВУЕТ
 mech-slot-display = Доступно слотов: { $amount }
 mech-no-enter = Вы не можете пилотировать это.
 mech-eject-pilot-alert = { $user } вытаскивает пилота из { $item }!
 
 # RS14
 mech-generator-output-label = Выработка: { $rate } Вт
-mech-generator-fuel-label = Топливо ({ $name }): { $amount }
+mech-generator-fuel-label = Топливо: { $amount } ({ $name })
 mech-generator-eject-fuel-button = Извлечь топливо
 
 # RS14-start
@@ -82,4 +82,37 @@ mech-fan-state-off = выкл.
 mech-fan-state-on = работает
 mech-fan-state-idle = ожидание
 mech-fan-state-na = недоступно
+
+# PR #39958 mech control panel layout
+mech-integrity-display-label = Целостность
+mech-energy-display-label = Энергия
+mech-fan-status-label = Статус вентилятора:
+mech-settings-no-access-label = Доступ запрещён
+mech-air-toggle-button = Переключить
+mech-airtight-unavailable-label = кабина негерметична
+mech-fan-label = Вентилятор:
+mech-filter-enabled-checkbox = Фильтр
+mech-fan-missing-label = нет модуля вентилятора
+mech-lock-register-button = Зарегистрировать замок
+mech-lock-reset-tooltip = Сбросить
+mech-equipment-label = Оборудование
+mech-modules-label = Модули
+mech-cabin-pressure-level-label = { $level } кПа
+mech-cabin-temperature-level-label = { $tempC } °C
+mech-no-airtight-status-label = недоступно
+mech-tank-pressure-level-label =
+    { $state ->
+        [ok] { $pressure } кПа
+       *[na] Н/Д
+    }
+mech-fan-status-level-label =
+    { $state ->
+        [on] работает
+        [idle] ожидание
+        [off] выкл.
+       *[na] Н/Д
+    }
+mech-lock-not-set-label = Не задан
+mech-lock-deactivate-button = Деактивировать
+mech-lock-activate-button = Активировать
 # RS14-end
