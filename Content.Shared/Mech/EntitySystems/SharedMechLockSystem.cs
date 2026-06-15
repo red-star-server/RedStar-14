@@ -362,7 +362,7 @@ public abstract partial class SharedMechLockSystem : EntitySystem
         if (!TryComp<AccessComponent>(idCard.Owner, out var access) || access.Tags == null)
             return false;
 
-        return component.CardAccessTags.All(tag => access.Tags.Contains(tag));
+        return component.CardAccessTags.Any(access.Tags.Contains);
     }
 
     private bool IsAnyOwner(EntityUid user, MechLockComponent component)

@@ -90,12 +90,10 @@ public abstract partial class SharedGunSystem
         for (var i = 0; i < shots; i++)
         {
             args.Ammo.Add(GetShootable(component, args.Coordinates));
-            component.Shots--;
         }
 
         TakeCharge((uid, component));
         UpdateBatteryAppearance(uid, component);
-        Dirty(uid, component);
     }
 
     private void OnBatteryAmmoCount(EntityUid uid, BatteryAmmoProviderComponent component, ref GetAmmoCountEvent args)

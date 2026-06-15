@@ -83,6 +83,8 @@ public sealed partial class MechMenu : FancyWindow
         UpdateMechStats(state);
         UpdateMechControls(state);
         UpdateEquipmentView(state.Equipment, state.Modules);
+        SetRemoveDisabledForContainer(EquipmentControlContainer, state.PilotPresent);
+        SetRemoveDisabledForContainer(ModuleControlContainer, state.PilotPresent);
         RefreshEquipmentFragmentStates(state);
     }
 
@@ -297,6 +299,14 @@ public sealed partial class MechMenu : FancyWindow
 
         FanStatusLabel.Text = Loc.GetString("mech-fan-status-level-label", ("state", stateKey));
         FanStatusLabel.FontColorOverride = stateColor;
+    }
+
+    private static void SetRemoveDisabledForContainer(Control container, bool disabled)
+    {
+        foreach (var control in container.Children.OfType<MechEquipmentControl>())
+        {
+            control.SetRemoveDisabled(disabled);
+        }
     }
 
     private void UpdateLockInfoLabels(MechBoundUiState state)

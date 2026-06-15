@@ -78,15 +78,14 @@ public sealed partial class GunSystem
         var shots = (int) (charge / component.FireCost);
         var maxShots = (int) (maxCharge / component.FireCost);
 
-        if (component.Shots != shots || component.Capacity != maxShots)
-        {
-            Dirty(uid, component);
-        }
-
+        var dirty = component.Shots != shots || component.Capacity != maxShots;
         component.Shots = shots;
 
         if (maxShots > 0)
             component.Capacity = maxShots;
+
+        if (dirty)
+            Dirty(uid, component);
 
         UpdateBatteryAppearance(uid, component);
 
