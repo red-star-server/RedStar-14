@@ -196,6 +196,11 @@
       - WeaponMechSpecialBananaMortar
       - WeaponMechSpecialMousetrapMortar
     startingModules:
+      # RS14-start
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+      # RS14-end
       - MechModuleHorn
 
 # Combat-Station Mechs
@@ -420,6 +425,12 @@
       - WeaponMechCombatPulseRifle
       - WeaponMechCombatUltraRifle
       - WeaponMechCombatMissileRack8
+    # RS14-start
+    startingModules:
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+    # RS14-end
 
 # Seraph
 - type: entity
@@ -496,6 +507,12 @@
       - WeaponMechCombatShotgun
       - WeaponMechCombatMissileRack6
       - WeaponMechCombatUltraRifle
+    # RS14-start
+    startingModules:
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+    # RS14-end
 
 # Syndicate Combat Mech
 
@@ -571,8 +588,14 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatShotgun
-      - WeaponMechCombatMissileRack8
-      - WeaponMechCombatTeslaCannon
+      # RS14-value: WeaponMechCombatMissileRack8 -> WeaponMechCombatMissileRack6
+      - WeaponMechCombatMissileRack6
+    # RS14-start
+    startingModules:
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+    # RS14-end
 
 # Mauler
 - type: entity
@@ -647,5 +670,11 @@
       - WeaponMechChainSword
       - WeaponMechCombatUltraRifle
       - WeaponMechCombatShotgun
-      - WeaponMechCombatMissileRack6
-      - WeaponMechCombatTeslaCannon
+      # RS14-value: WeaponMechCombatMissileRack6 -> WeaponMechCombatMissileRack8
+      - WeaponMechCombatMissileRack8
+    # RS14-start
+    startingModules:
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+    # RS14-end

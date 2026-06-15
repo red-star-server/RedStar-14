@@ -131,7 +131,17 @@ public sealed class MechAtmosphereSystem : EntitySystem
             return;
         }
 
-        cabin.Air.Clear();
+        var environment = _atmosphere.GetContainingMixture(ent.Owner, false, true);
+        if (environment != null)
+        {
+            var removed = cabin.Air.RemoveRatio(1f);
+            _atmosphere.Merge(environment, removed);
+        }
+        else
+        {
+            cabin.Air.Clear();
+        }
+
         Dirty(ent.Owner, cabin);
 
         var purge = EnsureComp<MechCabinPurgeComponent>(ent.Owner);
