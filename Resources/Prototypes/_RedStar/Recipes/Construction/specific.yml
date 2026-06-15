@@ -8,10 +8,6 @@
   startNode: start
   targetNode: FloorDrain
   category: construction-category-furniture
-  description: Осушает ближайшие лужи
-  icon:
-    sprite: Objects/Specific/Janitorial/drain.rsi
-    state: icon
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

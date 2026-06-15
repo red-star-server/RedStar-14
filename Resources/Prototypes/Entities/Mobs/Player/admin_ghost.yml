@@ -163,14 +163,14 @@
     canInteract: true
   - type: GhostHearing
   - type: Hands
-    hands:
-      hand_right:
-        location: Right
-      hand_left:
-        location: Left
-    sortedHands:
-    - hand_right
-    - hand_left
+    #hands:
+    #  hand_right:
+    #    location: Right
+    #  hand_left:
+    #    location: Left
+    #sortedHands:
+    #- hand_right
+    #- hand_left
   - type: ComplexInteraction
   - type: Puller
     needsHands: false
@@ -266,8 +266,8 @@
   - type: IgnoreSkills # CorvaxGoob-Skills
   # Corvax-Goob-start
   - type: MovementSpeedModifier
-    baseSprintSpeed: 30
-    baseWalkSpeed: 12
+    baseSprintSpeed: 20
+    baseWalkSpeed: 8
   # Corvax-Goob-end
   - type: OwnInteractionVerbs
     allowedVerbs: []

@@ -21,10 +21,6 @@
   startNode: start
   targetNode: Sink
   category: construction-category-furniture
-  description: Источник воды и ее иссушения
-  icon:
-    sprite: Structures/Furniture/sink.rsi
-    state: sink
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -37,10 +33,6 @@
   startNode: start
   targetNode: SinkWide
   category: construction-category-furniture
-  description: Источник воды и ее иссушения
-  icon:
-    sprite: Structures/Furniture/sink.rsi
-    state: sink_wide
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

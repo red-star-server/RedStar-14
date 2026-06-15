@@ -4,7 +4,7 @@
 
 - type: technology
   id: WeaponEnergyCrossbowLargeTech
-  name: Redspace archery
+  name: research-technology-redspace-archery
   icon:
     sprite: _RedStar/Objects/Weapons/Guns/Bow/crossbow_large.rsi
     state: icon-0
