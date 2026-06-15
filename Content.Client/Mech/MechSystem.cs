@@ -24,8 +24,21 @@ public sealed class MechSystem : SharedMechSystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction); // RS14
         SubscribeLocalEvent<MechComponent, AppearanceChangeEvent>(OnAppearanceChanged);
     }
+
+    // RS14-start
+    private void OnToggleEquipmentAction(Entity<MechComponent> ent, ref MechToggleEquipmentEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        var ev = new MechOpenEquipmentRadialEvent();
+        RaiseLocalEvent(ent.Owner, ref ev);
+        args.Handled = true;
+    }
+    // RS14-end
 
     private void OnAppearanceChanged(EntityUid uid, MechComponent component, ref AppearanceChangeEvent args)
     {
@@ -51,4 +64,5 @@ public sealed class MechSystem : SharedMechSystem
         _sprite.LayerSetRsiState((uid, args.Sprite), MechVisualLayers.Base, state);
         _sprite.SetDrawDepth((uid, args.Sprite), (int)drawDepth);
     }
+
 }
