@@ -109,7 +109,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<MechComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<MechComponent, VehicleOperatorSetEvent>(OnOperatorSet); // RS14
-        SubscribeLocalEvent<MechComponent, EntInsertedIntoContainerMessage>(OnContainerChanged); // RS14
         SubscribeLocalEvent<MechComponent, EntRemovedFromContainerMessage>(OnContainerChanged); // RS14
 
         // RS14-start
@@ -117,6 +116,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<VehicleOperatorComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
         SubscribeLocalEvent<VehicleOperatorComponent, AttackAttemptEvent>(OnAttackAttempt);
         SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnPilotCanAttackFromContainer);
+        SubscribeLocalEvent<MechPilotComponent, GetMeleeAttackEntityEvent>(OnPilotGetMeleeAttackEntity);
         SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnPilotGetMeleeWeapon);
         SubscribeLocalEvent<MechPilotComponent, GetActiveWeaponEvent>(OnPilotGetActiveWeapon);
         SubscribeLocalEvent<MechPilotComponent, GetUsedEntityEvent>(OnPilotGetUsedEntity);
@@ -748,10 +748,25 @@ public abstract partial class SharedMechSystem : EntitySystem
         args.CanAttack = true;
     }
 
+    private void OnPilotGetMeleeAttackEntity(Entity<MechPilotComponent> ent, ref GetMeleeAttackEntityEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.AttackEntity = ent.Comp.Mech;
+        args.Handled = true;
+    }
+
     private void OnPilotGetMeleeWeapon(Entity<MechPilotComponent> ent, ref GetMeleeWeaponEvent args)
     {
         if (args.Handled)
             return;
+
+        if (!HasComp<HandsComponent>(ent.Owner))
+        {
+            args.Handled = true;
+            return;
+        }
 
         if (!TryComp<MechComponent>(ent.Comp.Mech, out var mech))
             return;
@@ -823,7 +838,8 @@ public abstract partial class SharedMechSystem : EntitySystem
 
     private void OnMechEquipmentMeleeAttempt(Entity<MechEquipmentComponent> ent, ref AttemptMeleeEvent args)
     {
-        args.Cancelled = !IsMechEquipmentUsableFromHands(ent);
+        if (!IsMechEquipmentUsableFromHands(ent))
+            args.Cancelled = true;
     }
 
     private void OnMechEquipmentGettingUsedAttempt(Entity<MechEquipmentComponent> ent, ref GettingUsedAttemptEvent args)
@@ -837,7 +853,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
     private void OnMechEquipmentUiOpenAttempt(Entity<MechEquipmentComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (ent.Comp.EquipmentOwner == null)
+        if (!IsMechEquipmentUsableFromHands(ent))
             args.Cancel();
     }
 
@@ -900,12 +916,6 @@ public abstract partial class SharedMechSystem : EntitySystem
     }
 
     // RS14-start
-    private void OnContainerChanged(Entity<MechComponent> ent, ref EntInsertedIntoContainerMessage args)
-    {
-        if (args.Container == ent.Comp.PilotSlot)
-            SetBatterySlotLocked(ent.Owner, ent.Comp, true);
-    }
-
     private void OnContainerChanged(Entity<MechComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         if (args.Container == ent.Comp.PilotSlot)
@@ -939,7 +949,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         RaiseLocalEvent(ent, ref drainEv);
     }
 
-    private void SetBatterySlotLocked(EntityUid uid, MechComponent component, bool locked)
+    protected void SetBatterySlotLocked(EntityUid uid, MechComponent component, bool locked)
     {
         if (TryComp<ItemSlotsComponent>(uid, out var slots))
             _itemSlots.SetLock(uid, component.BatterySlotId, locked, slots);

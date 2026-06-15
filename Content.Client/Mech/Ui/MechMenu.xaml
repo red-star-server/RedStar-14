@@ -5,12 +5,13 @@ SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 SPDX-License-Identifier: MIT
 -->
 
+<!-- RS14-value: SetSize 725 480 -> 945 480 -->
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
                       Title="{Loc 'mech-menu-title'}"
                       MinSize="600 480"
-                      SetSize="725 480">
+                      SetSize="945 480">
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True"
                   VerticalExpand="True"
@@ -186,12 +187,15 @@ SPDX-License-Identifier: MIT
                                 <Button StyleClasses="OpenLeft"
                                         Name="DnaLockResetButton"
                                         ToolTip="{Loc 'mech-lock-reset-tooltip'}">
+                                    <!-- RS14-start -->
                                     <TextureButton HorizontalExpand="False"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    MouseFilter="Ignore"
                                                    Scale="0.9 0.9"
+                                                   TexturePath="/Textures/Interface/Nano/circular_arrow.svg.96dpi.png"
                                                    StyleClasses="RefreshButton" />
+                                    <!-- RS14-end -->
                                 </Button>
                             </BoxContainer>
                             <Label Name="DnaLockInfoLabel" StyleClasses="ItemStatus" />
@@ -220,12 +224,15 @@ SPDX-License-Identifier: MIT
                                 <Button StyleClasses="OpenLeft"
                                         Name="CardLockResetButton"
                                         ToolTip="{Loc 'mech-lock-reset-tooltip'}">
+                                    <!-- RS14-start -->
                                     <TextureButton HorizontalExpand="False"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    MouseFilter="Ignore"
                                                    Scale="0.9 0.9"
+                                                   TexturePath="/Textures/Interface/Nano/circular_arrow.svg.96dpi.png"
                                                    StyleClasses="RefreshButton" />
+                                    <!-- RS14-end -->
                                 </Button>
                             </BoxContainer>
                             <Label Name="CardLockInfoLabel" StyleClasses="ItemStatus" />

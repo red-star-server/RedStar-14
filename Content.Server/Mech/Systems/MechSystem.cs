@@ -185,6 +185,12 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnInsertBattery(EntityUid uid, MechComponent component, EntInsertedIntoContainerMessage args)
     {
+        if (args.Container == component.PilotSlot)
+        {
+            SetBatterySlotLocked(uid, component, true);
+            return;
+        }
+
         if (args.Container != component.BatterySlot || !TryComp<BatteryComponent>(args.Entity, out var battery))
             return;
 

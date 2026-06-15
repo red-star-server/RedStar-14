@@ -279,8 +279,11 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     /// </summary>
     private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
     {
+        // RS14
+        var attackEntity = GetMeleeAttackEntity(user);
+
         // Only run on first prediction to avoid the potential raycast entities changing.
-        if (!_xformQuery.TryGetComponent(user, out var userXform) ||
+        if (!_xformQuery.TryGetComponent(attackEntity, out var userXform) ||
             !Timing.IsFirstTimePredicted)
         {
             return;
@@ -297,7 +300,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
-        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, user).ToList());
+        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, attackEntity).ToList()); // RS14
         RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates)));
     }
 
@@ -313,7 +316,9 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
     private void ClientLightAttack(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates, EntityUid weaponUid, MeleeWeaponComponent meleeComponent)
     {
-        var attackerPos = TransformSystem.GetMapCoordinates(attacker);
+        // RS14
+        var attackEntity = GetMeleeAttackEntity(attacker);
+        var attackerPos = TransformSystem.GetMapCoordinates(attackEntity);
 
         // Goob edit start
         if (mousePos.MapId != attackerPos.MapId)
@@ -324,7 +329,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (_stateManager.CurrentState is GameplayStateBase screen)
             target = screen.GetDamageableClickedEntity(mousePos);
 
-        var ev = new GetLightAttackRangeEvent(target, attacker, meleeComponent.Range);
+        var ev = new GetLightAttackRangeEvent(target, attackEntity, meleeComponent.Range); // RS14
         RaiseLocalEvent(weaponUid, ref ev);
 
         if ((attackerPos.Position - mousePos.Position).Length() > ev.Range)
@@ -332,7 +337,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // Goob edit end
 
         // Don't light-attack if interaction will be handling this instead
-        if (Interaction.CombatModeCanHandInteract(attacker, target))
+        if (Interaction.CombatModeCanHandInteract(attackEntity, target)) // RS14
             return;
 
         RaisePredictiveEvent(new LightAttackEvent(GetNetEntity(target), GetNetEntity(weaponUid), GetNetCoordinates(coordinates)));

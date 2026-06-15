@@ -51,7 +51,10 @@ public sealed class MechChargerSystem : EntitySystem
                 if (chargeNeeded <= 0f)
                     continue;
 
-                var transfer = MathF.Min(charger.ChargeRate * frameTime, chargeNeeded);
+                // RS14: Match upstream mech charger behavior. The prototype value is tuned as
+                // charge per tick here, not per second, otherwise mech guns recharge too slowly
+                // for client ammo prediction and keep showing as empty.
+                var transfer = MathF.Min(charger.ChargeRate, chargeNeeded);
                 transfer = MathF.Min(transfer, mech.Energy.Float());
                 if (transfer <= 0f)
                     continue;

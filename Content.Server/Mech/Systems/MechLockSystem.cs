@@ -16,6 +16,7 @@ namespace Content.Server.Mech.Systems;
 public sealed class MechLockSystem : SharedMechLockSystem
 {
     [Dependency] private readonly IdCardSystem _idCard = default!;
+    [Dependency] private readonly MechSystem _mech = default!;
 
     public override void Initialize()
     {
@@ -105,8 +106,7 @@ public sealed class MechLockSystem : SharedMechLockSystem
 
     protected override void UpdateMechUI(EntityUid uid)
     {
-        var ev = new UpdateMechUiEvent();
-        RaiseLocalEvent(uid, ev);
+        _mech.UpdateUserInterface(uid);
     }
 
     protected override bool TryFindIdCard(EntityUid user, out Entity<IdCardComponent> idCard)

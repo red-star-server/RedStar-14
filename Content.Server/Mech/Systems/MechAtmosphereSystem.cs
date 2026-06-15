@@ -154,12 +154,12 @@ public sealed class MechAtmosphereSystem : EntitySystem
         _mech.UpdateMechUi(ent.Owner);
     }
 
-    private void OnInhale(EntityUid uid, VehicleOperatorComponent component, InhaleLocationEvent args)
+    private void OnInhale(EntityUid uid, VehicleOperatorComponent component, ref InhaleLocationEvent args)
     {
         if (!TryGetOperatedMech(component, out var ent))
             return;
 
-        SetInhaleGas(ent, args);
+        SetInhaleGas(ent, ref args);
     }
 
     private void OnExhale(EntityUid uid, VehicleOperatorComponent component, ExhaleLocationEvent args)
@@ -184,7 +184,7 @@ public sealed class MechAtmosphereSystem : EntitySystem
         if (!TryComp<MechComponent>(ent.Comp.Mech, out var mechComp))
             return;
 
-        SetInhaleGas((ent.Comp.Mech, mechComp), args);
+        SetInhaleGas((ent.Comp.Mech, mechComp), ref args);
     }
 
     private void OnPilotExhale(Entity<MechPilotComponent> ent, ref ExhaleLocationEvent args)
@@ -207,7 +207,7 @@ public sealed class MechAtmosphereSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void SetInhaleGas(Entity<MechComponent> ent, InhaleLocationEvent args)
+    private void SetInhaleGas(Entity<MechComponent> ent, ref InhaleLocationEvent args)
     {
         if (ent.Comp.Airtight && TryComp<MechCabinAirComponent>(ent.Owner, out var cabin))
         {
