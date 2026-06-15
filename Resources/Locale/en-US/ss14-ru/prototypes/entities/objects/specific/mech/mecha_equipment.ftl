@@ -8,3 +8,13 @@ ent-MechEquipmentHorn = mech horn
     .desc = An enhanced bike horn that plays a hilarious array of sounds for the enjoyment of the crew. HONK!
 ent-MechModuleHorn = mech horn module
     .desc = An enhanced bike horn that plays a hilarious array of sounds for the enjoyment of the crew. HONK!
+# RS14-start
+ent-MechModuleFan = exosuit fan module
+    .desc = Draws outside air into the cabin to maintain a breathable atmosphere. Features a built-in filter.
+ent-MechModuleAirTank = exosuit air tank module
+    .desc = A special air canister capable of holding a large amount of air.
+ent-MechModuleTeslaRelay = tesla energy relay module
+    .desc = Connects the mech to nearby APCs and trickle-charges its battery.
+ent-MechModulePlasmaGenerator = plasma generator module
+    .desc = Generates energy by consuming plasma sheets stored internally.
+# RS14-end
