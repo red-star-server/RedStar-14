@@ -593,13 +593,23 @@ namespace Content.Shared.Interaction
             // empty-hand interactions
             // combat mode hand interactions will always be true here -- since
             // they check this earlier before returning in
-            if (!TryGetUsedEntity(user, out var used, checkCanUse))
+            if (!TryGetUsedEntity(user, out var used, checkCanUse: false))
             {
                 if (inRangeUnobstructed && target != null)
                     InteractHand(user, target.Value);
 
                 return;
             }
+
+            // RS14-start
+            if (!CanUseHeldEntityOnTarget(user, used.Value, target, checkCanUse))
+            {
+                if (inRangeUnobstructed && target != null)
+                    InteractHand(user, target.Value);
+
+                return;
+            }
+            // RS14-end
 
             if (target == used)
             {
@@ -1189,7 +1199,7 @@ namespace Content.Shared.Interaction
             if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, target))
                 return false;
 
-            if (checkCanUse && !_actionBlockerSystem.CanUseHeldEntity(user, used))
+            if (!CanUseHeldEntityOnTarget(user, used, target, checkCanUse)) // RS14
                 return false;
 
             _adminLogger.Add(
@@ -1618,6 +1628,24 @@ namespace Content.Shared.Interaction
 
             return ev.Handled;
         }
+
+        // RS14-start
+        private bool CanUseHeldEntityOnTarget(EntityUid user, EntityUid used, EntityUid? target, bool checkCanUse)
+        {
+            if (!checkCanUse)
+                return true;
+
+            if (_actionBlockerSystem.CanUseHeldEntity(user, used))
+                return true;
+
+            if (target == null)
+                return false;
+
+            var ev = new UseHeldBypassAttemptEvent(user);
+            RaiseLocalEvent(target.Value, ref ev);
+            return ev.Bypass;
+        }
+        // RS14-end
 
         [Obsolete("Use ActionBlockerSystem")]
         public bool SupportsComplexInteractions(EntityUid user)

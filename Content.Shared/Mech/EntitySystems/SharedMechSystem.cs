@@ -129,6 +129,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechEquipmentComponent, AttemptMeleeEvent>(OnMechEquipmentMeleeAttempt);
         SubscribeLocalEvent<MechEquipmentComponent, GettingUsedAttemptEvent>(OnMechEquipmentGettingUsedAttempt);
         SubscribeLocalEvent<MechEquipmentComponent, ActivatableUIOpenAttemptEvent>(OnMechEquipmentUiOpenAttempt);
+        SubscribeLocalEvent<MechComponent, UseHeldBypassAttemptEvent>(OnUseHeldBypass);
         // RS14-end
         Subs.CVar(_config, GoobCVars.MechGunOutsideMech, value => _canUseMechGunOutside = value, true); // Goobstation
         SubscribeAllEvent<RequestMechEquipmentSelectEvent>(OnEquipmentSelectRequest); // RS14
@@ -855,6 +856,17 @@ public abstract partial class SharedMechSystem : EntitySystem
     {
         if (!IsMechEquipmentUsableFromHands(ent))
             args.Cancel();
+    }
+
+    private void OnUseHeldBypass(Entity<MechComponent> ent, ref UseHeldBypassAttemptEvent args)
+    {
+        // Allow using mech equipment on a mech for installation, while still
+        // blocking firing/activating that equipment directly from hands.
+        if (_hands.TryGetActiveItem(args.User, out var held) &&
+            HasComp<MechEquipmentComponent>(held.Value))
+        {
+            args.Bypass = true;
+        }
     }
 
     // Goobstation: Prevent guns being used out of mechs if CCVAR is set.
