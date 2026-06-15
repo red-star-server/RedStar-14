@@ -393,7 +393,7 @@
   id: UplinkMiniatureEnergyCrossbow
   name: uplink-miniature-energy-crossbow-name
   description: uplink-miniature-energy-crossbow-desc
-  icon: { sprite:  /Textures/_Goobstation/Objects/Weapons/Guns/Battery/miniature_ebow.rsi, state: icon }
+  icon: { sprite:  /Textures/_Goobstation/Objects/Weapons/Guns/Battery/miniature_ebow.rsi, state: icon-0 }
   productEntity: MiniatureEnergyCrossbow
   cost:
     Telecrystal: 50

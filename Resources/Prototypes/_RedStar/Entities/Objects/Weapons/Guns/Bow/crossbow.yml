@@ -1,0 +1,50 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: WeaponEnergyCrossbowLarge
+  name: Energy crossbow
+  description: A full-size version of the energy crossbow. Powerful, but slow.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _RedStar/Objects/Weapons/Guns/Bow/crossbow_large.rsi
+    layers:
+    - state: icon-0
+      map: ["enum.GunVisualLayers.Base"]
+    - state: icon-1
+      map: ["enum.GunVisualLayers.Mag"]
+      visible: false
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,2,1
+  - type: Gun
+    fireRate: 2
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -14
+  - type: AmmoCounter
+  - type: RechargeBasicEntityAmmo
+    rechargeSound:
+      path: /Audio/Magic/forcewall.ogg
+      params:
+        volume: -12
+    rechargeCooldown: 2.5
+  - type: BasicEntityAmmoProvider
+    proto: BulletEnergyCrossbowLarge
+    capacity: 1
+    count: 1
+  - type: MagazineVisuals
+    magState: icon
+    steps: 2
+    zeroVisible: true
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: Appearance
+  - type: UseDelay
+    delay: 1

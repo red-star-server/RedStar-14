@@ -34,6 +34,7 @@ using Content.Goobstation.Common.Mech; // Goobstation
 using Content.Shared._vg.TileMovement; // Goobstation
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
+using Content.Shared.Alert;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
@@ -50,6 +51,7 @@ using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -73,6 +75,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!; // RS14
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
@@ -191,10 +194,26 @@ public abstract partial class SharedMechSystem : EntitySystem
             return;
         }
 
+        // RS14-start
+        var alertRelay = EnsureComp<AlertsDisplayRelayComponent>(pilot);
+        alertRelay.Source = mech;
+        Dirty(pilot, alertRelay);
+        // RS14-end
+
         _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
         _actions.AddAction(pilot, ref component.ToggleActionEntity, component.ToggleAction, mech); //Goobstation Mech Lights toggle action
+        // RS14-start
+        if (component.EntrySuccessSound != null)
+        {
+            var ev = new MechEntrySuccessSoundEvent(mech, component.EntrySuccessSound);
+            RaiseLocalEvent(mech, ref ev);
+        }
+
+        UpdateBatteryAlert(mech, component);
+        UpdateHealthAlert(mech, component);
+        // RS14-end
         UpdateHands(pilot, mech, true); // Goobstation
     }
 
@@ -204,6 +223,13 @@ public abstract partial class SharedMechSystem : EntitySystem
             RemComp<TileMovementComponent>(mech);
 
         RemComp<InteractionRelayComponent>(pilot);
+        // RS14-start
+        if (TryComp<AlertsDisplayRelayComponent>(pilot, out var alertRelay) &&
+            alertRelay.Source == mech)
+        {
+            RemComp<AlertsDisplayRelayComponent>(pilot);
+        }
+        // RS14-end
 
         _actions.RemoveProvidedActions(pilot, mech);
         UpdateHands(pilot, mech, false); // Goobstation
@@ -232,10 +258,26 @@ public abstract partial class SharedMechSystem : EntitySystem
         {
             RemoveEquipment(uid, ent, component, forced: true);
         }
+
+        if (component.BatterySlot.ContainedEntity is { } battery)
+            _container.Remove(battery, component.BatterySlot);
+
+        component.Energy = 0;
+        component.MaxEnergy = 0;
         // RS14-end
 
         component.Broken = true;
         UpdateAppearance(uid, component);
+        Dirty(uid, component);
+        UpdateUserInterface(uid, component);
+        UpdateBatteryAlert(uid, component);
+        UpdateHealthAlert(uid, component);
+
+        if (component.BrokenSound != null)
+        {
+            var ev = new MechBrokenSoundEvent(uid, component.BrokenSound);
+            RaiseLocalEvent(uid, ref ev);
+        }
     }
 
     /// <summary>
@@ -442,6 +484,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         component.Energy = FixedPoint2.Clamp(component.Energy + delta, 0, component.MaxEnergy);
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
+        UpdateBatteryAlert(uid, component); // RS14
         return true;
     }
 
@@ -458,11 +501,11 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         component.Integrity = FixedPoint2.Clamp(value, 0, component.MaxIntegrity);
 
-        if (component.Integrity <= 0)
+        if (component.Integrity <= component.BrokenThreshold && !component.Broken)
         {
             BreakMech(uid, component);
         }
-        else if (component.Broken)
+        else if (component.Integrity > component.BrokenThreshold && component.Broken)
         {
             component.Broken = false;
             UpdateAppearance(uid, component);
@@ -470,7 +513,49 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
+        UpdateHealthAlert(uid, component); // RS14
     }
+
+    // RS14-start
+    public void UpdateBatteryAlert(EntityUid uid, MechComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return;
+
+        if (component.BatterySlot.ContainedEntity == null || component.MaxEnergy <= 0)
+        {
+            _alerts.ClearAlert(uid, component.BatteryAlert);
+            _alerts.ShowAlert(uid, component.NoBatteryAlert);
+            return;
+        }
+
+        var chargePercent = (short) MathF.Round(component.Energy.Float() / component.MaxEnergy.Float() * 10f);
+        if (chargePercent == 0 && component.Energy > 0)
+            chargePercent = 1;
+
+        _alerts.ClearAlert(uid, component.NoBatteryAlert);
+        _alerts.ShowAlert(uid, component.BatteryAlert, chargePercent);
+    }
+
+    public void UpdateHealthAlert(EntityUid uid, MechComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return;
+
+        if (component.Broken)
+        {
+            _alerts.ClearAlert(uid, component.HealthAlert);
+            _alerts.ShowAlert(uid, component.BrokenAlert);
+            return;
+        }
+
+        _alerts.ClearAlert(uid, component.BrokenAlert);
+        var healthPercent = component.MaxIntegrity <= 0
+            ? (short) 4
+            : (short) MathF.Round((1f - component.Integrity.Float() / component.MaxIntegrity.Float()) * 4f);
+        _alerts.ShowAlert(uid, component.HealthAlert, healthPercent);
+    }
+    // RS14-end
 
     /// <summary>
     /// Checks if an entity can be inserted into the mech.
@@ -729,6 +814,20 @@ public sealed partial class MechExitEvent : SimpleDoAfterEvent; // RS14
 /// </summary>
 [Serializable, NetSerializable]
 public sealed partial class MechEntryEvent : SimpleDoAfterEvent; // RS14
+
+// RS14-start
+/// <summary>
+/// Raised when a mech enters broken state and should play its configured sound.
+/// </summary>
+[ByRefEvent]
+public readonly record struct MechBrokenSoundEvent(EntityUid Mech, SoundSpecifier Sound);
+
+/// <summary>
+/// Raised when a pilot successfully enters a mech and should play its configured sound.
+/// </summary>
+[ByRefEvent]
+public readonly record struct MechEntrySuccessSoundEvent(EntityUid Mech, SoundSpecifier Sound);
+// RS14-end
 
 /// <summary>
 ///     Event raised when an user attempts to fire a mech weapon to check if its battery is drained

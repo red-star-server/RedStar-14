@@ -83,6 +83,14 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: RipleyMKIIHarness
+    assemblyId: RipleyMKII
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -141,6 +149,14 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: ClarkeHarness
+    assemblyId: Clarke
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -179,7 +195,13 @@
     startingEquipment:
       - WeaponMechSpecialBananaMortar
       - WeaponMechSpecialMousetrapMortar
-      - MechEquipmentHorn
+    startingModules:
+      # RS14-start
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+      # RS14-end
+      - MechModuleHorn
 
 # Combat-Station Mechs
 
@@ -212,6 +234,14 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: GygaxHarness
+    assemblyId: Gygax
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -274,6 +304,14 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: DurandHarness
+    assemblyId: Durand
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -387,6 +425,12 @@
       - WeaponMechCombatPulseRifle
       - WeaponMechCombatUltraRifle
       - WeaponMechCombatMissileRack8
+    # RS14-start
+    startingModules:
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+    # RS14-end
 
 # Seraph
 - type: entity
@@ -463,6 +507,12 @@
       - WeaponMechCombatShotgun
       - WeaponMechCombatMissileRack6
       - WeaponMechCombatUltraRifle
+    # RS14-start
+    startingModules:
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+    # RS14-end
 
 # Syndicate Combat Mech
 
@@ -538,8 +588,14 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatShotgun
-      - WeaponMechCombatMissileRack8
-      - WeaponMechCombatTeslaCannon
+      # RS14-value: WeaponMechCombatMissileRack8 -> WeaponMechCombatMissileRack6
+      - WeaponMechCombatMissileRack6
+    # RS14-start
+    startingModules:
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+    # RS14-end
 
 # Mauler
 - type: entity
@@ -614,5 +670,11 @@
       - WeaponMechChainSword
       - WeaponMechCombatUltraRifle
       - WeaponMechCombatShotgun
-      - WeaponMechCombatMissileRack6
-      - WeaponMechCombatTeslaCannon
+      # RS14-value: WeaponMechCombatMissileRack6 -> WeaponMechCombatMissileRack8
+      - WeaponMechCombatMissileRack8
+    # RS14-start
+    startingModules:
+      - MechModuleFan
+      - MechModuleAirTank
+      - MechModuleTeslaRelay
+    # RS14-end

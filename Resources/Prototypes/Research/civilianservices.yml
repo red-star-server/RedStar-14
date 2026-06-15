@@ -189,6 +189,7 @@
   - CryoPodMachineCircuitboard
   - CryostasisBeaker
   - SyringeCryostasis
+  - BorgModuleAdvancedChemical # RS14
   # Goobstation R&D Console rework start
   - NTBodyBag # Corvax-Goob-AdvancedBodyBags-end
   - PrisonerBodyBag
@@ -256,7 +257,7 @@
   - HonkerCentralElectronics
   - HonkerPeripheralsElectronics
   - HonkerTargetingElectronics
-  - MechEquipmentHorn
+  - MechModuleHorn # RS14
   # Goobstation R&D Console rework start
   position: 0,6
   technologyPrerequisites:

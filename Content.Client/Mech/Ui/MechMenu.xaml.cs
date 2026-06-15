@@ -79,18 +79,19 @@ public sealed partial class MechMenu : FancyWindow
 
     public void UpdateMechStats(MechBoundUiState state)
     {
-        if (!_ent.TryGetComponent<MechComponent>(_mech, out var mechComp))
-            return;
+        var integrityPercent = state.MaxIntegrity > 0f
+            ? state.Integrity / state.MaxIntegrity
+            : 0f;
+        IntegrityDisplayBar.Value = integrityPercent;
+        IntegrityDisplay.Text = Loc.GetString(state.IsBroken
+            ? "mech-integrity-display-broken"
+            : "mech-integrity-display", ("amount", (int) (integrityPercent * 100)));
 
-        var integrityPercent = mechComp.Integrity / mechComp.MaxIntegrity;
-        IntegrityDisplayBar.Value = integrityPercent.Float();
-        IntegrityDisplay.Text = Loc.GetString("mech-integrity-display", ("amount", (integrityPercent*100).Int()));
-
-        if (mechComp.MaxEnergy != 0f)
+        if (state.MaxEnergy > 0f)
         {
-            var energyPercent = mechComp.Energy / mechComp.MaxEnergy;
-            EnergyDisplayBar.Value = energyPercent.Float();
-            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (energyPercent*100).Int()));
+            var energyPercent = state.Energy / state.MaxEnergy;
+            EnergyDisplayBar.Value = energyPercent;
+            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (int) (energyPercent * 100)));
         }
         else
         {
@@ -98,66 +99,66 @@ public sealed partial class MechMenu : FancyWindow
             EnergyDisplay.Text = Loc.GetString("mech-energy-missing");
         }
 
-        SlotDisplay.Text = Loc.GetString("mech-slot-display",
-            ("amount", mechComp.MaxEquipmentAmount - mechComp.EquipmentContainer.ContainedEntities.Count));
+        SlotDisplay.Text = Loc.GetString("mech-equipment-slot-display-label",
+            ("used", state.EquipmentUsed),
+            ("max", state.MaxEquipmentAmount));
 
-        var usedModuleSize = GetUsedModuleSize(mechComp.ModuleContainer.ContainedEntities);
-        ModuleSlotDisplay.Text = Loc.GetString("mech-module-slot-display",
-            ("amount", mechComp.MaxModuleAmount - usedModuleSize));
+        ModuleSlotDisplay.Text = Loc.GetString("mech-module-slot-display-label",
+            ("used", state.ModuleSpaceUsed),
+            ("max", state.ModuleSpaceMax));
 
         UpdateLockControls(state);
         UpdateCabinControls(state);
     }
 
-    public void UpdateEquipmentView()
+    public void UpdateEquipmentView(IReadOnlyList<NetEntity> equipment, IReadOnlyList<NetEntity> modules)
     {
-        if (!_ent.TryGetComponent<MechComponent>(_mech, out var mechComp))
-            return;
+        if (!ContainerMatches(EquipmentControlContainer, equipment))
+            RebuildEquipmentView(equipment);
 
-        if (!ContainerMatches(EquipmentControlContainer, mechComp.EquipmentContainer.ContainedEntities))
-            RebuildEquipmentView(mechComp.EquipmentContainer.ContainedEntities);
-
-        // RS14-start
-        if (!ContainerMatches(ModuleControlContainer, mechComp.ModuleContainer.ContainedEntities))
-            RebuildModuleView(mechComp.ModuleContainer.ContainedEntities);
-        // RS14-end
+        if (!ContainerMatches(ModuleControlContainer, modules))
+            RebuildModuleView(modules);
     }
 
-    private void RebuildEquipmentView(IReadOnlyList<EntityUid> equipment)
+    private void RebuildEquipmentView(IReadOnlyList<NetEntity> equipment)
     {
         EquipmentControlContainer.Children.Clear();
-        foreach (var ent in equipment)
+        foreach (var netEnt in equipment)
         {
-            if (!_ent.TryGetComponent<MetaDataComponent>(ent, out var metaData))
+            var ent = _ent.GetEntity(netEnt);
+            var control = CreateEquipmentControl(ent);
+            if (control == null)
                 continue;
 
-            var control = new MechEquipmentControl(ent, metaData.EntityName, GetEquipmentUi(ent));
-
             control.OnRemoveButtonPressed += () => OnRemoveEquipmentButtonPressed?.Invoke(ent);
-
             EquipmentControlContainer.AddChild(control);
         }
     }
 
     // RS14-start
-    private void RebuildModuleView(IReadOnlyList<EntityUid> modules)
+    private void RebuildModuleView(IReadOnlyList<NetEntity> modules)
     {
         ModuleControlContainer.Children.Clear();
-        foreach (var ent in modules)
+        foreach (var netEnt in modules)
         {
-            if (!_ent.TryGetComponent<MetaDataComponent>(ent, out var metaData))
+            var ent = _ent.GetEntity(netEnt);
+            var moduleSize = _ent.GetComponentOrNull<MechModuleComponent>(ent)?.Size ?? 1;
+            var control = CreateEquipmentControl(ent, moduleSize);
+            if (control == null)
                 continue;
 
-            var moduleSize = _ent.TryGetComponent<MechModuleComponent>(ent, out var module)
-                ? module.Size
-                : 1;
-
-            var control = new MechEquipmentControl(ent, metaData.EntityName, GetEquipmentUi(ent), moduleSize);
-
             control.OnRemoveButtonPressed += () => OnRemoveModuleButtonPressed?.Invoke(ent);
-
             ModuleControlContainer.AddChild(control);
         }
+    }
+
+    private MechEquipmentControl? CreateEquipmentControl(EntityUid ent, int? size = null)
+    {
+        var metaData = _ent.GetComponentOrNull<MetaDataComponent>(ent);
+        if (metaData == null)
+            return null;
+
+        return new MechEquipmentControl(ent, metaData.EntityName, GetEquipmentUi(ent), size);
     }
 
     private Control? GetEquipmentUi(EntityUid ent)
@@ -173,12 +174,14 @@ public sealed partial class MechMenu : FancyWindow
         return uicomp.Ui.GetUIFragmentRoot();
     }
 
-    private static bool ContainerMatches(Control container, IReadOnlyList<EntityUid> entities)
+    private IEntityManager EntityManager => _ent;
+
+    private bool ContainerMatches(Control container, IReadOnlyList<NetEntity> entities)
     {
         return container.Children
             .OfType<MechEquipmentControl>()
             .Select(control => control.Entity)
-            .SequenceEqual(entities);
+            .SequenceEqual(entities.Select(EntityManager.GetEntity));
     }
 
     private int GetUsedModuleSize(IReadOnlyList<EntityUid> installed)

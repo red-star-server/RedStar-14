@@ -102,6 +102,11 @@
         reagents:
         - ReagentId: Water
           Quantity: 9999999
+  # RS14-start
+  - type: Construction
+    graph: SinkEmpty
+    node: Sink
+  # RS14-end
 
 - type: entity
   name: wide sink
@@ -119,6 +124,11 @@
       maxFillLevels: 1
       fillBaseName: sink_wide-fill-
       solutionName: drainBuffer
+    # RS14-start
+    - type: Construction
+      graph: SinkWideEmpty
+      node: SinkWide
+    # RS14-end
 
 #Stemless Sink
 

@@ -65,41 +65,18 @@ public sealed class MechBoundUserInterface : BoundUserInterface
             return;
 
         _menu?.UpdateMechStats(msg);
-        _menu?.UpdateEquipmentView();
+        _menu?.UpdateEquipmentView(msg.Equipment, msg.Modules);
         UpdateEquipmentControls(msg);
     }
 
     public void UpdateEquipmentControls(MechBoundUiState state)
     {
-        if (!EntMan.TryGetComponent<MechComponent>(Owner, out var mechComp))
-            return;
-
-        foreach (var ent in mechComp.EquipmentContainer.ContainedEntities)
+        foreach (var (attached, estate) in state.EquipmentStates)
         {
+            var ent = EntMan.GetEntity(attached);
             var ui = GetEquipmentUi(ent);
-            if (ui == null)
-                continue;
-            foreach (var (attached, estate) in state.EquipmentStates)
-            {
-                if (ent == EntMan.GetEntity(attached))
-                    ui.UpdateState(estate);
-            }
+            ui?.UpdateState(estate);
         }
-
-        // RS14-start
-        foreach (var ent in mechComp.ModuleContainer.ContainedEntities)
-        {
-            var ui = GetEquipmentUi(ent);
-            if (ui == null)
-                continue;
-
-            foreach (var (attached, estate) in state.EquipmentStates)
-            {
-                if (ent == EntMan.GetEntity(attached))
-                    ui.UpdateState(estate);
-            }
-        }
-        // RS14-end
     }
 
     public UIFragment? GetEquipmentUi(EntityUid? uid)

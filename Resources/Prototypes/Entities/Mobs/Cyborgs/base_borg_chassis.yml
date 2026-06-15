@@ -359,6 +359,13 @@
     containers:
     - part-container
     - cell_slot
+    - borg_brain # RS14
+    - borg_module # RS14
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: CyborgEndoskeleton
+    assemblyId: generic
+  # RS14-end
   - type: Lock
     locked: true
     unlockOnClick: false

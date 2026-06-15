@@ -3,6 +3,10 @@ mech-verb-exit = Извлечь пилота
 mech-equipment-begin-install = { CAPITALIZE($item) } устанавливается...
 mech-equipment-finish-install = Установка { $item } завершена
 # RS14-start
+mech-install-begin-popup = { $user } устанавливает { $item }...
+mech-cannot-insert-broken-popup = Нельзя устанавливать детали в сломанный мех.
+mech-equipment-slot-full-popup = У меха нет свободных слотов оборудования.
+mech-equipment-whitelist-fail-popup = Это оборудование нельзя установить в этого меха.
 mech-module-begin-install = { CAPITALIZE($item) } устанавливается...
 mech-module-finish-install = Установка { $item } завершена
 mech-module-slot-full-popup = У меха нет свободных слотов модулей.
@@ -16,6 +20,7 @@ mech-radial-no-equipment = Без оборудования
 mech-ui-open-verb = Открыть панель управления
 mech-menu-title = Панель управления меха
 mech-integrity-display = Целостность: { $amount }%
+mech-integrity-display-broken = Целостность: { $amount }% (сломан)
 mech-energy-display = Энергия: { $amount }%
 mech-energy-missing = Энергия: ОТСУТСТВУЕТ
 mech-slot-display = Доступно слотов: { $amount }
@@ -29,6 +34,8 @@ mech-generator-eject-fuel-button = Извлечь топливо
 
 # RS14-start
 mech-module-slot-display = Доступно слотов модулей: { $amount }
+mech-equipment-slot-display-label = Оборудование: { $used }/{ $max }
+mech-module-slot-display-label = Модули: { $used }/{ $max }
 mech-equipment-size-display = Размер: { $size }
 mech-equipment-section = Оборудование
 mech-module-section = Модули

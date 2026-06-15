@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: BulletEnergyCrossbowLarge
+  name: bullet(crossbow large)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Poison: 5
+        Caustic: 5
+  - type: StaminaDamageOnCollide
+    damage: 15
+  - type: Sprite
+    sprite: _RedStar/Objects/Weapons/Guns/Projectiles/crossbowbullet.rsi
+    layers:
+    - state: bulletcrossbow
+  - type: StunOnCollide
+    knockdownAmount: 0.5

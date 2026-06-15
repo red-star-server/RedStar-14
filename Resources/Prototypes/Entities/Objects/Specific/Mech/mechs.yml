@@ -50,6 +50,8 @@
     containerId: mech-pilot-slot
   # RS14-end
   - type: Mech
+    entrySuccessSound: /Audio/Effects/nominal.ogg # RS14
+    brokenSound: /Audio/Effects/critdestr.ogg # RS14
     pilotBlacklist: # Goobstation Change
       components:
       - Zombie
@@ -151,6 +153,11 @@
       mech-passive-module-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
       paper_label: !type:ContainerSlot # Goobstation
+  # RS14-start
+  - type: MechEquipmentCharger
+    slotId: mech-equipment-container
+    chargeRate: 0.5
+  # RS14-end
   - type: Damageable
     damageContainer: Silicon # Goobstation
     damageModifierSet: LightArmor # Goobstation
@@ -234,6 +241,14 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: RipleyHarness
+    assemblyId: Ripley
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -280,11 +295,20 @@
     baseState: honker
     openState: honker-open
     brokenState: honker-broken
+    brokenSound: /Audio/Effects/sadtrombone.ogg # RS14
     mechToPilotDamageMultiplier: 0.5
     airtight: true # Goobstation - Space Honk is real.
     pilotWhitelist:
       components:
       - HumanoidAppearance
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: HonkerHarness
+    assemblyId: Honker
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
 
 - type: entity
   parent: MechHonker
@@ -322,6 +346,14 @@
     pilotWhitelist:
       tags:
       - Hamster
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: HamtrHarness
+    assemblyId: Hamtr
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.8
@@ -385,6 +417,14 @@
     pilotWhitelist:
       tags:
       - VimPilot
+  # RS14-start
+  - type: PartDisassembly
+    assemblyPrototype: VimHarness
+    assemblyId: Vim
+  - type: Construction
+    graph: MechDisassemble
+    node: start
+  # RS14-end
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.8

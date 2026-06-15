@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: FloorDrain
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: FloorDrain
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 15
+              doAfter: 1
+    - node: FloorDrain
+      entity: FloorDrain
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 15
+            - !type:EmptyAllContainers {}
+            - !type:DestroyEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          steps:
+            - tool: Welding
+              doAfter: 2

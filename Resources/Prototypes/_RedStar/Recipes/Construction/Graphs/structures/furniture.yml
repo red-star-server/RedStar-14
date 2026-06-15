@@ -1,0 +1,63 @@
+# SPDX-FileCopyrightText: 2026 RedStar Contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: SinkWideEmpty
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: SinkWide
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 1
+    - node: SinkWide
+      entity: SinkWide
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:EmptyAllContainers {}
+            - !type:DestroyEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+- type: constructionGraph
+  id: SinkEmpty
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: Sink
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 1
+    - node: Sink
+      entity: Sink
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:EmptyAllContainers {}
+            - !type:DestroyEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          steps:
+            - tool: Welding
+              doAfter: 2

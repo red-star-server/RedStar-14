@@ -804,6 +804,8 @@
     # CorvaxGoob Packs
     - SecurityCaptureDevicePack # WeaponGrapplingGunHunter
     - WorkBeltsSecDynamic # WorkBelts-Techfab
+    # RedStar Packs:
+    - SecurityWeaponsRedStar
   - type: EmagLatheRecipes # Goobstation
     emagStaticPacks:
     - SyndicateAmmoLightStatic

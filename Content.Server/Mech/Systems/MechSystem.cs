@@ -31,6 +31,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Server.Construction; // RS14
+using Content.Server.Construction.Components; // RS14
+using Content.Server.Mech.Events; // RS14
+using Content.Shared.Construction.Components; // RS14
+using Content.Shared.Construction.Prototypes; // RS14
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos;
@@ -45,6 +50,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mech.Module.Components;
 using Content.Shared.Popups;
+using Content.Shared.Repairable; // RS14
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
@@ -54,6 +60,7 @@ using Content.Shared.Whitelist;
 using Content.Shared.Wires;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -74,11 +81,15 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
     [Dependency] private readonly SharedSkillsSystem _skills = default!; // RS14
     [Dependency] private readonly MechLockSystem _mechLock = default!; // RS14
+    [Dependency] private readonly ConstructionSystem _construction = default!; // RS14
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // RS14
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
     // RS14-start
     private const float ExosuitDelayModifierWithoutSkill = 1.8f;
     private const float MinimumGasDisplayPressure = 0.0001f;
+    private static readonly ProtoId<ConstructionGraphPrototype> MechRepairGraph = "MechRepair";
+    private static readonly ProtoId<ConstructionGraphPrototype> MechDisassembleGraph = "MechDisassemble";
     private static readonly ProtoId<SkillPrototype> ExosuitsSkill = "Exosuits";
     // RS14-end
 
@@ -99,8 +110,12 @@ public sealed partial class MechSystem : SharedMechSystem
 
 
         SubscribeLocalEvent<MechComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<MechComponent, RepairAttemptEvent>(OnRepairAttempt); // RS14
+        SubscribeLocalEvent<MechComponent, RepairMechEvent>(OnRepairMechEvent); // RS14
         SubscribeLocalEvent<MechComponent, MechEquipmentRemoveMessage>(OnRemoveEquipmentMessage);
         SubscribeLocalEvent<MechComponent, MechModuleRemoveMessage>(OnRemoveModuleMessage); // RS14
+        SubscribeLocalEvent<MechComponent, MechBrokenSoundEvent>(OnMechBrokenSound); // RS14
+        SubscribeLocalEvent<MechComponent, MechEntrySuccessSoundEvent>(OnMechEntrySuccessSound); // RS14
 
         SubscribeLocalEvent<MechComponent, VehicleCanRunEvent>(OnMechCanMoveEvent); // RS14
         SubscribeLocalEvent<MechComponent, AttemptChangePanelEvent>(OnAttemptChangePanel); // RS14
@@ -113,6 +128,7 @@ public sealed partial class MechSystem : SharedMechSystem
         #region Equipment UI message relays
         SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
         SubscribeLocalEvent<MechComponent, MechSoundboardPlayMessage>(ReceiveEquipmentUiMesssages);
+        SubscribeLocalEvent<MechComponent, MechGeneratorEjectFuelMessage>(ReceiveEquipmentUiMesssages); // RS14
         #endregion
     }
 
@@ -127,6 +143,18 @@ public sealed partial class MechSystem : SharedMechSystem
             args.CanRun = false;
         }
     }
+
+    // RS14-start
+    private void OnMechBrokenSound(EntityUid uid, MechComponent component, ref MechBrokenSoundEvent args)
+    {
+        _audio.PlayPvs(args.Sound, uid);
+    }
+
+    private void OnMechEntrySuccessSound(EntityUid uid, MechComponent component, ref MechEntrySuccessSoundEvent args)
+    {
+        _audio.PlayPvs(args.Sound, uid);
+    }
+    // RS14-end
 
     private void OnInteractUsing(EntityUid uid, MechComponent component, InteractUsingEvent args)
     {
@@ -164,6 +192,7 @@ public sealed partial class MechSystem : SharedMechSystem
         component.MaxEnergy = battery.MaxCharge;
 
         Dirty(uid, component);
+        UpdateBatteryAlert(uid, component); // RS14
         Vehicle.RefreshCanRun(uid); // RS14
     }
 
@@ -180,6 +209,35 @@ public sealed partial class MechSystem : SharedMechSystem
 
         args.Handled = true;
     }
+
+    // RS14-start
+    private void OnRepairAttempt(EntityUid uid, MechComponent component, ref RepairAttemptEvent args)
+    {
+        if (!component.Broken)
+            return;
+
+        args.Cancelled = true;
+
+        SetMechConstructionGraph(uid, component, MechRepairGraph, "repaired", args.User);
+    }
+
+    private void SetMechConstructionGraph(EntityUid uid, MechComponent component, ProtoId<ConstructionGraphPrototype> graph, string? target, EntityUid? user = null)
+    {
+        var construction = EnsureComp<ConstructionComponent>(uid);
+        if (_construction.ChangeGraph(uid, user, graph, "start", performActions: false, construction) && target != null)
+            _construction.SetPathfindingTarget(uid, target, construction);
+    }
+
+    private void OnRepairMechEvent(EntityUid uid, MechComponent component, RepairMechEvent args)
+    {
+        SetIntegrity(uid, component.MaxIntegrity, component);
+        if (HasComp<PartDisassemblyComponent>(uid))
+            SetMechConstructionGraph(uid, component, MechDisassembleGraph, "disassembled");
+        else
+            RemComp<ConstructionComponent>(uid);
+        Vehicle.RefreshCanRun(uid);
+    }
+    // RS14-end
 
     private void OnMapInit(EntityUid uid, MechComponent component, MapInitEvent args)
     {
@@ -395,6 +453,7 @@ public sealed partial class MechSystem : SharedMechSystem
             component.Energy = 0;
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
+        UpdateBatteryAlert(uid, component); // RS14
         Vehicle.RefreshCanRun(uid); // RS14
     }
 
@@ -402,6 +461,13 @@ public sealed partial class MechSystem : SharedMechSystem
     {
         var integrity = component.MaxIntegrity - args.Damageable.TotalDamage;
         SetIntegrity(uid, integrity, component);
+
+        // RS14-start
+        if (component.Broken)
+            SetMechConstructionGraph(uid, component, MechRepairGraph, "repaired");
+        else if (HasComp<PartDisassemblyComponent>(uid))
+            SetMechConstructionGraph(uid, component, MechDisassembleGraph, "disassembled");
+        // RS14-end
 
         if (args.DamageIncreased &&
             args.DamageDelta != null &&
@@ -429,6 +495,11 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void ReceiveEquipmentUiMesssages<T>(EntityUid uid, MechComponent component, T args) where T : MechEquipmentUiMessage
     {
+        // RS14-start
+        if (!_mechLock.CheckAccessWithFeedback(uid, args.Actor))
+            return;
+        // RS14-end
+
         var ev = new MechEquipmentUiMessageRelayEvent(args);
         var allEquipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         // RS14-start
@@ -480,9 +551,34 @@ public sealed partial class MechSystem : SharedMechSystem
         }
 
         // RS14-start
+        foreach (var equipment in component.EquipmentContainer.ContainedEntities)
+        {
+            state.Equipment.Add(GetNetEntity(equipment));
+        }
+
+        foreach (var module in component.ModuleContainer.ContainedEntities)
+        {
+            state.Modules.Add(GetNetEntity(module));
+        }
+
+        state.PilotPresent = component.PilotSlot.ContainedEntity != null;
+        state.Integrity = component.Integrity.Float();
+        state.MaxIntegrity = component.MaxIntegrity.Float();
+        state.Energy = component.Energy.Float();
+        state.MaxEnergy = component.MaxEnergy.Float();
+        state.EquipmentUsed = component.EquipmentContainer.ContainedEntities.Count;
+        state.MaxEquipmentAmount = component.MaxEquipmentAmount;
+        state.ModuleSpaceMax = component.MaxModuleAmount;
+        state.IsBroken = component.Broken;
         state.CanAirtight = component.CanAirtight;
         state.IsAirtight = component.Airtight;
         state.CabinPurgeAvailable = true;
+
+        foreach (var module in component.ModuleContainer.ContainedEntities)
+        {
+            if (TryComp<MechModuleComponent>(module, out var moduleComp))
+                state.ModuleSpaceUsed += moduleComp.Size;
+        }
 
         if (TryComp<MechCabinAirComponent>(uid, out var cabin))
         {
@@ -549,6 +645,7 @@ public sealed partial class MechSystem : SharedMechSystem
             component.Energy = batteryComp.CurrentCharge;
             Dirty(uid, component);
         }
+        UpdateBatteryAlert(uid, component); // RS14
         Vehicle.RefreshCanRun(uid); // RS14
         return true;
     }
@@ -569,6 +666,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
+        UpdateBatteryAlert(uid, component); // RS14
     }
 
     public void RemoveBattery(EntityUid uid, MechComponent? component = null)
@@ -584,6 +682,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
+        UpdateBatteryAlert(uid, component); // RS14
     }
 
 }
