@@ -52,7 +52,7 @@ public sealed partial class MechEquipmentControl : Control
         EquipmentName.SetMessage(itemName);
         EquipmentSize.Text = size == null
             ? string.Empty
-            : Loc.GetString("mech-equipment-size-display", ("size", size.Value));
+            : $"[{size.Value}]"; // RS14: Match upstream compact equipment size display.
         EquipmentSize.Visible = size != null;
 
         var showContainer = false;

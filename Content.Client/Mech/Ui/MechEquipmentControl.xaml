@@ -28,16 +28,18 @@ SPDX-License-Identifier: MIT
                             RectClipContent="True"/>
                 <RichTextLabel Name="EquipmentName"
                                VerticalAlignment="Center"
-                               MaxWidth="210"
+                               HorizontalExpand="True"
+                               MaxWidth="190"
                                Margin="0 0 8 0"/>
                 <GridContainer Columns="2"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
                                MinSize="30 0"
-                               SetWidth="42">
+                               SetWidth="48">
                     <BoxContainer VerticalAlignment="Center">
                         <Label Name="EquipmentSize"
                                MinSize="10 10"
+                               HorizontalAlignment="Right"
                                StyleClasses="WindowFooterText"
                                FontColorOverride="DarkGray"/>
                     </BoxContainer>

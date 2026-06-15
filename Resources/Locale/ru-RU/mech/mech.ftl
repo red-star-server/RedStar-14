@@ -37,6 +37,7 @@ mech-module-slot-display = Доступно слотов модулей: { $amou
 mech-equipment-slot-display-label = Оборудование: { $used }/{ $max }
 mech-module-slot-display-label = Модули: { $used }/{ $max }
 mech-equipment-size-display = Размер: { $size }
+mech-remove-disabled-tooltip = Нельзя снять оборудование без доступа
 mech-equipment-section = Оборудование
 mech-module-section = Модули
 mech-lock-status-locked = Статус замка: заблокирован

@@ -57,6 +57,7 @@ mech-module-slot-display = Open Module Slots: {$amount}
 mech-equipment-slot-display-label = Equipment: {$used}/{$max}
 mech-module-slot-display-label = Modules: {$used}/{$max}
 mech-equipment-size-display = Size: {$size}
+mech-remove-disabled-tooltip = Cannot remove equipment while access is denied
 mech-equipment-section = Equipment
 mech-module-section = Modules
 mech-lock-status-locked = Lock status: locked
