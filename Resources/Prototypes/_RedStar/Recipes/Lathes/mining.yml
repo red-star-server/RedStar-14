@@ -29,6 +29,8 @@
 - type: latheRecipe
   id: WeaponAdvPlasmaCutter
   result: WeaponAdvPlasmaCutterEmpty
+  categories:
+  - Tools
   completetime: 5
   materials:
     Steel: 1000
