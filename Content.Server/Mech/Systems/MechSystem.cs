@@ -106,6 +106,7 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechComponent, RemoveBatteryEvent>(OnRemoveBattery);
         SubscribeLocalEvent<MechComponent, MechEntryEvent>(OnMechEntry);
         SubscribeLocalEvent<MechComponent, MechExitEvent>(OnMechExit);
+        SubscribeLocalEvent<MechComponent, EmpAttemptEvent>(OnEmpAttempt); // RS14
         SubscribeLocalEvent<MechComponent, EmpPulseEvent>(OnEmpPulse); // Goobstation
 
 
@@ -153,6 +154,12 @@ public sealed partial class MechSystem : SharedMechSystem
     private void OnMechEntrySuccessSound(EntityUid uid, MechComponent component, ref MechEntrySuccessSoundEvent args)
     {
         _audio.PlayPvs(args.Sound, uid);
+    }
+
+    private static void OnEmpAttempt(EntityUid uid, MechComponent component, ref EmpAttemptEvent args)
+    {
+        // Mech batteries handle EMP through the mech pulse path.
+        args.Cancel();
     }
     // RS14-end
 

@@ -35,6 +35,7 @@ using Content.Shared._vg.TileMovement; // Goobstation
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Alert;
+using Content.Shared.Body.Events;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
@@ -110,6 +111,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<MechComponent, VehicleOperatorSetEvent>(OnOperatorSet); // RS14
         SubscribeLocalEvent<MechComponent, EntRemovedFromContainerMessage>(OnContainerChanged); // RS14
+        SubscribeLocalEvent<MechComponent, BeingGibbedEvent>(OnBeingGibbed); // RS14
 
         // RS14-start
         SubscribeLocalEvent<VehicleOperatorComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
@@ -928,6 +930,17 @@ public abstract partial class SharedMechSystem : EntitySystem
     }
 
     // RS14-start
+    private void OnBeingGibbed(Entity<MechComponent> ent, ref BeingGibbedEvent args)
+    {
+        if (ent.Comp.PilotSlot.ContainedEntity != null)
+            TryEject(ent.Owner, ent.Comp);
+
+        if (ent.Comp.PilotSlot.ContainedEntity != null)
+            args.GibbedParts.Add(ent.Comp.PilotSlot.ContainedEntity.Value);
+
+        PredictedQueueDel(ent.Owner);
+    }
+
     private void OnContainerChanged(Entity<MechComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         if (args.Container == ent.Comp.PilotSlot)

@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Interaction.Events;
+using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Mech.Components;
 
 namespace Content.Shared.Mech.EntitySystems;
@@ -12,6 +13,7 @@ public abstract partial class SharedMechSystem
     private void InitializeRelay()
     {
         SubscribeLocalEvent<MechComponent, GettingAttackedAttemptEvent>(RelayRefToPilot);
+        SubscribeLocalEvent<MechComponent, AttemptPacifiedAttackEvent>(RelayRefToPilot); // RS14
     }
 
     private void RelayToPilot<T>(Entity<MechComponent> uid, T args) where T : class

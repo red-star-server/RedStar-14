@@ -162,7 +162,7 @@ public sealed class MechAtmosphereSystem : EntitySystem
         SetInhaleGas(ent, ref args);
     }
 
-    private void OnExhale(EntityUid uid, VehicleOperatorComponent component, ExhaleLocationEvent args)
+    private void OnExhale(EntityUid uid, VehicleOperatorComponent component, ref ExhaleLocationEvent args)
     {
         if (!TryGetOperatedMech(component, out var ent))
             return;
