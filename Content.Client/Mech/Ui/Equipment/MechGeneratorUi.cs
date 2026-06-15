@@ -40,7 +40,7 @@ public sealed partial class MechGeneratorUi : UIFragment
 
     private MechGeneratorUiFragment EnsureFragment()
     {
-        if (_fragment != null)
+        if (_fragment is { Disposed: false })
             return _fragment;
 
         _fragment = new MechGeneratorUiFragment();

@@ -45,7 +45,7 @@ public sealed partial class MechSoundboardUi : UIFragment
 
     private MechSoundboardUiFragment EnsureFragment()
     {
-        if (_fragment != null)
+        if (_fragment is { Disposed: false })
             return _fragment;
 
         _fragment = new MechSoundboardUiFragment();

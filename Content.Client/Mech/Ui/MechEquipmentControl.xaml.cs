@@ -30,12 +30,17 @@ public sealed partial class MechEquipmentControl : Control
         EquipmentView.SetEntity(entity);
         RemoveButton.TexturePath = "/Textures/Interface/Nano/cross.svg.png";
 
-        if (fragment != null)
+        if (fragment is { Disposed: false })
         {
             Separator.Visible = true;
             CustomControlContainer.AddChild(fragment);
         }
 
         RemoveButton.OnPressed += _ => OnRemoveButtonPressed?.Invoke();
+    }
+
+    public void DetachFragment()
+    {
+        CustomControlContainer.RemoveAllChildren();
     }
 }

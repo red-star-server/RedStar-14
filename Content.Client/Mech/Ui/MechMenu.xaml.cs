@@ -190,6 +190,7 @@ public sealed partial class MechMenu : FancyWindow
 
     private void RebuildEquipmentView(IReadOnlyList<NetEntity> equipment)
     {
+        DetachEquipmentFragments(EquipmentControlContainer);
         EquipmentControlContainer.Children.Clear();
         foreach (var netEnt in equipment)
         {
@@ -205,6 +206,7 @@ public sealed partial class MechMenu : FancyWindow
 
     private void RebuildModuleView(IReadOnlyList<NetEntity> modules)
     {
+        DetachEquipmentFragments(ModuleControlContainer);
         ModuleControlContainer.Children.Clear();
         foreach (var netEnt in modules)
         {
@@ -226,6 +228,14 @@ public sealed partial class MechMenu : FancyWindow
             return null;
 
         return new MechEquipmentControl(ent, metaData.EntityName, GetEquipmentUi(ent), size);
+    }
+
+    private static void DetachEquipmentFragments(Control container)
+    {
+        foreach (var control in container.Children.OfType<MechEquipmentControl>())
+        {
+            control.DetachFragment();
+        }
     }
 
     private Control? GetEquipmentUi(EntityUid ent)
@@ -291,13 +301,16 @@ public sealed partial class MechMenu : FancyWindow
 
     private void UpdateLockInfoLabels(MechBoundUiState state)
     {
-        DnaLockInfoLabel.Text = state.DnaLockRegistered && !string.IsNullOrEmpty(state.DnaLockOwner)
-            ? $"[{state.DnaLockOwner}]"
-            : Loc.GetString("mech-lock-not-set-label");
+        DnaLockInfoLabel.Text = GetLockOwnerText(state.DnaLockRegistered, state.DnaLockOwner);
+        CardLockInfoLabel.Text = GetLockOwnerText(state.CardLockRegistered, state.CardLockOwner);
+    }
 
-        CardLockInfoLabel.Text = state.CardLockRegistered && !string.IsNullOrEmpty(state.CardLockOwner)
-            ? $"[{state.CardLockOwner}]"
-            : Loc.GetString("mech-lock-not-set-label");
+    private static string GetLockOwnerText(bool registered, string? owner)
+    {
+        if (!registered)
+            return Loc.GetString("mech-lock-not-set-label");
+
+        return $"[{(string.IsNullOrEmpty(owner) ? Loc.GetString("mech-lock-owner-unknown") : owner)}]";
     }
 
     private void UpdateLockButtons(MechBoundUiState state)

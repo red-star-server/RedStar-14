@@ -43,7 +43,7 @@ public sealed partial class MechGrabberUi : UIFragment
 
     private MechGrabberUiFragment EnsureFragment()
     {
-        if (_fragment != null)
+        if (_fragment is { Disposed: false })
             return _fragment;
 
         _fragment = new MechGrabberUiFragment();
