@@ -932,7 +932,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var weapon = GetEntity(ev.Weapon);
 
-        Interaction.DoContactInteraction(user, weapon);
+        Interaction.DoContactInteraction(attackEntity, weapon); // RS14
 
         // For stuff that cares about it being attacked.
         foreach (var target in targets)
@@ -941,7 +941,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             // If the user is using a long-range weapon, this probably shouldn't be happening? But I'll interpret melee as a
             // somewhat messy scuffle. See also, light attacks.
-            Interaction.DoContactInteraction(user, target);
+            Interaction.DoContactInteraction(attackEntity, target); // RS14
         }
 
         var appliedDamage = new DamageSpecifier();
@@ -984,7 +984,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
                 if (damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
                 {
-                    _stamina.TakeStaminaDamage(entity, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
+                    _stamina.TakeStaminaDamage(entity, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: attackEntity, with: meleeUid == attackEntity ? null : meleeUid); // RS14
                 }
 
                 appliedDamage += damageResult;
