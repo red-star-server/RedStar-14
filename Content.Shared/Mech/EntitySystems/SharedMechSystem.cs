@@ -932,11 +932,13 @@ public abstract partial class SharedMechSystem : EntitySystem
     // RS14-start
     private void OnBeingGibbed(Entity<MechComponent> ent, ref BeingGibbedEvent args)
     {
-        if (ent.Comp.PilotSlot.ContainedEntity != null)
+        var pilot = ent.Comp.PilotSlot.ContainedEntity;
+
+        if (pilot != null)
             TryEject(ent.Owner, ent.Comp);
 
-        if (ent.Comp.PilotSlot.ContainedEntity != null)
-            args.GibbedParts.Add(ent.Comp.PilotSlot.ContainedEntity.Value);
+        if (pilot != null)
+            args.GibbedParts.Add(pilot.Value);
 
         PredictedQueueDel(ent.Owner);
     }
