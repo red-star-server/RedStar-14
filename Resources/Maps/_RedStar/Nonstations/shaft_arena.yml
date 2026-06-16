@@ -4545,9 +4545,6 @@ entities:
           occludes: False
           ent: null
     - type: UserInterface
-      actors:
-        enum.StrippingUiKey.Key:
-        - invalid
     - type: ActiveUserInterface
 - proto: MaterialWoodPlank1
   entities:
