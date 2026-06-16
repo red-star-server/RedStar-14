@@ -67,5 +67,5 @@
           category: thunderdome-category-snipers
           sprite: WeaponSniperMosin
     - type: LoadMapRule
-      mapPath: /Maps/_Goobstation/Nonstations/dm01-entryway.yml
+      mapPath: /Maps/_RedStar/Nonstations/shaft_arena.yml # RS14
     - type: RuleGrids
