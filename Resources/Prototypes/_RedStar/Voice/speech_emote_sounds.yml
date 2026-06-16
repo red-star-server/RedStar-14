@@ -5,8 +5,6 @@
   sounds:
     Scream:
       collection: TajaranMaleScreams
-    ScreamOnDamage:
-      collection: TajaranMaleScreams
     Laugh:
       collection: MaleLaugh
     Sneeze:
@@ -52,8 +50,6 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: TajaranFemaleScreams
-    ScreamOnDamage:
       collection: TajaranFemaleScreams
     Laugh:
       collection: FemaleLaugh
