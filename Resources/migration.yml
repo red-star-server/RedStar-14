@@ -1187,3 +1187,6 @@ RipleyMKIIChassis: null
 ClarkeChassis: null
 DurandChassis: null
 GygaxChassis: null
+
+# 2026-06-16 RS14
+ClothingShoesClothwrap: ClothingFootWrapsWhite

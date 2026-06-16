@@ -18,7 +18,6 @@
 - type: entity
   parent: MaterialBase
   id: MaterialBSCrystal
-  name: bluespace crystal
   suffix: Full
   components:
   - type: Stack

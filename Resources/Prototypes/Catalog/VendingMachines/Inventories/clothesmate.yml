@@ -157,7 +157,12 @@
     ClothingOuterCoatJacketLettermanMagenta: 3 # NF
     ClothingOuterCoatBomberPinkSleeves: 3 # NF
     ClothingNeckCloakCOG: 3 # Monolith
-    ClothingShoesClothwrap: 3 # NF
+    ClothingFootWrapsWhite: 3 # ADT
+    ClothingFootWrapsBlack: 3 # ADT
+    ClothingFootWrapsBrown: 3 # ADT
+    ClothingFootWrapsHighBlack: 3 # ADT
+    ClothingFootWrapsHighWhite: 3 # ADT
+    ClothingFootWrapsHighBrown: 3 # ADT
     ClothingNeckPonchoBlack: 3 # Monolith
     ClothingNeckPonchoArctic: 3 # Monolith
     ClothingNeckPonchoSyndicate: 3 # Monolith

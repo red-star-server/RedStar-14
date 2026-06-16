@@ -272,8 +272,8 @@
   - type: NpcFactionMember
     factions:
       - SimpleNeutral
-  - type: RadiationSource
-    intensity: 2
+  #- type: RadiationSource
+  #  intensity: 2
   - type: Destructible
     thresholds:
     - trigger:

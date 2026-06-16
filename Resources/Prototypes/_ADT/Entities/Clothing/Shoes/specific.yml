@@ -1,0 +1,107 @@
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingFootWrapsWhite
+  name: white footwraps
+  description: Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Shoes/Specific/white_footwraps.rsi
+    state: icon
+  - type: Clothing
+    sprite: _ADT/Clothing/Shoes/Specific/white_footwraps.rsi
+    slots: [FEET, gloves]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepHard
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingFootWrapsBlack
+  name: black footwraps
+  description: Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Shoes/Specific/black_footwraps.rsi
+    state: icon
+  - type: Clothing
+    sprite: _ADT/Clothing/Shoes/Specific/black_footwraps.rsi
+    slots: [FEET, gloves]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepHard
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingFootWrapsHighBlack
+  name: high black footwraps
+  description: Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Shoes/Specific/blackhigh_footwraps.rsi
+    state: icon
+  - type: Clothing
+    sprite: _ADT/Clothing/Shoes/Specific/blackhigh_footwraps.rsi
+    slots: [FEET, gloves]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepHard
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingFootWrapsHighWhite
+  name: high white footwraps
+  description: Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Shoes/Specific/whitehigh_footwraps.rsi
+    state: icon
+  - type: Clothing
+    sprite: _ADT/Clothing/Shoes/Specific/whitehigh_footwraps.rsi
+    slots: [FEET, gloves]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepHard
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingFootWrapsBrown
+  name: brown footwraps
+  description: Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Shoes/Specific/brown_footwraps.rsi
+    state: icon
+  - type: Clothing
+    sprite: _ADT/Clothing/Shoes/Specific/brown_footwraps.rsi
+    slots: [FEET, gloves]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepHard
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingFootWrapsHighBrown
+  name: brown white footwraps
+  description: Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Shoes/Specific/brownhigh_footwraps.rsi
+    state: icon
+  - type: Clothing
+    sprite: _ADT/Clothing/Shoes/Specific/brownhigh_footwraps.rsi
+    slots: [FEET, gloves]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepHard
+  - type: Item
+    size: Small
