@@ -1,0 +1,54 @@
+- type: entity
+  id: PoweredStrobeLight
+  name: стробоскоп
+  suffix: "Заполнен, Включен"
+  parent: PoweredStrobeLightEmpty
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulb
+    bulb: Bulb
+    on: true
+
+- type: entity
+  id: PoweredStrobeLightPoliceEnabled
+  name: стробоскоп
+  suffix: "Заполнен, Включен, Полиция"
+  parent: PoweredStrobeLightPolice
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulb
+    bulb: Bulb
+    on: true
+
+- type: entity
+  id: PoweredStrobeLightSirenEnabled
+  name: стробоскоп
+  suffix: "Включен, Сирена"
+  parent: PoweredStrobeLightSiren
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulb
+    bulb: Bulb
+    on: true
+
+- type: entity
+  id: PoweredStrobeLightSirenEnabled
+  name: стробоскоп
+  suffix: "Включен, Сирена"
+  parent: PoweredStrobeLightSiren
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulb
+    bulb: Bulb
+    on: true
+
+- type: entity
+  id: PoweredStrobeLightEpsilonEnabled
+  name: стробоскоп
+  suffix: "Включен, Эпсилон"
+  parent: PoweredStrobeLightEpsilon
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulb
+    bulb: Bulb
+    on: true
