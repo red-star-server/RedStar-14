@@ -58,7 +58,7 @@ selectable-set-syndicate-hitman-description =
 selectable-set-syndicate-implants-name = Набор киберпсихоза
 selectable-set-syndicate-implants-description =
     Несколько имплантов, чтобы внезапный арест не застал тебя врасплох.
-    Включает: импланты "питательный насос ЦК", "побег", "свобода"
+    Включает: импланты "питательный насос ГШ", "побег", "свобода"
     "дым", "Крав Маг" и "рация оперативника", Сандевистан, и пару автохирургов клинков богомола.
     Ну и крутая кожанка, конечно.
 selectable-set-syndicate-hacker-name = Набор хакера

@@ -20,6 +20,6 @@ xenomorphs-crewmajor = [color=green]Разгромная победа экипа
 xenomorphs-cond-nukeexplodedonstation = Экипаж уничтожил Ксеноморфов при помощи ядерного взрыва.
 xenomorphs-cond-nukeactiveinstation = Экипаж оставил активированную ядерную боеголовку на станции.
 xenomorphs-cond-xenotakeoverstation = Ксеноморфам удалось захватить станцию.
-xenomorphs-cond-xenoinfiltratedoncentcom = Ксеноморфы проникли на станцию Центрального Командования.
+xenomorphs-cond-xenoinfiltratedoncentcom = Ксеноморфы проникли на станцию Генерального Штаба.
 xenomorphs-cond-allreproducexenodead = Экипаж уничтожил всех ксеноморфов, способных к размножению.
 xenomorphs-cond-allcrewdead = Все члены экипажа погибли.

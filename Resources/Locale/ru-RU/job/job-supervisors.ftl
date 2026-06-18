@@ -1,4 +1,4 @@
-job-supervisors-centcom = центральному командованию
+job-supervisors-centcom = генеральному штабу
 job-supervisors-captain = капитану
 job-supervisors-hop = начальнику отдела кадров
 job-supervisors-hos = начальнику милиции

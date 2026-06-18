@@ -248,8 +248,9 @@
   # Goobstation
   - type: GameRule
     chaosScore: 900
+  - type: RuleGrids # RS14
   - type: LoadMapRule
-    preloadedGrid: Instigator
+    gridPath: /Maps/_Goobstation/Shuttles/ShuttleEvent/instigator.yml # RS14
 
 #- type: entity
 #  id: UnknownShuttleJoe

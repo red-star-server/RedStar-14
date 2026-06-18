@@ -21,7 +21,7 @@ ghost-role-information-skibidi-toilet-name = дать пизды ГМу
 ghost-role-information-skibidi-toilet-description = ...
 ghost-role-information-skibidi-toilet-rules = ...
 ghost-role-information-Hecu-name = Оперативник HECU
-ghost-role-information-Hecu-description = Центральное Командование поручило задание.
+ghost-role-information-Hecu-description = Генеральный Штаб поручило задание.
 ghost-role-information-Hecu-rules = Вы обязаны выполнять приказы своего начальника, фактически являясь его [color=#6495ed][bold]личным агентом[/bold][/color].
 ghost-role-information-lootbug-name = Жук-сборщик
 ghost-role-information-lootbug-description = Постарайтесь не стать жертвой грейтайдов.
@@ -39,17 +39,17 @@ ghost-role-information-navy-captain-name = Капитан ВМС
 ghost-role-information-navy-captain-description = Секретно.
 ghost-role-information-navy-captain-rules = Вы ни перед кем не в ответе.
 ghost-role-information-special-operations-officer-name = Офицер Спецопераций
-ghost-role-information-special-operations-officer-description = Отправляйте, инструктируйте и управляйте отрядами быстрого реагирования и другими силами NanoTrasen.
-ghost-role-information-special-operations-officer-rules = Доставьте представителя NanoTrasen живым, остальные — цифра в статистике. Приказы [color=#yellow][bold]Капитана ВМС[/bold][/color] могут изменить это.
+ghost-role-information-special-operations-officer-description = Отправляйте, инструктируйте и управляйте отрядами быстрого реагирования и другими силами СССП.
+ghost-role-information-special-operations-officer-rules = Доставьте представителя СССП живым, остальные — цифра в статистике. Приказы [color=#yellow][bold]Капитана ВМС[/bold][/color] могут изменить это.
 ghost-role-information-navy-officer-name = Офицер ВМС
-ghost-role-information-navy-officer-description = Отвечайте на факсы и радиосообщения Центрального Командования. Проводите расследования над станцией и её экипажем.
+ghost-role-information-navy-officer-description = Отвечайте на факсы и радиосообщения Генерального Штаба. Проводите расследования над станцией и её экипажем.
 ghost-role-information-navy-officer-rules = Следуйте приказам [color=#yellow][bold]Капитана ВМС[/bold][/color]. При его отсутствии принимайте решения самостоятельно.
 ghost-role-information-navy-officer-undercover-name = Офицер ВМС под прикрытием
-ghost-role-information-navy-officer-undercover-description = Выполняйте задачи и ликвидируйте назначенные цели. Слава NanoTrasen!
-ghost-role-information-navy-officer-undercover-rules = Следуйте приказам [color=#yellow][bold]Капитана ВМС[/bold][/color] или другого представителя Центрального Командования.
-ghost-role-information-diplomat-name = Дипломат Центрального Командования
-ghost-role-information-diplomat-description = Представляй интересы Центрального Командования, управляй отношениями с другими фракциями на станции. Устраняй проблемы, вызванные Капитаном.
-ghost-role-information-inspector-name = Инспектор Центрального Командования
+ghost-role-information-navy-officer-undercover-description = Выполняйте задачи и ликвидируйте назначенные цели. Слава СССП!
+ghost-role-information-navy-officer-undercover-rules = Следуйте приказам [color=#yellow][bold]Капитана ВМС[/bold][/color] или другого представителя Генерального Штаба.
+ghost-role-information-diplomat-name = Дипломат Генерального Штаба
+ghost-role-information-diplomat-description = Представляй интересы Генерального Штаба, управляй отношениями с другими фракциями на станции. Устраняй проблемы, вызванные Капитаном.
+ghost-role-information-inspector-name = Инспектор Генерального Штаба
 ghost-role-information-inspector-description = Проверяйте имущество станции и экипаж. Вероятно, вы погибнете в аварии, и за вами вызовут Эскадрон Смерти.
 ghost-role-information-sentient-shark-name = Разумный акулёнок
 ghost-role-information-plague-mouse-name = Чумная крыса
@@ -61,20 +61,20 @@ ghost-role-information-trevor-description = Боевой конь милиции
 
 ghost-role-information-Gman-name = G-Man
 ghost-role-information-Gman-description = Правильный человек в неправильном месте может изменить весь мир.
-ghost-role-information-Gman-rules = Вы не подчиняешься никаким правилам или ограничениям. Смерть не властна над вами, как и NanoTrasen.
+ghost-role-information-Gman-rules = Вы не подчиняешься никаким правилам или ограничениям. Смерть не властна над вами, как и СССП.
 
 # Blueshild Deputy
 
 ghost-role-information-bsd-name = Офицер "Синий Щит"
-ghost-role-information-bsd-description = Вас вызвал на станцию Представитель NanoTrasen. Подчиняйтесь ему, защищайте командование, следуйте Корпоративному Закону.
-ghost-role-information-bsd-rules = Следуйте приказам, данными вам [color=yellow][bold]Представителем NanoTrasen[/bold][/color], защищайте командование.
+ghost-role-information-bsd-description = Вас вызвал на станцию Представитель СССП. Подчиняйтесь ему, защищайте командование, следуйте Корпоративному Закону.
+ghost-role-information-bsd-rules = Следуйте приказам, данными вам [color=yellow][bold]Представителем СССП[/bold][/color], защищайте командование.
 # interns
 ghost-role-intern-name = Стажёр ГенШтаб
 ghost-role-nerd-intern-name = Нёрд стажёр ГенШтаб
 ghost-role-lead-intern-name = Глава стажёров ГенШтаб
 ghost-role-intern-desc = Вы — стажёр ГенШтаб, плохо оплачиваемый, голодный, с большой студенческой задолженностью, но других вариантов нет, так что лучше слушайтесь!
-ghost-role-intern-rules = Следуйте приказам, данными вами [color=yellow][bold]Представителем NanoTrasen[/bold][/color] и ЦК. Защищайте командование, слушайтесь Главу стажёров.
-ghost-role-lead-intern-rules = Следуйте приказам, данными вами [color=yellow][bold]Представителем NanoTrasen[/bold][/color] и ЦК. Защищай командование, отдавайте приказы другим стажёрам.
+ghost-role-intern-rules = Следуйте приказам, данными вами [color=yellow][bold]Представителем СССП[/bold][/color] и ГШ. Защищайте командование, слушайтесь Главу стажёров.
+ghost-role-lead-intern-rules = Следуйте приказам, данными вами [color=yellow][bold]Представителем СССП[/bold][/color] и ГШ. Защищай командование, отдавайте приказы другим стажёрам.
 # cargo bingle
 ghost-role-cargo-bingle-name = Бингл снабжения
 ghost-role-cargo-bingle-desc = Служите отделу снабжения и их интересам, не причиняйте вред членам экипажа.
@@ -142,7 +142,7 @@ ghost-role-information-dark-lord-name = Тёмный лорд
 ghost-role-information-dark-lord-description = Агент Синдиката в образе лорда. Используйте свою силу и энергетический меч для выполнения целей.
 dark-lord-role-greeting = Вы — [color=#880808]Тёмный лорд[/color], посланный Синдикатом на эту станцию для выполнения их грязной работёнки. Ознакомьтесь с панелью персонажа, чтобы узнать свои цели.
 ghost-role-information-chosen-one-name = Избранный
-ghost-role-information-chosen-one-description = Особый агент, отправленный NanoTrasen на станцию, чтобы противостоять Тёмному лорду.
+ghost-role-information-chosen-one-description = Особый агент, отправленный СССП на станцию, чтобы противостоять Тёмному лорду.
 chosen-one-role-greeting = Вы — [color=#0087FF]Избранный[/color]. Вы были отправлены на станцию для победы над Тёмным лордом. Ознакомьтесь с панелью персонажа, чтобы узнать свои цели.
 objective-condition-dark-lord-kill-title = Убедитесь, что Тёмный лорд { $targetName } пал.
 ghost-role-information-mime-Assassin-name = Ассамим

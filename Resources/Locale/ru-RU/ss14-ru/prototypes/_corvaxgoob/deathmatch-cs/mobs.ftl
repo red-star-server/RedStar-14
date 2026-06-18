@@ -1,7 +1,7 @@
 ent-RandomHumanoidSyndicateTDM = пехотинец Синдиката
     .suffix = РДМ КС
     .desc = { "" }
-ent-RandomHumanoidNanoTrasenTDM = пехотинец NanoTrasen
+ent-RandomHumanoidNanoTrasenTDM = пехотинец СССП
     .suffix = РДМ КС
     .desc = { "" }
 ent-ClothingBackpackNanoTrasenTDM = рюкзак

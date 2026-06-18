@@ -4,6 +4,6 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-id-card-access-level-ntr = Представитель NanoTrasen
+id-card-access-level-ntr = Представитель СССП
 id-card-access-level-bso = Офицер "Синий Щит"
 id-card-access-level-robotics = Робототехник
