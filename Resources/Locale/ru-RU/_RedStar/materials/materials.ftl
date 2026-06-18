@@ -2,4 +2,5 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-materials-rscrystal = редспейс кристалл
+materials-redspace-crystal = редспейс кристалл
+materials-raw-redspace-crystal = редспейс кристалл
