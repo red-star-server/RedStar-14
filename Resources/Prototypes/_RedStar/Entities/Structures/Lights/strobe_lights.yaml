@@ -4,7 +4,7 @@
 
 - type: entity
   id: PoweredStrobeLight
-  suffix: "Filled, Enabled"
+  suffix: Filled, Enabled
   parent: PoweredStrobeLightEmpty
   components:
   - type: PoweredLight
@@ -14,7 +14,7 @@
 
 - type: entity
   id: PoweredStrobeLightPoliceEnabled
-  suffix: "Filled, Enabled, Police"
+  suffix: Filled, Enabled, Police
   parent: PoweredStrobeLightPolice
   components:
   - type: PoweredLight
@@ -24,7 +24,7 @@
 
 - type: entity
   id: PoweredStrobeLightSirenEnabled
-  suffix: "Filled, Enabled, Siren"
+  suffix: Filled, Enabled, Siren
   parent: PoweredStrobeLightSiren
   components:
   - type: PoweredLight
@@ -34,7 +34,7 @@
     
 - type: entity
   id: PoweredStrobeLightEpsilonEnabled
-  suffix: "Filled, Enabled, Epsilon"
+  suffix: Filled, Enabled, Epsilon
   parent: PoweredStrobeLightEpsilon
   components:
   - type: PoweredLight
