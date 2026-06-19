@@ -1,6 +1,8 @@
 - type: entity
   name: Legion
   id: LavalandBossMegaLegion
+  # RS14: replaced by the full Wega implementation; retained as an inheritance base.
+  abstract: true
   parent: LavalandMobBase
   description: One of many.
   components:

@@ -1,6 +1,8 @@
 - type: entity
   name: Colossus
   id: LavalandBossColossus
+  # RS14: replaced by the full Wega implementation; retained as an inheritance base.
+  abstract: true
   parent: LavalandMobBase
   description: A monstrous creature protected by heavy shielding.
   components:
