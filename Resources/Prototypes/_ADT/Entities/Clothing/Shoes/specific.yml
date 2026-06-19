@@ -91,7 +91,7 @@
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingFootWrapsHighBrown
-  name: brown white footwraps
+  name: high brown footwraps
   description: Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
   components:
   - type: Sprite

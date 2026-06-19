@@ -8,5 +8,5 @@ ent-ClothingFootWrapsHighWhite = high white footwraps
     .desc = Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
 ent-ClothingFootWrapsBrown = brown footwraps
     .desc = Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
-ent-ClothingFootWrapsHighBrown = brown white footwraps
+ent-ClothingFootWrapsHighBrown = high brown footwraps
     .desc = Pair of pieces of clothing for those who are uncomfortable with ordinary shoes.
