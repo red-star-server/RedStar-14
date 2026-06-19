@@ -42,6 +42,13 @@
     CorvaxCrystal: 3
     # Corvax-Goob-end
     HierophantArena: 1
+    # RS14-start: Wega megafauna arenas
+    BloodDrunkMiner: 1
+    MegaLegion: 1
+    Colossus: 1
+    DragonLair: 1
+    Bubblegum: 1
+    # RS14-end
     RougeAI: 1
     BiodomeBeach: 2
     BiodomeSnow: 2

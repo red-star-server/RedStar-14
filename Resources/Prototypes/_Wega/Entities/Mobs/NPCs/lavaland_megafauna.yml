@@ -1,0 +1,304 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: MobHuman
+  id: MobBloodDrunkMiner
+  name: blood-drunk miner
+  description: An explorer who has survived Lavaland for far too long.
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: InputMover
+  - type: MobMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      900: Dead
+  - type: MeleeWeapon
+    attackRate: 0.8
+    damage:
+      types:
+        Slash: 25
+        Structural: 50
+  - type: Loadout
+    prototypes:
+    - BloodDrunkMinerGear
+  - type: BloodDrunkMiner
+  - type: NPCUseActionsOnTarget
+    actionIds:
+    - ActionBloodDrunkMinerDash
+  - type: SpawnLootOnDeath
+    table: !type:AllSelector
+      children:
+      - id: LavalandCrateNecropolisFilled
+    specialTable: !type:AllSelector
+      children:
+      - id: TrophyLavalandBDMEye
+    weaponWhitelist:
+      components:
+      - MegafaunaWeaponLooter
+
+- type: startingGear
+  id: BloodDrunkMinerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitShaftMiner
+    eyes: ClothingEyesGlassesMeson
+    mask: ClothingMaskGasExplorer
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsSalvage
+    outerClothing: ClothingOuterHardsuitSalvage
+    suitstorage: OxygenTankFilled
+  inhand:
+  - WeaponCrusher
+  - WeaponProtoKineticAccelerator
+
+- type: entity
+  parent: LavalandBossMegaLegion
+  id: BaseMobMegaLegion
+  abstract: true
+  name: mega legion
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Mobs/Bosses/96x96.rsi
+    layers:
+    - map: [enum.DamageStateVisualLayers.Base]
+      state: mega_legion
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      800: Dead
+  - type: NPCUseActionsOnTarget
+    actionIds:
+    - ActionMegaLegion
+  - type: LegionBoss
+    summonCount: 3
+    rewards:
+    - LavalandCrateNecropolisFilled
+
+- type: entity
+  parent: BaseMobMegaLegion
+  id: MobMegaLegion
+  components:
+  - type: SpawnLootOnDeath
+    specialTable: !type:AllSelector
+      children:
+      - id: TrophyLavalandLegionSkull
+    weaponWhitelist:
+      components:
+      - MegafaunaWeaponLooter
+
+- type: entity
+  parent: BaseMobMegaLegion
+  id: MobMegaLegionSplitLeft
+  name: legion left part
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Mobs/Bosses/64x64.rsi
+    layers:
+    - map: [enum.DamageStateVisualLayers.Base]
+      state: mega_legion_left
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      400: Dead
+  - type: LegionSplit
+    nextSplit: MobMegaLegionSplitMedium
+  - type: LegionBoss
+    summonCount: 2
+
+- type: entity
+  parent: MobMegaLegionSplitLeft
+  id: MobMegaLegionSplitRight
+  name: legion right part
+  components:
+  - type: Sprite
+    layers:
+    - map: [enum.DamageStateVisualLayers.Base]
+      state: mega_legion_right
+
+- type: entity
+  parent: MobMegaLegionSplitLeft
+  id: MobMegaLegionSplitEye
+  name: legion eye
+  components:
+  - type: Sprite
+    layers:
+    - map: [enum.DamageStateVisualLayers.Base]
+      state: mega_legion_eye
+
+- type: entity
+  parent: BaseMobMegaLegion
+  id: MobMegaLegionSplitMedium
+  name: medium legion
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Mobs/lavaland_monsters.rsi
+    layers:
+    - map: [enum.DamageStateVisualLayers.Base]
+      state: mega_legion
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: LegionSplit
+    nextSplit: MobMegaLegionSplitSmall
+  - type: LegionBoss
+    summonCount: 1
+
+- type: entity
+  parent: MobMegaLegionSplitMedium
+  id: MobMegaLegionSplitSmall
+  name: small legion
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: LegionSplit
+    nextSplit: null
+  - type: LegionBoss
+    rewards:
+    - LavalandCrateNecropolisFilled
+
+- type: entity
+  parent: LavalandBossColossus
+  id: MobColossus
+  components:
+  - type: Sprite
+    sprite: _Wega/Mobs/Lavaland/colossus.rsi
+    layers:
+    - map: [enum.DamageStateVisualLayers.Base]
+      state: colossus
+  - type: BasicEntityAmmoProvider
+    proto: BulletColossus
+    capacity: 9999
+    count: 9999
+  - type: Gun
+    projectileSpeed: 4
+    fireRate: 10
+    useKey: false
+    soundGunshot: null
+  - type: ColossusBoss
+  - type: NPCUseActionsOnTarget
+    delayModifier: 0.5
+    actionIds:
+    - ActionColossusFraction
+    - ActionColossusCross
+    - ActionColossusSpiral
+    - ActionColossusTripleFraction
+  - type: SpawnLootOnDeath
+    table: !type:AllSelector
+      children:
+      - id: LavalandCrateNecropolisFilled
+    specialTable: !type:AllSelector
+      children:
+      - id: TrophyLavalandColossusBlasterTubes
+    weaponWhitelist:
+      components:
+      - MegafaunaWeaponLooter
+
+- type: entity
+  parent: LavalandBossAshDrake
+  id: MobAshDrake
+  components:
+  - type: Sprite
+    sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
+    layers:
+    - map: [enum.DamageStateVisualLayers.Base]
+      state: dragon
+  - type: BasicEntityAmmoProvider
+    proto: BulletAshDrakeFire
+    capacity: 9999
+    count: 9999
+  - type: Gun
+    projectileSpeed: 10
+    fireRate: 10
+    useKey: false
+    soundGunshot: null
+  - type: AshDrakeBoss
+  - type: NPCUseActionsOnTarget
+    delayModifier: 0.5
+    actionIds:
+    - ActionAshDrakeConeFire
+    - ActionAshDrakeBreathingFire
+    - ActionAshDrakeLava
+  - type: SpawnLootOnDeath
+    table: !type:AllSelector
+      children:
+      - id: LavalandCrateNecropolisFilled
+    specialTable: !type:AllSelector
+      children:
+      - id: TrophyLavalandAshDrakeSpike
+    weaponWhitelist:
+      components:
+      - MegafaunaWeaponLooter
+
+- type: entity
+  parent: LavalandBossBubblegum
+  id: MobBubblegum
+  components:
+  - type: Sprite
+    sprite: _Wega/Mobs/Lavaland/bubblegum.rsi
+    layers:
+    - map: [enum.DamageStateVisualLayers.Base]
+      state: bubblegum
+  - type: BubblegumBoss
+    rewards:
+    - LavalandCrateNecropolisFilled
+    phase1Actions:
+    - ActionBubblegumRage
+    - ActionBubblegumBloodDive
+    - ActionBubblegumTripleDash
+    phase1Chances:
+      ActionBubblegumRage: 0.1
+      ActionBubblegumBloodDive: 0.5
+      ActionBubblegumTripleDash: 0.8
+    phase2Actions:
+    - ActionBubblegumRage
+    - ActionBubblegumBloodDive
+    - ActionBubblegumIllusionDash
+    - ActionBubblegumPentagramDash
+    - ActionBubblegumChaoticIllusionDash
+    phase2Chances:
+      ActionBubblegumRage: 0.4
+      ActionBubblegumBloodDive: 0.5
+      ActionBubblegumIllusionDash: 0.67
+      ActionBubblegumPentagramDash: 0.33
+      ActionBubblegumChaoticIllusionDash: 0.75
+  - type: NPCUseActionsOnTarget
+    actionIds:
+    - ActionBubblegumRage
+    - ActionBubblegumBloodDive
+    - ActionBubblegumTripleDash
+  - type: SpawnLootOnDeath
+    specialTable: !type:AllSelector
+      children:
+      - id: TrophyLavalandBubblegumDemonClaws
+    weaponWhitelist:
+      components:
+      - MegafaunaWeaponLooter
+
+- type: entity
+  id: MobBubblegumIllusion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Wega/Mobs/Lavaland/bubblegum.rsi
+    state: bubblegum
+    noRot: true
+  - type: BubblegumIllusion
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      2500: Dead

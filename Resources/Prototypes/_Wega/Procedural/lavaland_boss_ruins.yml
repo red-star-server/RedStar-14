@@ -1,0 +1,32 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: lavalandGridRuin
+  id: BloodDrunkMiner
+  name: lavaland-ruin-blood-drunk-miner
+  path: /Maps/_Wega/Lavaland/blooddrunkminerspawn.yml
+  priority: -2
+
+- type: lavalandGridRuin
+  id: MegaLegion
+  name: lavaland-ruin-mega-legion
+  path: /Maps/_Wega/Lavaland/megalegionspawn.yml
+  priority: -2
+
+- type: lavalandGridRuin
+  id: Colossus
+  name: lavaland-ruin-colossus
+  path: /Maps/_Wega/Lavaland/colossusspawn.yml
+  priority: -2
+
+- type: lavalandGridRuin
+  id: DragonLair
+  name: lavaland-ruin-ash-drake
+  path: /Maps/_Wega/Lavaland/dragonlair.yml
+  priority: -2
+
+- type: lavalandGridRuin
+  id: Bubblegum
+  name: lavaland-ruin-bubblegum
+  path: /Maps/_Wega/Lavaland/bubblegumspawn.yml
+  priority: -2

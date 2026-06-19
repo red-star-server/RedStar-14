@@ -1,0 +1,42 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobBloodDrunkMinerLavaland
+  suffix: Wega Lavaland boss
+  components:
+  - type: ConditionalSpawner
+    prototypes: [MobBloodDrunkMiner]
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMegaLegionLavaland
+  suffix: Wega Lavaland boss
+  components:
+  - type: ConditionalSpawner
+    prototypes: [MobMegaLegion]
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnColossusLavaland
+  suffix: Wega Lavaland boss
+  components:
+  - type: ConditionalSpawner
+    prototypes: [MobColossus]
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnAshDrakeLavaland
+  suffix: Wega Lavaland boss
+  components:
+  - type: ConditionalSpawner
+    prototypes: [MobAshDrake]
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnBubblegumLavaland
+  suffix: Wega Lavaland boss
+  components:
+  - type: ConditionalSpawner
+    prototypes: [MobBubblegum]

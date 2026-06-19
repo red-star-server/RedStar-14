@@ -1,0 +1,204 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  id: EffectMegaFaunaMarker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    noRot: true
+    sprite: _Wega/Effects/effects96x96.rsi
+    state: landing
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: EffectAshDrakeFire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: Effects/fire.rsi
+    color: "#a7000b"
+    state: "2"
+  - type: TriggerOnCollide
+    fixtureID: fix1
+    maxTriggers: 1
+  - type: IgniteOnCollide
+    fixtureId: fix1
+    fireStacks: 1
+  - type: DamageOnTrigger
+    targetUser: true
+    damage:
+      types:
+        Heat: 2.5
+    blacklist:
+      components:
+      - AshDrakeBoss
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn
+    lifetime: 0.5
+
+- type: entity
+  parent: EffectAshDrakeFire
+  id: EffectAshDrakeFireCircle
+  components:
+  - type: DamageOnTrigger
+    targetUser: true
+    damage:
+      types:
+        Heat: 40
+    blacklist:
+      components:
+      - AshDrakeBoss
+
+- type: entity
+  parent: EffectAshDrakeFire
+  id: EffectAshDrakeFireWall
+  components:
+  - type: TriggerOnCollide
+    fixtureID: fix1
+    maxTriggers: null
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: EffectAshDrakeCircle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    noRot: true
+    sprite: _Wega/Effects/drakeeffects.rsi
+    state: target_circle
+  - type: TimedDespawn
+    lifetime: 2
+  - type: SpawnOnDespawn
+    prototype: EffectAshDrakeFireCircle
+
+- type: entity
+  id: EffectAshDrakeSafeMarker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    noRot: true
+    sprite: _Wega/Effects/drakeeffects.rsi
+    state: safe
+  - type: TimedDespawn
+    lifetime: 1.5
+
+- type: entity
+  id: EffectAshDrakeShadow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    noRot: true
+    sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
+    state: shadow
+
+- type: entity
+  parent: FloorLavaEntity
+  id: EffectAshDrakeFloorLavaTemp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  parent: FloorLavaEntity
+  id: EffectAshDrakeFloorLavaLessTemp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: EffectBubblegumHand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Wega/Effects/bubblegumeffects.rsi
+    state: hand
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        hard: false
+        mask:
+        - Impassable
+  - type: DamageOnTrigger
+    targetUser: true
+    damage:
+      types:
+        Blunt: 30
+    blacklist:
+      components:
+      - BubblegumBoss
+  - type: TimedDespawn
+    lifetime: 0.2
+  - type: SpawnOnDespawn
+    prototype: EffectBubblegumHandOut
+
+- type: entity
+  id: BaseEffectBubblegumHandSpawn
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Wega/Effects/bubblegumeffects.rsi
+  - type: TimedDespawn
+    lifetime: 0.58
+
+- type: entity
+  parent: BaseEffectBubblegumHandSpawn
+  id: EffectBubblegumHandIn
+  components:
+  - type: Sprite
+    state: handin
+  - type: SpawnOnDespawn
+    prototype: EffectBubblegumHand
+
+- type: entity
+  parent: BaseEffectBubblegumHandSpawn
+  id: EffectBubblegumHandOut
+  components:
+  - type: Sprite
+    state: handout
+
+- type: entity
+  id: EffectBubblegumDashTrail
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Wega/Mobs/Lavaland/bubblegum.rsi
+    state: bubblegum
+  - type: TimedDespawn
+    lifetime: 0.4

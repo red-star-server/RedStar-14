@@ -1,0 +1,49 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: BaseBullet
+  id: BulletColossus
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    ignoreResistances: true
+    ignoreTargeted: true
+    damage:
+      types:
+        Blunt: 20
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: throwing_knife
+
+- type: entity
+  id: BulletAshDrakeFire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+  - type: FlyBySound
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.10,0.1,0.30"
+        hard: false
+        mask:
+        - Impassable
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: fireball
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 4

@@ -1,0 +1,180 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: BaseAction
+  id: ActionMegaLegion
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 1.5
+    icon:
+      sprite: _Wega/Mobs/Lavaland/legionskull.rsi
+      state: legion_head_1
+  - type: TargetAction
+    range: 10
+  - type: EntityTargetAction
+    event: !type:MegaLegionAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionBloodDrunkMinerDash
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 10
+    icon:
+      sprite: Interface/Actions/jump.rsi
+      state: icon
+  - type: TargetAction
+    range: 10
+  - type: WorldTargetAction
+    event: !type:BloodDrunkMinerDashAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionColossusFraction
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 5
+    icon:
+      sprite: _Wega/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: throwing_knife
+  - type: TargetAction
+    range: 12
+  - type: EntityTargetAction
+    event: !type:ColossusFractionActionEvent
+
+- type: entity
+  parent: ActionColossusFraction
+  id: ActionColossusCross
+  components:
+  - type: EntityTargetAction
+    event: !type:ColossusCrossActionEvent
+
+- type: entity
+  parent: ActionColossusFraction
+  id: ActionColossusSpiral
+  components:
+  - type: EntityTargetAction
+    event: !type:ColossusSpiralActionEvent
+
+- type: entity
+  parent: ActionColossusFraction
+  id: ActionColossusTripleFraction
+  components:
+  - type: EntityTargetAction
+    event: !type:ColossusTripleFractionActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionAshDrakeConeFire
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 8
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: fireball
+  - type: TargetAction
+    range: 12
+  - type: EntityTargetAction
+    event: !type:AshDrakeConeFireActionEvent
+
+- type: entity
+  parent: ActionAshDrakeConeFire
+  id: ActionAshDrakeBreathingFire
+  components:
+  - type: EntityTargetAction
+    event: !type:AshDrakeBreathingFireActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionAshDrakeLava
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 20
+    icon:
+      sprite: Tiles/Planet/lava.rsi
+      state: lava
+  - type: TargetAction
+    range: 12
+  - type: EntityTargetAction
+    event: !type:AshDrakeLavaActionEvent
+      landingDamage:
+        types:
+          Blunt: 75
+      healingSpec:
+        types:
+          Blunt: -125
+          Slash: -125
+
+- type: entity
+  parent: BaseAction
+  id: ActionBubblegumRage
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 7
+    icon:
+      sprite: _Wega/Effects/bubblegumeffects.rsi
+      state: hand
+  - type: TargetAction
+    range: 20
+  - type: EntityTargetAction
+    event: !type:BubblegumRageActionEvent
+
+- type: entity
+  parent: ActionBubblegumRage
+  id: ActionBubblegumBloodDive
+  components:
+  - type: EntityTargetAction
+    event: !type:BubblegumBloodDiveActionEvent
+
+- type: entity
+  parent: ActionBubblegumRage
+  id: ActionBubblegumTripleDash
+  components:
+  - type: EntityTargetAction
+    event: !type:BubblegumTripleDashActionEvent
+      dashDamage:
+        types:
+          Blunt: 30
+
+- type: entity
+  parent: ActionBubblegumRage
+  id: ActionBubblegumIllusionDash
+  components:
+  - type: EntityTargetAction
+    event: !type:BubblegumIllusionDashActionEvent
+      illusionDamage:
+        types:
+          Blunt: 15
+
+- type: entity
+  parent: ActionBubblegumRage
+  id: ActionBubblegumPentagramDash
+  components:
+  - type: EntityTargetAction
+    event: !type:BubblegumPentagramDashActionEvent
+      illusionDamage:
+        types:
+          Blunt: 15
+
+- type: entity
+  parent: ActionBubblegumRage
+  id: ActionBubblegumChaoticIllusionDash
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 20
+    icon:
+      sprite: _Wega/Effects/bubblegumeffects.rsi
+      state: hand
+  - type: EntityTargetAction
+    event: !type:BubblegumChaoticIllusionDashActionEvent
+      illusionDamage:
+        types:
+          Blunt: 15

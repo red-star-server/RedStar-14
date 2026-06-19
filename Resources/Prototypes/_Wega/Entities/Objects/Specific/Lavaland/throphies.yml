@@ -1,0 +1,107 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: BaseCrusherUpgradeHandle
+  id: TrophyLavalandLegionSkull
+  name: legion skull
+  description: Increases the crusher's firing and attack speed.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: skull
+  - type: GunUpgrade
+    name: lavaland-trophy-legion-name
+    uniqueGroup: legionTrophy
+  - type: GunUpgradeFireRate
+    coefficient: 1.3
+  - type: WeaponUpgradeSpeed
+    attackRateMultiplier: 1.15
+
+- type: entity
+  parent: BaseCrusherUpgradeHandle
+  id: TrophyLavalandBDMEye
+  name: eye of the blood-drunk miner
+  description: Makes the crusher lighter and faster.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: eye
+  - type: GunUpgrade
+    name: lavaland-trophy-bdm-name
+    uniqueGroup: bdmTrophy
+  - type: WeaponUpgradeSpeed
+    attackRateMultiplier: 1.25
+
+- type: entity
+  parent: BaseCrusherUpgradeBlade
+  id: TrophyLavalandAshDrakeSpike
+  name: ash drake spike
+  description: Adds volcanic heat to melee and ranged crusher attacks.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: spike
+  - type: GunUpgrade
+    name: lavaland-trophy-ash-drake-name
+    uniqueGroup: ashDrakeTrophy
+  - type: WeaponUpgradeDamage
+    bonusDamage:
+      types:
+        Heat: 8
+  - type: GunUpgradeDamage
+    bonusDamage:
+      types:
+        Heat: 8
+
+- type: entity
+  parent: BaseCrusherUpgradeBlade
+  id: TrophyLavalandBubblegumDemonClaws
+  name: demon claws
+  description: Adds damage and life-steal to the crusher.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: claws
+  - type: GunUpgrade
+    name: lavaland-trophy-bubblegum-name
+    uniqueGroup: bubblegumTrophy
+  - type: WeaponUpgradeDamage
+    modifier: 1.15
+  - type: GunUpgradeVampirism
+    damageOnHit:
+      types:
+        Blunt: -5
+
+- type: entity
+  parent: BaseCrusherUpgradeMain
+  id: TrophyLavalandColossusBlasterTubes
+  name: colossus blaster tubes
+  description: Improves projectile damage and velocity.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: tubes
+  - type: GunUpgrade
+    name: lavaland-trophy-colossus-name
+    uniqueGroup: mainUpgrade
+  - type: GunUpgradeDamage
+    modifier: 1.2
+  - type: GunUpgradeSpeed
+    coefficient: 1.25
+
+- type: entity
+  parent: BaseCrusherUpgradeMain
+  id: TrophyLavalandHierophantVortexTalisman
+  name: vortex talisman
+  description: A marked crusher hit creates a temporary hierophant barrier.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: vortex
+  - type: GunUpgrade
+    name: lavaland-trophy-hierophant-name
+    uniqueGroup: mainUpgrade
+  - type: GunUpgradeComponents
+    components:
+    - type: HierophantTrophy
