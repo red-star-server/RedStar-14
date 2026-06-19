@@ -419,6 +419,11 @@
         Slash: 0.9
         Piercing: 0.9
         Shock: 0.75
+  # RS14-start
+  - type: Construction
+    graph: CombatGlovesReinforced
+    node: start
+  # RS14-end
 
 # can't parent combat gloves since they are butcherable
 - type: entity

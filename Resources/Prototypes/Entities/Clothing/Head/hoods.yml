@@ -323,6 +323,18 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  # RS14-start
+  - type: PressureArmorChange
+  - type: Armor
+    coverage:
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Heat: 0.85
+        Caustic: 0.85
+  # RS14-end
 
 - type: entity
   parent: ClothingHeadBase

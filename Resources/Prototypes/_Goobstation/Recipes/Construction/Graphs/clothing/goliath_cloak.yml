@@ -16,7 +16,12 @@
     - to: cloak
       steps:
       - material: GoliathHide
-        amount: 1
+      # RS14-start
+        amount: 3
+        doAfter: 2
+      - material: WatcherWing
+        amount: 3
+      # RS14-end
         doAfter: 2
   - node: cloak
     entity: ClothingNeckCloakGoliathCloak

@@ -1,0 +1,26 @@
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesCombatReinforced
+  suffix: Reinforced
+  name: reinforced combat gloves
+  description: Combat gloves reinforced with goliath hide plates. They provide minor protection against fauna attacks while maintaining insulation.
+  components:
+  - type: Sprite
+    sprite: _RedStar/Clothing/Hands/Gloves/goliath.rsi
+  - type: Clothing
+    sprite: _RedStar/Clothing/Hands/Gloves/goliath.rsi
+  - type: Fiber
+    fiberColor: fibers-red
+    fiberMaterial: fibers-insulative
+  - type: PressureArmorChange
+  - type: Armor
+    coverage:
+    - Hand
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.8
+        Caustic: 0.8
+        Shock: 0.75

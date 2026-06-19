@@ -218,6 +218,19 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:Container {}
+  # RS14-start
+  - type: PressureArmorChange
+  - type: Armor
+    coverage:
+    - Chest
+    - Arm
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Heat: 0.85
+        Caustic: 0.85
+  # RS14-end
 
 - type: entity
   parent: ClothingNeckBase

@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: PortableFlasher
+  icon:
+    sprite: Objects/Weapons/pflash.rsi
+    state: off
+  product: PortableFlasher
+  cost: 1500
+  category: cargoproduct-category-name-security
+  group: market

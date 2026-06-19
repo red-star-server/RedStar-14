@@ -1,0 +1,14 @@
+- type: constructionGraph
+  id: CombatGlovesReinforced
+  start: start
+  graph:
+  - node: start
+    entity: ClothingHandsGlovesCombat
+    edges:
+    - to: reinforced
+      steps:
+      - material: GoliathHide
+        amount: 2
+        doAfter: 2
+  - node: reinforced
+    entity: ClothingHandsGlovesCombatReinforced
