@@ -104,7 +104,11 @@ public sealed class FloraSystem : EntitySystem
         }
 
         var coordinates = Transform(ent).Coordinates;
-        var yield = _random.Next(ent.Comp.MinYield, ent.Comp.MaxYield + 1);
+        var minYield = Math.Max(0, Math.Min(ent.Comp.MinYield, ent.Comp.MaxYield));
+        var maxYield = Math.Max(0, Math.Max(ent.Comp.MinYield, ent.Comp.MaxYield));
+        var yield = minYield == maxYield
+            ? minYield
+            : _random.Next(minYield, maxYield == int.MaxValue ? int.MaxValue : maxYield + 1);
         for (var i = 0; i < yield; i++)
         {
             Spawn(ent.Comp.HarvestPrototype, coordinates);
@@ -126,9 +130,14 @@ public sealed class FloraSystem : EntitySystem
 
     private void ScheduleGrowth(FloraComponent component)
     {
-        var minimum = (float) component.MinGrowthTime.TotalSeconds;
-        var maximum = (float) component.MaxGrowthTime.TotalSeconds;
-        component.NextGrowthTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(minimum, maximum));
+        var minimum = (float) Math.Max(0,
+            Math.Min(component.MinGrowthTime.TotalSeconds, component.MaxGrowthTime.TotalSeconds));
+        var maximum = (float) Math.Max(0,
+            Math.Max(component.MinGrowthTime.TotalSeconds, component.MaxGrowthTime.TotalSeconds));
+        var seconds = minimum >= maximum
+            ? minimum
+            : _random.NextFloat(minimum, maximum);
+        component.NextGrowthTime = _timing.CurTime + TimeSpan.FromSeconds(seconds);
     }
 
     private void UpdateAppearance(Entity<FloraComponent> ent)
