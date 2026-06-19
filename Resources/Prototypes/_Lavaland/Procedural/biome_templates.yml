@@ -99,6 +99,42 @@
     - FloorBasaltLavaland
     entities:
     - FloraRockSolid
+  # RS14-start
+  # Regrowing Lavaland flora ported from Wega.
+  - !type:BiomeEntityLayer
+    threshold: 0.94
+    noise:
+      seed: 3
+      noiseType: OpenSimplex2
+      frequency: 2
+    allowedTiles:
+    - FloorBasaltLavaland
+    entities:
+    - LavalandFloraCactus1
+    - LavalandFloraCactus2
+    - LavalandFloraCactus3
+    - LavalandFloraCactus4
+    - LavalandFloraFireBlossom1
+    - LavalandFloraFireBlossom2
+    - LavalandFloraFireBlossom3
+    - LavalandFloraFireBlossom4
+    - LavalandFloraPolyporeMushroom1
+    - LavalandFloraPolyporeMushroom2
+    - LavalandFloraPolyporeMushroom3
+    - LavalandFloraPolyporeMushroom4
+    - LavalandFloraInocybeMushroom1
+    - LavalandFloraInocybeMushroom2
+    - LavalandFloraInocybeMushroom3
+    - LavalandFloraInocybeMushroom4
+    - LavalandFloraPorciniMushroom1
+    - LavalandFloraPorciniMushroom2
+    - LavalandFloraPorciniMushroom3
+    - LavalandFloraPorciniMushroom4
+    - LavalandFloraEmbershroom1
+    - LavalandFloraEmbershroom2
+    - LavalandFloraEmbershroom3
+    - LavalandFloraEmbershroom4
+  # RS14-end
   # Fruit (cactus fruit)
   - !type:BiomeEntityLayer
     allowedTiles:
@@ -196,6 +232,43 @@
     - FloorBasaltLavaland
     entities:
     - FloraRockSolid # Rock is flora apparently by the way.
+  # RS14-start
+  # Regrowing Lavaland flora ported from Wega.
+  - !type:BiomeEntityLayer
+    threshold: 0.94
+    noise:
+      seed: 3
+      noiseType: OpenSimplex2
+      frequency: 2
+    allowedTiles:
+    - FloorPlanetAsh
+    - FloorBasaltLavaland
+    entities:
+    - LavalandFloraCactus1
+    - LavalandFloraCactus2
+    - LavalandFloraCactus3
+    - LavalandFloraCactus4
+    - LavalandFloraFireBlossom1
+    - LavalandFloraFireBlossom2
+    - LavalandFloraFireBlossom3
+    - LavalandFloraFireBlossom4
+    - LavalandFloraPolyporeMushroom1
+    - LavalandFloraPolyporeMushroom2
+    - LavalandFloraPolyporeMushroom3
+    - LavalandFloraPolyporeMushroom4
+    - LavalandFloraInocybeMushroom1
+    - LavalandFloraInocybeMushroom2
+    - LavalandFloraInocybeMushroom3
+    - LavalandFloraInocybeMushroom4
+    - LavalandFloraPorciniMushroom1
+    - LavalandFloraPorciniMushroom2
+    - LavalandFloraPorciniMushroom3
+    - LavalandFloraPorciniMushroom4
+    - LavalandFloraEmbershroom1
+    - LavalandFloraEmbershroom2
+    - LavalandFloraEmbershroom3
+    - LavalandFloraEmbershroom4
+  # RS14-end
   # Instead of lava lakes there are only lava rivers
   - !type:BiomeEntityLayer
     allowedTiles:

@@ -27,9 +27,19 @@
           !type:PhysShapeCircle
           radius: 0.2
   - type: InteractionOutline
-  - type: Harvestable
-    delay: 3.5
-    loot: FoodSpaceshroom # TODO: make lavashroom food
+  # RS14-start
+  - type: Flora
+    harvestDuration: 3.5
+    harvestPrototype: FoodSpaceshroom # TODO: make lavashroom food
+    maxYield: 1
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FloraVisuals.State:
+        random:
+          Grown: { visible: true }
+          Harvested: { visible: false }
+  # RS14-end
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Wood

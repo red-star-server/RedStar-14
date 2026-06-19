@@ -1,0 +1,112 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega
+# лицензированы под GNU GPL v3:
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: FoodProduceBase
+  id: FoodFloraCactusFruit
+  name: barrel cactus fruit
+  description: A juicy sweet-and-sour fruit covered with thin thorns.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 2.5
+        - ReagentId: Saline
+          Quantity: 2.5
+  - type: Sprite
+    sprite: _Wega/Objects/Consumable/Food/flora.rsi
+    state: cactus_fruit
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  parent: FoodProduceBase
+  id: FoodFloraPolyporeMushroom
+  name: wood tinder fungus
+  description: A tough leathery mushroom.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Sprite
+    sprite: _Wega/Objects/Consumable/Food/flora.rsi
+    state: mushroom_shavings
+
+- type: entity
+  parent: FoodProduceBase
+  id: FoodFloraInocybeMushroom
+  name: pale fire mushroom
+  description: A fragile psychoactive and toxic mushroom.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: THC
+          Quantity: 2.5
+        - ReagentId: Amatoxin
+          Quantity: 2.5
+  - type: Sprite
+    sprite: _Wega/Objects/Consumable/Food/flora.rsi
+    state: mushroom_cap
+
+- type: entity
+  parent: FoodProduceBase
+  id: FoodFloraPorciniMushroom
+  name: smoky boletus
+  description: A fleshy edible mushroom with a smoky aroma.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 2.5
+        - ReagentId: Saline
+          Quantity: 2.5
+  - type: Sprite
+    sprite: _Wega/Objects/Consumable/Food/flora.rsi
+    state: mushroom_leaf
+
+- type: entity
+  parent: FoodProduceBase
+  id: FoodFloraEmbershroom
+  name: embershroom
+  description: A dense mushroom with faintly glowing veins.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 2.5
+        - ReagentId: SpaceDrugs
+          Quantity: 2.5
+  - type: Sprite
+    sprite: _Wega/Objects/Consumable/Food/flora.rsi
+    state: mushroom_stem
+
+- type: entity
+  parent: BaseItem
+  id: FlowerFireBlossom
+  name: fire blossom
+  description: A warm, luminous flower from Lavaland.
+  components:
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Hydroponics/fireblossom.rsi
+    state: produce
+  - type: PointLight
+    radius: 1.2
+    energy: 2
+    color: "#F54900"
