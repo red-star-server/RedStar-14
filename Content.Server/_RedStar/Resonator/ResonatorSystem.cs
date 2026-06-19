@@ -10,6 +10,7 @@ using Content.Shared._RedStar.Resonator.Components;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
+using Content.Shared.Mining;
 using Content.Shared.Mining.Components;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
@@ -17,6 +18,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._RedStar.Resonator;
@@ -163,6 +165,7 @@ public sealed class ResonatorSystem : EntitySystem
         field.Resonator = resonator;
         field.Creator = user;
         field.Target = mineable;
+        field.TargetOre = Comp<OreVeinComponent>(mineable).CurrentOre;
         field.MaxChainTargets = resonator.Comp.MaxChainTargets;
         field.BurstSound = resonator.Comp.BurstSound;
         field.BurstEffectPrototype = resonator.Comp.BurstEffectPrototype;
@@ -188,8 +191,13 @@ public sealed class ResonatorSystem : EntitySystem
         tile = null;
         mineable = EntityUid.Invalid;
 
-        if (target == null || !IsMineable(target.Value))
+        if (target == null ||
+            !TryComp<OreVeinComponent>(target.Value, out var oreVein) ||
+            oreVein.CurrentOre == null ||
+            !IsMineable(target.Value))
+        {
             return false;
+        }
 
         mineable = target.Value;
         tile = _turf.GetTileRef(Transform(target.Value).Coordinates);
@@ -259,7 +267,10 @@ public sealed class ResonatorSystem : EntitySystem
     {
         var limit = Math.Max(1, field.Comp.MaxChainTargets);
 
-        if (field.Comp.Target is { } primaryTarget && IsMineable(primaryTarget))
+        if (field.Comp.TargetOre == null)
+            return;
+
+        if (field.Comp.Target is { } primaryTarget && IsMatchingVein(primaryTarget, field.Comp.TargetOre.Value))
             AddChainTarget(primaryTarget);
 
         if (field.Comp.GridUid == null ||
@@ -277,7 +288,7 @@ public sealed class ResonatorSystem : EntitySystem
 
         while (_chainQueue.TryDequeue(out var tile) && _chainTargets.Count < limit)
         {
-            if (!TryAddMineablesOnTile(tile, grid, limit))
+            if (!TryAddMineablesOnTile(tile, grid, field.Comp.TargetOre.Value, limit))
                 continue;
 
             EnqueueNeighbor(tile, new Vector2i(1, 0));
@@ -290,7 +301,11 @@ public sealed class ResonatorSystem : EntitySystem
         _visitedTiles.Clear();
     }
 
-    private bool TryAddMineablesOnTile(TileKey tile, MapGridComponent grid, int limit)
+    private bool TryAddMineablesOnTile(
+        TileKey tile,
+        MapGridComponent grid,
+        ProtoId<OrePrototype> targetOre,
+        int limit)
     {
         if (!_map.TryGetTileRef(tile.GridUid, grid, tile.Indices, out _))
             return false;
@@ -299,7 +314,7 @@ public sealed class ResonatorSystem : EntitySystem
         var anchored = _map.GetAnchoredEntitiesEnumerator(tile.GridUid, grid, tile.Indices);
         while (anchored.MoveNext(out var uid))
         {
-            if (!IsMineable(uid.Value))
+            if (!IsMatchingVein(uid.Value, targetOre))
                 continue;
 
             foundMineable = true;
@@ -310,6 +325,13 @@ public sealed class ResonatorSystem : EntitySystem
         }
 
         return foundMineable;
+    }
+
+    private bool IsMatchingVein(EntityUid uid, ProtoId<OrePrototype> targetOre)
+    {
+        return IsMineable(uid) &&
+               TryComp<OreVeinComponent>(uid, out var oreVein) &&
+               oreVein.CurrentOre == targetOre;
     }
 
     private void AddChainTarget(EntityUid target)

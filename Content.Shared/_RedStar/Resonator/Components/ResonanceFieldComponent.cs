@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Mining;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -15,6 +16,8 @@ public sealed partial class ResonanceFieldComponent : Component
     public EntityUid? Creator;
 
     public EntityUid? Target;
+
+    public ProtoId<OrePrototype>? TargetOre;
 
     public int MaxChainTargets;
 
