@@ -1,4 +1,4 @@
-ent-MaterialRSCrystal = redspace crystal
+ent-MaterialRSCrystal = { ent-MaterialBase }
     .suffix = Full
     .desc = { ent-MaterialBase.desc }
 ent-MaterialRSCrystal1 = { ent-MaterialRSCrystal }

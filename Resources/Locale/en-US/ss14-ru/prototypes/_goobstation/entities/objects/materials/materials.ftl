@@ -1,4 +1,4 @@
-ent-MaterialBSCrystal = bluespace crystal
+ent-MaterialBSCrystal = { ent-MaterialBase }
     .suffix = Full
     .desc = { ent-MaterialBase.desc }
 ent-MaterialBSCrystal1 = { ent-MaterialBSCrystal }

@@ -1,0 +1,12 @@
+ent-Resonator = resonator
+    .desc = A compact battery-powered mining tool that places delayed resonance fields into ore-bearing rock.
+ent-ResonatorEmpty = { ent-Resonator }
+    .suffix = Empty
+    .desc = { ent-Resonator.desc }
+ent-ResonatorUpgraded = upgraded resonator
+    .desc = An improved mining resonator that can maintain more fields and break longer rock cascades.
+ent-ResonatorUpgradedEmpty = { ent-ResonatorUpgraded }
+    .suffix = Empty
+    .desc = { ent-ResonatorUpgraded.desc }
+ent-ResonanceField = resonance field
+    .desc = A humming field of stored mining resonance.
