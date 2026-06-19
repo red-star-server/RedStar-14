@@ -2,7 +2,6 @@ mech-verb-enter = Войти
 mech-verb-exit = Извлечь пилота
 mech-equipment-begin-install = { CAPITALIZE($item) } устанавливается...
 mech-equipment-finish-install = Установка { $item } завершена
-# RS14-start
 mech-install-begin-popup = { $user } устанавливает { $item }...
 mech-cannot-insert-broken-popup = Нельзя устанавливать детали в сломанный мех.
 mech-equipment-slot-full-popup = У меха нет свободных слотов оборудования.
@@ -13,7 +12,6 @@ mech-module-slot-full-popup = У меха нет свободных слотов
 mech-module-whitelist-fail-popup = Этот модуль нельзя установить в этого меха.
 mech-cannot-modify-closed-popup = Откройте мех перед модификацией.
 mech-duplicate-installed-popup = Такой модуль уже установлен.
-# RS14-end
 mech-equipment-select-popup = Выбрано следующее: { $item }
 mech-equipment-select-none-popup = Ничего не выбрано
 mech-radial-no-equipment = Без оборудования
@@ -26,13 +24,10 @@ mech-energy-missing = ОТСУТСТВУЕТ
 mech-slot-display = Доступно слотов: { $amount }
 mech-no-enter = Вы не можете пилотировать это.
 mech-eject-pilot-alert = { $user } вытаскивает пилота из { $item }!
-
-# RS14
 mech-generator-output-label = Выработка: { $rate } Вт
 mech-generator-fuel-label = Топливо: { $amount } ({ $name })
+mech-construction-guide-string = Все детали меха должны быть прикреплены к каркасу.
 mech-generator-eject-fuel-button = Извлечь топливо
-
-# RS14-start
 mech-module-slot-display = Доступно слотов модулей: { $amount }
 mech-equipment-slot-display-label = Оборудование: { $used }/{ $max }
 mech-module-slot-display-label = Модули: { $used }/{ $max }
@@ -83,7 +78,6 @@ mech-fan-state-off = выкл.
 mech-fan-state-on = работает
 mech-fan-state-idle = ожидание
 mech-fan-state-na = недоступно
-
 # PR #39958 mech control panel layout
 mech-integrity-display-label = Целостность
 mech-energy-display-label = Энергия
@@ -116,4 +110,3 @@ mech-fan-status-level-label =
 mech-lock-not-set-label = Не задан
 mech-lock-deactivate-button = Деактивировать
 mech-lock-activate-button = Активировать
-# RS14-end

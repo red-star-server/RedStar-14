@@ -1,9 +1,0 @@
-ent-DiamondPickaxe = алмазная кирка
-    .desc = Кирка с алмазным наконечником, раскалывающая породу быстрее стандартной модели.
-ent-Jackhammer = отбойный молоток
-    .desc = Тяжёлый шахтёрский инструмент, разбивающий широкие участки породы с эффективностью алмазного бура.
-ent-WeaponAdvPlasmaCutter = продвинутый плазменный резак
-    .desc = Буквально, обычный плазменный резак, но с большей дальностью, большим уроном и красивее!
-ent-WeaponAdvPlasmaCutterEmpty = { ent-WeaponAdvPlasmaCutter }
-    .desc = { ent-WeaponAdvPlasmaCutter.desc }
-    .suffix = пустой

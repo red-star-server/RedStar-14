@@ -6,3 +6,5 @@ ent-ActionMechOpenUI = Панель управления
     .desc = Открывает панель управления меха.
 ent-ActionMechEject = Покинуть
     .desc = Высаживает пилота из меха.
+ent-ActionMechToggleLight = Переключить фары
+    .desc = Включает или выключает фары меха.

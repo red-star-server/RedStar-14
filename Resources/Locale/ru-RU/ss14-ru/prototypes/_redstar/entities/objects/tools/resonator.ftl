@@ -1,0 +1,12 @@
+ent-Resonator = резонатор
+    .desc = Компактный шахтёрский инструмент на батарее, создающий в рудоносной породе отложенные резонансные поля.
+ent-ResonatorEmpty = { ent-Resonator }
+    .suffix = Пустой
+    .desc = { ent-Resonator.desc }
+ent-ResonatorUpgraded = улучшенный резонатор
+    .desc = Улучшенный шахтёрский резонатор, способный поддерживать больше полей и разрушать более длинные цепочки породы.
+ent-ResonatorUpgradedEmpty = { ent-ResonatorUpgraded }
+    .suffix = Пустой
+    .desc = { ent-ResonatorUpgraded.desc }
+ent-ResonanceField = резонансное поле
+    .desc = Гудящее поле накопленного шахтёрского резонанса.
