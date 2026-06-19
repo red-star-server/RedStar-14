@@ -23,7 +23,7 @@ public sealed partial class NPCUseActionsOnTargetComponent : Component
     /// Actions that's going to attempt to be used.
     /// </summary>
     [DataField(required: true)]
-    public List<EntProtoId<TargetActionComponent>> ActionIds;
+    public List<EntProtoId<TargetActionComponent>> ActionIds = new();
 
     [DataField]
     public Dictionary<EntProtoId<TargetActionComponent>, EntityUid?> ActionEnts = new();
@@ -35,7 +35,7 @@ public sealed partial class NPCUseActionsOnTargetComponent : Component
 
     /// <summary>
     /// Determines when the NPC can use the skill next time using UseDelay.
-    /// The smaller the faster and vice versa.
+    /// Values below 1 make action use faster; values above 1 make it slower.
     /// </summary>
     [DataField] public float DelayModifier = 1f;
     [DataField] public TimeSpan NextUseTime = TimeSpan.Zero;

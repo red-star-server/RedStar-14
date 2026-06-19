@@ -33,6 +33,9 @@ public sealed partial class BubblegumBossComponent : Component
     [ViewVariables]
     public TimeSpan NextBloodDiveTime;
 
+    [ViewVariables]
+    public TimeSpan NextPassiveHandTime;
+
     [DataField]
     public float BloodDiveCooldown = 25f;
 

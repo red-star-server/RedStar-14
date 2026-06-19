@@ -48,5 +48,5 @@ public sealed partial class LegionBossComponent : Component
 public sealed partial class LegionSplitComponent : Component
 {
     [DataField("nextSplit")]
-    public string? NextSplitPrototype;
+    public EntProtoId? NextSplitPrototype;
 }

@@ -8,7 +8,6 @@
   components:
   - type: Projectile
     ignoreResistances: true
-    ignoreTargeted: true
     damage:
       types:
         Blunt: 20

@@ -96,7 +96,11 @@ public sealed partial class ColossusSystem : EntitySystem
         var colossusWorldPos = _transform.GetWorldPosition(colossus);
         var targetWorldPos = _transform.GetWorldPosition(target);
 
-        var direction = (targetWorldPos - colossusWorldPos).Normalized();
+        var delta = targetWorldPos - colossusWorldPos;
+        if (delta == Vector2.Zero)
+            return;
+
+        var direction = delta.Normalized();
 
         var mapUid = _transform.GetMap(colossus);
         if (mapUid == null)
@@ -106,7 +110,11 @@ public sealed partial class ColossusSystem : EntitySystem
         {
             var spreadX = direction.X + _random.NextFloat(-spread, spread);
             var spreadY = direction.Y + _random.NextFloat(-spread, spread);
-            var spreadDirection = new Vector2(spreadX, spreadY).Normalized();
+            var spreadDelta = new Vector2(spreadX, spreadY);
+            if (spreadDelta == Vector2.Zero)
+                continue;
+
+            var spreadDirection = spreadDelta.Normalized();
 
             var shotDistance = 5f;
             var shotPos = colossusWorldPos + spreadDirection * shotDistance;

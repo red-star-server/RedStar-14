@@ -161,7 +161,7 @@ public sealed partial class NPCUseActionsOnTargetSystem : EntitySystem
         if (!Resolve(uid, ref comp))
             return false;
 
-        comp.DelayModifier = Math.Clamp(delayModifier, 0.01f, 1.0f);
+        comp.DelayModifier = Math.Max(delayModifier, 0.01f);
         return true;
     }
 
@@ -214,7 +214,7 @@ public sealed partial class NPCUseActionsOnTargetSystem : EntitySystem
             user.Comp.NextUseTime = _timing.CurTime + TimeSpan.FromSeconds(user.Comp.DelayModifier);
         }
 
-        return true; ///🎉 What a piece of shit this NPC Code.
+        return true;
     }
 
     private EntityUid? GetSelectedAction(List<(EntityUid action, float chance)> values, float totalWeight)

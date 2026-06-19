@@ -101,10 +101,10 @@ public sealed partial class LegionSystem : EntitySystem
             return;
 
         var coords = Transform(ent).Coordinates;
-        if (!string.IsNullOrEmpty(ent.Comp.NextSplitPrototype))
+        if (ent.Comp.NextSplitPrototype is { } nextSplit)
         {
-            Spawn(ent.Comp.NextSplitPrototype, coords);
-            Spawn(ent.Comp.NextSplitPrototype, coords);
+            Spawn(nextSplit, coords);
+            Spawn(nextSplit, coords);
         }
         else if (TryComp<LegionBossComponent>(ent, out var boss))
         {

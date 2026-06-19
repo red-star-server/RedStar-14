@@ -58,7 +58,6 @@ public sealed partial class BubblegumSystem : EntitySystem
 
     private Dictionary<EntityUid, List<EntityUid>> _activeIllusions = new();
     private HashSet<EntityUid> _dashDamagedTargets = new();
-    private HashSet<EntityUid> _illusionDamagedTargets = new();
 
     public override void Initialize()
     {
@@ -775,6 +774,8 @@ public sealed partial class BubblegumSystem : EntitySystem
 
     private void StartChaoticIllusionAttacks(List<EntityUid> illusions, List<EntityCoordinates> markers, DamageSpecifier damage)
     {
+        var damagedTargets = new HashSet<EntityUid>();
+
         for (int i = 0; i < illusions.Count; i++)
         {
             var illusion = illusions[i];
@@ -787,7 +788,7 @@ public sealed partial class BubblegumSystem : EntitySystem
             Timer.Spawn(TimeSpan.FromSeconds(randomDelay), () =>
             {
                 if (Exists(illusion))
-                    StartIllusionDash(illusion, marker, damage);
+                    StartIllusionDash(illusion, marker, damage, damagedTargets);
             });
         }
     }
@@ -943,7 +944,8 @@ public sealed partial class BubblegumSystem : EntitySystem
 
     #region Illusion System
 
-    private void StartIllusionDash(EntityUid uid, EntityCoordinates target, DamageSpecifier damage)
+    private void StartIllusionDash(EntityUid uid, EntityCoordinates target, DamageSpecifier damage,
+        HashSet<EntityUid> damagedTargets)
     {
         if (!TryComp<BubblegumIllusionComponent>(uid, out var illusion))
             return;
@@ -973,16 +975,14 @@ public sealed partial class BubblegumSystem : EntitySystem
         if (mapUid == null)
             return;
 
-        _illusionDamagedTargets.Clear();
-
         for (int step = 1; step <= steps; step++)
         {
-            ScheduleIllusionDashStep(uid, illusion, mapUid.Value, startTile, direction, step, damage);
+            ScheduleIllusionDashStep(uid, illusion, mapUid.Value, startTile, direction, step, damage, damagedTargets);
         }
     }
 
     private void ScheduleIllusionDashStep(EntityUid uid, BubblegumIllusionComponent illusion, EntityUid mapUid,
-        Vector2 startTile, Vector2 direction, int step, DamageSpecifier damage)
+        Vector2 startTile, Vector2 direction, int step, DamageSpecifier damage, HashSet<EntityUid> damagedTargets)
     {
         var currentStep = step;
 
@@ -1005,13 +1005,14 @@ public sealed partial class BubblegumSystem : EntitySystem
                 SpawnAttachedTo(bossComp.DashTrail, currentCoords,
                     rotation: GetDirectionRotation(direction));
 
-            CheckIllusionDashDamage(uid, illusion.Master, currentCoords, damage);
+            CheckIllusionDashDamage(uid, illusion.Master, currentCoords, damage, damagedTargets);
 
             illusion.CurrentStep = currentStep;
         });
     }
 
-    private void CheckIllusionDashDamage(EntityUid uid, EntityUid? master, EntityCoordinates coords, DamageSpecifier damage)
+    private void CheckIllusionDashDamage(EntityUid uid, EntityUid? master, EntityCoordinates coords,
+        DamageSpecifier damage, HashSet<EntityUid> damagedTargets)
     {
         var entities = _lookup.GetEntitiesInRange<MobStateComponent>(coords, 1f, LookupFlags.Uncontained);
         foreach (var entity in entities)
@@ -1019,11 +1020,11 @@ public sealed partial class BubblegumSystem : EntitySystem
             if (entity.Owner == uid || entity.Owner == master)
                 continue;
 
-            if (_illusionDamagedTargets.Contains(entity.Owner))
+            if (damagedTargets.Contains(entity.Owner))
                 continue;
 
             if (_damage.TryChangeDamage(entity.Owner, damage, origin: master) is not null)
-                _illusionDamagedTargets.Add(entity.Owner);
+                damagedTargets.Add(entity.Owner);
         }
     }
 
@@ -1039,9 +1040,10 @@ public sealed partial class BubblegumSystem : EntitySystem
             if (_mobState.IsDead(uid))
                 continue;
 
-            if (_timing.CurTime.TotalSeconds % PassiveHandInterval > 0.1f)
+            if (_timing.CurTime < comp.NextPassiveHandTime)
                 continue;
 
+            comp.NextPassiveHandTime = _timing.CurTime + TimeSpan.FromSeconds(PassiveHandInterval);
             var playersOnBlood = FindPlayersOnBlood(xform.Coordinates);
 
             foreach (var player in playersOnBlood)
@@ -1243,10 +1245,12 @@ public sealed partial class BubblegumSystem : EntitySystem
 
     private void StartIllusionDashForAll(List<EntityUid> illusions, EntityCoordinates targetCoords, DamageSpecifier damage)
     {
+        var damagedTargets = new HashSet<EntityUid>();
+
         foreach (var illusion in illusions)
         {
             if (Exists(illusion))
-                StartIllusionDash(illusion, targetCoords, damage);
+                StartIllusionDash(illusion, targetCoords, damage, damagedTargets);
         }
     }
 

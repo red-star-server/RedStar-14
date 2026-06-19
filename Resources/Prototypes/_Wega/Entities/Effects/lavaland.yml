@@ -37,6 +37,7 @@
     damage:
       types:
         Heat: 2.5
+  - type: DamageOnTriggerBlacklist
     blacklist:
       components:
       - AshDrakeBoss
@@ -63,6 +64,7 @@
     damage:
       types:
         Heat: 40
+  - type: DamageOnTriggerBlacklist
     blacklist:
       components:
       - AshDrakeBoss
@@ -152,11 +154,15 @@
         hard: false
         mask:
         - Impassable
+  - type: TriggerOnCollide
+    fixtureID: fix
+    maxTriggers: 1
   - type: DamageOnTrigger
     targetUser: true
     damage:
       types:
         Blunt: 30
+  - type: DamageOnTriggerBlacklist
     blacklist:
       components:
       - BubblegumBoss

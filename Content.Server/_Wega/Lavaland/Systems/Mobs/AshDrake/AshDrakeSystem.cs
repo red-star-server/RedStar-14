@@ -69,7 +69,11 @@ public sealed partial class AshDrakeSystem : EntitySystem
         var drakeWorldPos = _transform.GetWorldPosition(ent);
         var targetWorldPos = _transform.GetWorldPosition(args.Target);
 
-        var direction = (targetWorldPos - drakeWorldPos).Normalized();
+        var delta = targetWorldPos - drakeWorldPos;
+        if (delta == Vector2.Zero)
+            return;
+
+        var direction = delta.Normalized();
 
         var mapUid = _transform.GetMap(ent.Owner);
         if (mapUid == null)
@@ -125,7 +129,11 @@ public sealed partial class AshDrakeSystem : EntitySystem
         var drakeWorldPos = _transform.GetWorldPosition(ent);
         var targetWorldPos = _transform.GetWorldPosition(args.Target);
 
-        var direction = (targetWorldPos - drakeWorldPos).Normalized();
+        var delta = targetWorldPos - drakeWorldPos;
+        if (delta == Vector2.Zero)
+            return;
+
+        var direction = delta.Normalized();
 
         var mapUid = _transform.GetMap(ent.Owner);
         if (mapUid == null)
@@ -426,6 +434,12 @@ public sealed partial class AshDrakeSystem : EntitySystem
         {
             if (!_activeArenas.ContainsKey(drakeUid))
                 return;
+
+            foreach (var lava in arenaData.LavaTiles)
+            {
+                if (Exists(lava))
+                    QueueDel(lava);
+            }
 
             arenaData.LavaTiles.Clear();
             Timer.Spawn(TimeSpan.FromSeconds(0.5f), () =>
