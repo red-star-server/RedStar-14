@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2026 RedStar Contributors
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: entity
   name: ash drake
   id: LavalandBossAshDrake
