@@ -15,6 +15,11 @@
     edges:
     - to: cloak
       steps:
+      # RS14-start
+      - material: Sinew
+        amount: 2
+        doAfter: 2
+      # RS14-end
       - material: GoliathHide
       # RS14-start
         amount: 3

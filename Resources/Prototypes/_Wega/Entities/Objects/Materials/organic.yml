@@ -1,0 +1,87 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega
+# лицензированы под GNU GPL v3:
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialSinew
+  name: sinew
+  description: A tough bundle of tendons taken as a hunter's trophy.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Materials/sinew.rsi
+    layers:
+    - state: sinew
+      map: [ "base" ]
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 500
+  - type: Appearance
+  - type: Stack
+    stackType: Sinew
+    baseLayer: base
+    layerStates:
+    - sinew
+    - sinew_2
+    - sinew_3
+  - type: Item
+    size: Large
+    sprite: _Wega/Objects/Materials/sinew.rsi
+    shape:
+    - 0,0,1,1
+  - type: Tag
+    tags:
+    - MaterialsThrophy
+    - Sinew
+
+- type: entity
+  parent: MaterialSinew
+  id: MaterialSinew1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialBase
+  id: MaterialChitin
+  name: chitin
+  description: A durable plate of arthropod chitin.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Materials/chitin.rsi
+    layers:
+    - state: chitin
+      map: [ "base" ]
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 500
+  - type: Appearance
+  - type: Stack
+    stackType: Chitin
+    baseLayer: base
+    layerStates:
+    - chitin
+    - chitin_2
+    - chitin_3
+  - type: Item
+    size: Large
+    sprite: _Wega/Objects/Materials/chitin.rsi
+    shape:
+    - 0,0,1,1
+  - type: Tag
+    tags:
+    - MaterialsThrophy
+    - Chitin
+
+- type: entity
+  parent: MaterialChitin
+  id: MaterialChitin1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1

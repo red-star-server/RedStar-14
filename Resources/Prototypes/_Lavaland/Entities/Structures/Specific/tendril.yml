@@ -86,9 +86,15 @@
   description: A huge structure.
   suffix: Legion
   components:
-  # TODO: Add Legioners
+  # RS14-start
   - type: Tendril
-    spawns: []
+    maxSpawns: 3
+    mobsToDefeat: 8
+    spawnDelay: 10.0
+    spawns:
+    - MobLegion
+    - MobLegionDwarf
+  # RS14-end
 
 - type: entity
   id: LavalandTendrilLavaWatcher

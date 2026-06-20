@@ -7,6 +7,9 @@
     edges:
     - to: reinforced
       steps:
+      - material: Sinew
+        amount: 2
+        doAfter: 2
       - material: GoliathHide
         amount: 2
         doAfter: 2

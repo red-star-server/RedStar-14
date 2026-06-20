@@ -13,7 +13,18 @@
         weight: 99
       - id: MobLavalandGoliathAncient
         weight: 1
-    - id: MobLegion
+    # RS14-start
+    - !type:GroupSelector
+      children:
+      - id: MobLegion
+        weight: 3
+      - id: MobLegionDwarf
+        weight: 1
+    - id: MobMarrowWeaverLavaland
+      weight: 0.35
+    - id: MobFrostbiteWeaverLavaland
+      weight: 0.2
+    # RS14-end
 
 - type: entityTable
   id: LavalandLightMobs

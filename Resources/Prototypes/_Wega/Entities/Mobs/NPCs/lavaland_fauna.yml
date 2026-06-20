@@ -1,0 +1,132 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega
+# лицензированы под GNU GPL v3:
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: MobLegion
+  id: MobLegionDwarf
+  name: dwarf legion
+  description: A small and unusually fast fragment of a legion.
+  components:
+  - type: Sprite
+    sprite: _Lavaland/Mobs/lavaland_monsters.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dwarf_legion
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4
+
+- type: entity
+  parent: BaseMobAsteroid
+  id: MobMarrowWeaverLavaland
+  name: marrow weaver
+  description: A giant spider with venom dripping from its jaws and purple chitin.
+  components:
+  - type: Sprite
+    sprite: _Wega/Mobs/Lavaland/weaver.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: weaver
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: weaver
+      Dead:
+        Base: weaver_dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 13
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 80
+        reagents:
+        - ReagentId: Mechanotoxin
+          Quantity: 80
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 1.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      220: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.75
+  - type: Butcherable
+    spawned:
+    - id: UraniumOre1
+      amount: 2
+    - id: MaterialSinew1
+      amount: 2
+    - id: MaterialBones1
+      amount: 3
+    - id: MaterialChitin1
+      amount: 4
+  - type: ReplacementAccent
+    accent: xeno
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
+  - type: Speech
+    speechVerb: Arachnid
+    speechSounds: Arachnid
+    allowedEmotes: [ "Click", "Chitter" ]
+  - type: Vocal
+    sounds:
+      Male: UnisexArachnid
+      Female: UnisexArachnid
+      Unsexed: UnisexArachnid
+  - type: TypingIndicator
+    proto: spider
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.7
+    baseSprintSpeed: 3.7
+  - type: NpcFactionMember
+    factions:
+    - Lavafauna
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        9
+      AggroVisionRadius: !type:Single
+        9
+      NavSmash: !type:Bool
+        true
+  - type: Fauna
+
+- type: entity
+  parent: MobMarrowWeaverLavaland
+  id: MobFrostbiteWeaverLavaland
+  name: frostbite weaver
+  description: A giant spider with icy venom and blue chitin.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: weaver_ice
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: weaver_ice
+      Dead:
+        Base: weaver_ice_dead
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 80
+        reagents:
+        - ReagentId: Cryoxadone
+          Quantity: 80
