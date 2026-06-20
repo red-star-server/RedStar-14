@@ -1,0 +1,186 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega
+# лицензированы под GNU GPL v3:
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  id: BaseMobLavalandInhabitant
+  abstract: true
+  components:
+  - type: NPCIgnoringOptimize
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Unrevivable
+    analyzable: false
+  - type: WeatherImmune
+
+- type: entity
+  parent: [ MobHuman, BaseMobLavalandInhabitant ]
+  id: MobHumanInhabitantSquare
+  name: inhabitant of the square
+  components:
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: Loadout
+    prototypes:
+    - InhabitantSquareGear
+
+- type: startingGear
+  id: InhabitantSquareGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    mask: ClothingMaskBreath
+    shoes: ClothingShoesBootsWinter
+    head: ClothingHeadHatHoodWinterColorGray
+    outerClothing: ClothingOuterWinterColorGray
+    belt: DoubleEmergencyOxygenTankFilled
+  inhand:
+  - SpearReinforced
+
+- type: entity
+  parent: [ MobHuman, BaseMobLavalandInhabitant ]
+  id: MobHumanInhabitantHermit
+  name: hermit
+  components:
+  - type: Respirator
+    saturation: 8
+    suffocationThreshold: -6
+    maxSaturation: 8
+    minSaturation: -4
+    updateIntervalMultiplier: 0.8
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: Loadout
+    prototypes:
+    - InhabitantHermitGear
+
+- type: startingGear
+  id: InhabitantHermitGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    mask: ClothingMaskBreath
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHelmetEVA
+    outerClothing: ClothingOuterHardsuitEVA
+    suitstorage: OxygenTankFilled
+
+- type: entity
+  parent: [ MobHuman, BaseMobLavalandInhabitant ]
+  id: MobHumanInhabitantBeachGuy
+  name: beachgoer
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: Loadout
+    prototypes:
+    - InhabitantBeachGuyGear1
+    - InhabitantBeachGuyGear2
+    - InhabitantBeachGuyGear3
+    - InhabitantBeachGuyGear4
+
+- type: startingGear
+  id: InhabitantBeachGuyGear1
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiRed
+    eyes: ClothingEyesGlassesSunglasses
+    back: ClothingBackpackSatchel
+    pocket1: DrinkIcedBeerGlass
+    pocket2: FoodSnackRaisins
+  storage:
+    back:
+    - EmergencyOxygenTankFilled
+    - ClothingMaskBreath
+
+- type: startingGear
+  id: InhabitantBeachGuyGear2
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiBlue
+    eyes: ClothingEyesGlassesSunglasses
+    back: ClothingBackpackSatchel
+    pocket1: DrinkIcedBeerGlass
+    pocket2: FoodFrozenSnowcone
+  storage:
+    back:
+    - EmergencyOxygenTankFilled
+    - ClothingMaskBreath
+
+- type: startingGear
+  id: InhabitantBeachGuyGear3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiBlack
+    eyes: ClothingEyesGlassesSunglasses
+    shoes: ClothingShoesSlippers
+    back: ClothingBackpackSatchel
+    pocket1: DrinkIcedBeerGlass
+    pocket2: FoodFrozenCornuto
+  storage:
+    back:
+    - EmergencyOxygenTankFilled
+    - ClothingMaskBreath
+
+- type: startingGear
+  id: InhabitantBeachGuyGear4
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiYellow
+    eyes: ClothingEyesGlassesSunglasses
+    back: ClothingBackpackSatchel
+    pocket1: DrinkIcedBeerGlass
+    pocket2: FoodSnackSus
+  storage:
+    back:
+    - EmergencyOxygenTankFilled
+    - ClothingMaskBreath
+
+- type: entity
+  parent: [ MobHuman, BaseMobLavalandInhabitant ]
+  id: MobHumanInhabitantTranslocatedVeterinarian
+  name: translocated veterinarian
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: Loadout
+    prototypes:
+    - InhabitantTranslocatedVeterinarianGear
+
+- type: startingGear
+  id: InhabitantTranslocatedVeterinarianGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorWhite
+    mask: ClothingMaskBreathMedical
+    shoes: ClothingShoesColorWhite
+    gloves: ClothingHandsGlovesLatex
+    back: ClothingBackpackSatchelMedical
+    outerClothing: ClothingOuterCoatLabOpened
+    pocket1: EmergencyOxygenTankFilled
+  inhand:
+  - MedkitFilled
+  storage:
+    back:
+    - MedicatedSuture
+    - RegenerativeMesh
+    - Bloodpack
+    - Gauze
+    - SyringeSaline
+    - SyringeEphedrine
+    - BruteAutoInjector
+    - BurnAutoInjector
+

@@ -1,0 +1,29 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega
+# лицензированы под GNU GPL v3:
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseFoldable ]
+  id: ClothingNeckChokerBlack
+  name: black choker
+  description: A simple black choker.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Wega/Clothing/Neck/Misc/chokers.rsi
+    layers:
+    - state: black
+      map: [ unfoldedLayer ]
+    - state: black-lock
+      map: [ foldedLayer ]
+      visible: false
+  - type: Clothing
+    sprite: _Wega/Clothing/Neck/Misc/chokers.rsi
+    equippedPrefix: black
+  - type: Appearance
+  - type: Foldable
+    canFoldInsideContainer: true
+    unfoldVerbText: fold-zip-verb
+    foldVerbText: fold-unzip-verb
+

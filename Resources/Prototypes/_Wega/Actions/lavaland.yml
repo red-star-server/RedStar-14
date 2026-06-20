@@ -3,6 +3,36 @@
 
 - type: entity
   parent: BaseAction
+  id: BecomeToDrakeAction
+  name: become ash drake
+  description: Reveal your draconic form.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
+      state: dragon
+  - type: InstantAction
+    event: !type:BecomeToDrakeActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: DrakeReturnBackAction
+  name: return to your original form
+  description: Suppress your draconic form.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
+      state: dragon
+  - type: InstantAction
+    event: !type:DrakeReturnBackActionEvent
+
+- type: entity
+  parent: BaseAction
   id: ActionMegaLegion
   components:
   - type: Action

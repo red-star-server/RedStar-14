@@ -57,6 +57,9 @@
     - id: DarkShard
     - id: DustyShard
     - id: ChemistryBottleStabilizingSerum
+    - id: ClothingHandsGlovesConcussiveGauntlets
+    - id: WeaponPossessedBlade
+    - id: DrinkUnholyFlaskFull
     # RS14-end
 
     - !type:NestedSelector

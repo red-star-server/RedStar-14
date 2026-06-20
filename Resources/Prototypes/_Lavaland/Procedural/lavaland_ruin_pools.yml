@@ -49,6 +49,15 @@
     DragonLair: 1
     Bubblegum: 1
     # RS14-end
+    # RS14-start: additional Wega Lavaland ruins
+    LavalandBarracks: 1
+    LavalandBeach: 1
+    LavalandCloningPod: 1
+    LavalandHospital: 1
+    LavalandNesting: 1
+    LavalandSpiderNest: 1
+    LavalandLaziness: 1
+    # RS14-end
     RougeAI: 1
     BiodomeBeach: 2
     BiodomeSnow: 2

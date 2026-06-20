@@ -48,6 +48,10 @@
     blacklist:
       tags:
         - Catwalk
+      # RS14-start: Dragon Blood lava-walking effect
+      components:
+        - LavaWalking
+      # RS14-end
     triggerGroups: # Goobstation
       types:
         - Lava

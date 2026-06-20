@@ -6,3 +6,14 @@ reagent-name-stabilizing-serum = стабилизирующая сыворотк
 reagent-desc-stabilizing-serum = Специализированный консервант для нестабильных органических артефактов.
 reagent-effect-guidebook-stabilize-legion-core = При контакте стабилизирует активное ядро легиона.
 legion-core-inert = Ядро легиона стало инертным.
+dragon-blood-effect-1 = Кровь прожигает вашу плоть, оставляя лишь кости.
+dragon-blood-effect-2 = Лава больше не причиняет вам вреда и не замедляет вас.
+dragon-blood-effect-3 = Вы чувствуете, что под вашей кожей скрывается драконья форма.
+
+lavaland-ruin-barracks = заброшенные казармы
+lavaland-ruin-beach = подземный пляж
+lavaland-ruin-cloning-pod = заброшенная капсула клонирования
+lavaland-ruin-hospital = заброшенная больница
+lavaland-ruin-nesting = гнездовье
+lavaland-ruin-spider-nest = паучье гнездо
+lavaland-ruin-laziness = святилище лени

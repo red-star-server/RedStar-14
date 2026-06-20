@@ -1,0 +1,83 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega
+# лицензированы под GNU GPL v3:
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnInhabitantSquare
+  name: inhabitant of the square spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanInhabitantSquare
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnInhabitantHermit
+  name: hermit spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanInhabitantHermit
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnInhabitantBeachGuy
+  name: beachgoer spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanInhabitantBeachGuy
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnInhabitantTranslocatedVeterinarian
+  name: translocated veterinarian spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanInhabitantTranslocatedVeterinarian
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobLegionLavaland
+  name: legion spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobLegionLavaland
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMarrowWeaverLavaland
+  name: marrow weaver spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMarrowWeaverLavaland
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobFrostbiteWeaverLavaland
+  name: frostbite weaver spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobFrostbiteWeaverLavaland
+
+- type: entity
+  parent: MarkerBase
+  id: MarkerBeachSignal
+  name: beach signal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NavMapBeacon
+    defaultText: beach
+    color: "#decfa0"

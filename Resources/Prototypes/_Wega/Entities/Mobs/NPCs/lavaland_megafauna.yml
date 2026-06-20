@@ -244,6 +244,74 @@
       - MegafaunaWeaponLooter
 
 - type: entity
+  parent: [ LavalandMobBase, MobBloodstream ]
+  id: MobLowerAshDrake
+  name: ash drake
+  description: A lesser draconic form carrying a fraction of the Necropolis guardian's power.
+  suffix: Lower
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: false
+  - type: Sprite
+    sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
+    layers:
+    - map: [enum.DamageStateVisualLayers.Base]
+      state: dragon
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dragon
+      Dead:
+        Base: dragon_dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    attackRate: 1
+    damage:
+      types:
+        Slash: 10
+  - type: RechargeBasicEntityAmmo
+    showExamineText: false
+    rechargeCooldown: 0.01
+    rechargeSound: null
+  - type: BasicEntityAmmoProvider
+    proto: BulletAshDrakeFire
+    capacity: 9999
+    count: 9999
+  - type: Gun
+    projectileSpeed: 10
+    fireRate: 1
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    showExamineText: false
+    soundGunshot: null
+    soundEmpty: null
+  - type: Pullable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 2.25
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: Bloodstream
+    bloodlossDamage:
+      types:
+        Bloodloss: 0
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 500
+  - type: LavaWalking
+
+- type: entity
   parent: LavalandBossBubblegum
   id: MobBubblegum
   components:

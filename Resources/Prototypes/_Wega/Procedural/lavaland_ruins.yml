@@ -1,0 +1,47 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega
+# лицензированы под GNU GPL v3:
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: lavalandGridRuin
+  id: LavalandBarracks
+  name: lavaland-ruin-barracks
+  path: /Maps/_Wega/Lavaland/barracks.yml
+  priority: 10
+
+- type: lavalandGridRuin
+  id: LavalandBeach
+  name: lavaland-ruin-beach
+  path: /Maps/_Wega/Lavaland/beach.yml
+  priority: 11
+  patchToPlanet: false
+
+- type: lavalandGridRuin
+  id: LavalandCloningPod
+  name: lavaland-ruin-cloning-pod
+  path: /Maps/_Wega/Lavaland/cloningpod.yml
+  priority: 12
+
+- type: lavalandGridRuin
+  id: LavalandHospital
+  name: lavaland-ruin-hospital
+  path: /Maps/_Wega/Lavaland/hospital.yml
+  priority: 13
+
+- type: lavalandGridRuin
+  id: LavalandNesting
+  name: lavaland-ruin-nesting
+  path: /Maps/_Wega/Lavaland/nesting.yml
+  priority: 14
+
+- type: lavalandGridRuin
+  id: LavalandSpiderNest
+  name: lavaland-ruin-spider-nest
+  path: /Maps/_Wega/Lavaland/spidernest.yml
+  priority: 15
+
+- type: lavalandGridRuin
+  id: LavalandLaziness
+  name: lavaland-ruin-laziness
+  path: /Maps/_Wega/Lavaland/Laziness.yml
+  priority: 16
+
