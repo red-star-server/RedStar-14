@@ -6,7 +6,6 @@
   id: BaseMobLavalandInhabitant
   abstract: true
   components:
-  - type: NPCIgnoringOptimize
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: Unrevivable
@@ -183,4 +182,3 @@
     - SyringeEphedrine
     - BruteAutoInjector
     - BurnAutoInjector
-

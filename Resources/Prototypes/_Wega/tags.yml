@@ -9,4 +9,7 @@
   id: Sinew
 
 - type: Tag
+  id: LavaWalking
+
+- type: Tag
   id: Chitin

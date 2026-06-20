@@ -74,14 +74,15 @@
         Blunt: -5
 
 - type: entity
-  parent: BaseCrusherUpgradeMain
+  parent: CrusherUpgradeMainMarker
   id: TrophyLavalandColossusBlasterTubes
   name: colossus blaster tubes
   description: Improves projectile damage and velocity.
   components:
   - type: Sprite
     sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
-    state: tubes
+    layers:
+    - state: tubes
   - type: GunUpgrade
     name: lavaland-trophy-colossus-name
     uniqueGroup: mainUpgrade
@@ -91,20 +92,19 @@
     coefficient: 1.25
 
 - type: entity
-  parent: BaseCrusherUpgradeMain
+  parent: CrusherUpgradeMainMarker
   id: TrophyLavalandHierophantVortexTalisman
   name: vortex talisman
   description: A marked crusher hit creates a temporary hierophant barrier.
   components:
   - type: Sprite
     sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
-    state: vortex
+    layers:
+    - state: vortex
   - type: GunUpgrade
     name: lavaland-trophy-hierophant-name
     uniqueGroup: mainUpgrade
-  - type: GunUpgradeComponents
-    components:
-    - type: HierophantTrophy
+  - type: HierophantTrophy
 
 - type: entity
   parent: BaseCrusherUpgradeHandle

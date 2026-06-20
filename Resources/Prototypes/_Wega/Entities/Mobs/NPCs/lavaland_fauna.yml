@@ -34,7 +34,7 @@
           weight: 5
 
 - type: entity
-  parent: BaseMobAsteroid
+  parent: LavalandMobBase
   id: MobMarrowWeaverLavaland
   name: marrow weaver
   description: A giant spider with venom dripping from its jaws and purple chitin.
@@ -59,6 +59,7 @@
     damage:
       types:
         Slash: 13
+        Structural: 30
   - type: SolutionContainerManager
     solutions:
       melee:

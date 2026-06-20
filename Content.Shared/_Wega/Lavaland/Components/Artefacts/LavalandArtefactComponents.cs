@@ -41,9 +41,6 @@ public sealed partial class DragonBloodComponent : Component
 }
 
 [RegisterComponent]
-public sealed partial class LavaWalkingComponent : Component;
-
-[RegisterComponent]
 public sealed partial class SoulStorageComponent : Component
 {
     [DataField]

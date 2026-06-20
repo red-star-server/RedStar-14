@@ -27,6 +27,7 @@
 
 using Content.Shared._Lavaland.Weapons.Ranged.Upgrades.Components;
 using Content.Shared._Lavaland.Weapons.Ranged.Events;
+using Content.Shared._Lavaland.Weapons.Marker; // RS14
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
@@ -67,6 +68,7 @@ public abstract partial class SharedGunUpgradeSystem : EntitySystem
         SubscribeLocalEvent<UpgradeableWeaponComponent, MeleeHitEvent>(RelayEvent);
         SubscribeLocalEvent<UpgradeableWeaponComponent, GetLightAttackRangeEvent>(RelayEvent);
         SubscribeLocalEvent<UpgradeableWeaponComponent, GetMeleeAttackRateEvent>(RelayEvent);
+        SubscribeLocalEvent<UpgradeableWeaponComponent, ApplyMarkerBonusEvent>(RelayEvent); // RS14
 
         SubscribeLocalEvent<UpgradeableWeaponComponent, GetItemActionsEvent>(RelayGetActionEvent);
 

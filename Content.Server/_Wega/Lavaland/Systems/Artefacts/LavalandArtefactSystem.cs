@@ -6,11 +6,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Stunnable;
 using Content.Server.Tiles;
-using Content.Goobstation.Common.Flammability;
-using Content.Goobstation.Common.Temperature.Components;
-using Content.Shared._DV.CosmicCult.Components;
 using Content.Shared._Wega.Lavaland.Components.Artefacts;
-using Content.Shared._Wega.Lavaland.Events.Artefacts;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
@@ -23,12 +19,13 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.Temperature.Components;
+using Content.Shared.Tag;
 using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Wega.Lavaland.Systems.Artefacts;
@@ -46,10 +43,13 @@ public sealed class LavalandArtefactSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly ITileDefinitionManager _tiles = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
+
+    private static readonly ProtoId<TagPrototype> LavaWalkingTag = "LavaWalking";
 
     public override void Initialize()
     {
@@ -58,8 +58,6 @@ public sealed class LavalandArtefactSystem : EntitySystem
         SubscribeLocalEvent<LavaStaffComponent, AfterInteractEvent>(OnLavaStaffInteract);
         SubscribeLocalEvent<DragonBloodComponent, UseInHandEvent>(OnDragonBloodUse);
         SubscribeLocalEvent<DragonBloodComponent, DragonBloodDoAfterEvent>(OnDragonBloodComplete);
-        SubscribeLocalEvent<BecomeToDrakeActionEvent>(OnBecomeToDrake);
-        SubscribeLocalEvent<DrakeReturnBackActionEvent>(OnDrakeReturnBack);
         SubscribeLocalEvent<SoulStorageComponent, MeleeHitEvent>(OnSpectralBladeHit);
         SubscribeLocalEvent<HumanoidAppearanceComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<DivineVocalCordsImplantComponent, ImplantImplantedEvent>(OnDivineVoiceImplanted);
@@ -134,7 +132,7 @@ public sealed class LavalandArtefactSystem : EntitySystem
                 _polymorph.PolymorphEntity(args.User, ent.Comp.Skeleton);
                 break;
             case 2:
-                EnsureComp<LavaWalkingComponent>(args.User);
+                _tag.AddTag(args.User, LavaWalkingTag);
                 break;
             case 3:
                 _actions.AddAction(args.User, ent.Comp.LowerDrakeAction);
@@ -144,23 +142,6 @@ public sealed class LavalandArtefactSystem : EntitySystem
         _audio.PlayPvs(ent.Comp.UseSound, args.User);
         _popup.PopupEntity(Loc.GetString($"dragon-blood-effect-{effect}"), args.User, args.User);
         QueueDel(ent);
-        args.Handled = true;
-    }
-
-    private void OnBecomeToDrake(BecomeToDrakeActionEvent args)
-    {
-        var polymorph = _polymorph.PolymorphEntity(args.Performer, args.LowerDrake);
-        if (polymorph == null)
-            return;
-
-        _actions.AddAction(polymorph.Value, args.ReturnBackAction);
-        args.Handled = true;
-    }
-
-    private void OnDrakeReturnBack(DrakeReturnBackActionEvent args)
-    {
-        _actions.RemoveAction(args.Performer, args.Action.Owner);
-        _polymorph.Revert(args.Performer);
         args.Handled = true;
     }
 

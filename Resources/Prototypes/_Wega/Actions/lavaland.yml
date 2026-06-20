@@ -14,22 +14,8 @@
       sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
       state: dragon
   - type: InstantAction
-    event: !type:BecomeToDrakeActionEvent
-
-- type: entity
-  parent: BaseAction
-  id: DrakeReturnBackAction
-  name: return to your original form
-  description: Suppress your draconic form.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: BigAction
-    icon:
-      sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
-      state: dragon
-  - type: InstantAction
-    event: !type:DrakeReturnBackActionEvent
+    event: !type:PolymorphActionEvent
+      protoId: LowerAshDrakePolymorph
 
 - type: entity
   parent: BaseAction

@@ -6,4 +6,4 @@
   id: LowerAshDrakePolymorph
   configuration:
     entity: MobLowerAshDrake
-    forced: true
+    forced: false

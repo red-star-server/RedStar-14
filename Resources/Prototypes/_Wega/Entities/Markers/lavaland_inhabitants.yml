@@ -50,7 +50,7 @@
   components:
   - type: ConditionalSpawner
     prototypes:
-    - MobLegionLavaland
+    - MobLegion
 
 - type: entity
   parent: MarkerBase

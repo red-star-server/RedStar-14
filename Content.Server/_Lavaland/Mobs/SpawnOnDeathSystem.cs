@@ -27,7 +27,8 @@ public sealed class SpawnOnDeathSystem : EntitySystem
 
     private void OnDropAttacked(EntityUid uid, SpawnLootOnDeathComponent comp, ref AttackedEvent args)
     {
-        comp.DoSpecialLoot = _whitelist.IsWhitelistPassOrNull(comp.SpecialWeaponWhitelist, args.Used);
+        // RS14: once a non-crusher hit invalidates the trophy condition, later crusher hits must not restore it.
+        comp.DoSpecialLoot &= _whitelist.IsWhitelistPassOrNull(comp.SpecialWeaponWhitelist, args.Used);
     }
 
     private void OnDropKilled(EntityUid uid, SpawnLootOnDeathComponent comp, ref MobStateChangedEvent args)

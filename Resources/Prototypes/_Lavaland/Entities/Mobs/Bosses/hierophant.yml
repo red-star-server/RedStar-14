@@ -102,6 +102,7 @@
   - type: TileMovement
   - type: DamageSquareImmunity
   - type: SpawnLootOnDeath
+    dropBoth: true
     table: !type:AllSelector
       children:
       - id: LavalandHierophantClub
