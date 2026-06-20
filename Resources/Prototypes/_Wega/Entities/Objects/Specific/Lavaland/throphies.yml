@@ -105,3 +105,75 @@
   - type: GunUpgradeComponents
     components:
     - type: HierophantTrophy
+
+- type: entity
+  parent: BaseCrusherUpgradeHandle
+  id: TrophyLavalandGoliathTentacle
+  name: goliath tentacle
+  description: A muscular appendage covered in stone plates. It still twitches faintly.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: tendril
+  - type: GunUpgrade
+    name: lavaland-trophy-goliath-name
+    uniqueGroup: goliathTrophy
+  - type: WeaponUpgradeDamage
+    modifier: 1.1
+
+- type: entity
+  parent: BaseCrusherUpgradeHandle
+  id: TrophyLavalandAncientGoliathTentacle
+  name: ancient goliath tentacle
+  description: A petrified appendage of an ancient goliath, cracked by age but still powerful.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: ancient_tendril
+  - type: GunUpgrade
+    name: lavaland-trophy-ancient-goliath-name
+    uniqueGroup: goliathTrophy
+  - type: WeaponUpgradeDamage
+    modifier: 1.2
+
+- type: entity
+  parent: BaseCrusherUpgradeBlade
+  id: TrophyLavalandMarrowWeaverPoisonFang
+  name: poison fang
+  description: The curved fang of a marrow weaver, still slick with pale venom.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: fang
+  - type: GunUpgrade
+    name: lavaland-trophy-marrow-weaver-name
+    uniqueGroup: marrowWeaverTrophy
+  - type: WeaponUpgradeDamage
+    bonusDamage:
+      types:
+        Poison: 5
+  - type: GunUpgradeDamage
+    bonusDamage:
+      types:
+        Poison: 5
+
+- type: entity
+  parent: BaseCrusherUpgradeBlade
+  id: TrophyLavalandFrostbiteWeaverFrostGland
+  name: frost gland
+  description: A pulsating gland from a frostbite weaver, cold enough to numb your fingers.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
+    state: ice_gland
+  - type: GunUpgrade
+    name: lavaland-trophy-frostbite-weaver-name
+    uniqueGroup: frostbiteWeaverTrophy
+  - type: WeaponUpgradeDamage
+    bonusDamage:
+      types:
+        Cold: 5
+  - type: GunUpgradeDamage
+    bonusDamage:
+      types:
+        Cold: 5

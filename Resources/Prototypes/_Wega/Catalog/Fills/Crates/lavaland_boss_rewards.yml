@@ -1,0 +1,65 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: LavalandCrateNecropolis
+  id: LavalandCrateNecropolisAshDrakeFilled
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: AshDrakeNecropolisCrateTable
+
+- type: entityTable
+  id: AshDrakeNecropolisCrateTable
+  table: !type:GroupSelector
+    children:
+    - id: WeaponSpectralBlade
+    - id: LavaStaffRod
+    - id: BottleDragonBlood
+    - !type:AllSelector
+      children:
+      - id: FireballSpellbook
+      - id: WeaponWandFireball
+
+- type: entity
+  parent: LavalandCrateNecropolis
+  id: LavalandCrateNecropolisColossusFilled
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ColossusNecropolisCrateTable
+
+- type: entityTable
+  id: ColossusNecropolisCrateTable
+  table: !type:AllSelector
+    children:
+    - id: GemHollowCrystal
+    - id: DivineVocalCordsImplant
+
+- type: entity
+  parent: LavalandCrateNecropolis
+  id: LavalandCrateNecropolisBubblegumFilled
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: BubblegumNecropolisCrateTable
+
+- type: entityTable
+  id: BubblegumNecropolisCrateTable
+  table: !type:AllSelector
+    children:
+    - id: GemBloodStone
+    - !type:GroupSelector
+      children:
+      - id: WeaponSpellBlade
+      - !type:AllSelector
+        children:
+        - id: ClothingOuterArmorHostileEnv
+        - id: ClothingHeadHelmetHostileEnv
+

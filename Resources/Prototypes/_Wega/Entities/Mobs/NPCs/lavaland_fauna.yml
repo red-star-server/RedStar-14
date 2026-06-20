@@ -106,6 +106,13 @@
       NavSmash: !type:Bool
         true
   - type: Fauna
+  - type: SpawnLootOnDeath
+    specialTable: !type:AllSelector
+      children:
+      - id: TrophyLavalandMarrowWeaverPoisonFang
+    weaponWhitelist:
+      components:
+      - MegafaunaWeaponLooter
 
 - type: entity
   parent: MobMarrowWeaverLavaland
@@ -130,3 +137,10 @@
         reagents:
         - ReagentId: Cryoxadone
           Quantity: 80
+  - type: SpawnLootOnDeath
+    specialTable: !type:AllSelector
+      children:
+      - id: TrophyLavalandFrostbiteWeaverFrostGland
+    weaponWhitelist:
+      components:
+      - MegafaunaWeaponLooter

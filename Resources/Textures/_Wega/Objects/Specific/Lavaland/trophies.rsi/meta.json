@@ -8,16 +8,28 @@
     },
     "states": [
         {
+            "name": "ancient_tendril"
+        },
+        {
             "name": "claws"
         },
         {
             "name": "eye"
         },
         {
+            "name": "fang"
+        },
+        {
+            "name": "ice_gland"
+        },
+        {
             "name": "skull"
         },
         {
             "name": "spike"
+        },
+        {
+            "name": "tendril"
         },
         {
             "name": "tubes"

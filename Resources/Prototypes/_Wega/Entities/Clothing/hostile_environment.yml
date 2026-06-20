@@ -1,0 +1,49 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: [ ClothingOuterBaseLarge, AllowSuitStorageClothing ]
+  id: ClothingOuterArmorHostileEnv
+  name: H.E.C.K. suit
+  description: An experimental kinetic suit designed for survival in exceptionally hostile environments.
+  components:
+  - type: Sprite
+    sprite: _Wega/Clothing/OuterClothing/Armor/hostile_env.rsi
+  - type: Clothing
+    sprite: _Wega/Clothing/OuterClothing/Armor/hostile_env.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.6
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.5
+  - type: TemperatureProtection
+    heatingCoefficient: 0.4
+    coolingCoefficient: 0.4
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetHostileEnv
+  name: H.E.C.K. helmet
+  description: An experimental helmet designed for survival in exceptionally hostile environments.
+  components:
+  - type: Sprite
+    sprite: _Wega/Clothing/Head/Helmets/hostile_env.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Wega/Clothing/Head/Helmets/hostile_env.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Caustic: 0.6
+  - type: EyeProtection
+    protectionTime: 5
+  - type: FlashImmunity

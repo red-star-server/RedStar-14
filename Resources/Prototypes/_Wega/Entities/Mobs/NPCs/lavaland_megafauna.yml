@@ -199,7 +199,7 @@
   - type: SpawnLootOnDeath
     table: !type:AllSelector
       children:
-      - id: LavalandCrateNecropolisFilled
+      - id: LavalandCrateNecropolisColossusFilled
     specialTable: !type:AllSelector
       children:
       - id: TrophyLavalandColossusBlasterTubes
@@ -235,7 +235,7 @@
   - type: SpawnLootOnDeath
     table: !type:AllSelector
       children:
-      - id: LavalandCrateNecropolisFilled
+      - id: LavalandCrateNecropolisAshDrakeFilled
     specialTable: !type:AllSelector
       children:
       - id: TrophyLavalandAshDrakeSpike
@@ -254,7 +254,7 @@
       state: bubblegum
   - type: BubblegumBoss
     rewards:
-    - LavalandCrateNecropolisFilled
+    - LavalandCrateNecropolisBubblegumFilled
     phase1Actions:
     - ActionBubblegumRage
     - ActionBubblegumBloodDive

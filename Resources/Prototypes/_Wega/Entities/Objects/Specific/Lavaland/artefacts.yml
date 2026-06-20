@@ -1,0 +1,125 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  parent: BaseItem
+  id: LavaStaffRod
+  name: staff of lava
+  description: The power of fire and stone is in your hands.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/lavastaff.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Wega/Objects/Specific/Lavaland/lavastaff.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    size: Normal
+    storedRotation: -45
+  - type: MeleeWeapon
+    attackRate: 0.5
+    damage:
+      types:
+        Heat: 15
+  - type: UseDelay
+    delay: 10
+  - type: LavaStaff
+    useSound:
+      path: /Audio/Effects/stonedoor_openclose.ogg
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: BaseItem
+  id: BottleDragonBlood
+  name: bottle of dragon blood
+  description: Drinking it permanently protects the body from fire and extreme heat.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/vial.rsi
+    state: icon
+  - type: DragonBlood
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: DivineVocalCordsImplant
+  name: divine vocal cords
+  description: An implant carrying the voice of an ancient god. A forceful command can knock nearby creatures down.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/voicegod.rsi
+    state: icon
+  - type: DivineVocalCordsImplant
+  - type: SubdermalImplant
+    whitelist:
+      components:
+      - MobState
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: BaseSword
+  id: WeaponSpectralBlade
+  name: spectral blade
+  description: A dull blade that grows stronger by stealing the souls of humanoids slain with it.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Melee/spectral_blade.rsi
+  - type: Item
+    sprite: _Wega/Objects/Weapons/Melee/spectral_blade.rsi
+    storedRotation: -45
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Slash: 1
+  - type: DisarmMalus
+  - type: SoulStorage
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: BaseSword
+  id: WeaponSpellBlade
+  name: spellblade
+  description: A blade able to launch a small reserve of self-recharging arcane bolts.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Weapons/Melee/spell_blade.rsi
+  - type: Item
+    sprite: _Wega/Objects/Weapons/Melee/spell_blade.rsi
+    storedRotation: -45
+    shape:
+    - 0,0,1,2
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Slash: 25
+  - type: Gun
+    soundGunshot: /Audio/Weapons/emitter.ogg
+    soundEmpty: null
+    fireRate: 1
+    useKey: false
+  - type: AmmoCounter
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 0.9
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileArcaneBarrage
+    capacity: 4
+    count: 4
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+  - type: Reflect
+    reflectProb: 0.5
+    spread: 90
+  - type: DisarmMalus
+  - type: StaticPrice
+    price: 5000
+

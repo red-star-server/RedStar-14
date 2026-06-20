@@ -4,3 +4,8 @@
 
 stack-sinew = sinew
 stack-chitin = chitin
+
+lavaland-trophy-goliath-name = goliath tentacle
+lavaland-trophy-ancient-goliath-name = ancient goliath tentacle
+lavaland-trophy-marrow-weaver-name = marrow weaver poison fang
+lavaland-trophy-frostbite-weaver-name = frostbite weaver frost gland
