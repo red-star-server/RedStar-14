@@ -25,7 +25,7 @@ public sealed partial class NPCUseActionsOnTargetComponent : Component
     [DataField(required: true)]
     public List<EntProtoId<TargetActionComponent>> ActionIds = new();
 
-    [DataField]
+    [ViewVariables]
     public Dictionary<EntProtoId<TargetActionComponent>, EntityUid?> ActionEnts = new();
 
     [DataField]
@@ -38,5 +38,5 @@ public sealed partial class NPCUseActionsOnTargetComponent : Component
     /// Values below 1 make action use faster; values above 1 make it slower.
     /// </summary>
     [DataField] public float DelayModifier = 1f;
-    [DataField] public TimeSpan NextUseTime = TimeSpan.Zero;
+    [ViewVariables] public TimeSpan NextUseTime = TimeSpan.Zero;
 }

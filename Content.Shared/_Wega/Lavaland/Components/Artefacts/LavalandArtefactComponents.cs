@@ -66,5 +66,43 @@ public sealed partial class DivineVoiceCarrierComponent : Component
     public EntityUid Implant;
 }
 
+[RegisterComponent]
+public sealed partial class RodOfAsclepiusComponent : Component
+{
+    [DataField]
+    public EntityUid? BoundTo;
+
+    [DataField]
+    public float HealRadius = 3f;
+
+    [DataField]
+    public TimeSpan HealInterval = TimeSpan.FromSeconds(5);
+
+    [ViewVariables]
+    public TimeSpan NextHealTime;
+
+    [DataField]
+    public float HealAmount = 2f;
+}
+
+[RegisterComponent]
+public sealed partial class LinkedCubeComponent : Component
+{
+    [DataField(required: true)]
+    public EntProtoId PairPrototype;
+
+    [DataField]
+    public float MinTeleportDistance = 4f;
+
+    [DataField]
+    public bool IsPrimary;
+
+    [ViewVariables]
+    public EntityUid? LinkedCube;
+}
+
 [Serializable, NetSerializable]
 public sealed partial class DragonBloodDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class RodOathDoAfterEvent : SimpleDoAfterEvent;

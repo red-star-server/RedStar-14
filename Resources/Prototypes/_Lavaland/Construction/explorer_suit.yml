@@ -17,6 +17,11 @@
       edges:
       - to: reinforced1
         steps:
+          # RS14-start
+          - material: Sinew
+            amount: 2
+            doAfter: 2
+          # RS14-end
           - material: GoliathHide
             amount: 1
             doAfter: 2

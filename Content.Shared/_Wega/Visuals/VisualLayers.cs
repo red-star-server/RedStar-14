@@ -9,4 +9,5 @@ namespace Content.Shared.Visuals;
 public enum VisualLayers : byte
 {
     Enabled,
+    Layer,
 }

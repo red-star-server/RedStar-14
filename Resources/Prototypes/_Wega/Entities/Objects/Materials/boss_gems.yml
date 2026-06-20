@@ -1,0 +1,60 @@
+# Все модификации и наработки в ss14-wega под тегом Corvax-Wega и директориях _Wega лицензированы под GNU GPL v3.
+# https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
+
+- type: entity
+  id: BaseLavalandBossGem
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Materials/gems.rsi
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ Destruction ]
+
+- type: entity
+  id: GemHollowCrystal
+  parent: BaseLavalandBossGem
+  name: hollow crystal
+  description: A blue crystal that shines with an inner void.
+  components:
+  - type: Sprite
+    layers:
+    - state: void
+    - state: shine
+  - type: PointLight
+    color: "#4e52f7"
+    radius: 1
+  - type: StaticPrice
+    price: 3200
+
+- type: entity
+  id: GemBloodStone
+  parent: BaseLavalandBossGem
+  name: blood stone
+  description: A red stone still pulsing with Bubblegum's rage.
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: shine
+  - type: PointLight
+    color: "#df2d2d"
+    radius: 1
+  - type: StaticPrice
+    price: 3800
+

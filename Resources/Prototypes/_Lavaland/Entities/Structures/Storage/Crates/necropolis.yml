@@ -51,6 +51,13 @@
     - id: LavalandBookOfGreentext # CorvaxGoob-BookOfGreentext
     # TODO add more interesting obtain methods for crusher upgrades (from megafauna, ruins, etc.)
     - id: CrusherUpgradeMainRudeBuster
+    # RS14-start
+    - id: RodOfAsclepius
+    - id: CubeRed
+    - id: DarkShard
+    - id: DustyShard
+    - id: ChemistryBottleStabilizingSerum
+    # RS14-end
 
     - !type:NestedSelector
       weight: 2

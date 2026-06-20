@@ -123,3 +123,134 @@
   - type: StaticPrice
     price: 5000
 
+- type: entity
+  parent: BaseItem
+  id: RodOfAsclepius
+  name: rod of Asclepius
+  description: Taking its oath grants a healing aura, but permanently renounces violence.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/rod_asclepius.rsi
+    layers:
+    - state: icon_dormant
+      map: [ "enum.VisualLayers.Layer" ]
+  - type: Item
+    heldPrefix: dormant
+  - type: RodOfAsclepius
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VisualLayers.Enabled:
+        enum.VisualLayers.Layer:
+          True: { state: icon_active }
+          False: { state: icon_dormant }
+
+- type: entity
+  parent: BaseItem
+  id: CubeRed
+  name: red linked cube
+  description: Teleports its user to the paired blue cube.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/cube.rsi
+    state: red
+  - type: LinkedCube
+    pairPrototype: CubeBlue
+    isPrimary: true
+
+- type: entity
+  parent: BaseItem
+  id: CubeBlue
+  name: blue linked cube
+  description: Teleports its user to the paired red cube.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/cube.rsi
+    state: blue
+  - type: LinkedCube
+    pairPrototype: CubeRed
+
+- type: entity
+  parent: BaseItem
+  id: DarkShard
+  name: dark shard
+  description: A sinister shard containing a shadow-forged blade.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/dark_shard.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: ShadowKatana
+
+- type: entity
+  parent: BaseItem
+  id: DustyShard
+  name: dusty shard
+  description: A glowing shard capable of binding a guardian to a host.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/dusty_shard.rsi
+    state: icon
+  - type: GuardianCreator
+    guardianProto: MobHoloparasiteGuardian
+
+- type: entity
+  parent: BaseItem
+  id: LegionCore
+  name: legion core
+  description: A fading organic core capable of rapidly restoring damaged tissue.
+  components:
+  - type: Sprite
+    sprite: _Wega/Objects/Specific/Lavaland/legioncore.rsi
+    layers:
+    - state: icon_active
+      map: [ "enum.VisualLayers.Layer" ]
+  - type: Item
+    size: Small
+  - type: Damageable
+  - type: Reactive
+    reactions:
+    - reagents: [ StabilizingSerum ]
+      methods: [ Touch ]
+      effects:
+      - !type:StabilizeLegionCore
+  - type: LegionCore
+    healAmount:
+      types:
+        Blunt: -25
+        Slash: -25
+        Piercing: -25
+        Heat: -25
+        Cold: -25
+        Poison: -25
+        Bloodloss: -25
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VisualLayers.Enabled:
+        enum.VisualLayers.Layer:
+          True: { state: icon_active }
+          False: { state: icon_base }
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ChemistryBottleStabilizingSerum
+  name: stabilizing serum bottle
+  description: A reagent formulated to preserve a living legion core.
+  components:
+  - type: Label
+    currentLabel: stabilizing serum
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: StabilizingSerum
+          Quantity: 30

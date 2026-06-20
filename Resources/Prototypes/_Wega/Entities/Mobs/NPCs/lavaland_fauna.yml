@@ -20,6 +20,18 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
     baseSprintSpeed: 4
+  - type: SpawnLootOnDeath
+    deleteOnDeath: true
+    table: !type:AllSelector
+      children:
+      - id: MaterialBones1
+        rolls: 1, 2
+      - !type:GroupSelector
+        children:
+        - id: LegionCore
+          weight: 1
+        - !type:NoneSelector
+          weight: 5
 
 - type: entity
   parent: BaseMobAsteroid

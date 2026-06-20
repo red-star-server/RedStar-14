@@ -72,7 +72,7 @@ public sealed partial class BubblegumBloodDiveActionEvent : EntityTargetActionEv
 
 public sealed partial class BubblegumTripleDashActionEvent : EntityTargetActionEvent
 {
-    [DataField] public List<float> DashDelays = [0.9f, 0.6f, 0.3f];
+    [DataField] public float[] DashDelays = [0.9f, 0.6f, 0.3f];
     [DataField] public float DashDistance = 6f;
     [DataField] public float MoveSpeed = 0.1f;
     [DataField(required: true)] public DamageSpecifier DashDamage;

@@ -198,11 +198,14 @@ public sealed partial class NPCUseActionsOnTargetSystem : EntitySystem
         _random.Shuffle(availableActions);
 
         var selectedAction = GetSelectedAction(availableActions, totalWeight);
-        if (!TryComp<ActionComponent>(selectedAction, out var selectedComp))
+        if (selectedAction is not { } selected)
             return false;
 
-        _actions.SetEventTarget(selectedAction.Value, target);
-        _actions.PerformAction(user.Owner, (selectedAction.Value, selectedComp), predicted: false);
+        if (!TryComp<ActionComponent>(selected, out var selectedComp))
+            return false;
+
+        _actions.SetEventTarget(selected, target);
+        _actions.PerformAction(user.Owner, (selected, selectedComp), predicted: false);
 
         if (selectedComp.UseDelay.HasValue)
         {

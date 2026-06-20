@@ -57,6 +57,19 @@ public sealed partial class AshDrakeSystem : EntitySystem
         SubscribeLocalEvent<AshDrakeBossComponent, AshDrakeConeFireActionEvent>(OnConeFireAction);
         SubscribeLocalEvent<AshDrakeBossComponent, AshDrakeBreathingFireActionEvent>(OnBreathingFireAction);
         SubscribeLocalEvent<AshDrakeBossComponent, AshDrakeLavaActionEvent>(OnLavaAction);
+        SubscribeLocalEvent<AshDrakeBossComponent, ComponentShutdown>(OnShutdown);
+    }
+
+    private void OnShutdown(Entity<AshDrakeBossComponent> ent, ref ComponentShutdown args)
+    {
+        if (!_activeArenas.Remove(ent.Owner, out var arenaData))
+            return;
+
+        CleanupArenaObjects(arenaData);
+        if (Exists(arenaData.Shadow))
+            QueueDel(arenaData.Shadow);
+        if (Exists(arenaData.LandingMarker))
+            QueueDel(arenaData.LandingMarker);
     }
 
     #region Cone Fire
@@ -522,7 +535,10 @@ public sealed partial class AshDrakeSystem : EntitySystem
         var drakeWorldPos = _transform.GetWorldPosition(ent);
         var targetWorldPos = _transform.GetWorldPosition(args.Target);
 
-        var direction = (targetWorldPos - drakeWorldPos).Normalized();
+        var delta = targetWorldPos - drakeWorldPos;
+        var direction = delta.LengthSquared() < 0.0001f
+            ? Transform(ent).LocalRotation.ToWorldVec()
+            : delta.Normalized();
 
         var mapUid = _transform.GetMap(ent.Owner);
         if (mapUid == null)
@@ -603,10 +619,12 @@ public sealed partial class AshDrakeSystem : EntitySystem
         var steps = 25;
         var stepTime = totalFlightTime / steps;
 
-        var currentPos = startPos;
-        var direction = (endPos - startPos).Normalized();
         var totalDistance = Vector2.Distance(startPos, endPos);
-        var stepDistance = totalDistance / steps;
+        if (totalDistance < 0.01f)
+        {
+            CompleteLavaJump(ent, shadow, endPos, args);
+            return;
+        }
 
         for (int i = 1; i <= steps; i++)
         {

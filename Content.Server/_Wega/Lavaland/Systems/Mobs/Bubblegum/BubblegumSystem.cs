@@ -57,7 +57,6 @@ public sealed partial class BubblegumSystem : EntitySystem
     private const float PassiveHandChance = 0.5f;
 
     private Dictionary<EntityUid, List<EntityUid>> _activeIllusions = new();
-    private HashSet<EntityUid> _dashDamagedTargets = new();
 
     public override void Initialize()
     {
@@ -65,6 +64,7 @@ public sealed partial class BubblegumSystem : EntitySystem
 
         SubscribeLocalEvent<BubblegumBossComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<BubblegumBossComponent, MobStateChangedEvent>(OnBubblegumKilled);
+        SubscribeLocalEvent<BubblegumBossComponent, ComponentShutdown>(OnShutdown);
 
         SubscribeLocalEvent<BubblegumBossComponent, BubblegumRageActionEvent>(OnRageAction);
         SubscribeLocalEvent<BubblegumBossComponent, BubblegumBloodDiveActionEvent>(OnBloodDiveAction);
@@ -72,6 +72,11 @@ public sealed partial class BubblegumSystem : EntitySystem
         SubscribeLocalEvent<BubblegumBossComponent, BubblegumIllusionDashActionEvent>(OnIllusionDash);
         SubscribeLocalEvent<BubblegumBossComponent, BubblegumPentagramDashActionEvent>(OnPentagramDashAction);
         SubscribeLocalEvent<BubblegumBossComponent, BubblegumChaoticIllusionDashActionEvent>(OnChaoticIllusionDashAction);
+    }
+
+    private void OnShutdown(Entity<BubblegumBossComponent> ent, ref ComponentShutdown args)
+    {
+        CleanupIllusions(ent.Owner);
     }
 
     public override void Update(float frameTime)
@@ -218,33 +223,35 @@ public sealed partial class BubblegumSystem : EntitySystem
 
     private void PerformTripleDashStep(Entity<BubblegumBossComponent> ent, EntityUid target, EntityUid mapUid,
         DamageSpecifier dashDamage, float dashDistance, float moveSpeed, bool useSineWaveForLast,
-        List<float> dashDelays, int stepIndex)
+        float[] dashDelays, int stepIndex)
     {
         if (!Exists(ent.Owner) || _mobState.IsDead(ent.Owner) || !Exists(target))
             return;
 
         var bossPos = _transform.GetWorldPosition(ent);
         var currentTargetPos = _transform.GetWorldPosition(target);
+        var targetDelta = currentTargetPos - bossPos;
+        if (targetDelta.LengthSquared() < 0.0001f)
+            return;
+
+        var direction = targetDelta.Normalized();
         Vector2 dashTarget;
 
         if (stepIndex == 2)
         {
             if (useSineWaveForLast && _random.Prob(0.5f))
             {
-                var direction = (currentTargetPos - bossPos).Normalized();
                 var sineOffset = MathF.Sin(_timing.CurTime.Seconds * 4) * 2f;
                 var perpendicular = new Vector2(-direction.Y, direction.X);
                 dashTarget = currentTargetPos + perpendicular * sineOffset;
             }
             else
             {
-                var direction = (currentTargetPos - bossPos).Normalized();
                 dashTarget = currentTargetPos + direction * 3.5f;
             }
         }
         else
         {
-            var direction = (currentTargetPos - bossPos).Normalized();
             dashTarget = bossPos + direction * dashDistance;
         }
 
@@ -268,9 +275,9 @@ public sealed partial class BubblegumSystem : EntitySystem
 
     private void ScheduleNextDashStep(Entity<BubblegumBossComponent> ent, EntityUid target, EntityUid mapUid,
         DamageSpecifier dashDamage, float dashDistance, float moveSpeed, bool useSineWaveForLast,
-        List<float> dashDelays, int currentStep)
+        float[] dashDelays, int currentStep)
     {
-        if (currentStep >= dashDelays.Count - 1)
+        if (currentStep >= dashDelays.Length - 1)
             return;
 
         var nextStep = currentStep + 1;
@@ -438,7 +445,7 @@ public sealed partial class BubblegumSystem : EntitySystem
             DashDistance = 5f,
             MoveSpeed = 0.05f,
             UseSineWaveForLast = true,
-            DashDelays = new List<float> { 0.9f, 0.6f, 0.3f },
+            DashDelays = [0.9f, 0.6f, 0.3f],
             Performer = ent.Owner
         };
 
@@ -737,9 +744,6 @@ public sealed partial class BubblegumSystem : EntitySystem
                 marker = safeCoords.Value;
             }
 
-            illusionMarkers.Add(marker);
-
-            Spawn(ent.Comp.DashMarker, marker);
             for (int attempts = 0; attempts < 30; attempts++)
             {
                 var angle = _random.NextFloat(0, MathF.PI * 2);
@@ -754,7 +758,10 @@ public sealed partial class BubblegumSystem : EntitySystem
                 if (!CanSpawnAt(illusionCoords) || illusionTile == bossTile)
                     continue;
 
-                var direction = (marker.Position - illusionTile).Normalized();
+                var delta = marker.Position - illusionTile;
+                var direction = delta.LengthSquared() < 0.0001f
+                    ? Vector2.UnitX
+                    : delta.Normalized();
                 var illusion = SpawnAttachedTo(args.IllusionPrototype, illusionCoords, rotation: GetDirectionRotation(direction));
 
                 if (TryComp<BubblegumIllusionComponent>(illusion, out var illusionComp))
@@ -764,7 +771,12 @@ public sealed partial class BubblegumSystem : EntitySystem
                     illusionComp.TargetPosition = marker;
                     illusionComp.Damage = args.IllusionDamage;
                     illusions.Add(illusion);
+                    illusionMarkers.Add(marker);
+                    Spawn(ent.Comp.DashMarker, marker);
                 }
+                else
+                    QueueDel(illusion);
+
                 break;
             }
         }
@@ -819,8 +831,15 @@ public sealed partial class BubblegumSystem : EntitySystem
         var startTile = GetTileCenter(map.Value, startPos);
         var targetTile = target.Position;
 
-        var direction = (targetTile - startTile).Normalized();
-        var distance = Vector2.Distance(startTile, targetTile);
+        var delta = targetTile - startTile;
+        var distance = delta.Length();
+        if (distance < 0.01f)
+        {
+            onComplete?.Invoke();
+            return;
+        }
+
+        var direction = delta / distance;
         var steps = Math.Max(1, (int)Math.Ceiling(distance));
 
         var mapUid = _transform.GetMap(uid);
@@ -830,7 +849,7 @@ public sealed partial class BubblegumSystem : EntitySystem
             return;
         }
 
-        _dashDamagedTargets.Clear();
+        var damagedTargets = new HashSet<EntityUid>();
 
         if (!TryComp<BubblegumBossComponent>(uid, out var bossComp))
         {
@@ -845,7 +864,7 @@ public sealed partial class BubblegumSystem : EntitySystem
         for (int step = 1; step <= steps; step++)
         {
             ScheduleDashStep(uid, bossComp, mapUid.Value, startTile, direction, step, moveSpeed,
-                damage, stepCounter, isLastDash, onComplete);
+                damage, damagedTargets, stepCounter, isLastDash, onComplete);
         }
     }
 
@@ -859,7 +878,7 @@ public sealed partial class BubblegumSystem : EntitySystem
 
     private void ScheduleDashStep(EntityUid uid, BubblegumBossComponent bossComp, EntityUid mapUid,
         Vector2 startTile, Vector2 direction, int step, float moveSpeed, DamageSpecifier damage,
-        StepCounter stepCounter, bool isLastDash, Action? onComplete)
+        HashSet<EntityUid> damagedTargets, StepCounter stepCounter, bool isLastDash, Action? onComplete)
     {
         var currentStep = step;
 
@@ -890,7 +909,7 @@ public sealed partial class BubblegumSystem : EntitySystem
             SpawnAttachedTo(bossComp.DashTrail, currentCoords,
                 rotation: GetDirectionRotation(direction));
 
-            CheckDashDamage(uid, currentCoords, damage);
+            CheckDashDamage(uid, currentCoords, damage, damagedTargets);
             _audio.PlayPvs(bossComp.DashSound, uid);
 
             stepCounter.CompletedSteps++;
@@ -917,7 +936,8 @@ public sealed partial class BubblegumSystem : EntitySystem
         });
     }
 
-    private void CheckDashDamage(EntityUid uid, EntityCoordinates coords, DamageSpecifier damage)
+    private void CheckDashDamage(EntityUid uid, EntityCoordinates coords, DamageSpecifier damage,
+        HashSet<EntityUid> damagedTargets)
     {
         var entities = _lookup.GetEntitiesInRange<MobStateComponent>(coords, 1f, LookupFlags.Uncontained);
         foreach (var entity in entities)
@@ -925,18 +945,18 @@ public sealed partial class BubblegumSystem : EntitySystem
             if (entity.Owner == uid || HasComp<BubblegumBossComponent>(entity.Owner))
                 continue;
 
-            if (_dashDamagedTargets.Contains(entity.Owner))
+            if (damagedTargets.Contains(entity.Owner))
                 continue;
 
             if (_mobState.IsIncapacitated(entity.Owner))
             {
                 _body.GibBody(entity.Owner);
-                _dashDamagedTargets.Add(entity.Owner);
+                damagedTargets.Add(entity.Owner);
                 continue;
             }
 
             if (_damage.TryChangeDamage(entity.Owner, damage) is not null)
-                _dashDamagedTargets.Add(entity.Owner);
+                damagedTargets.Add(entity.Owner);
         }
     }
 
@@ -965,8 +985,12 @@ public sealed partial class BubblegumSystem : EntitySystem
         var startTile = GetTileCenter(map.Value, startPos);
         var targetTile = GetTileCenter(map.Value, targetPos);
 
-        var direction = (targetTile - startTile).Normalized();
-        var distance = Vector2.Distance(startTile, targetTile);
+        var delta = targetTile - startTile;
+        var distance = delta.Length();
+        if (distance < 0.01f)
+            return;
+
+        var direction = delta / distance;
         var steps = Math.Max(1, (int)Math.Ceiling(distance));
 
         illusion.TotalSteps = steps;
@@ -1216,7 +1240,10 @@ public sealed partial class BubblegumSystem : EntitySystem
 
         if (TryComp<BubblegumBossComponent>(ent.Owner, out var bossComp))
         {
-            var direction = (_transform.GetWorldPosition(target) - _transform.GetWorldPosition(ent)).Normalized();
+            var delta = _transform.GetWorldPosition(target) - _transform.GetWorldPosition(ent);
+            var direction = delta.LengthSquared() < 0.0001f
+                ? Vector2.UnitX
+                : delta.Normalized();
             SpawnAttachedTo(bossComp.DashTrail, position, rotation: GetDirectionRotation(direction));
             _audio.PlayPvs(bossComp.DashSound, ent.Owner);
         }
@@ -1229,7 +1256,10 @@ public sealed partial class BubblegumSystem : EntitySystem
         if (!IsValidSpawnPosition(position))
             return null;
 
-        var direction = (targetCoords.Position - position.Position).Normalized();
+        var delta = targetCoords.Position - position.Position;
+        var direction = delta.LengthSquared() < 0.0001f
+            ? Vector2.UnitX
+            : delta.Normalized();
         var illusion = SpawnAttachedTo(prototype, position, rotation: GetDirectionRotation(direction));
         if (TryComp<BubblegumIllusionComponent>(illusion, out var illusionComp))
         {

@@ -69,7 +69,11 @@ public sealed partial class LegionSystem : EntitySystem
         if (_timing.CurTime < ent.Comp.NextChargeTime)
             return;
 
-        var direction = (Transform(args.Target).Coordinates.Position - Transform(ent).Coordinates.Position).Normalized();
+        var delta = Transform(args.Target).Coordinates.Position - Transform(ent).Coordinates.Position;
+        if (delta.LengthSquared() < 0.0001f)
+            return;
+
+        var direction = delta.Normalized();
         _throwing.TryThrow(ent, Transform(ent).Coordinates.Offset(direction * 6f), 15f);
         ent.Comp.NextChargeTime = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.ChargeInterval);
     }
