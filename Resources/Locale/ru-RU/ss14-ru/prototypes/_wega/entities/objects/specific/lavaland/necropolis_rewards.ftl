@@ -1,0 +1,9 @@
+ent-ClothingHandsGlovesConcussiveGauntlets = ударные перчатки
+    .desc = Кирки... для ваших рук!
+ent-WeaponPossessedBlade = одержимый клинок
+    .desc = Когда станция погружается в хаос, приятно иметь рядом друга.
+ent-DrinkUnholyFlask = старый флакон
+    .desc = Покрыт слоем пыли.
+ent-DrinkUnholyFlaskFull = { ent-DrinkUnholyFlask }
+    .desc = { ent-DrinkUnholyFlask.desc }
+    .suffix = Полный
