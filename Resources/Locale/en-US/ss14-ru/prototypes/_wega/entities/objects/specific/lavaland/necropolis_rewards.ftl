@@ -1,0 +1,9 @@
+ent-ClothingHandsGlovesConcussiveGauntlets = concussive gauntlets
+    .desc = Mining tools worn directly on the hands.
+ent-WeaponPossessedBlade = possessed blade
+    .desc = A sentient blade waiting for a spirit to awaken within it.
+ent-DrinkUnholyFlask = old flask
+    .desc = A dusty flask marked with an ominous symbol.
+ent-DrinkUnholyFlaskFull = { ent-DrinkUnholyFlask }
+    .suffix = Full
+    .desc = { ent-DrinkUnholyFlask.desc }

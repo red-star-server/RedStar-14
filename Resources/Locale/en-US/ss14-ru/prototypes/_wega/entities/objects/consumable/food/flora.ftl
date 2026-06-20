@@ -1,0 +1,12 @@
+ent-FoodFloraCactusFruit = barrel cactus fruit
+    .desc = A juicy sweet-and-sour fruit covered with thin thorns.
+ent-FoodFloraPolyporeMushroom = wood tinder fungus
+    .desc = A tough leathery mushroom.
+ent-FoodFloraInocybeMushroom = pale fire mushroom
+    .desc = A fragile psychoactive and toxic mushroom.
+ent-FoodFloraPorciniMushroom = smoky boletus
+    .desc = A fleshy edible mushroom with a smoky aroma.
+ent-FoodFloraEmbershroom = embershroom
+    .desc = A dense mushroom with faintly glowing veins.
+ent-FlowerFireBlossom = fire blossom
+    .desc = A warm, luminous flower from Lavaland.

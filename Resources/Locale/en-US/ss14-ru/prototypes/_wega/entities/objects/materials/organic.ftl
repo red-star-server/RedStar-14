@@ -1,0 +1,12 @@
+ent-MaterialSinew = sinew
+    .desc = A tough bundle of tendons taken as a hunter's trophy.
+    .suffix = Full
+ent-MaterialSinew1 = { ent-MaterialSinew }
+    .suffix = 1
+    .desc = { ent-MaterialSinew.desc }
+ent-MaterialChitin = chitin
+    .desc = A durable plate of arthropod chitin.
+    .suffix = Full
+ent-MaterialChitin1 = { ent-MaterialChitin }
+    .suffix = 1
+    .desc = { ent-MaterialChitin.desc }

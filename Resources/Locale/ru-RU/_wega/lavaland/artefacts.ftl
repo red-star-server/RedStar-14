@@ -9,7 +9,6 @@ legion-core-inert = Ядро легиона стало инертным.
 dragon-blood-effect-1 = Кровь прожигает вашу плоть, оставляя лишь кости.
 dragon-blood-effect-2 = Лава больше не причиняет вам вреда и не замедляет вас.
 dragon-blood-effect-3 = Вы чувствуете, что под вашей кожей скрывается драконья форма.
-
 lavaland-ruin-barracks = заброшенные казармы
 lavaland-ruin-beach = подземный пляж
 lavaland-ruin-cloning-pod = заброшенная капсула клонирования

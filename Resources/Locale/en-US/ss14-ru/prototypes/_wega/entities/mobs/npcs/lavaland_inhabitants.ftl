@@ -1,0 +1,10 @@
+ent-BaseMobLavalandInhabitant = { ent-MobHuman }
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanInhabitantSquare = inhabitant of the square
+    .desc = { ent-BaseMobLavalandInhabitant.desc }
+ent-MobHumanInhabitantHermit = hermit
+    .desc = { ent-BaseMobLavalandInhabitant.desc }
+ent-MobHumanInhabitantBeachGuy = beachgoer
+    .desc = { ent-BaseMobLavalandInhabitant.desc }
+ent-MobHumanInhabitantTranslocatedVeterinarian = translocated veterinarian
+    .desc = { ent-BaseMobLavalandInhabitant.desc }

@@ -1,0 +1,15 @@
+ent-SpawnMobBloodDrunkMinerLavaland = { ent-MarkerBase }
+    .suffix = Wega Lavaland boss
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMegaLegionLavaland = { ent-MarkerBase }
+    .suffix = Wega Lavaland boss
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnColossusLavaland = { ent-MarkerBase }
+    .suffix = Wega Lavaland boss
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnAshDrakeLavaland = { ent-MarkerBase }
+    .suffix = Wega Lavaland boss
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnBubblegumLavaland = { ent-MarkerBase }
+    .suffix = Wega Lavaland boss
+    .desc = { ent-MarkerBase.desc }

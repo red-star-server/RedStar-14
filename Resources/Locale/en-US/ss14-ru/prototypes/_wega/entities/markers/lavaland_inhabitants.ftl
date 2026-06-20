@@ -1,0 +1,16 @@
+ent-SpawnInhabitantSquare = inhabitant of the square spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnInhabitantHermit = hermit spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnInhabitantBeachGuy = beachgoer spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnInhabitantTranslocatedVeterinarian = translocated veterinarian spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobLegionLavaland = legion spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobMarrowWeaverLavaland = marrow weaver spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobFrostbiteWeaverLavaland = frostbite weaver spawner
+    .desc = { ent-MarkerBase.desc }
+ent-MarkerBeachSignal = beach signal
+    .desc = { ent-MarkerBase.desc }
