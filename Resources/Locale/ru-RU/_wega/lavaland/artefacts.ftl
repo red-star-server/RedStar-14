@@ -5,3 +5,4 @@
 reagent-name-stabilizing-serum = стабилизирующая сыворотка
 reagent-desc-stabilizing-serum = Специализированный консервант для нестабильных органических артефактов.
 reagent-effect-guidebook-stabilize-legion-core = При контакте стабилизирует активное ядро легиона.
+legion-core-inert = Ядро легиона стало инертным.

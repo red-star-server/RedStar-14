@@ -5,3 +5,4 @@
 reagent-name-stabilizing-serum = stabilizing serum
 reagent-desc-stabilizing-serum = A specialized preservative for unstable organic artifacts.
 reagent-effect-guidebook-stabilize-legion-core = Stabilizes an active legion core on contact.
+legion-core-inert = The legion core has gone inert.

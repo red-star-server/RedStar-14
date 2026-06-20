@@ -54,7 +54,7 @@ public sealed class LegionCoreSystem : EntitySystem
         if (args.Handled)
             return;
 
-        args.Handled = TryHeal(args.User, ent);
+        args.Handled = TryHeal(args.User, args.User, ent);
     }
 
     private void OnInteract(Entity<LegionCoreComponent> ent, ref AfterInteractEvent args)
@@ -62,16 +62,29 @@ public sealed class LegionCoreSystem : EntitySystem
         if (args.Handled || !args.CanReach || args.Target is not { } target)
             return;
 
-        args.Handled = TryHeal(target, ent);
+        args.Handled = TryHeal(target, args.User, ent);
     }
 
-    private bool TryHeal(EntityUid target, Entity<LegionCoreComponent> core)
+    private bool TryHeal(EntityUid target, EntityUid user, Entity<LegionCoreComponent> core)
     {
-        if (!core.Comp.Active || !HasComp<DamageableComponent>(target))
+        if (!core.Comp.Stabilized && core.Comp.ActiveEndTime <= _timing.CurTime)
         {
-            _popup.PopupEntity("The legion core has gone inert.", target, target, PopupType.SmallCaution);
+            core.Comp.Active = false;
+            _appearance.SetData(core, VisualLayers.Enabled, false);
+        }
+
+        if (!core.Comp.Active)
+        {
+            _popup.PopupEntity(
+                Loc.GetString("legion-core-inert"),
+                core,
+                user,
+                PopupType.SmallCaution);
             return false;
         }
+
+        if (!HasComp<DamageableComponent>(target))
+            return false;
 
         _damage.TryChangeDamage(target, core.Comp.HealAmount, true, false);
         QueueDel(core);
