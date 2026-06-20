@@ -91,6 +91,9 @@
     accent: xeno
   - type: NoSlip
   - type: IgnoreSpiderWeb
+  - type: WeatherImmune
+  - type: Unrevivable
+    analyzable: false
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid

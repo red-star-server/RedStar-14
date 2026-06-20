@@ -24,6 +24,5 @@
   - type: Appearance
   - type: Foldable
     canFoldInsideContainer: true
-    unfoldVerbText: fold-zip-verb
-    foldVerbText: fold-unzip-verb
-
+    unfoldVerbText: fold-unzip-verb
+    foldVerbText: fold-zip-verb

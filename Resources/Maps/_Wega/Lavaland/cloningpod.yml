@@ -574,26 +574,6 @@ entities:
     - type: Transform
       pos: -5.5,0.5
       parent: 1
-  - uid: 168
-    components:
-    - type: Transform
-      pos: -5.5,0.5
-      parent: 1
-  - uid: 169
-    components:
-    - type: Transform
-      pos: -5.5,1.5
-      parent: 1
-  - uid: 170
-    components:
-    - type: Transform
-      pos: -5.5,2.5
-      parent: 1
-  - uid: 171
-    components:
-    - type: Transform
-      pos: -5.5,3.5
-      parent: 1
   - uid: 172
     components:
     - type: Transform
@@ -663,11 +643,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,7.5
-      parent: 1
-  - uid: 187
-    components:
-    - type: Transform
-      pos: 1.5,6.5
       parent: 1
   - uid: 188
     components:
@@ -748,11 +723,6 @@ entities:
     components:
     - type: Transform
       pos: 6.5,5.5
-      parent: 1
-  - uid: 206
-    components:
-    - type: Transform
-      pos: 3.5,6.5
       parent: 1
   - uid: 207
     components:

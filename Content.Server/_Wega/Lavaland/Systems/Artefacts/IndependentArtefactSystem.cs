@@ -41,6 +41,7 @@ public sealed class IndependentArtefactSystem : EntitySystem
         SubscribeLocalEvent<RodOfAsclepiusComponent, UseInHandEvent>(OnRodUse);
         SubscribeLocalEvent<RodOfAsclepiusComponent, RodOathDoAfterEvent>(OnRodOath);
         SubscribeLocalEvent<LinkedCubeComponent, MapInitEvent>(OnCubeMapInit);
+        SubscribeLocalEvent<LinkedCubeComponent, ComponentShutdown>(OnCubeShutdown);
         SubscribeLocalEvent<LinkedCubeComponent, UseInHandEvent>(OnCubeUse);
     }
 
@@ -133,6 +134,12 @@ public sealed class IndependentArtefactSystem : EntitySystem
         ent.Comp.LinkedCube = pair;
         if (TryComp<LinkedCubeComponent>(pair, out var pairComp))
             pairComp.LinkedCube = ent;
+    }
+
+    private void OnCubeShutdown(Entity<LinkedCubeComponent> ent, ref ComponentShutdown args)
+    {
+        if (ent.Comp.LinkedCube is { } pair && Exists(pair))
+            QueueDel(pair);
     }
 
     private void OnCubeUse(Entity<LinkedCubeComponent> ent, ref UseInHandEvent args)

@@ -106,7 +106,11 @@
   - type: Sprite
     sprite: _Wega/Objects/Specific/Hydroponics/fireblossom.rsi
     state: produce
+  - type: Produce
+    seedId: fireblossomflower
   - type: PointLight
     radius: 1.2
     energy: 2
     color: "#F54900"
+  - type: PotencyVisuals
+  - type: Appearance

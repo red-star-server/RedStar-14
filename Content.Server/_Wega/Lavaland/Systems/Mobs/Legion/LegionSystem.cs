@@ -21,6 +21,7 @@ public sealed partial class LegionSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<LegionBossComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<LegionSplitComponent, MapInitEvent>(OnSplitMapInit);
         SubscribeLocalEvent<LegionBossComponent, MegaLegionAction>(OnAction);
         SubscribeLocalEvent<LegionBossComponent, MobStateChangedEvent>(OnBossKilled);
         SubscribeLocalEvent<LegionSplitComponent, MobStateChangedEvent>(OnSplitKilled);
@@ -46,6 +47,11 @@ public sealed partial class LegionSystem : EntitySystem
         ent.Comp.NextStateSwitchTime = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.StateSwitchInterval);
         ent.Comp.NextSummonTime = _timing.CurTime;
         ent.Comp.NextChargeTime = _timing.CurTime;
+    }
+
+    private void OnSplitMapInit(Entity<LegionSplitComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.SplitGroup = Guid.NewGuid();
     }
 
     private void OnAction(Entity<LegionBossComponent> ent, ref MegaLegionAction args)
@@ -92,8 +98,13 @@ public sealed partial class LegionSystem : EntitySystem
 
         if (!HasComp<LegionSplitComponent>(ent))
         {
+            var splitGroup = Guid.NewGuid();
             foreach (var prototype in ent.Comp.SplitPrototypes)
-                Spawn(prototype, coords);
+            {
+                var split = Spawn(prototype, coords);
+                if (TryComp<LegionSplitComponent>(split, out var splitComponent))
+                    splitComponent.SplitGroup = splitGroup;
+            }
         }
 
         QueueDel(ent);
@@ -107,15 +118,35 @@ public sealed partial class LegionSystem : EntitySystem
         var coords = Transform(ent).Coordinates;
         if (ent.Comp.NextSplitPrototype is { } nextSplit)
         {
-            Spawn(nextSplit, coords);
-            Spawn(nextSplit, coords);
+            for (var i = 0; i < 2; i++)
+            {
+                var split = Spawn(nextSplit, coords);
+                if (TryComp<LegionSplitComponent>(split, out var splitComponent))
+                    splitComponent.SplitGroup = ent.Comp.SplitGroup;
+            }
         }
-        else if (TryComp<LegionBossComponent>(ent, out var boss))
+        else if (TryComp<LegionBossComponent>(ent, out var boss) && IsLastLivingSplit(ent, ent.Comp.SplitGroup))
         {
             foreach (var reward in boss.RewardsProto)
                 Spawn(reward, coords);
         }
 
         QueueDel(ent);
+    }
+
+    private bool IsLastLivingSplit(EntityUid dyingSplit, Guid splitGroup)
+    {
+        var query = EntityQueryEnumerator<LegionSplitComponent>();
+        while (query.MoveNext(out var uid, out var split))
+        {
+            if (uid != dyingSplit &&
+                split.SplitGroup == splitGroup &&
+                !_mobState.IsDead(uid))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

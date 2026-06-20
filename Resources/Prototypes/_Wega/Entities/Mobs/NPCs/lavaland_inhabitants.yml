@@ -3,6 +3,7 @@
 # https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
 
 - type: entity
+  parent: MobHuman
   id: BaseMobLavalandInhabitant
   abstract: true
   components:
@@ -13,7 +14,7 @@
   - type: WeatherImmune
 
 - type: entity
-  parent: [ MobHuman, BaseMobLavalandInhabitant ]
+  parent: BaseMobLavalandInhabitant
   id: MobHumanInhabitantSquare
   name: inhabitant of the square
   components:
@@ -40,7 +41,7 @@
   - SpearReinforced
 
 - type: entity
-  parent: [ MobHuman, BaseMobLavalandInhabitant ]
+  parent: BaseMobLavalandInhabitant
   id: MobHumanInhabitantHermit
   name: hermit
   components:
@@ -71,7 +72,7 @@
     suitstorage: OxygenTankFilled
 
 - type: entity
-  parent: [ MobHuman, BaseMobLavalandInhabitant ]
+  parent: BaseMobLavalandInhabitant
   id: MobHumanInhabitantBeachGuy
   name: beachgoer
   components:
@@ -144,7 +145,7 @@
     - ClothingMaskBreath
 
 - type: entity
-  parent: [ MobHuman, BaseMobLavalandInhabitant ]
+  parent: BaseMobLavalandInhabitant
   id: MobHumanInhabitantTranslocatedVeterinarian
   name: translocated veterinarian
   components:

@@ -58,6 +58,8 @@ public sealed class LavalandArtefactSystem : EntitySystem
         SubscribeLocalEvent<LavaStaffComponent, AfterInteractEvent>(OnLavaStaffInteract);
         SubscribeLocalEvent<DragonBloodComponent, UseInHandEvent>(OnDragonBloodUse);
         SubscribeLocalEvent<DragonBloodComponent, DragonBloodDoAfterEvent>(OnDragonBloodComplete);
+        SubscribeLocalEvent<BecomeToDrakeActionEvent>(OnBecomeToDrake);
+        SubscribeLocalEvent<DrakeReturnBackActionEvent>(OnReturnFromDrake);
         SubscribeLocalEvent<SoulStorageComponent, MeleeHitEvent>(OnSpectralBladeHit);
         SubscribeLocalEvent<HumanoidAppearanceComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<DivineVocalCordsImplantComponent, ImplantImplantedEvent>(OnDivineVoiceImplanted);
@@ -142,6 +144,23 @@ public sealed class LavalandArtefactSystem : EntitySystem
         _audio.PlayPvs(ent.Comp.UseSound, args.User);
         _popup.PopupEntity(Loc.GetString($"dragon-blood-effect-{effect}"), args.User, args.User);
         QueueDel(ent);
+        args.Handled = true;
+    }
+
+    private void OnBecomeToDrake(BecomeToDrakeActionEvent args)
+    {
+        var polymorph = _polymorph.PolymorphEntity(args.Performer, args.LowerDrake);
+        if (polymorph == null)
+            return;
+
+        _actions.AddAction(polymorph.Value, args.ReturnBack);
+        args.Handled = true;
+    }
+
+    private void OnReturnFromDrake(DrakeReturnBackActionEvent args)
+    {
+        _actions.RemoveAction(args.Performer, args.Action.Owner);
+        _polymorph.Revert(args.Performer);
         args.Handled = true;
     }
 

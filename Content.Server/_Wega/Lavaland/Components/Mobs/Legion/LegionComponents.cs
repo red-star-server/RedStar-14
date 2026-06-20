@@ -49,4 +49,7 @@ public sealed partial class LegionSplitComponent : Component
 {
     [DataField("nextSplit")]
     public EntProtoId? NextSplitPrototype;
+
+    [ViewVariables]
+    public Guid SplitGroup;
 }

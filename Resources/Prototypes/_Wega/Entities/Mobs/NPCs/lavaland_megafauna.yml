@@ -11,7 +11,7 @@
     randomizeName: false
   - type: NpcFactionMember
     factions:
-    - SimpleHostile
+    - Lavafauna
   - type: HTN
     rootTask:
       task: SimpleHumanoidHostileCompound
@@ -82,6 +82,9 @@
     thresholds:
       0: Alive
       800: Dead
+  - type: NpcFactionMember
+    factions:
+    - Lavafauna
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -186,6 +189,9 @@
   parent: LavalandBossColossus
   id: MobColossus
   components:
+  - type: NpcFactionMember
+    factions:
+    - Lavafauna
   - type: Sprite
     sprite: _Wega/Mobs/Lavaland/colossus.rsi
     layers:
@@ -203,7 +209,7 @@
   - type: ColossusBoss
   - type: HTN
     rootTask:
-      task: SimpleRangedHostileCompound
+      task: SimpleHostileCompound
     blackboard:
       NavSmash: !type:Bool
         true
@@ -214,6 +220,11 @@
     - ActionColossusCross
     - ActionColossusSpiral
     - ActionColossusTripleFraction
+    actionChances:
+      ActionColossusFraction: 0.6
+      ActionColossusCross: 0.4
+      ActionColossusSpiral: 0.6
+      ActionColossusTripleFraction: 0.5
   - type: SpawnLootOnDeath
     deleteOnDeath: true
     dropBoth: true
@@ -231,6 +242,9 @@
   parent: LavalandBossAshDrake
   id: MobAshDrake
   components:
+  - type: NpcFactionMember
+    factions:
+    - Lavafauna
   - type: Sprite
     sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
     layers:
@@ -248,7 +262,7 @@
   - type: AshDrakeBoss
   - type: HTN
     rootTask:
-      task: SimpleRangedHostileCompound
+      task: SimpleHostileCompound
     blackboard:
       NavSmash: !type:Bool
         true
@@ -258,6 +272,10 @@
     - ActionAshDrakeConeFire
     - ActionAshDrakeBreathingFire
     - ActionAshDrakeLava
+    actionChances:
+      ActionAshDrakeConeFire: 0.75
+      ActionAshDrakeBreathingFire: 0.6
+      ActionAshDrakeLava: 0.1
   - type: SpawnLootOnDeath
     deleteOnDeath: true
     dropBoth: true
@@ -342,6 +360,9 @@
   parent: LavalandBossBubblegum
   id: MobBubblegum
   components:
+  - type: NpcFactionMember
+    factions:
+    - Lavafauna
   - type: Sprite
     sprite: _Wega/Mobs/Lavaland/bubblegum.rsi
     layers:
@@ -381,6 +402,10 @@
     - ActionBubblegumRage
     - ActionBubblegumBloodDive
     - ActionBubblegumTripleDash
+    actionChances:
+      ActionBubblegumRage: 0.1
+      ActionBubblegumBloodDive: 0.5
+      ActionBubblegumTripleDash: 0.8
   - type: SpawnLootOnDeath
     deleteOnDeath: true
     specialTable: !type:AllSelector

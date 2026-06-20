@@ -3,6 +3,7 @@
 
 using Content.Server._Wega.Lavaland.Mobs.Components;
 using Content.Shared._Wega.Lavaland.Events;
+using Content.Shared.SSDIndicator;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Wega.Lavaland.Mobs;
@@ -16,7 +17,13 @@ public sealed partial class BloodDrunkMinerSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<BloodDrunkMinerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<BloodDrunkMinerComponent, BloodDrunkMinerDashAction>(OnDash);
+    }
+
+    private void OnMapInit(Entity<BloodDrunkMinerComponent> ent, ref MapInitEvent args)
+    {
+        RemComp<SSDIndicatorComponent>(ent);
     }
 
     private void OnDash(Entity<BloodDrunkMinerComponent> ent, ref BloodDrunkMinerDashAction args)

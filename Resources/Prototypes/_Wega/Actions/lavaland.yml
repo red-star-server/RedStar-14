@@ -14,8 +14,22 @@
       sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
       state: dragon
   - type: InstantAction
-    event: !type:PolymorphActionEvent
-      protoId: LowerAshDrakePolymorph
+    event: !type:BecomeToDrakeActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: DrakeReturnBackAction
+  name: return from ash drake form
+  description: Return to your original form.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Wega/Mobs/Lavaland/ashdrake.rsi
+      state: dragon
+  - type: InstantAction
+    event: !type:DrakeReturnBackActionEvent
 
 - type: entity
   parent: BaseAction

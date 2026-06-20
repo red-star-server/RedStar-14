@@ -25,6 +25,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.4
     coolingCoefficient: 0.4
+  - type: PressureArmorChange
 
 - type: entity
   parent: ClothingHeadHelmetBase
@@ -47,3 +48,4 @@
   - type: EyeProtection
     protectionTime: 5
   - type: FlashImmunity
+  - type: PressureArmorChange
