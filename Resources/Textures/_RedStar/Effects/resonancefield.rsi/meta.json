@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Create by flom1ng0 (discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "resonancefield",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

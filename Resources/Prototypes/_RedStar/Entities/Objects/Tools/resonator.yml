@@ -112,8 +112,8 @@
     noRot: true
     layers:
     - shader: unshaded
-      sprite: Effects/chronofield.rsi
-      state: chronofield
+      sprite: _RedStar/Effects/resonancefield.rsi
+      state: resonancefield
   - type: ResonanceField
   - type: Tag
     tags:
