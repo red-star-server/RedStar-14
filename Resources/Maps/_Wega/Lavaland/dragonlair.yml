@@ -109,7 +109,6 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
-    - type: ExplosionAirtightGrid
 - proto: Catwalk
   entities:
   - uid: 6253

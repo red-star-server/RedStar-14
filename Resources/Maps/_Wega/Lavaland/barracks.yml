@@ -106,7 +106,6 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
-    - type: ExplosionAirtightGrid
 - proto: Bed
   entities:
   - uid: 8799

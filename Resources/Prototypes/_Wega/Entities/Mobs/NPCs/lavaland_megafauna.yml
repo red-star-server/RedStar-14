@@ -96,13 +96,22 @@
     - ActionMegaLegion
   - type: LegionBoss
     summonCount: 3
+    lootPrototypes:
+      MaterialBones1: 1
+      LavalandCrateNecropolisFilled: 0.2
+      LegionCore: 0.1
     rewards:
-    - LavalandCrateNecropolisFilled
+    - CrowbarRed
 
 - type: entity
   parent: BaseMobMegaLegion
   id: MobMegaLegion
   components:
+  - type: LegionBoss
+    lootPrototypes:
+      MaterialBones: 1
+      LavalandCrateNecropolisFilled: 0.2
+      LegionCore: 0.1
   - type: SpawnLootOnDeath
     deleteOnDeath: true
     specialTable: !type:AllSelector
@@ -183,7 +192,7 @@
     nextSplit: null
   - type: LegionBoss
     rewards:
-    - LavalandCrateNecropolisFilled
+    - CrowbarRed
 
 - type: entity
   parent: LavalandBossColossus

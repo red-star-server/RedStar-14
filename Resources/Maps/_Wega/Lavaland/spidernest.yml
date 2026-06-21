@@ -135,7 +135,6 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
-    - type: ExplosionAirtightGrid
 - proto: ClothingHeadHatHoodCulthood
   entities:
   - uid: 9508

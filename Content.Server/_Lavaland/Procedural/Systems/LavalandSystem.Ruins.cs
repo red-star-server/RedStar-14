@@ -37,14 +37,11 @@ public sealed partial class LavalandSystem
 
         // Create a new list that excludes all already used spaces that intersect with big ruins.
         // Sweet optimization (another lag machine).
-        var newCoords = coords.ToHashSet();
-        foreach (var usedBox in usedSpace)
-        {
-            var list = coords.Where(coord => !usedBox.Contains(coord)).ToHashSet();
-            newCoords = newCoords.Concat(list).ToHashSet();
-        }
-
-        coords = newCoords.ToList();
+        // RS14: actually exclude coordinates occupied by loaded grid ruins.
+        // The previous union always retained the original unfiltered set.
+        coords = coords
+            .Where(coord => usedSpace.All(usedBox => !usedBox.Contains(coord)))
+            .ToList();
 
         // Load dungeon ruins
         // TODO: make it actual dungeons instead of spawning markers
@@ -166,6 +163,10 @@ public sealed partial class LavalandSystem
         if (usedSpace.Any(used => used.Intersects(ruinBox)))
         {
             Log.Debug($"Ruin {ruin.ID} can't be placed on picked coordinates {coord.ToString()} on {ToPrettyString(lavaland)} planet, skipping spawn.");
+            // RS14-start: do not leak rejected grids or retry the same blocked coordinate.
+            coords.Remove(coord);
+            QueueDel(spawned);
+            // RS14-end
             return false;
         }
 

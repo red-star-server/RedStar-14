@@ -253,8 +253,16 @@ public sealed partial class NPCSteeringSystem
             return;
         }
 
-        foreach (var ent in _mapSystem.GetLocalAnchoredEntities(poly.GraphUid, grid, poly.Box))
+        // RS14-start: Pathfinding includes dynamic blockers (for example pushed crates
+        // and closets), so smashing must be able to acquire them as attack targets too.
+        foreach (var ent in _lookup.GetEntitiesIntersecting(
+                     poly.GraphUid,
+                     poly.Box.Enlarged(-0.04f),
+                     flags: LookupFlags.Dynamic | LookupFlags.Static))
         {
+            if (ent == poly.GraphUid)
+                continue;
+
             if (!_physicsQuery.TryGetComponent(ent, out var body) ||
                 !body.Hard ||
                 !body.CanCollide ||
@@ -265,6 +273,7 @@ public sealed partial class NPCSteeringSystem
 
             ents.Add(ent);
         }
+        // RS14-end
     }
 
     private enum SteeringObstacleStatus : byte

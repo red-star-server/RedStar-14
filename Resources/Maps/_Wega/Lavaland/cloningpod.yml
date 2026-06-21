@@ -252,7 +252,6 @@ entities:
       data:
         chunkSize: 4
     - type: GasTileOverlay
-    - type: ExplosionAirtightGrid
     - type: RadiationGridResistance
 - proto: AirlockAssemblyHighSec
   entities:

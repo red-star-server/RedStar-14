@@ -10,6 +10,7 @@
     size: Large
     shape:
     - 0,0,1,1
+  - type: MegafaunaWeaponLooter # RS14: PKA kills should qualify for megafauna trophies.
   - type: PressureDamageChange
     applyToMelee: false
   - type: UpgradeableWeapon

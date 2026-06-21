@@ -68,10 +68,12 @@
     uniqueGroup: bubblegumTrophy
   - type: WeaponUpgradeDamage
     modifier: 1.15
-  - type: GunUpgradeVampirism
-    damageOnHit:
-      types:
-        Blunt: -5
+  - type: GunUpgradeComponents
+    components:
+    - type: LeechOnMarker
+      leech:
+        types:
+          Blunt: -5
 
 - type: entity
   parent: CrusherUpgradeMainMarker

@@ -35,11 +35,11 @@
     CorvaxRatvar: 1
     #Ratvar: 1
     CorvaxWeatherStation: 1
-    CorvaxLavaMiningPost: 2
-    CorvaxWarehouse: 2
+    CorvaxLavaMiningPost: 1 # RS14
+    CorvaxWarehouse: 1 # RS14
     CorvaxSyndicateShuttle: 1
     CorvaxUnathi: 1
-    CorvaxCrystal: 3
+    #CorvaxCrystal: 3
     # Corvax-Goob-end
     HierophantArena: 1
     # RS14-start: Wega megafauna arenas

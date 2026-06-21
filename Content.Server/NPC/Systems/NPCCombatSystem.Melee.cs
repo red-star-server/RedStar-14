@@ -115,18 +115,21 @@ public sealed partial class NPCCombatSystem
             return;
         }
 
-        if (TryComp<NPCSteeringComponent>(uid, out var steering) &&
-            steering.Status == SteeringStatus.NoPath)
-        {
-            component.Status = CombatStatus.TargetUnreachable;
-            return;
-        }
-
-        // TODO: When I get parallel operators move this as NPC combat shouldn't be handling this.
-        _steering.Register(uid, new EntityCoordinates(component.Target, Vector2.Zero), steering);
-
         if (distance > weapon.Range)
         {
+            // RS14-start: Do not reject targets already within melee range just because
+            // navigation cannot build a path to their occupied tile.
+            if (TryComp<NPCSteeringComponent>(uid, out var steering) &&
+                steering.Status == SteeringStatus.NoPath)
+            {
+                component.Status = CombatStatus.TargetUnreachable;
+                return;
+            }
+
+            // TODO: When I get parallel operators move this as NPC combat shouldn't be handling this.
+            _steering.Register(uid, new EntityCoordinates(component.Target, Vector2.Zero), steering);
+            // RS14-end
+
             component.Status = CombatStatus.TargetOutOfRange;
             return;
         }

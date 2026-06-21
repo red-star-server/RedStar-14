@@ -144,7 +144,6 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
-    - type: ExplosionAirtightGrid
 - proto: AmbrosiaVulgarisSeeds
   entities:
   - uid: 2

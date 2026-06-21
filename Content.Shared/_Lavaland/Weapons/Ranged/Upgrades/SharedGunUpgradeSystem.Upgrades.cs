@@ -4,6 +4,7 @@ using Content.Shared._Lavaland.Weapons.Ranged.Upgrades.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Containers;
@@ -50,13 +51,25 @@ public abstract partial class SharedGunUpgradeSystem
     private void OnCompsUpgradeInsert(Entity<GunUpgradeComponentsComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
         if (!_timing.ApplyingState && HasComp<UpgradeableWeaponComponent>(args.Container.Owner))
+        {
             EntityManager.AddComponents(args.Container.Owner, ent.Comp.Components);
+
+            // RS14: The inserted component bundle can contain Gun, so refresh after it exists.
+            if (TryComp(args.Container.Owner, out GunComponent? gun))
+                _gun.RefreshModifiers((args.Container.Owner, gun));
+        }
     }
 
     private void OnCompsUpgradeEject(Entity<GunUpgradeComponentsComponent> ent, ref EntGotRemovedFromContainerMessage args)
     {
         if (!_timing.ApplyingState && HasComp<UpgradeableWeaponComponent>(args.Container.Owner))
+        {
             EntityManager.RemoveComponents(args.Container.Owner, ent.Comp.Components);
+
+            // RS14: Another ranged upgrade may still provide Gun after this one is removed.
+            if (TryComp(args.Container.Owner, out GunComponent? gun))
+                _gun.RefreshModifiers((args.Container.Owner, gun));
+        }
     }
 
     private void OnSpeedRefresh(Entity<GunUpgradeSpeedComponent> ent, ref GunRefreshModifiersEvent args)
