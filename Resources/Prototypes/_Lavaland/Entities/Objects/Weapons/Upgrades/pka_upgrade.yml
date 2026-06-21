@@ -100,6 +100,25 @@
     coefficient: 1.5
 
 - type: entity
+  id: PKAUpgradeAoE
+  parent: BasePKAUpgrade
+  name: PKA modkit (area damage)
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#ec9b2d"
+    - state: overlay-2
+      color: "#a71010"
+    - state: overlay-3
+      color: "#eb4c13"
+  - type: GunUpgrade
+    name: gun-upgrade-aoe-name
+    uniqueGroup: aoe
+  - type: GunUpgradeAreaDamage
+
+- type: entity
   id: PKAUpgradePressure
   parent: [BaseSyndicateContraband, BasePKAUpgrade]
   name: PKA modkit (pressure)
@@ -153,5 +172,6 @@
     - id: PKAUpgradeDamage
     - id: PKAUpgradeRange
     - id: PKAUpgradeFireRate
+    - id: PKAUpgradeAoE
     - id: PKAUpgradeSpace
       weight: 0.6 # Not that useful

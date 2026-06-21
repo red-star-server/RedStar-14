@@ -7,6 +7,7 @@ lavaland-trophy-ash-drake-name = ash drake spike
 lavaland-trophy-bubblegum-name = demon claws
 lavaland-trophy-colossus-name = colossus blaster tubes
 lavaland-trophy-hierophant-name = hierophant vortex talisman
+gun-upgrade-aoe-name = area damage modkit
 
 lavaland-ruin-blood-drunk-miner = Blood-drunk miner arena
 lavaland-ruin-mega-legion = Mega Legion arena

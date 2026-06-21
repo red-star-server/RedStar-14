@@ -33,7 +33,7 @@ namespace Content.Shared.Weapons.Marker;
 /// <summary>
 /// Applies <see cref="DamageMarkerComponent"/> when colliding with an entity.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedDamageMarkerSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedDamageMarkerSystem), typeof(Content.Shared._Wega.Lavaland.Upgrades.CrusherUpgradeEffectsSystem))] // RS14
 public sealed partial class DamageMarkerOnCollideComponent : Component
 {
     [DataField("whitelist"), AutoNetworkedField]
@@ -53,6 +53,14 @@ public sealed partial class DamageMarkerOnCollideComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("amount"), AutoNetworkedField]
     public int Amount = 1;
+
+    // RS14-start
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool Weakening;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public float WeakeningModifier = 1f;
+    // RS14-end
 
     /// <summary>
     /// Sprite to apply to the entity while damagemarker is applied.

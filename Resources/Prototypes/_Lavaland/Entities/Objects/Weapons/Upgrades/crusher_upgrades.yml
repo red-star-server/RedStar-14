@@ -143,6 +143,10 @@
     - !type:Ignite
     - !type:AdjustTemperature
       amount: 7500 # thermal energy, not temperature!
+  - type: CrusherMagmaWingUpgrade # RS14: Wega watcher-wing trophy effect lives on the crafted wing upgrade in this build.
+    damage:
+      types:
+        Heat: 5
   - type: Construction
     graph: CrusherUpgradeLavaCrystalConstructionGraph
     node: crystal
@@ -169,6 +173,8 @@
     effects:
     - !type:AdjustTemperature
       amount: -7500 # thermal energy, not temperature! That's not that great actually, but it slows down the target after enough hits
+  - type: CrusherWatcherWingUpgrade # RS14: Wega watcher-wing trophy effect lives on the crafted wing upgrade in this build.
+    cooldownIncrease: 2
   - type: Construction
     graph: CrusherUpgradeIceCrystalConstructionGraph
     node: crystal
@@ -191,6 +197,7 @@
     bonusDamage:
       types:
         Slash: 7 # Let's just say crusher hammer becomes extra-sharp on the sides
+  - type: CrusherWatcherWingUpgrade # RS14: Wega watcher-wing trophy effect lives on the crafted wing upgrade in this build.
   - type: Construction
     graph: CrusherUpgradeCrystalConstructionGraph
     node: crystal

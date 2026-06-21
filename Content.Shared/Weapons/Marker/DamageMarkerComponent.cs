@@ -34,7 +34,7 @@ namespace Content.Shared.Weapons.Marker;
 /// <summary>
 /// Marks an entity to take additional damage
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Access(typeof(SharedDamageMarkerSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Access(typeof(SharedDamageMarkerSystem), typeof(Content.Shared._Wega.Lavaland.Upgrades.CrusherUpgradeEffectsSystem))] // RS14
 [AutoGenerateComponentPause]
 public sealed partial class DamageMarkerComponent : Component
 {
@@ -52,6 +52,14 @@ public sealed partial class DamageMarkerComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), DataField("damage")]
     public DamageSpecifier Damage = new();
+
+    // RS14-start
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool Weakening;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public float WeakeningModifier = 1f;
+    // RS14-end
 
     /// <summary>
     /// Entity that marked this entity for a damage surplus.

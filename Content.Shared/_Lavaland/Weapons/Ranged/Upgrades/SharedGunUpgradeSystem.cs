@@ -70,6 +70,8 @@ public abstract partial class SharedGunUpgradeSystem : EntitySystem
         SubscribeLocalEvent<UpgradeableWeaponComponent, GetLightAttackRangeEvent>(RelayEvent);
         SubscribeLocalEvent<UpgradeableWeaponComponent, GetMeleeAttackRateEvent>(RelayEvent);
         SubscribeLocalEvent<UpgradeableWeaponComponent, ApplyMarkerBonusEvent>(RelayEvent); // RS14
+        SubscribeLocalEvent<UpgradeableWeaponComponent, MarkerAttackAttemptEvent>(RelayEvent); // RS14
+        SubscribeLocalEvent<UpgradeableWeaponComponent, AfterMarkerAttackedEvent>(RelayEvent); // RS14
 
         SubscribeLocalEvent<UpgradeableWeaponComponent, GetItemActionsEvent>(RelayGetActionEvent);
 

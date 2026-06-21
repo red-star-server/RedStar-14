@@ -64,17 +64,26 @@ public abstract class SharedDamageMarkerSystem : EntitySystem
         if (component.Marker != args.Used)
             return;
 
-        args.BonusDamage += component.Damage;
+        // RS14-start: let installed crusher trophies modify and react to marker attacks.
+        var attempt = new MarkerAttackAttemptEvent(args.Used, args.User, uid);
+        RaiseLocalEvent(args.Used, ref attempt);
+
+        var bonusDamage = component.Damage * attempt.DamageModifier;
+        args.BonusDamage += bonusDamage;
         RemCompDeferred<DamageMarkerComponent>(uid);
         _audio.PlayPredicted(component.Sound, uid, args.User);
 
         if (TryComp<LeechOnMarkerComponent>(args.Used, out var leech))
-            _damageable.TryChangeDamage(args.User, leech.Leech, true, false, origin: args.Used, targetPart: TargetBodyPart.All, splitDamage: SplitDamageBehavior.SplitEnsureAll); // Shitmed Change
+            _damageable.TryChangeDamage(args.User, leech.Leech * attempt.HealModifier, true, false, origin: args.Used, targetPart: TargetBodyPart.All, splitDamage: SplitDamageBehavior.SplitEnsureAll); // Shitmed Change
 
         // Lavaland Change start
         RaiseLocalEvent(uid, new ApplyMarkerBonusEvent(args.Used, args.User)); // For effects on the target
         RaiseLocalEvent(args.Used, new ApplyMarkerBonusEvent(args.Used, args.User)); // For effects on the weapon
         // Lavaland Change end
+
+        var after = new AfterMarkerAttackedEvent(args.Used, args.User, uid, bonusDamage);
+        RaiseLocalEvent(args.Used, ref after);
+        // RS14-end
     }
 
     public override void Update(float frameTime)
@@ -111,6 +120,10 @@ public abstract class SharedDamageMarkerSystem : EntitySystem
         marker.EndTime = _timing.CurTime + component.Duration;
         marker.Effect = component.Effect; // Goob edit: Pass the effect to the marker
         marker.Sound = component.Sound; // Goob edit: Pass the effect to the marker
+        // RS14-start: transfer trophy-applied weakening to the marked target.
+        marker.Weakening = component.Weakening;
+        marker.WeakeningModifier = component.WeakeningModifier;
+        // RS14-end
         component.Amount--;
 
         Dirty(args.OtherEntity, marker);

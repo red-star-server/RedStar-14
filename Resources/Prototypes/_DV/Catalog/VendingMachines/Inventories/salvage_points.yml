@@ -67,6 +67,8 @@
     cost: 600
   - id: MedkitBurnFilled
     cost: 600
+  - id: MedkitToxinFilled # RS14
+    cost: 600
   - id: DoubleEmergencyOxygenTankFilled
     cost: 650
   - id: DoubleEmergencyNitrogenTankFilled
