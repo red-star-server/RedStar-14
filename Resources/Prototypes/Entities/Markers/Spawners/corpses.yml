@@ -27,7 +27,24 @@
       - state: green
   - type: ConditionalSpawner
     prototypes:
-      - MobRandomServiceCorpse
+      # RS14-start
+      # Old: MobRandomServiceCorpse
+      - MobCorpseBartender
+      - MobCorpseBotanist
+      - MobCorpseBoxer
+      - MobCorpseChaplain
+      - MobCorpseChef
+      - MobCorpseClown
+      - MobCorpseJanitor
+      - MobCorpseLawyer
+      - MobCorpseLibrarian
+      - MobCorpseMime
+      - MobCorpseMusician
+      - MobCorpsePassenger
+      - MobCorpseReporter
+      - MobCorpseServiceWorker
+      - MobCorpseZookeeper
+      # RS14-end
 
 - type: entity
   name: Random Engineer Corpse Spawner
@@ -40,7 +57,13 @@
       - state: green
   - type: ConditionalSpawner
     prototypes:
-      - MobRandomEngineerCorpse
+      # RS14-start
+      # Old: MobRandomEngineerCorpse
+      - MobCorpseAtmosphericTechnician
+      - MobCorpseChiefEngineer
+      - MobCorpseStationEngineer
+      - MobCorpseTechnicalAssistant
+      # RS14-end
 
 - type: entity
   name: Random Cargo Corpse Spawner
@@ -53,7 +76,13 @@
       - state: green
   - type: ConditionalSpawner
     prototypes:
-      - MobRandomCargoCorpse
+      # RS14-start
+      # Old: MobRandomCargoCorpse
+      - MobCorpseCargoTechnician
+      - MobCorpseQuartermaster
+      - MobCorpseSalvageSpecialist
+      - MobCorpseShaftMiner
+      # RS14-end
 
 - type: entity
   name: Random Medic Corpse Spawner
@@ -66,7 +95,17 @@
       - state: green
   - type: ConditionalSpawner
     prototypes:
-      - MobRandomMedicCorpse
+      # RS14-start
+      # Old: MobRandomMedicCorpse
+      - MobCorpseChemist
+      - MobCorpseChiefMedicalOfficer
+      - MobCorpseMedicalDoctor
+      - MobCorpseMedicalIntern
+      - MobCorpseParamedic
+      - MobCorpsePsychologist
+      - MobCorpseSurgeon
+      - MobCorpseVirologist
+      # RS14-end
 
 - type: entity
   name: Random Science Corpse Spawner
@@ -79,7 +118,12 @@
       - state: green
   - type: ConditionalSpawner
     prototypes:
-      - MobRandomScienceCorpse
+      # RS14-start
+      # Old: MobRandomScienceCorpse
+      - MobCorpseResearchAssistant
+      - MobCorpseResearchDirector
+      - MobCorpseScientist
+      # RS14-end
 
 - type: entity
   name: Random Security Corpse Spawner
@@ -92,7 +136,16 @@
       - state: green
   - type: ConditionalSpawner
     prototypes:
-      - MobRandomSecurityCorpse
+      # RS14-start
+      # Old: MobRandomSecurityCorpse
+      - MobCorpseBrigmedic
+      - MobCorpseDetective
+      - MobCorpseHeadOfSecurity
+      - MobCorpsePilot
+      - MobCorpseSecurityCadet
+      - MobCorpseSecurityOfficer
+      - MobCorpseWarden
+      # RS14-end
 
 - type: entity
   name: Random Command Corpse Spawner
@@ -105,4 +158,18 @@
       - state: green
   - type: ConditionalSpawner
     prototypes:
-      - MobRandomCommandCorpse
+      # RS14-start
+      # Old: MobRandomCommandCorpse
+      - MobCorpseBlueshieldOfficer
+      - MobCorpseCaptain
+      - MobCorpseCentcommOfficial
+      - MobCorpseChiefEngineer
+      - MobCorpseChiefMedicalOfficer
+      - MobCorpseHeadOfPersonnel
+      - MobCorpseHeadOfSecurity
+      - MobCorpseMagistrate
+      - MobCorpseNanotrasenCareerTrainer
+      - MobCorpseNanotrasenRepresentative
+      - MobCorpseQuartermaster
+      - MobCorpseResearchDirector
+      # RS14-end
