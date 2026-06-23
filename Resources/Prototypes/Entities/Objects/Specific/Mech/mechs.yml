@@ -43,9 +43,7 @@
   # RS14-start
   - type: Vehicle
     transferDamage: false
-    operatorWhitelist:
-      components:
-      - HumanoidAppearance
+    requiresHands: false # RS14: Pilot eligibility is controlled by Mech.pilotWhitelist.
   - type: ContainerVehicle
     containerId: mech-pilot-slot
   # RS14-end
@@ -156,7 +154,7 @@
   # RS14-start
   - type: MechEquipmentCharger
     slotId: mech-equipment-container
-    chargeRate: 0.5
+    chargeRate: 30 # RS14-value: 0.5 per tick -> 30 joules per second
   # RS14-end
   - type: Damageable
     damageContainer: Silicon # Goobstation
@@ -245,6 +243,11 @@
   - type: PartDisassembly
     assemblyPrototype: RipleyHarness
     assemblyId: Ripley
+    partPrototypes:
+    - RipleyLArm
+    - RipleyRArm
+    - RipleyLLeg
+    - RipleyRLeg
   - type: Construction
     graph: MechDisassemble
     node: start
@@ -305,6 +308,11 @@
   - type: PartDisassembly
     assemblyPrototype: HonkerHarness
     assemblyId: Honker
+    partPrototypes:
+    - HonkerLArm
+    - HonkerRArm
+    - HonkerLLeg
+    - HonkerRLeg
   - type: Construction
     graph: MechDisassemble
     node: start
@@ -350,6 +358,11 @@
   - type: PartDisassembly
     assemblyPrototype: HamtrHarness
     assemblyId: Hamtr
+    partPrototypes:
+    - HamtrLArm
+    - HamtrRArm
+    - HamtrLLeg
+    - HamtrRLeg
   - type: Construction
     graph: MechDisassemble
     node: start
@@ -421,6 +434,10 @@
   - type: PartDisassembly
     assemblyPrototype: VimHarness
     assemblyId: Vim
+    partPrototypes:
+    - ClothingHeadHelmetEVA
+    - LeftLegBorg
+    - RightLegBorg
   - type: Construction
     graph: MechDisassemble
     node: start

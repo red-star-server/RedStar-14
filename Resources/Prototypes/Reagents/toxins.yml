@@ -71,6 +71,11 @@
         - !type:OrganType # Goobstation - Yowie
           type: Yowie
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
         damage:
           types:
             Poison: 4
@@ -96,6 +101,11 @@
         - !type:OrganType # Goobstation - Yowie
           type: Yowie
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
         damage:
           types:
             Poison: 4
@@ -104,6 +114,11 @@
         - !type:OrganType # Goobstation - Yowie
           type: Yowie
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-burning-insides" ]
@@ -197,6 +212,11 @@
         - !type:OrganType # Goobstation - Yowie
           type: Yowie
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
         damage:
           types:
             Poison: 1
@@ -524,6 +544,11 @@
         - !type:OrganType # Goobstation - Yowie
           type: Yowie
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
         damage:
           types:
             Poison: 3
@@ -600,6 +625,11 @@
           - !type:OrganType # Goobstation - XenobioSlime
             type: XenobioSlime
             shouldHave: false
+          # RS14-start
+          - !type:OrganType
+            type: Cybernetic
+            shouldHave: false
+          # RS14-end
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-sick" ]
@@ -619,6 +649,11 @@
           - !type:OrganType # Goobstation - XenobioSlime
             type: XenobioSlime # slimes shouldn't vomit from blood and raw meat
             shouldHave: false
+          # RS14-start
+          - !type:OrganType
+            type: Cybernetic
+            shouldHave: false
+          # RS14-end
       - !type:HealthChange
         conditions:
         - !type:OrganType
@@ -633,6 +668,11 @@
         - !type:OrganType # Goobstation - XenobioSlime
           type: XenobioSlime
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
         damage:
           types:
             Poison: 1
@@ -781,6 +821,11 @@
         - !type:OrganType # Goobstation - Yowie
           type: Yowie
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
         damage:
           types:
             Poison: 1.8
@@ -917,3 +962,10 @@
         conditions:
         - !type:OrganType
           type: Vox
+      # RS14-start
+      - !type:SatiateHunger
+        factor: 1
+        conditions:
+        - !type:OrganType
+          type: Cybernetic
+      # RS14-end

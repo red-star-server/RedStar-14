@@ -367,6 +367,11 @@
         - !type:OrganType
           type: Vox
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
       - !type:ChemVomit
         probability: 0.1
         conditions:
@@ -375,6 +380,11 @@
         - !type:OrganType
           type: Vox
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
       - !type:MovespeedModifier
         walkSpeedModifier: 0.90
         sprintSpeedModifier: 0.90
@@ -382,6 +392,11 @@
         - !type:OrganType
           type: Vox
           shouldHave: false
+        # RS14-start
+        - !type:OrganType
+          type: Cybernetic
+          shouldHave: false
+        # RS14-end
         - !type:ReagentThreshold
           min: 20
       - !type:HealthChange

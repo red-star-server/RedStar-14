@@ -26,6 +26,9 @@ public sealed class MechTeslaRelaySystem : EntitySystem
         while (query.MoveNext(out var mechUid, out var mech))
         {
             var uiDirty = false;
+            var canCharge = !mech.Broken &&
+                            mech.BatterySlot.ContainedEntity != null &&
+                            mech.Energy < mech.MaxEnergy;
 
             foreach (var module in mech.ModuleContainer.ContainedEntities)
             {
@@ -42,7 +45,7 @@ public sealed class MechTeslaRelaySystem : EntitySystem
                 telemetry.Max = rate;
                 telemetry.Current = 0f;
 
-                if (radius > 0f && rate > 0f && IsNearPoweredApc(mechUid, radius))
+                if (canCharge && radius > 0f && rate > 0f && IsNearPoweredApc(mechUid, radius))
                 {
                     telemetry.Current = rate;
                     var accumulator = EnsureComp<MechEnergyAccumulatorComponent>(mechUid);

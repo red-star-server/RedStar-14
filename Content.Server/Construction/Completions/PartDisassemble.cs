@@ -60,7 +60,11 @@ public sealed partial class PartDisassemble : IGraphAction
         assembly.CurrentAssembly = assemblyId;
         assembly.PartsContainer = container.EnsureContainer<Container>(host, assembly.ContainerId);
 
-        foreach (var partId in parts)
+        var partPrototypes = disassembly.PartPrototypes.Count > 0
+            ? disassembly.PartPrototypes
+            : parts.Select(part => new EntProtoId(part)).ToList();
+
+        foreach (var partId in partPrototypes)
         {
             if (!proto.TryIndex<EntityPrototype>(partId, out _))
             {

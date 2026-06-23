@@ -138,7 +138,7 @@
   id: HamtrHarness
   result: HamtrHarness
   categories:
-  - Hamptr # Goobstation
+  - Hamtr # RS14
   completetime: 10
   materials:
     Steel: 1500
@@ -149,25 +149,25 @@
   id: HamtrLArm
   result: HamtrLArm
   categories:
-  - Hamptr # Goobstation
+  - Hamtr # RS14
 
 - type: latheRecipe
   parent: BaseHamtrLimbRecipe
   id: HamtrLLeg
   result: HamtrLLeg
   categories:
-  - Hamptr # Goobstation
+  - Hamtr # RS14
 
 - type: latheRecipe
   parent: BaseHamtrLimbRecipe
   id: HamtrRLeg
   result: HamtrRLeg
   categories:
-  - Hamptr # Goobstation
+  - Hamtr # RS14
 
 - type: latheRecipe
   parent: BaseHamtrLimbRecipe
   id: HamtrRArm
   result: HamtrRArm
   categories:
-  - Hamptr # Goobstation
+  - Hamtr # RS14

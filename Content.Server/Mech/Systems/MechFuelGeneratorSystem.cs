@@ -26,6 +26,9 @@ public sealed class MechFuelGeneratorSystem : EntitySystem
         while (query.MoveNext(out var mechUid, out var mech))
         {
             var uiDirty = false;
+            var canCharge = !mech.Broken &&
+                            mech.BatterySlot.ContainedEntity != null &&
+                            mech.Energy < mech.MaxEnergy;
 
             foreach (var module in mech.ModuleContainer.ContainedEntities)
             {
@@ -48,7 +51,7 @@ public sealed class MechFuelGeneratorSystem : EntitySystem
 
                 telemetry.Max = fuelGenerator.TargetPower;
 
-                if (_generator.GetFuel(module) <= 0 || _generator.GetIsClogged(module))
+                if (!canCharge || _generator.GetFuel(module) <= 0 || _generator.GetIsClogged(module))
                 {
                     uiDirty |= Math.Abs(previousCurrent - telemetry.Current) > 0.01f ||
                                Math.Abs(previousMax - telemetry.Max) > 0.01f;

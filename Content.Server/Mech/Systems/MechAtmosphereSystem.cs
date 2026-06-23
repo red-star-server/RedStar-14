@@ -35,9 +35,6 @@ public sealed class MechAtmosphereSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, MechFanToggleMessage>(OnFanToggleMessage);
         SubscribeLocalEvent<MechComponent, MechFilterToggleMessage>(OnFilterToggleMessage);
 
-        SubscribeLocalEvent<MechPilotComponent, InhaleLocationEvent>(OnPilotInhale); // RS14
-        SubscribeLocalEvent<MechPilotComponent, ExhaleLocationEvent>(OnPilotExhale); // RS14
-        SubscribeLocalEvent<MechPilotComponent, AtmosExposedGetAirEvent>(OnPilotExpose); // RS14
         SubscribeLocalEvent<VehicleOperatorComponent, InhaleLocationEvent>(OnInhale);
         SubscribeLocalEvent<VehicleOperatorComponent, ExhaleLocationEvent>(OnExhale);
         SubscribeLocalEvent<VehicleOperatorComponent, AtmosExposedGetAirEvent>(OnExpose);
@@ -176,34 +173,6 @@ public sealed class MechAtmosphereSystem : EntitySystem
             return;
 
         args.Gas = GetBreathMixture(ent, args.Excite);
-        args.Handled = true;
-    }
-
-    private void OnPilotInhale(Entity<MechPilotComponent> ent, ref InhaleLocationEvent args)
-    {
-        if (!TryComp<MechComponent>(ent.Comp.Mech, out var mechComp))
-            return;
-
-        SetInhaleGas((ent.Comp.Mech, mechComp), ref args);
-    }
-
-    private void OnPilotExhale(Entity<MechPilotComponent> ent, ref ExhaleLocationEvent args)
-    {
-        if (!TryComp<MechComponent>(ent.Comp.Mech, out var mechComp))
-            return;
-
-        args.Gas = GetBreathMixture((ent.Comp.Mech, mechComp));
-    }
-
-    private void OnPilotExpose(Entity<MechPilotComponent> ent, ref AtmosExposedGetAirEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (!TryComp<MechComponent>(ent.Comp.Mech, out var mechComp))
-            return;
-
-        args.Gas = GetBreathMixture((ent.Comp.Mech, mechComp), args.Excite);
         args.Handled = true;
     }
 

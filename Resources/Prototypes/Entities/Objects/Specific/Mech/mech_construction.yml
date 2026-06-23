@@ -107,6 +107,7 @@
   - type: Construction
     graph: Ripley
     node: start
+    defaultTarget: ripley # RS14
 
 - type: entity
   parent: BaseRipleyPartItem
@@ -222,6 +223,7 @@
   - type: Construction
     graph: Honker
     node: start
+    defaultTarget: honker # RS14
 
 - type: entity
   parent: BaseHonkerPartItem
@@ -337,6 +339,7 @@
   - type: Construction
     graph: Hamtr
     node: start
+    defaultTarget: hamtr # RS14
 
 - type: entity
   parent: BaseHamtrPartItem

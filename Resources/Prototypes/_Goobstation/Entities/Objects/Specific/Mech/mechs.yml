@@ -87,6 +87,12 @@
   - type: PartDisassembly
     assemblyPrototype: RipleyMKIIHarness
     assemblyId: RipleyMKII
+    partPrototypes:
+    - RipleyUpgradeKit
+    - RipleyLArm
+    - RipleyRArm
+    - RipleyLLeg
+    - RipleyRLeg
   - type: Construction
     graph: MechDisassemble
     node: start
@@ -153,6 +159,11 @@
   - type: PartDisassembly
     assemblyPrototype: ClarkeHarness
     assemblyId: Clarke
+    partPrototypes:
+    - ClarkeHead
+    - ClarkeLArm
+    - ClarkeRArm
+    - ClarkeTreads
   - type: Construction
     graph: MechDisassemble
     node: start
@@ -238,6 +249,12 @@
   - type: PartDisassembly
     assemblyPrototype: GygaxHarness
     assemblyId: Gygax
+    partPrototypes:
+    - GygaxHead
+    - GygaxLArm
+    - GygaxRArm
+    - GygaxLLeg
+    - GygaxRLeg
   - type: Construction
     graph: MechDisassemble
     node: start
@@ -308,6 +325,12 @@
   - type: PartDisassembly
     assemblyPrototype: DurandHarness
     assemblyId: Durand
+    partPrototypes:
+    - DurandHead
+    - DurandLArm
+    - DurandRArm
+    - DurandLLeg
+    - DurandRLeg
   - type: Construction
     graph: MechDisassemble
     node: start

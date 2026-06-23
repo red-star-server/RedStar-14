@@ -1192,3 +1192,6 @@ GygaxChassis: null
 ClothingShoesClothwrap: ClothingFootWrapsWhite
 ClothingNeckCloakGoliathCloak: null
 ClothingHeadHatHoodGoliathCloak: null
+
+# 2026-06-23 RS14 mech module migration
+MechEquipmentHorn: MechModuleHorn

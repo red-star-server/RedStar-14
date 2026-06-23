@@ -65,7 +65,7 @@ public abstract class SharedSprintingSystem : EntitySystem
         SubscribeLocalEvent<SprinterComponent, StunnedEvent>(OnSprintDisablingEvent);
         SubscribeLocalEvent<SprinterComponent, DownedEvent>(OnSprintDisablingEvent);
         SubscribeLocalEvent<CuffableComponent, SprintAttemptEvent>(OnCuffableSprintAttempt);
-        SubscribeLocalEvent<VehicleOperatorComponent, SprintAttemptEvent>(OnMechPilotSprintAttempt); // RS14
+        SubscribeLocalEvent<VehicleOperatorComponent, SprintAttemptEvent>(OnVehicleOperatorSprintAttempt); // RS14
         SubscribeLocalEvent<StandingStateComponent, SprintAttemptEvent>(OnStandingStateSprintAttempt);
         SubscribeLocalEvent<BuckleComponent, SprintAttemptEvent>(OnBuckleSprintAttempt);
         SubscribeLocalEvent<SprinterComponent, EntityZombifiedEvent>(OnZombified);
@@ -212,13 +212,16 @@ public abstract class SharedSprintingSystem : EntitySystem
         args.Cancel();
     }
 
-    private void OnMechPilotSprintAttempt(EntityUid uid, VehicleOperatorComponent component, ref SprintAttemptEvent args) // RS14
+    private void OnVehicleOperatorSprintAttempt(EntityUid uid, VehicleOperatorComponent component, ref SprintAttemptEvent args) // RS14
     {
-        if (component.Vehicle is not { } vehicle // RS14
-            || !HasComp<MechComponent>(vehicle) // RS14
-            || !TryComp<SprinterComponent>(vehicle, out var sprinterComponent) // RS14
-            || sprinterComponent.IsSprinting)
+        if (component.Vehicle is not { } vehicle)
             return;
+
+        if (TryComp<SprinterComponent>(vehicle, out var sprinterComponent) &&
+            sprinterComponent.IsSprinting)
+        {
+            return;
+        }
 
         args.Cancel();
     }

@@ -24,7 +24,10 @@ public sealed class MechBatteryRechargeApplySystem : EntitySystem
             var rechargeRate = accumulator.PendingRechargeRate;
             accumulator.PendingRechargeRate = 0f;
 
-            if (rechargeRate <= 0f)
+            if (rechargeRate <= 0f ||
+                mech.Broken ||
+                mech.BatterySlot.ContainedEntity == null ||
+                mech.Energy >= mech.MaxEnergy)
                 continue;
 
             _mech.TryChangeEnergy(uid, FixedPoint2.New(rechargeRate * frameTime), mech);

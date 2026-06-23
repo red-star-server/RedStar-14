@@ -27,4 +27,11 @@ public sealed partial class PartDisassemblyComponent : Component
     /// </summary>
     [DataField]
     public string? AssemblyId;
+
+    /// <summary>
+    /// Concrete entity prototypes restored into the assembly host.
+    /// Part assembly requirements are tags, so they cannot safely be treated as prototype IDs.
+    /// </summary>
+    [DataField]
+    public List<EntProtoId> PartPrototypes = new();
 }

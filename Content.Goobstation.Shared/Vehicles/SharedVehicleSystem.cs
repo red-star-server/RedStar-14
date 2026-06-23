@@ -61,7 +61,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void OnInit(Entity<VehicleComponent> ent, ref ComponentInit args)
     {
-        _ambientSound.SetAmbience(ent, CanRun(ent));
+        _ambientSound.SetAmbience(ent, false);
     }
 
     private void OnStrapAttempt(Entity<VehicleComponent> ent, ref StrapAttemptEvent args)
@@ -144,7 +144,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             return;
 
         ent.Comp.IsBroken = false;
-        _ambientSound.SetAmbience(ent, CanRun(ent));
+        SetEngineAmbience(ent, CanRun(ent));
         _actionBlocker.UpdateCanMove(ent);
     }
 
@@ -156,15 +156,20 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void OnCanRunUpdated(Entity<VehicleComponent> ent, ref VehicleCanRunUpdatedEvent args)
     {
-        _ambientSound.SetAmbience(ent, args.CanRun);
+        SetEngineAmbience(ent, args.CanRun);
     }
 
     private bool CanRun(Entity<VehicleComponent> ent)
     {
         var ev = new VehicleCanRunEvent(ent);
         RaiseLocalEvent(ent, ref ev);
-        _ambientSound.SetAmbience(ent, ev.CanRun);
         return ev.CanRun;
+    }
+
+    private void SetEngineAmbience(Entity<VehicleComponent> ent, bool canRun)
+    {
+        // The legacy Goob vehicle system only started engine ambience after a valid key was inserted.
+        _ambientSound.SetAmbience(ent, canRun && HasComp<GenericKeyedVehicleComponent>(ent));
     }
 
     private void AddActions(EntityUid operatorUid, Entity<VehicleComponent> vehicle)

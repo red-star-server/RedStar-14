@@ -69,8 +69,21 @@ public sealed class MechMovementEnergySystem : EntitySystem
             if (!mover.CanMove || mover.WishDir == Vector2.Zero)
                 continue;
 
-            var toDrain = mech.MovementEnergyPerSecond * frameTime;
-            if (!_mech.TryChangeEnergy(uid, -FixedPoint2.New(toDrain), mech))
+            var requestedDrain = FixedPoint2.New(mech.MovementEnergyPerSecond * frameTime);
+            if (requestedDrain <= 0)
+                continue;
+
+            var actualDrain = requestedDrain > mech.Energy
+                ? mech.Energy
+                : requestedDrain;
+
+            if (actualDrain <= 0 || !_mech.TryChangeEnergy(uid, -actualDrain, mech))
+            {
+                _vehicle.RefreshCanRun(uid);
+                continue;
+            }
+
+            if (mech.Energy <= 0)
                 _vehicle.RefreshCanRun(uid);
         }
     }

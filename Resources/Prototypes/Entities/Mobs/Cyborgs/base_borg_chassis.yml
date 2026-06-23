@@ -365,6 +365,13 @@
   - type: PartDisassembly
     assemblyPrototype: CyborgEndoskeleton
     assemblyId: generic
+    partPrototypes:
+    - LeftArmBorg
+    - RightArmBorg
+    - LeftLegBorg
+    - RightLegBorg
+    - LightHeadBorg
+    - TorsoBorg
   # RS14-end
   - type: Lock
     locked: true

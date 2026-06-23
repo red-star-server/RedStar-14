@@ -117,14 +117,12 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<VehicleOperatorComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
         SubscribeLocalEvent<VehicleOperatorComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
         SubscribeLocalEvent<VehicleOperatorComponent, AttackAttemptEvent>(OnAttackAttempt);
-        SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnPilotCanAttackFromContainer);
-        SubscribeLocalEvent<MechPilotComponent, GetMeleeAttackEntityEvent>(OnPilotGetMeleeAttackEntity);
-        SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnPilotGetMeleeWeapon);
-        SubscribeLocalEvent<MechPilotComponent, GetActiveWeaponEvent>(OnPilotGetActiveWeapon);
-        SubscribeLocalEvent<MechPilotComponent, GetUsedEntityEvent>(OnPilotGetUsedEntity);
-        SubscribeLocalEvent<MechPilotComponent, AccessibleOverrideEvent>(OnPilotAccessible);
-        SubscribeLocalEvent<MechPilotComponent, GetShootingEntityEvent>(OnPilotGetShootingEntity);
-        SubscribeLocalEvent<MechPilotComponent, ToolUserAttemptUseEvent>(OnPilotToolUseAttempt);
+        SubscribeLocalEvent<VehicleOperatorComponent, GetMeleeAttackEntityEvent>(OnGetMeleeAttackEntity);
+        SubscribeLocalEvent<VehicleOperatorComponent, GetActiveWeaponEvent>(OnGetActiveWeapon);
+        SubscribeLocalEvent<VehicleOperatorComponent, GetUsedEntityEvent>(OnGetUsedEntity);
+        SubscribeLocalEvent<VehicleOperatorComponent, AccessibleOverrideEvent>(OnAccessible);
+        SubscribeLocalEvent<VehicleOperatorComponent, GetShootingEntityEvent>(OnGetShootingEntity);
+        SubscribeLocalEvent<VehicleOperatorComponent, ToolUserAttemptUseEvent>(OnOperatorToolUseAttempt);
         // RS14-end
         SubscribeLocalEvent<MechEquipmentComponent, ShotAttemptedEvent>(OnShotAttempted); // Goobstation
         // RS14-start
@@ -202,12 +200,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!Resolve(mech, ref component))
             return;
 
-        // RS14-start
-        var mechPilot = EnsureComp<MechPilotComponent>(pilot);
-        mechPilot.Mech = mech;
-        Dirty(pilot, mechPilot);
-        // RS14-end
-
         if (HasComp<TileMovementComponent>(pilot)) // Goob change - Prevent mech jank.
             EnsureComp<TileMovementComponent>(mech);
 
@@ -250,9 +242,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (HasComp<TileMovementComponent>(mech)) // Goob change - Prevent mech jank.
             RemComp<TileMovementComponent>(mech);
 
-        // RS14-start
-        RemComp<MechPilotComponent>(pilot);
-        // RS14-end
         RemComp<InteractionRelayComponent>(pilot);
         // RS14-start
         if (TryComp<AlertsDisplayRelayComponent>(pilot, out var alertRelay) &&
@@ -353,23 +342,17 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (user == null)
             return;
 
-        EntityUid? mech = null;
-        if (TryComp<MechPilotComponent>(user.Value, out var pilot))
-            mech = pilot.Mech;
-        else if (TryComp<VehicleOperatorComponent>(user.Value, out var vehicleOperator) &&
-                 vehicleOperator.Vehicle != null)
-            mech = vehicleOperator.Vehicle.Value;
-
-        if (mech == null)
+        if (!TryComp<VehicleOperatorComponent>(user.Value, out var vehicleOperator) ||
+            vehicleOperator.Vehicle is not { } mech)
             return;
 
-        if (!TryComp<MechComponent>(mech.Value, out var mechComp))
+        if (!TryComp<MechComponent>(mech, out var mechComp))
             return;
 
         if (args.Equipment == null)
         {
             mechComp.CurrentSelectedEquipment = null;
-            _popup.PopupClient(Loc.GetString("mech-equipment-select-none-popup"), mech.Value, user.Value);
+            _popup.PopupClient(Loc.GetString("mech-equipment-select-none-popup"), mech, user.Value);
         }
         else
         {
@@ -378,11 +361,11 @@ public abstract partial class SharedMechSystem : EntitySystem
                 return;
 
             mechComp.CurrentSelectedEquipment = equipment;
-            _popup.PopupClient(Loc.GetString("mech-equipment-select-popup", ("item", equipment)), mech.Value, user.Value);
+            _popup.PopupClient(Loc.GetString("mech-equipment-select-popup", ("item", equipment)), mech, user.Value);
         }
 
-        RefreshPilotHandVirtualItems((mech.Value, mechComp));
-        Dirty(mech.Value, mechComp);
+        RefreshPilotHandVirtualItems((mech, mechComp));
+        Dirty(mech, mechComp);
     }
     // RS14-end
 
@@ -713,7 +696,21 @@ public abstract partial class SharedMechSystem : EntitySystem
 
     private void FreeHands(EntityUid uid, EntityUid mech)
     {
-        _virtualItem.DeleteInHandsMatching(uid, mech);
+        foreach (var held in _hands.EnumerateHeld(uid).ToArray())
+        {
+            if (!TryComp<VirtualItemComponent>(held, out var virtualItem))
+                continue;
+
+            var belongsToMech = virtualItem.BlockingEntity == mech;
+            if (!belongsToMech &&
+                TryComp<MechEquipmentComponent>(virtualItem.BlockingEntity, out var equipment))
+            {
+                belongsToMech = equipment.EquipmentOwner == mech;
+            }
+
+            if (belongsToMech)
+                _virtualItem.DeleteVirtualItem((held, virtualItem), uid);
+        }
     }
 
     // Goobstation Change End
@@ -746,80 +743,63 @@ public abstract partial class SharedMechSystem : EntitySystem
             args.Cancel();
     }
 
-    private void OnPilotCanAttackFromContainer(Entity<MechPilotComponent> ent, ref CanAttackFromContainerEvent args)
-    {
-        args.CanAttack = true;
-    }
-
-    private void OnPilotGetMeleeAttackEntity(Entity<MechPilotComponent> ent, ref GetMeleeAttackEntityEvent args)
+    private void OnGetMeleeAttackEntity(Entity<VehicleOperatorComponent> ent, ref GetMeleeAttackEntityEvent args)
     {
         if (args.Handled)
             return;
 
-        args.AttackEntity = ent.Comp.Mech;
+        if (ent.Comp.Vehicle is not { } vehicle || !HasComp<MechComponent>(vehicle))
+            return;
+
+        args.AttackEntity = vehicle;
         args.Handled = true;
     }
 
-    private void OnPilotGetMeleeWeapon(Entity<MechPilotComponent> ent, ref GetMeleeWeaponEvent args)
+    private void OnGetActiveWeapon(Entity<VehicleOperatorComponent> ent, ref GetActiveWeaponEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!HasComp<HandsComponent>(ent.Owner))
-        {
-            args.Handled = true;
-            return;
-        }
-
-        if (!TryComp<MechComponent>(ent.Comp.Mech, out var mech))
+        if (ent.Comp.Vehicle is not { } vehicle || !TryComp<MechComponent>(vehicle, out var mech))
             return;
 
-        args.Weapon = mech.CurrentSelectedEquipment ?? ent.Comp.Mech;
+        args.Weapon = mech.CurrentSelectedEquipment ?? vehicle;
         args.Handled = true;
     }
 
-    private void OnPilotGetActiveWeapon(Entity<MechPilotComponent> ent, ref GetActiveWeaponEvent args)
+    private void OnGetUsedEntity(Entity<VehicleOperatorComponent> ent, ref GetUsedEntityEvent args)
     {
-        if (args.Handled)
-            return;
-
-        if (!TryComp<MechComponent>(ent.Comp.Mech, out var mech))
-            return;
-
-        args.Weapon = mech.CurrentSelectedEquipment ?? ent.Comp.Mech;
-        args.Handled = true;
-    }
-
-    private void OnPilotGetUsedEntity(Entity<MechPilotComponent> ent, ref GetUsedEntityEvent args)
-    {
-        if (!TryComp<MechComponent>(ent.Comp.Mech, out var mech))
-            return;
-
-        if (!Vehicle.HasOperator(ent.Comp.Mech))
+        if (ent.Comp.Vehicle is not { } vehicle || !TryComp<MechComponent>(vehicle, out var mech))
             return;
 
         if (mech.CurrentSelectedEquipment != null)
             args.Used = mech.CurrentSelectedEquipment;
     }
 
-    private void OnPilotAccessible(Entity<MechPilotComponent> ent, ref AccessibleOverrideEvent args)
+    private void OnAccessible(Entity<VehicleOperatorComponent> ent, ref AccessibleOverrideEvent args)
     {
+        if (ent.Comp.Vehicle is not { } vehicle || !HasComp<MechComponent>(vehicle))
+            return;
+
         args.Handled = true;
-        args.Accessible = _interaction.IsAccessible(ent.Comp.Mech, args.Target);
+        args.Accessible = _interaction.IsAccessible(vehicle, args.Target);
     }
 
-    private void OnPilotGetShootingEntity(Entity<MechPilotComponent> ent, ref GetShootingEntityEvent args)
+    private void OnGetShootingEntity(Entity<VehicleOperatorComponent> ent, ref GetShootingEntityEvent args)
     {
         if (args.Handled)
             return;
 
-        args.ShootingEntity = ent.Comp.Mech;
+        if (ent.Comp.Vehicle is not { } vehicle || !HasComp<MechComponent>(vehicle))
+            return;
+
+        args.ShootingEntity = vehicle;
         args.Handled = true;
     }
 
-    private static void OnPilotToolUseAttempt(Entity<MechPilotComponent> ent, ref ToolUserAttemptUseEvent args)
+    private void OnOperatorToolUseAttempt(Entity<VehicleOperatorComponent> ent, ref ToolUserAttemptUseEvent args)
     {
-        if (args.Target == ent.Comp.Mech)
+        if (ent.Comp.Vehicle is { } vehicle && HasComp<MechComponent>(vehicle) && args.Target == vehicle)
             args.Cancelled = true;
     }
 
@@ -882,8 +862,6 @@ public abstract partial class SharedMechSystem : EntitySystem
             return;
         }
 
-        var ev = new HandleMechEquipmentBatteryEvent();
-        RaiseLocalEvent(uid, ev);
     }
     // RS14-end
 
@@ -1017,12 +995,3 @@ public readonly record struct MechBrokenSoundEvent(EntityUid Mech, SoundSpecifie
 [ByRefEvent]
 public readonly record struct MechEntrySuccessSoundEvent(EntityUid Mech, SoundSpecifier Sound);
 // RS14-end
-
-/// <summary>
-///     Event raised when an user attempts to fire a mech weapon to check if its battery is drained
-/// </summary>
-
-[Serializable, NetSerializable]
-public sealed partial class HandleMechEquipmentBatteryEvent : EntityEventArgs
-{
-}

@@ -66,6 +66,7 @@
   - type: Construction
     graph: RipleyMKII
     node: start
+    defaultTarget: ripleymkii # RS14
 
 # Clarke
 
@@ -133,6 +134,7 @@
   - type: Construction
     graph: Clarke
     node: start
+    defaultTarget: clarke # RS14
 
 - type: entity
   parent: BaseClarkePartItem
@@ -253,6 +255,7 @@
   - type: Construction
     graph: Durand
     node: start
+    defaultTarget: durand # RS14
 
 - type: entity
   parent: BaseDurandPartItem
@@ -385,6 +388,7 @@
   - type: Construction
     graph: Gygax
     node: start
+    defaultTarget: gygax # RS14
 
 - type: entity
   parent: BaseGygaxPartItem
