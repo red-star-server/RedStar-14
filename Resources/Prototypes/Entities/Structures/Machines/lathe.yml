@@ -1042,7 +1042,7 @@
     - type: Machine
       board: OreProcessorMachineCircuitboard
     - type: MaterialStorage
-      ignoreMaterialWhiteList: false # RS14-value: true -> false
+      ignoreMaterialWhiteList: true # Goob edit
       connectToSilo: true # Goob edit
       disconnectSiloOffMap: true # Goob edit
       disallowOreEjection: false # Goob edit
