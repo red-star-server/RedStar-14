@@ -20,18 +20,16 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
     baseSprintSpeed: 4
-  - type: SpawnLootOnDeath
-    deleteOnDeath: true
-    table: !type:AllSelector
-      children:
-      - id: MaterialBones1
-        rolls: 1, 2
-      - !type:GroupSelector
-        children:
-        - id: LegionCore
-          weight: 1
-        - !type:NoneSelector
-          weight: 5
+  # RS14-start
+  - type: Butcherable
+    spawned:
+    - id: MaterialBones1
+      amount: 1
+      maxAmount: 3
+    - id: LegionCore
+      amount: 1
+      prob: 0.16
+  # RS14-end
 
 - type: entity
   parent: LavalandMobBase
@@ -87,6 +85,11 @@
       amount: 3
     - id: MaterialChitin1
       amount: 4
+    # RS14-start
+    - id: MaterialMarrowWeaverPoisonFang1
+      amount: 1
+      prob: 0.25
+    # RS14-end
   - type: ReplacementAccent
     accent: xeno
   - type: NoSlip
@@ -122,13 +125,6 @@
       NavSmash: !type:Bool
         true
   - type: Fauna
-  - type: SpawnLootOnDeath
-    specialTable: !type:AllSelector
-      children:
-      - id: MaterialMarrowWeaverPoisonFang1
-    weaponWhitelist:
-      components:
-      - MegafaunaWeaponLooter
 
 - type: entity
   parent: MobMarrowWeaverLavaland
@@ -153,10 +149,18 @@
         reagents:
         - ReagentId: Cryoxadone
           Quantity: 80
-  - type: SpawnLootOnDeath
-    specialTable: !type:AllSelector
-      children:
-      - id: MaterialFrostbiteWeaverFrostGland1
-    weaponWhitelist:
-      components:
-      - MegafaunaWeaponLooter
+  # RS14-start
+  - type: Butcherable
+    spawned:
+    - id: UraniumOre1
+      amount: 2
+    - id: MaterialSinew1
+      amount: 2
+    - id: MaterialBones1
+      amount: 3
+    - id: MaterialChitin1
+      amount: 4
+    - id: MaterialFrostbiteWeaverFrostGland1
+      amount: 1
+      prob: 0.25
+  # RS14-end
