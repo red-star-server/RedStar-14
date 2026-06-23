@@ -39,6 +39,7 @@
     - type: GuideHelp
       guides:
       - Robotics
+
 - type: entity
   id: GygaxArmorPlate
   parent: BaseExosuitParts
@@ -56,6 +57,7 @@
     - type: GuideHelp
       guides:
       - Robotics
+
 - type: entity
   id: RipleyUpgradeKit
   parent: BaseExosuitParts
