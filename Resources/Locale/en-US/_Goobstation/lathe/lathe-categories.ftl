@@ -7,8 +7,7 @@
 
 lathe-category-mechs-vim = Vim
 lathe-category-mechs-honker = H.O.N.K.
-# RS14
-lathe-category-mechs-hamtr = HAMTR
+lathe-category-mechs-hamptr = H.A.M.P.T.R.
 lathe-category-mechs-ripley = Ripley
 lathe-category-mechs-ripleymkii = Ripley MK-II
 lathe-category-mechs-clarke = Clarke

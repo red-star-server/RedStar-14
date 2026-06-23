@@ -138,7 +138,7 @@
   id: HamtrHarness
   result: HamtrHarness
   categories:
-  - Hamtr # RS14
+  - Hamptr
   completetime: 10
   materials:
     Steel: 1500
@@ -149,25 +149,25 @@
   id: HamtrLArm
   result: HamtrLArm
   categories:
-  - Hamtr # RS14
+  - Hamptr
 
 - type: latheRecipe
   parent: BaseHamtrLimbRecipe
   id: HamtrLLeg
   result: HamtrLLeg
   categories:
-  - Hamtr # RS14
+  - Hamptr
 
 - type: latheRecipe
   parent: BaseHamtrLimbRecipe
   id: HamtrRLeg
   result: HamtrRLeg
   categories:
-  - Hamtr # RS14
+  - Hamptr
 
 - type: latheRecipe
   parent: BaseHamtrLimbRecipe
   id: HamtrRArm
   result: HamtrRArm
   categories:
-  - Hamtr # RS14
+  - Hamptr

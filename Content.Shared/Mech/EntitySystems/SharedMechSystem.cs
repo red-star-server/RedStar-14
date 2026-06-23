@@ -854,14 +854,18 @@ public abstract partial class SharedMechSystem : EntitySystem
     // Goobstation: Prevent guns being used out of mechs if CCVAR is set.
     private void OnShotAttempted(EntityUid uid, MechEquipmentComponent component, ref ShotAttemptedEvent args)
     {
-        if (!component.EquipmentOwner.HasValue
-            || !HasComp<MechComponent>(component.EquipmentOwner.Value))
+        if (component.EquipmentOwner is not { } mechUid
+            || !TryComp<MechComponent>(mechUid, out var mech))
         {
             if (component.BlockUseOutsideMech && !_canUseMechGunOutside)
                 args.Cancel();
             return;
         }
 
+        // RS14: Installed weapons must not use charge left in their own battery
+        // while the mech itself is broken or has no power.
+        if (mech.Broken || mech.Energy <= 0)
+            args.Cancel();
     }
     // RS14-end
 

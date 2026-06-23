@@ -17,8 +17,8 @@
   name: lathe-category-mechs-honker
 
 - type: latheCategory
-  id: Hamtr # RS14
-  name: lathe-category-mechs-hamtr # RS14
+  id: Hamptr
+  name: lathe-category-mechs-hamptr
 
 - type: latheCategory
   id: Ripley

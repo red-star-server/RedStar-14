@@ -122,10 +122,6 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechComponent, AttemptChangePanelEvent>(OnAttemptChangePanel); // RS14
 
 
-        // RS14-start
-        SubscribeLocalEvent<VehicleOperatorComponent, ToolUserAttemptUseEvent>(OnToolUseAttempt);
-        // RS14-end
-
         #region Equipment UI message relays
         SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
         SubscribeLocalEvent<MechComponent, MechSoundboardPlayMessage>(ReceiveEquipmentUiMesssages);
@@ -327,12 +323,6 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
 
         args.Cancelled = true;
-    }
-
-    private void OnToolUseAttempt(EntityUid uid, VehicleOperatorComponent component, ref ToolUserAttemptUseEvent args) // RS14
-    {
-        if (component.Vehicle is { } vehicle && HasComp<MechComponent>(vehicle) && args.Target == vehicle) // RS14
-            args.Cancelled = true;
     }
 
     private void OnAlternativeVerb(EntityUid uid, MechComponent component, GetVerbsEvent<AlternativeVerb> args)
