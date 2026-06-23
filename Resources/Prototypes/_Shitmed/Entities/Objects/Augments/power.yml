@@ -28,6 +28,7 @@
   - type: Construction
     graph: AugmentPowerCellSlot
     node: cables
+    defaultTarget: augment # RS14
 
 - type: entity
   parent: BaseAugment
@@ -91,6 +92,7 @@
   - type: Construction
     graph: AugmentRecharger
     node: casing
+    defaultTarget: apc # RS14
   - type: Tag
     tags: [ AugmentRechargerCasing ]
 
@@ -106,6 +108,7 @@
   - type: Construction
     graph: AugmentRecharger
     node: cables
+    defaultTarget: apc # RS14
 
 - type: entity
   parent: BaseAugmentRecharger

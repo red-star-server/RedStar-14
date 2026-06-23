@@ -38,10 +38,31 @@
   - type: Sprite
     state: mecha_air_tank
   - type: MechAirTankModule
+  # RS14-start
+  - type: Tag
+    tags:
+    - GasTank
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  # RS14-end
   - type: GasTank
     outputPressure: 101.3
+    # RS14-start
+    maxOutputPressure: 4500
+    tankLeakPressure: 9000
+    tankRupturePressure: 12000
+    tankFragmentPressure: 15000
+    # RS14-end
     air:
-      volume: 25
+      volume: 100 # RS14-value: 25 -> 100
 
 # RS14-start
 - type: entity

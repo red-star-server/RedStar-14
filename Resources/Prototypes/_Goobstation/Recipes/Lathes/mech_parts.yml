@@ -269,24 +269,3 @@
   materials:
     Steel: 1200
     Bananium: 300
-
-# Misc
-- type: latheRecipe
-  id: MechAirTank
-  result: MechAirTank
-  categories:
-  - MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1000
-    Glass: 150
-
-- type: latheRecipe
-  id: MechThruster
-  result: MechThruster
-  categories:
-  - MechEquipment
-  completetime: 10
-  materials:
-    Steel: 1000
-    Glass: 150

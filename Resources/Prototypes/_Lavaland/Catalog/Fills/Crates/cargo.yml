@@ -28,5 +28,4 @@
     - id: ClarkeTreads
     - id: ClarkeCentralElectronics
     - id: ClarkePeripheralsElectronics
-    - id: MechAirTank
-    - id: MechThruster
+    - id: MechModuleAirTank # RS14: replace dummy Goob exosuit part with functional module.

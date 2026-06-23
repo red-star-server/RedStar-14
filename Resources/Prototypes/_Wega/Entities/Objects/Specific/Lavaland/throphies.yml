@@ -138,7 +138,7 @@
 
 - type: entity
   parent: BaseCrusherUpgradeHandle
-  id: TrophyLavalandGoliathTentacle
+  id: MaterialGoliathTentacle
   name: goliath tentacle
   description: Increases damage as the wielder becomes more injured.
   components:
@@ -149,10 +149,17 @@
     name: lavaland-trophy-goliath-name
     uniqueGroup: goliathTrophy
   - type: CrusherGoliathTentacleUpgrade
+  # RS14-start
+  - type: Stack
+    stackType: GoliathTentacle
+    count: 1
+  - type: StackPrice
+    price: 500
+  # RS14-end
 
 - type: entity
   parent: BaseCrusherUpgradeHandle
-  id: TrophyLavalandAncientGoliathTentacle
+  id: MaterialAncientGoliathTentacle
   name: ancient goliath tentacle
   description: Deals greatly increased damage to nearly uninjured targets.
   components:
@@ -163,6 +170,13 @@
     name: lavaland-trophy-ancient-goliath-name
     uniqueGroup: goliathTrophy
   - type: CrusherAncientGoliathTentacleUpgrade
+  # RS14-start
+  - type: Stack
+    stackType: AncientGoliathTentacle
+    count: 1
+  - type: StackPrice
+    price: 750
+  # RS14-end
 
 - type: entity
   parent: BaseItem

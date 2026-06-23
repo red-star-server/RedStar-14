@@ -1195,3 +1195,9 @@ ClothingHeadHatHoodGoliathCloak: null
 
 # 2026-06-23 RS14 mech module migration
 MechEquipmentHorn: MechModuleHorn
+MechAirTank: MechModuleAirTank
+MechThruster: null
+
+# 2026-06-23 RS14 lavaland material migration
+TrophyLavalandGoliathTentacle: MaterialGoliathTentacle
+TrophyLavalandAncientGoliathTentacle: MaterialAncientGoliathTentacle

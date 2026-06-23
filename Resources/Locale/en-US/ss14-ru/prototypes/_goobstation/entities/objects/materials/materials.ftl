@@ -1,6 +1,6 @@
-ent-MaterialBSCrystal = { ent-MaterialBase }
+ent-MaterialBSCrystal = bluespace crystal
     .suffix = Full
-    .desc = { ent-MaterialBase.desc }
+    .desc = A crystal with unusual spatial properties.
 ent-MaterialBSCrystal1 = { ent-MaterialBSCrystal }
     .suffix = Single
     .desc = { ent-MaterialBSCrystal.desc }

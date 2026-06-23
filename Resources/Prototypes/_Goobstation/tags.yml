@@ -399,12 +399,6 @@
   id: Mask
 
 - type: Tag
-  id: MechAirTank
-
-- type: Tag
-  id: MechThruster
-
-- type: Tag
   id: MechUnGrabbable
 
 - type: Tag

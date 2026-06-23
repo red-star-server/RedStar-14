@@ -101,10 +101,16 @@ public sealed class MechAtmosphereSystem : EntitySystem
 
         var purgingActive = TryComp<MechCabinPurgeComponent>(ent.Owner, out var purgeComp) &&
                             purgeComp.CooldownRemaining > 0;
-        if (purgingActive || !TryGetGasModuleAir(ent, out var tankAir) || tankAir == null)
+        var (tank, tankAir) = GetGasTank(ent.Comp);
+        if (purgingActive || tank == null || tankAir == null)
             return false;
 
-        return _atmosphere.PumpGasTo(tankAir, cabin.Air, cabin.TargetPressure);
+        if (!_atmosphere.PumpGasTo(tankAir, cabin.Air, cabin.TargetPressure))
+            return false;
+
+        Dirty(tank.Value);
+        Dirty(ent.Owner, cabin);
+        return true;
     }
 
     private void OnAirtightMessage(Entity<MechComponent> ent, ref MechAirtightMessage args)
@@ -225,24 +231,24 @@ public sealed class MechAtmosphereSystem : EntitySystem
             return false;
         }
 
-        var (tankComp, tankAir) = GetGasTank(ent.Comp);
-        if (tankAir == null || tankComp == null)
+        var (tank, tankAir) = GetGasTank(ent.Comp);
+        if (tank == null || tankAir == null)
         {
             SetFanState(fanModule.Value, MechFanState.Off);
             return false;
         }
 
-        return ProcessFanOperation(ent, fanModule.Value, tankComp, tankAir, frameTime);
+        return ProcessFanOperation(ent, fanModule.Value, tank.Value, tankAir, frameTime);
     }
 
-    private (GasTankComponent? Tank, GasMixture? Air) GetGasTank(MechComponent mechComp)
+    private (Entity<GasTankComponent>? Tank, GasMixture? Air) GetGasTank(MechComponent mechComp)
     {
         foreach (var moduleEnt in mechComp.ModuleContainer.ContainedEntities)
         {
             if (HasComp<MechAirTankModuleComponent>(moduleEnt) &&
                 TryComp<GasTankComponent>(moduleEnt, out var tank))
             {
-                return (tank, tank.Air);
+                return ((moduleEnt, tank), tank.Air);
             }
         }
 
@@ -252,14 +258,14 @@ public sealed class MechAtmosphereSystem : EntitySystem
     private bool ProcessFanOperation(
         Entity<MechComponent> ent,
         Entity<MechFanModuleComponent> fanModule,
-        GasTankComponent tankComp,
+        Entity<GasTankComponent> tank,
         GasMixture tankAir,
         float frameTime)
     {
         var external = _atmosphere.GetContainingMixture(ent.Owner);
         if (external == null ||
             external.Pressure <= MinExternalPressure ||
-            tankAir.Pressure >= tankComp.MaxOutputPressure - PressureTolerance)
+            tankAir.Pressure >= tank.Comp.MaxOutputPressure - PressureTolerance)
         {
             SetFanState(fanModule, MechFanState.Idle);
             return false;
@@ -272,6 +278,8 @@ public sealed class MechAtmosphereSystem : EntitySystem
         }
 
         var success = ProcessFilteredTransfer(external, tankAir, fanModule.Comp, frameTime);
+        if (success)
+            Dirty(tank);
 
         SetFanState(fanModule, success ? MechFanState.On : MechFanState.Idle);
         return success;

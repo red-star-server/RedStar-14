@@ -8,9 +8,7 @@
 ## Static
 - type: latheRecipePack
   id: MechPartsStatic
-  recipes:
-  - MechAirTank
-  - MechThruster
+  recipes: [] # RS14: remove dummy Goob mech parts.
 
 - type: latheRecipePack
   id: MechWeaponsSecurityStatic

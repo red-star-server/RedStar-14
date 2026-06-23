@@ -15,13 +15,17 @@
       Dead:
         Base: goliath_dead
   # RS14-start
-  - type: SpawnLootOnDeath
-    specialTable: !type:AllSelector
-      children:
-      - id: TrophyLavalandGoliathTentacle
-    weaponWhitelist:
-      components:
-      - MegafaunaWeaponLooter
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatGoliath
+      amount: 3
+    - id: MaterialGoliathHide1
+      amount: 1
+    - id: MaterialBones1
+      maxAmount: 2
+    - id: MaterialGoliathTentacle
+      amount: 1
+      prob: 0.25
   # RS14-end
 
 - type: entity
@@ -77,12 +81,8 @@
       amount: 3
     - id: MaterialBones1
       amount: 3
-  # RS14-start
-  - type: SpawnLootOnDeath
-    specialTable: !type:AllSelector
-      children:
-      - id: TrophyLavalandAncientGoliathTentacle
-    weaponWhitelist:
-      components:
-      - MegafaunaWeaponLooter
-  # RS14-end
+    # RS14-start
+    - id: MaterialAncientGoliathTentacle
+      amount: 1
+      prob: 0.5
+    # RS14-end

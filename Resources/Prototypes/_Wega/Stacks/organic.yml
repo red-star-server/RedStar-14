@@ -15,3 +15,19 @@
   icon: { sprite: _Wega/Objects/Materials/chitin.rsi, state: chitin }
   spawn: MaterialChitin1
   maxCount: 30
+
+# RS14-start
+- type: stack
+  id: GoliathTentacle
+  name: stack-goliath-tentacle
+  icon: { sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi, state: tendril }
+  spawn: MaterialGoliathTentacle
+  maxCount: 10
+
+- type: stack
+  id: AncientGoliathTentacle
+  name: stack-ancient-goliath-tentacle
+  icon: { sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi, state: ancient_tendril }
+  spawn: MaterialAncientGoliathTentacle
+  maxCount: 10
+# RS14-end

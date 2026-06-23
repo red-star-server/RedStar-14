@@ -4,6 +4,10 @@
 
 stack-sinew = sinew
 stack-chitin = chitin
+# RS14-start
+stack-goliath-tentacle = goliath tentacle
+stack-ancient-goliath-tentacle = ancient goliath tentacle
+# RS14-end
 
 lavaland-trophy-goliath-name = goliath tentacle
 lavaland-trophy-ancient-goliath-name = ancient goliath tentacle

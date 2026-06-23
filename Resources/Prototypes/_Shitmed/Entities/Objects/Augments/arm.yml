@@ -147,6 +147,7 @@
     state: base
   - type: Construction
     node: casing
+    defaultTarget: "utility tools panel" # RS14
   - type: Tag
     tags: [ AugmentToolPanelCasing ]
 
@@ -159,6 +160,7 @@
     state: base_cables
   - type: Construction
     node: cables
+    defaultTarget: "utility tools panel" # RS14
 
 - type: entity
   parent: BaseAugmentToolPanel
@@ -277,6 +279,7 @@
     state: base
   - type: Construction
     node: casing
+    defaultTarget: augment # RS14
   - type: Tag
     tags: [ AugmentStrengthCasing ]
 
@@ -289,6 +292,7 @@
     state: base_cables
   - type: Construction
     node: cables
+    defaultTarget: augment # RS14
 
 - type: entity
   parent: BaseAugmentAction

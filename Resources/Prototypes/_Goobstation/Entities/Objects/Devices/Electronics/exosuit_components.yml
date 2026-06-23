@@ -39,7 +39,6 @@
     - type: GuideHelp
       guides:
       - Robotics
-
 - type: entity
   id: GygaxArmorPlate
   parent: BaseExosuitParts
@@ -57,7 +56,6 @@
     - type: GuideHelp
       guides:
       - Robotics
-
 - type: entity
   id: RipleyUpgradeKit
   parent: BaseExosuitParts
@@ -71,40 +69,6 @@
     - type: Tag
       tags:
       - RipleyMKIIUpgradeKit
-    - type: GuideHelp
-      guides:
-      - Robotics
-
-- type: entity
-  id: MechAirTank
-  parent: BaseExosuitParts
-  name: exosuit air tank
-  description: A special air canister capable of holding a large amount of air.
-  components:
-    - type: Item
-      storedRotation: 0
-    - type: Sprite
-      state: mecha_air_tank
-    - type: Tag
-      tags:
-      - MechAirTank
-    - type: GuideHelp
-      guides:
-      - Robotics
-
-- type: entity
-  id: MechThruster
-  parent: BaseExosuitParts
-  name: exosuit thruster
-  description: A thruster with which the exosuit can safely move in the absence of gravity.
-  components:
-    - type: Item
-      storedRotation: 0
-    - type: Sprite
-      state: mecha_bin
-    - type: Tag
-      tags:
-      - MechThruster
     - type: GuideHelp
       guides:
       - Robotics
