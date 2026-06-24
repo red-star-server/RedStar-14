@@ -468,7 +468,7 @@
     - id: Intellicard
     - id: BoxEncryptionKeyScience
     #- id: CircuitImprinterMachineCircuitboard # Goobstation - Science Techfab
-    - id: ClothingBeltUtilityFilled
+    - id: ClothingBeltUtilityEngineering
     - id: ClothingHeadsetAltScience
     - id: DoorRemoteResearch
     - id: HandTeleporter
