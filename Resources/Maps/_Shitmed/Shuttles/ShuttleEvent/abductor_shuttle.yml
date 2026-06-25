@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 264.0.0
-  forkId: GoobLRP
-  forkVersion: 6df1fc8f5e51e2512a5da522d8cc6fac09fe09ea
-  time: 01/18/2026 05:19:49
-  entityCount: 252
+  engineVersion: 266.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 06/25/2026 16:49:35
+  entityCount: 253
 maps:
 - 1
 grids:
@@ -211,6 +211,8 @@ entities:
     - type: DeviceList
       devices:
       - 120
+    - type: Fixtures
+      fixtures: {}
 - proto: APCHyperCapacity
   entities:
   - uid: 14
@@ -219,12 +221,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 15
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: BasicCyberneticEyes
   entities:
   - uid: 16
@@ -475,6 +481,11 @@ entities:
     components:
     - type: Transform
       pos: -4.5,1.5
+      parent: 2
+  - uid: 253
+    components:
+    - type: Transform
+      pos: -0.5,3.5
       parent: 2
 - proto: CableHV
   entities:
