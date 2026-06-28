@@ -121,6 +121,7 @@
   parent: WeaponCrusher
   id: WeaponCrusherBloodDrunkMiner
   suffix: Blood-drunk miner
+  hideSpawnMenu: true
   components:
   - type: Unremoveable
 
@@ -128,6 +129,7 @@
   parent: WeaponProtoKineticAccelerator
   id: WeaponProtoKineticAcceleratorBloodDrunkMiner
   suffix: Blood-drunk miner
+  hideSpawnMenu: true
   components:
   - type: Unremoveable
 
