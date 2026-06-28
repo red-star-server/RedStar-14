@@ -7,6 +7,7 @@
   components:
   - type: Physics
     bodyType: Static
+    canCollide: false
   - type: Anchorable
     flags:
     - Anchorable

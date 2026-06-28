@@ -3,7 +3,9 @@
 // https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
 
 using Content.Server.Chat.Systems;
+using Content.Server._RedStar.Skills;
 using Content.Shared._Wega.Lavaland.Components.Artefacts;
+using Content.Shared._RedStar.Skills;
 using Content.Shared.Chat;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
@@ -18,12 +20,22 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Wega.Lavaland.Systems.Artefacts;
 
 public sealed class IndependentArtefactSystem : EntitySystem
 {
+    private static readonly HashSet<ProtoId<SkillPrototype>> AsclepiusSkills = new()
+    {
+        "Medical",
+        "Pharmacology",
+        "Stasis",
+        "Virology",
+        "Surgery",
+    };
+
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -31,6 +43,7 @@ public sealed class IndependentArtefactSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SkillsSystem _skills = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
@@ -86,12 +99,15 @@ public sealed class IndependentArtefactSystem : EntitySystem
 
     private void OnRodOath(Entity<RodOfAsclepiusComponent> ent, ref RodOathDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled)
+        if (args.Cancelled || args.Handled || ent.Comp.BoundTo != null)
             return;
 
         ent.Comp.BoundTo = args.User;
         EnsureComp<UnremoveableComponent>(ent);
         EnsureComp<PacifiedComponent>(args.User);
+        if (_skills.IsSkillsEnabled())
+            _skills.GrantSkill(args.User, AsclepiusSkills);
+
         _appearance.SetData(ent, VisualLayers.Enabled, true);
         _chat.TrySendInGameICMessage(
             args.User,

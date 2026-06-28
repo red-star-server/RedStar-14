@@ -116,7 +116,9 @@
   - type: ItemUpgrade
     name: gun-upgrade-aoe-name
     uniqueGroup: aoe
-  - type: GunUpgradeAreaDamage
+  - type: GunUpgradeProjectileComponents
+    components:
+    - type: ProjectileAreaDamage
 
 - type: entity
   id: PKAUpgradePressure

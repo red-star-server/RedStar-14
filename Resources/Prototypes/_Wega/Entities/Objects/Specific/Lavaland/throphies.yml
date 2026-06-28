@@ -60,7 +60,11 @@
     bonusDamage:
       types:
         Heat: 8
-  - type: GunUpgradeAreaDamage
+  - type: GunUpgradeProjectileComponents
+    components:
+    - type: ProjectileAreaDamage
+      damageRadius: 1.5
+      damageMultiplier: 0.15
   - type: Tag
     tags:
     - CrusherUpgradeBlade
@@ -137,7 +141,7 @@
     - PKAUpgrade
 
 - type: entity
-  parent: BaseCrusherUpgradeHandle
+  parent: BaseItem
   id: MaterialGoliathTentacle
   name: goliath tentacle
   description: Increases damage as the wielder becomes more injured.
@@ -145,16 +149,12 @@
   - type: Sprite
     sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
     state: tendril
-  - type: ItemUpgrade
-    name: lavaland-trophy-goliath-name
-    uniqueGroup: goliathTrophy
-  - type: CrusherGoliathTentacleUpgrade
   - type: Stack
     stackType: GoliathTentacle
     count: 1
 
 - type: entity
-  parent: BaseCrusherUpgradeHandle
+  parent: BaseItem
   id: MaterialAncientGoliathTentacle
   name: ancient goliath tentacle
   description: Deals greatly increased damage to nearly uninjured targets.
@@ -162,10 +162,6 @@
   - type: Sprite
     sprite: _Wega/Objects/Specific/Lavaland/trophies.rsi
     state: ancient_tendril
-  - type: ItemUpgrade
-    name: lavaland-trophy-ancient-goliath-name
-    uniqueGroup: goliathTrophy
-  - type: CrusherAncientGoliathTentacleUpgrade
   - type: Stack
     stackType: AncientGoliathTentacle
     count: 1

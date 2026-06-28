@@ -2,6 +2,7 @@
 // https://github.com/corvax-team/ss14-wega/blob/master/LICENSE.TXT
 
 using System.Linq;
+using Content.Shared._Goobstation.Weapons.Ranged;
 using Content.Shared._Lavaland.Weapons.Marker;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -32,6 +33,7 @@ public sealed class CrusherUpgradeEffectsSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<CrusherLegionSkullUpgradeComponent, GunRefreshModifiersEvent>(OnLegionRefresh);
+        SubscribeLocalEvent<CrusherLegionSkullUpgradeComponent, RechargeBasicEntityAmmoGetCooldownModifiersEvent>(OnLegionRecharge);
         SubscribeLocalEvent<CrusherLegionSkullUpgradeComponent, GetMeleeAttackRateEvent>(OnLegionMeleeSpeed);
         SubscribeLocalEvent<CrusherGoliathTentacleUpgradeComponent, MarkerAttackAttemptEvent>(OnGoliathMarker);
         SubscribeLocalEvent<CrusherGoliathTentacleUpgradeComponent, MeleeHitEvent>(OnGoliathMelee);
@@ -43,13 +45,18 @@ public sealed class CrusherUpgradeEffectsSystem : EntitySystem
         SubscribeLocalEvent<CrusherDemonClawsUpgradeComponent, MeleeHitEvent>(OnDemonMelee);
         SubscribeLocalEvent<CrusherBlasterTubesUpgradeComponent, GunRefreshModifiersEvent>(OnColossusRefresh);
 
-        SubscribeLocalEvent<GunUpgradeAreaDamageComponent, GunShotEvent>(OnAreaDamageShot);
     }
 
     private void OnLegionRefresh(Entity<CrusherLegionSkullUpgradeComponent> ent, ref GunRefreshModifiersEvent args)
     {
         if (!_tag.HasTag(Transform(ent).ParentUid, Pickaxe))
             args.FireRate *= ent.Comp.FireRateCoefficient;
+    }
+
+    private void OnLegionRecharge(Entity<CrusherLegionSkullUpgradeComponent> ent, ref RechargeBasicEntityAmmoGetCooldownModifiersEvent args)
+    {
+        if (!_tag.HasTag(Transform(ent).ParentUid, Pickaxe))
+            args.Multiplier /= ent.Comp.FireRateCoefficient;
     }
 
     private void OnLegionMeleeSpeed(
@@ -155,12 +162,4 @@ public sealed class CrusherUpgradeEffectsSystem : EntitySystem
         }
     }
 
-    private void OnAreaDamageShot(Entity<GunUpgradeAreaDamageComponent> ent, ref GunShotEvent args)
-    {
-        foreach (var (ammo, _) in args.Ammo)
-        {
-            if (ammo is { } projectile && HasComp<ProjectileComponent>(projectile))
-                EnsureComp<ProjectileAreaDamageComponent>(projectile);
-        }
-    }
 }
