@@ -117,6 +117,20 @@
       components:
       - MegafaunaWeaponLooter
 
+- type: entity
+  parent: WeaponCrusher
+  id: WeaponCrusherBloodDrunkMiner
+  suffix: Blood-drunk miner
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: WeaponProtoKineticAccelerator
+  id: WeaponProtoKineticAcceleratorBloodDrunkMiner
+  suffix: Blood-drunk miner
+  components:
+  - type: Unremoveable
+
 - type: startingGear
   id: BloodDrunkMinerGear
   equipment:
@@ -128,8 +142,8 @@
     outerClothing: ClothingOuterHardsuitSalvage
     suitstorage: OxygenTankFilled
   inhand:
-  - WeaponCrusher
-  - WeaponProtoKineticAccelerator
+  - WeaponCrusherBloodDrunkMiner
+  - WeaponProtoKineticAcceleratorBloodDrunkMiner
 
 - type: entity
   parent: LavalandBossMegaLegion
