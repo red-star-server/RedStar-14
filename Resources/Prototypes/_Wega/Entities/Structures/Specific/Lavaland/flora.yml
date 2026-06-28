@@ -124,6 +124,8 @@
   name: fire blossom
   description: A bright luminescent flower.
   components:
+  - type: Physics
+    canCollide: false
   - type: Sprite
     layers:
     - state: fireblossom1
@@ -194,6 +196,8 @@
   name: wood tinder fungus
   description: A tough parasitic fungus that can be carefully cut off.
   components:
+  - type: Physics
+    canCollide: false
   - type: Sprite
     layers:
     - state: l_mushroom1
@@ -260,6 +264,8 @@
   name: pale fire mushroom
   description: A fragile toxic mushroom with a cracked cap.
   components:
+  - type: Physics
+    canCollide: false
   - type: Sprite
     layers:
     - state: r_mushroom1
@@ -326,6 +332,8 @@
   name: smoky boletus
   description: An edible mushroom with a slight stimulating effect.
   components:
+  - type: Physics
+    canCollide: false
   - type: Sprite
     layers:
     - state: s_mushroom1
@@ -391,6 +399,8 @@
   name: embershroom
   description: A heavy mushroom with smoldering veins.
   components:
+  - type: Physics
+    canCollide: false
   - type: Sprite
     layers:
     - state: t_mushroom1

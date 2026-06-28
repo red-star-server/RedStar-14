@@ -104,7 +104,7 @@
     fuelMaterial: Plasma
     multiplier: 0.01
   - type: MaterialStorage
-    storageLimit: 1000
+    storageLimit: 3000 # RS14-value: 1000 -> 3000
     materialWhiteList: [Plasma]
   - type: UIFragment
     ui: !type:MechGeneratorUi
