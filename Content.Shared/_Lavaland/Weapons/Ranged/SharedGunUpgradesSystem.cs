@@ -1,6 +1,8 @@
 ﻿using Content.Shared._Goobstation.Weapons.Ranged;
 using Content.Shared._Lavaland.ItemUpgrades.Components;
 using Content.Shared._Lavaland.Weapons.Ranged.Components;
+using Content.Shared._Shitmed.Damage; // RS14
+using Content.Shared._Shitmed.Targeting; // RS14
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
@@ -90,7 +92,14 @@ public abstract class SharedGunUpgradesSystem : EntitySystem
         if (!HasComp<MobStateComponent>(args.Target))
             return;
 
-        _damage.TryChangeDamage(args.Shooter, ent.Comp.DamageOnHit);
+        _damage.TryChangeDamage(
+            args.Shooter,
+            ent.Comp.DamageOnHit,
+            true,
+            false,
+            origin: ent,
+            targetPart: TargetBodyPart.All,
+            splitDamage: SplitDamageBehavior.SplitEnsureAll); // RS14: Shitmed healing has to be applied across body parts.
     }
 
     private void OnGetMeleeRelay(Entity<GunUpgradeBayonetComponent> ent, ref GetRelayMeleeWeaponEvent args)

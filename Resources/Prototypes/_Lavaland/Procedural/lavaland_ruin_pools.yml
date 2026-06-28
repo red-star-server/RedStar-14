@@ -46,7 +46,7 @@
     HierophantArena: 1
     # RS14-start: Wega megafauna arenas
     BloodDrunkMiner: 1
-    MegaLegion: 1
+    # MegaLegion: 1 # RS14: Necropolis already contains the canonical Mega Legion arena.
     Colossus: 1
     DragonLair: 1
     Bubblegum: 1

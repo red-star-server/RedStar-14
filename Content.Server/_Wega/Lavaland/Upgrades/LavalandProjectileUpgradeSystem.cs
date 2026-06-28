@@ -58,6 +58,9 @@ public sealed class LavalandProjectileUpgradeSystem : EntitySystem
         if (args.Shooter is not { } shooter || shooter == args.Target)
             return;
 
+        if (args.Damage.Empty || args.Damage.GetTotal().Float() <= 0f)
+            return;
+
         var hitTarget = args.Target;
         var targets = _lookup.GetEntitiesInRange<DamageableComponent>(
                 Transform(hitTarget).Coordinates,
@@ -65,6 +68,6 @@ public sealed class LavalandProjectileUpgradeSystem : EntitySystem
             .Where(target => target.Owner != shooter && target.Owner != hitTarget);
 
         foreach (var target in targets)
-            _damage.TryChangeDamage(target.Owner, args.Damage * ent.Comp.DamageMultiplier, origin: shooter);
+            _damage.TryChangeDamage(target.Owner, args.Damage * ent.Comp.DamageMultiplier, ignoreResistances: false, interruptsDoAfters: false, origin: shooter);
     }
 }

@@ -87,6 +87,3 @@ public sealed partial class ProjectileAreaDamageComponent : Component
     [DataField]
     public float DamageMultiplier = 0.5f;
 }
-
-[RegisterComponent, NetworkedComponent, Access(typeof(CrusherUpgradeEffectsSystem))]
-public sealed partial class GunUpgradeAreaDamageComponent : Component;
