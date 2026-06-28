@@ -141,7 +141,7 @@
     - PKAUpgrade
 
 - type: entity
-  parent: BaseCrusherUpgradeHandle
+  parent: BaseItem
   id: MaterialGoliathTentacle
   name: goliath tentacle
   description: Increases damage as the wielder becomes more injured.
@@ -154,7 +154,7 @@
     count: 1
 
 - type: entity
-  parent: BaseCrusherUpgradeHandle
+  parent: BaseItem
   id: MaterialAncientGoliathTentacle
   name: ancient goliath tentacle
   description: Deals greatly increased damage to nearly uninjured targets.

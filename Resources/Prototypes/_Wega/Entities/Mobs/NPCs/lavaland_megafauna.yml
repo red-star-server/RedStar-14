@@ -61,6 +61,7 @@
     species: Human
     hideLayersOnEquip:
     - Hair
+    - FacialHair
     - Snout
   - type: Hands
   - type: ComplexInteraction

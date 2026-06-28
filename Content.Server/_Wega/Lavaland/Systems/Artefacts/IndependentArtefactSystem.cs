@@ -99,7 +99,7 @@ public sealed class IndependentArtefactSystem : EntitySystem
 
     private void OnRodOath(Entity<RodOfAsclepiusComponent> ent, ref RodOathDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled)
+        if (args.Cancelled || args.Handled || ent.Comp.BoundTo != null)
             return;
 
         ent.Comp.BoundTo = args.User;
