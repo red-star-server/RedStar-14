@@ -6,6 +6,8 @@ using Content.Server.Chat.Systems;
 using Content.Server._RedStar.Skills;
 using Content.Shared._Wega.Lavaland.Components.Artefacts;
 using Content.Shared._RedStar.Skills;
+using Content.Shared._Shitmed.Damage;
+using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Chat;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
@@ -120,7 +122,7 @@ public sealed class IndependentArtefactSystem : EntitySystem
     private void HealRodTargets(EntityUid owner, RodOfAsclepiusComponent rod)
     {
         if (!_mobState.IsDead(owner))
-            _damage.TryChangeDamage(owner, CreateHealing(rod.HealAmount), true, false);
+            Heal(owner, CreateHealing(rod.HealAmount));
 
         foreach (var (target, _) in _lookup.GetEntitiesInRange<MobStateComponent>(
                      Transform(owner).Coordinates,
@@ -129,8 +131,19 @@ public sealed class IndependentArtefactSystem : EntitySystem
             if (target == owner || _mobState.IsDead(target))
                 continue;
 
-            _damage.TryChangeDamage(target, CreateHealing(rod.HealAmount / 3f), true, false);
+            Heal(target, CreateHealing(rod.HealAmount / 3f));
         }
+    }
+
+    private void Heal(EntityUid target, DamageSpecifier healing)
+    {
+        _damage.TryChangeDamage(
+            target,
+            healing,
+            true,
+            false,
+            targetPart: TargetBodyPart.All,
+            splitDamage: SplitDamageBehavior.SplitEnsureAll);
     }
 
     private static DamageSpecifier CreateHealing(float amount)

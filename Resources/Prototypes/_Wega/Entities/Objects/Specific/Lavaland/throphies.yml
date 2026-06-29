@@ -55,16 +55,16 @@
   - type: WeaponUpgradeDamage
     bonusDamage:
       types:
-        Heat: 8
+        Heat: 4
   - type: GunUpgradeDamage
     bonusDamage:
       types:
-        Heat: 8
+        Heat: 4
   - type: GunUpgradeProjectileComponents
     components:
     - type: ProjectileAreaDamage
-      damageRadius: 1.5
-      damageMultiplier: 0.15
+      damageRadius: 1.25
+      damageMultiplier: 0.08
   - type: Tag
     tags:
     - CrusherUpgradeBlade

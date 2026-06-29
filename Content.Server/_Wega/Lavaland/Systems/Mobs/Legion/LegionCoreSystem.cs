@@ -4,6 +4,8 @@
 
 using Content.Server.Popups;
 using Content.Shared._Wega.Lavaland.Components;
+using Content.Shared._Shitmed.Damage;
+using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Interaction;
@@ -86,7 +88,13 @@ public sealed class LegionCoreSystem : EntitySystem
         if (!HasComp<DamageableComponent>(target))
             return false;
 
-        _damage.TryChangeDamage(target, core.Comp.HealAmount, true, false);
+        _damage.TryChangeDamage(
+            target,
+            core.Comp.HealAmount,
+            true,
+            false,
+            targetPart: TargetBodyPart.All,
+            splitDamage: SplitDamageBehavior.SplitEnsureAll);
         QueueDel(core);
         return true;
     }

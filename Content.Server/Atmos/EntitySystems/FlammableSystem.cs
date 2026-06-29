@@ -262,8 +262,9 @@ namespace Content.Server.Atmos.EntitySystems
             if (!TryComp(otherEnt, out FlammableComponent? flammable))
                 return;
 
-            flammable.FireStacks += ent.Comp.FireStacks;
-            Ignite(otherEnt, ent, flammable);
+            // RS14: go through SetFireStacks so repeated lava/dragon fire collisions
+            // cannot temporarily exceed MaximumFireStacks before the next fire tick.
+            AdjustFireStacks(otherEnt, ent.Comp.FireStacks, flammable, true);
             ent.Comp.Count--;
 
             if (ent.Comp.Count == 0)
@@ -289,8 +290,9 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
             }
 
-            flammable.FireStacks += component.FireStacks;
-            Ignite(otherEnt, uid, flammable);
+            // RS14: go through SetFireStacks so repeated lava/dragon fire collisions
+            // cannot temporarily exceed MaximumFireStacks before the next fire tick.
+            AdjustFireStacks(otherEnt, component.FireStacks, flammable, true);
             component.Count--;
 
             if (component.Count == 0)
