@@ -24,7 +24,7 @@
 
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: [Clothing, AllowSuitStorageClothing] # RS14
   id: UnsensoredClothingUniformBase
   components:
   # Goobstation edit start
@@ -86,7 +86,7 @@
 
 - type: entity
   abstract: true
-  parent: [UnsensoredClothingUniformBase, AllowSuitStorageClothing] # RS14
+  parent: UnsensoredClothingUniformBase # RS14
   id: ClothingUniformBase
   components:
   - type: SuitSensor
