@@ -104,8 +104,9 @@
         amount: 2
       - id: ClothingOuterBioSecurity
         amount: 2
-      - id: ClothingHeadHatHoodBioSecurity
-        amount: 2
+      # RS14 - bio hoods are built into the suits.
+      # - id: ClothingHeadHatHoodBioSecurity
+      #   amount: 2
       - id: ClothingMaskSterile
         amount: 2
 

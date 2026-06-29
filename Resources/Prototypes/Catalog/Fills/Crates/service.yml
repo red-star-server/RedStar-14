@@ -352,8 +352,9 @@
     contents:
       - id: ClothingOuterBioJanitor
         amount: 2
-      - id: ClothingHeadHatHoodBioJanitor
-        amount: 2
+      # RS14 - bio hoods are built into the suits.
+      # - id: ClothingHeadHatHoodBioJanitor
+      #   amount: 2
       - id: ClothingMaskSterile
         amount: 2
 
