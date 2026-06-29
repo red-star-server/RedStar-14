@@ -264,7 +264,7 @@ namespace Content.Server.Atmos.EntitySystems
 
             // RS14: go through SetFireStacks so repeated lava/dragon fire collisions
             // cannot temporarily exceed MaximumFireStacks before the next fire tick.
-            AdjustFireStacks(otherEnt, ent.Comp.FireStacks, flammable, true);
+            AdjustFireStacks(otherEnt, ent.Comp.FireStacks, flammable, true, flammable.FireProtectionPenetration);
             ent.Comp.Count--;
 
             if (ent.Comp.Count == 0)
@@ -292,7 +292,7 @@ namespace Content.Server.Atmos.EntitySystems
 
             // RS14: go through SetFireStacks so repeated lava/dragon fire collisions
             // cannot temporarily exceed MaximumFireStacks before the next fire tick.
-            AdjustFireStacks(otherEnt, component.FireStacks, flammable, true);
+            AdjustFireStacks(otherEnt, component.FireStacks, flammable, true, flammable.FireProtectionPenetration);
             component.Count--;
 
             if (component.Count == 0)

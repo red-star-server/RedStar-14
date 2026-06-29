@@ -121,16 +121,25 @@
   parent: WeaponCrusher
   id: WeaponCrusherBloodDrunkMiner
   suffix: Blood-drunk miner
-  hideSpawnMenu: true
+  categories: [ HideSpawnMenu ] # RS14
   components:
   - type: Unremoveable
 
 - type: entity
-  parent: WeaponProtoKineticAccelerator
+  parent: [WeaponProtoKineticAcceleratorBase, BaseCargoContraband] # RS14: one-handed so the blood-drunk miner can fire it while holding the crusher.
   id: WeaponProtoKineticAcceleratorBloodDrunkMiner
+  name: proto-kinetic accelerator
   suffix: Blood-drunk miner
-  hideSpawnMenu: true
+  description: Fires high-damage kinetic bolts at a short range.
+  categories: [ HideSpawnMenu ] # RS14
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    layers:
+    - state: icon
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
   - type: Unremoveable
 
 - type: startingGear

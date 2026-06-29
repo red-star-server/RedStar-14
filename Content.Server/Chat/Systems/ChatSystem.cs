@@ -449,6 +449,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             collective.Minds.ContainsKey(defaultChannel) &&
             _prototypeManager.TryIndex(defaultChannel, out var collectiveMind))
         {
+            if (!collective.CanUseInCrit && (_mobStateSystem.IsDead(source) || _mobStateSystem.IsCritical(source)))
+                return;
+
             var modMessage = FormattedMessage.RemoveMarkupOrThrow(message);
 
             if (collective.RespectAccents)

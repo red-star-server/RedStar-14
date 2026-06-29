@@ -138,6 +138,8 @@
       uiWindowPos: 2,0
       strippingWindowPos: 2,5
       dependsOn: jumpsuit # RS14-value: outerClothing -> jumpsuit
+      dependsOnComponents:
+      - type: AllowSuitStorage
       displayName: Suit Storage
     - name: id
       slotTexture: id
