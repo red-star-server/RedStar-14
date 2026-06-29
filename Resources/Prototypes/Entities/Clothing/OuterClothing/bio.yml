@@ -18,7 +18,7 @@
 # SPDX-License-Identifier: MIT
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothingGasTanks] # CorvaxGoob-changes: added AllowSuitStorageClothingGasTanks
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothingGasTanks, ClothingOuterBaseToggleable] # CorvaxGoob-changes: added AllowSuitStorageClothingGasTanks # RS14
   id: ClothingOuterBioGeneral
   name: bio suit
   suffix: Generic
@@ -28,6 +28,9 @@
     sprite: Clothing/OuterClothing/Bio/general.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/general.rsi
+  - type: ToggleableClothing # RS14
+    clothingPrototypes:
+      head: ClothingHeadHatHoodBioGeneral
   - type: Armor
     coverage:
     - Chest
@@ -71,6 +74,9 @@
     sprite: Clothing/OuterClothing/Bio/cmo.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/cmo.rsi
+  - type: ToggleableClothing # RS14
+    clothingPrototypes:
+      head: ClothingHeadHatHoodBioCmo
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -83,6 +89,9 @@
     sprite: Clothing/OuterClothing/Bio/janitor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/janitor.rsi
+  - type: ToggleableClothing # RS14
+    clothingPrototypes:
+      head: ClothingHeadHatHoodBioJanitor
   - type: Armor
     modifiers:
       coefficients:
@@ -99,9 +108,12 @@
     sprite: Clothing/OuterClothing/Bio/scientist.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/scientist.rsi
+  - type: ToggleableClothing # RS14
+    clothingPrototypes:
+      head: ClothingHeadHatHoodBioScientist
 
 - type: entity
-  parent: [BaseSecurityContraband, ClothingOuterBaseLarge, AllowSuitStorageClothing] # CorvaxGoob-changes: added AllowSuitStorageClothing, ClothingOuterBaseLarge, removed ClothingOuterBioGeneral
+  parent: [BaseSecurityContraband, ClothingOuterBaseLarge, AllowSuitStorageClothing, ClothingOuterBaseToggleable] # CorvaxGoob-changes: added AllowSuitStorageClothing, ClothingOuterBaseLarge, removed ClothingOuterBioGeneral # RS14
   id: ClothingOuterBioSecurity
   name: bio suit
   suffix: Security
@@ -111,6 +123,9 @@
     sprite: Clothing/OuterClothing/Bio/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/security.rsi
+  - type: ToggleableClothing # RS14
+    clothingPrototypes:
+      head: ClothingHeadHatHoodBioSecurity
   - type: Armor
     coverage:
     - Chest
@@ -158,5 +173,8 @@
     sprite: Clothing/OuterClothing/Bio/virology.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/virology.rsi
+  - type: ToggleableClothing # RS14
+    clothingPrototypes:
+      head: ClothingHeadHatHoodBioVirology
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.25

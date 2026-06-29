@@ -25,8 +25,9 @@
     contents:
       - id: ClothingOuterBioScientist
         amount: 2
-      - id: ClothingHeadHatHoodBioScientist
-        amount: 2
+      # RS14 - bio hoods are built into the suits.
+      # - id: ClothingHeadHatHoodBioScientist
+      #   amount: 2
       - id: ClothingMaskSterile
         amount: 2
 

@@ -442,6 +442,26 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
         }
 
+        // RS14-start
+        if (desiredType == InGameICChatType.Speak &&
+            collective?.SpeakIntoDefaultChannel == true &&
+            collective.DefaultChannel is { } defaultChannel &&
+            collective.Minds.ContainsKey(defaultChannel) &&
+            _prototypeManager.TryIndex(defaultChannel, out var collectiveMind))
+        {
+            if (!collective.CanUseInCrit && (_mobStateSystem.IsDead(source) || _mobStateSystem.IsCritical(source)))
+                return;
+
+            var modMessage = FormattedMessage.RemoveMarkupOrThrow(message);
+
+            if (collective.RespectAccents)
+                modMessage = TransformSpeech(source, modMessage, language);
+
+            SendCollectiveMindChat(source, modMessage, collectiveMind);
+            return;
+        }
+        // RS14-end
+
         // Otherwise, send whatever type.
         switch (desiredType)
         {

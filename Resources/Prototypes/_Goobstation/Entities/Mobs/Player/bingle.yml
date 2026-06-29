@@ -128,6 +128,7 @@
   - type: CollectiveMind
     defaultChannel: Binglemind
     respectAccents: true
+    speakIntoDefaultChannel: true # RS14
     channels:
     - Binglemind
   - type: PassiveDamage #passive Healing

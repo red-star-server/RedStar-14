@@ -147,7 +147,8 @@
     contents:
       - id: ClothingOuterBioGeneral
         amount: 2
-      - id: ClothingHeadHatHoodBioGeneral
-        amount: 2
+      # RS14 - bio hoods are built into the suits.
+      # - id: ClothingHeadHatHoodBioGeneral
+      #   amount: 2
       - id: ClothingMaskGas
         amount: 2

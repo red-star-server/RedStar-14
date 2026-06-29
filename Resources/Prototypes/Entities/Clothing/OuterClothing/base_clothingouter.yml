@@ -140,7 +140,7 @@
 
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: [Clothing, AllowSuitStorageClothing] # RS14
   id: ClothingOuterBase
   components:
   # Goobstation edit start

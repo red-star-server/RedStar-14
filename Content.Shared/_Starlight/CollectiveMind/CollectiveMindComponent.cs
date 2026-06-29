@@ -33,6 +33,14 @@ namespace Content.Shared._Starlight.CollectiveMind
         [DataField]
         public bool RespectAccents = false;
 
+        // RS14-start
+        /// <summary>
+        /// Routes regular local speech into the default collective mind channel.
+        /// </summary>
+        [DataField]
+        public bool SpeakIntoDefaultChannel = false;
+        // RS14-end
+
         // Goobstation
         /// <summary>
         /// Whether the collective mind can be used while in critical condition

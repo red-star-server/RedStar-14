@@ -145,6 +145,14 @@
 # WallSolid: Window
 # Table: null
 
+# RS14 - bio hoods are now built into bio suits.
+ClothingHeadHatHoodBioGeneral: null
+ClothingHeadHatHoodBioCmo: null
+ClothingHeadHatHoodBioJanitor: null
+ClothingHeadHatHoodBioScientist: null
+ClothingHeadHatHoodBioSecurity: null
+ClothingHeadHatHoodBioVirology: null
+
 # Corvax-Goob
 DresserCaptainFilled: CaptainDrobe
 # ClothingNeckMantleHOSShoulder: ClothingNeckMantleHOS #Corvax-Goob HOS shoulder mantle

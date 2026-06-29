@@ -199,7 +199,8 @@
     contents:
       - id: ClothingOuterBioVirology
         amount: 2
-      - id: ClothingHeadHatHoodBioVirology
-        amount: 2
+      # RS14 - bio hoods are built into the suits.
+      # - id: ClothingHeadHatHoodBioVirology
+      #   amount: 2
       - id: ClothingMaskSterile
         amount: 2
