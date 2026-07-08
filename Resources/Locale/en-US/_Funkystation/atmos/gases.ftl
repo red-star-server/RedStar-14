@@ -15,5 +15,5 @@ gas-hyper-noblium-abbreviation = Hn
 gas-proto-nitrate-abbreviation = PN
 gas-zauker-abbreviation = Za
 gas-halon-abbreviation = Ha
-gas-helium-abbreviation = He
+gas-helium-abbreviation = Hl
 gas-anti-noblium-abbreviation = An

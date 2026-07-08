@@ -25,7 +25,7 @@ public sealed partial class ZaukerDecompositionReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Oxygen, burnedFuel * 0.3f);
         mixture.AdjustMoles(Gas.Nitrogen, burnedFuel * 0.7f);
 
-        var energyReleased = burnedFuel * Atmospherics.ZaukerDecompositionEnergy;
+        var energyReleased = burnedFuel * Atmospherics.ZaukerDecompositionEnergy / heatScale;
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = Math.Max((mixture.Temperature * heatCap + energyReleased) / heatCap, Atmospherics.TCMB);

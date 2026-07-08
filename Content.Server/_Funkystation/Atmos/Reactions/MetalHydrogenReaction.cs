@@ -5,6 +5,7 @@ using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 using Robust.Shared.IoC;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._Funkystation.Atmos.Reactions;
@@ -19,6 +20,9 @@ public sealed partial class MetalHydrogenReaction : IGasReactionEffect
     private const float PressureThreshold = 20000f;
     private const float TemperatureThreshold = 50f;
     private const float BaseRate = 0.10f;
+
+    [DataField]
+    public EntProtoId SpawnPrototype = "MetalHydrogen1";
 
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
@@ -44,7 +48,7 @@ public sealed partial class MetalHydrogenReaction : IGasReactionEffect
             return ReactionResult.NoReaction;
 
         var coords = mapSystem.GridTileToLocal(tileRef.GridUid, grid, tileRef.GridIndices);
-        entityManager.SpawnEntity("MetalHydrogen1", coords);
+        entityManager.SpawnEntity(SpawnPrototype, coords);
 
         return ReactionResult.Reacting;
     }

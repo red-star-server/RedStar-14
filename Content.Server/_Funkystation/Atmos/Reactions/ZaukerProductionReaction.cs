@@ -18,7 +18,7 @@ public sealed partial class ZaukerProductionReaction : IGasReactionEffect
         var initNitrium = mixture.GetMoles(Gas.Nitrium);
         var heatEfficiency = Math.Min(
             mixture.Temperature * Atmospherics.ZaukerTemperatureScale,
-            Math.Min(initHyperNoblium * 100f, initNitrium * 20f));
+            Math.Min(initHyperNoblium * 100f, initNitrium * 2f));
 
         if (heatEfficiency <= 0f ||
             initHyperNoblium - heatEfficiency * 0.01f < 0f ||
@@ -29,7 +29,7 @@ public sealed partial class ZaukerProductionReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Nitrium, -heatEfficiency * 0.5f);
         mixture.AdjustMoles(Gas.Zauker, heatEfficiency * 0.5f);
 
-        var energyConsumed = heatEfficiency * Atmospherics.ZaukerProductionEnergy;
+        var energyConsumed = heatEfficiency * Atmospherics.ZaukerProductionEnergy / heatScale;
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = Math.Max((mixture.Temperature * heatCap - energyConsumed) / heatCap, Atmospherics.TCMB);

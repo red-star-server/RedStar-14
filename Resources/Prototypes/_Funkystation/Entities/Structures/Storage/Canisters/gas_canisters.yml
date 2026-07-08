@@ -9,7 +9,7 @@
     layers:
     - state: hydrogen
   - type: GasCanister
-    gasMixture: &hydrogenCanisterMix
+    gasMixture:
       volume: 1000
       moles:
       - 0 # oxygen
@@ -59,8 +59,9 @@
     - state: hyper_noblium
   - type: GasCanister
     gasMixture:
-      <<: *hydrogenCanisterMix
+      volume: 1000
       moles: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1871.71051, 0, 0, 0, 0, 0]
+      temperature: 293.15
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger { damage: 600 }
@@ -87,8 +88,9 @@
     - state: proto_nitrate
   - type: GasCanister
     gasMixture:
-      <<: *hydrogenCanisterMix
+      volume: 1000
       moles: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1871.71051, 0, 0, 0, 0]
+      temperature: 293.15
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger { damage: 600 }
@@ -115,8 +117,9 @@
     - state: zauker
   - type: GasCanister
     gasMixture:
-      <<: *hydrogenCanisterMix
+      volume: 1000
       moles: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1871.71051, 0, 0, 0]
+      temperature: 293.15
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger { damage: 600 }
@@ -143,8 +146,9 @@
     - state: halon
   - type: GasCanister
     gasMixture:
-      <<: *hydrogenCanisterMix
+      volume: 1000
       moles: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1871.71051, 0, 0]
+      temperature: 293.15
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger { damage: 600 }
@@ -171,8 +175,9 @@
     - state: helium
   - type: GasCanister
     gasMixture:
-      <<: *hydrogenCanisterMix
+      volume: 1000
       moles: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1871.71051, 0]
+      temperature: 293.15
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger { damage: 600 }
@@ -199,8 +204,9 @@
     - state: anti_noblium
   - type: GasCanister
     gasMixture:
-      <<: *hydrogenCanisterMix
+      volume: 1000
       moles: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1871.71051]
+      temperature: 293.15
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger { damage: 600 }
@@ -270,4 +276,3 @@
   - type: Sprite
     sprite: _Funkystation/Structures/Storage/canister.rsi
     state: anti_noblium_broken
-

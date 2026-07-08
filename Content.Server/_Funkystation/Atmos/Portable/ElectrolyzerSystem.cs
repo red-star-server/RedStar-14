@@ -115,6 +115,8 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
         var initBZ = mixture.GetMoles(Gas.BZ);
         var oldHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
+        var oldTemperature = mixture.Temperature;
+        var energyDelta = 0f;
         var powerLoad = 100f;
         var activeLoad = (4200f * (3f * WorkingPower) * WorkingPower) / (PowerEfficiency + WorkingPower);
 
@@ -156,17 +158,17 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             mixture.AdjustMoles(Gas.Oxygen, proportion * 0.2f);
             mixture.AdjustMoles(Gas.Halon, proportion * 2f);
 
-            var energyReleased = proportion * Atmospherics.HalonProductionEnergy;
-            var newHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
-            if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
-                mixture.Temperature = Math.Max((mixture.Temperature * oldHeatCapacity + energyReleased) / newHeatCapacity, Atmospherics.TCMB);
+            energyDelta += proportion * Atmospherics.HalonProductionEnergy;
 
             powerLoad = Math.Max(powerLoad, activeLoad * Math.Min(proportion / 30f, 1f));
         }
 
         var finalHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
-        if (finalHeatCapacity > Atmospherics.MinimumHeatCapacity && finalHeatCapacity != oldHeatCapacity)
-            mixture.Temperature = Math.Max(mixture.Temperature * oldHeatCapacity / finalHeatCapacity, Atmospherics.TCMB);
+        if (finalHeatCapacity > Atmospherics.MinimumHeatCapacity &&
+            (finalHeatCapacity != oldHeatCapacity || energyDelta != 0f))
+        {
+            mixture.Temperature = Math.Max((oldTemperature * oldHeatCapacity + energyDelta) / finalHeatCapacity, Atmospherics.TCMB);
+        }
 
         electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - powerLoad);
         _gasOverlaySystem.UpdateSessions();

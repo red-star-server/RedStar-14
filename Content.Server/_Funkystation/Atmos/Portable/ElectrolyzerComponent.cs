@@ -3,6 +3,7 @@ using Robust.Shared.Audio;
 namespace Content.Server._Funkystation.Atmos.Portable;
 
 [RegisterComponent]
+[Access(typeof(ElectrolyzerSystem))]
 public sealed partial class ElectrolyzerComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite)]

@@ -1,10 +1,10 @@
 gases-hydrogen = Водород
-gases-hyper-noblium = Гипер-ноблиум
+gases-hyper-noblium = Гипер-ноблий
 gases-proto-nitrate = Прото-нитрат
 gases-zauker = Заукер
 gases-halon = Галон
 gases-helium = Гелий
-gases-anti-noblium = Анти-ноблиум
+gases-anti-noblium = Анти-ноблий
 
 gas-bz-abbreviation = BZ
 gas-healium-abbreviation = He
@@ -15,5 +15,5 @@ gas-hyper-noblium-abbreviation = Hn
 gas-proto-nitrate-abbreviation = PN
 gas-zauker-abbreviation = Za
 gas-halon-abbreviation = Ha
-gas-helium-abbreviation = He
+gas-helium-abbreviation = Hl
 gas-anti-noblium-abbreviation = An

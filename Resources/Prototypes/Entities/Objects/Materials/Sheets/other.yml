@@ -279,6 +279,11 @@
   - type: Appearance
   - type: Item
     heldPrefix: uranium
+  # RS14-start
+  - type: Tag
+    tags:
+    - SheetUranium
+  # RS14-end
   - type: Extractable
     grindableSolutionName: food
   - type: SolutionContainerManager

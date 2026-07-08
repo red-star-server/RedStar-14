@@ -29,7 +29,7 @@ public sealed partial class ProtoNitrateProductionReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Pluoxium, -heatEfficiency * 0.2f);
         mixture.AdjustMoles(Gas.ProtoNitrate, heatEfficiency * 2.2f);
 
-        var energyReleased = heatEfficiency * Atmospherics.ProtoNitrateProductionEnergy;
+        var energyReleased = heatEfficiency * Atmospherics.ProtoNitrateProductionEnergy / heatScale;
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = Math.Max((mixture.Temperature * heatCap + energyReleased) / heatCap, Atmospherics.TCMB);

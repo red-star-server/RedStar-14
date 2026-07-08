@@ -1,4 +1,4 @@
-reagent-name-hyper-noblium = гипер-ноблиум
+reagent-name-hyper-noblium = гипер-ноблий
 reagent-desc-hyper-noblium = Инертный благородный газ, подавляющий многие атмосферные реакции.
 
 reagent-name-proto-nitrate = прото-нитрат
@@ -13,5 +13,5 @@ reagent-desc-halon = Газ для подавления огня, активно
 reagent-name-helium = гелий
 reagent-desc-helium = Лёгкий благородный газ.
 
-reagent-name-anti-noblium = анти-ноблиум
+reagent-name-anti-noblium = анти-ноблий
 reagent-desc-anti-noblium = Нестабильный аналог благородного газа.

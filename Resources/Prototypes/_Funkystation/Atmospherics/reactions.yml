@@ -20,6 +20,12 @@
   - 0     # nitrium
   - 0     # pluoxium
   - 300   # hydrogen
+  - 0     # hypernoblium
+  - 0     # proto-nitrate
+  - 0     # zauker
+  - 0     # halon
+  - 0     # helium
+  - 0     # anti-noblium
   effects:
   - !type:MetalHydrogenReaction {}
 

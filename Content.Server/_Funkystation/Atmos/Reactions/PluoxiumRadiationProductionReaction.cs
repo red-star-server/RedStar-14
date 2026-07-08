@@ -37,7 +37,7 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
         mixture.AdjustMoles(Gas.Oxygen, -oxygenRemoved);
         mixture.AdjustMoles(Gas.Pluoxium, producedAmount);
 
-        var energyReleased = producedAmount * Atmospherics.PluoxiumProductionEnergy;
+        var energyReleased = producedAmount * Atmospherics.PluoxiumProductionEnergy / heatScale;
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = Math.Max((mixture.Temperature * heatCap + energyReleased) / heatCap, Atmospherics.TCMB);
@@ -72,12 +72,15 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
 
     private static float EnsureReceiver(IEntityManager entityManager, IGameTiming timing, EntityUid uid)
     {
-        var hadReceiver = entityManager.HasComponent<RadiationReceiverComponent>(uid);
-        var receiver = entityManager.EnsureComponent<RadiationReceiverComponent>(uid);
+        if (entityManager.TryGetComponent<RadiationReceiverComponent>(uid, out var existingReceiver))
+            return existingReceiver.CurrentRadiation;
+
+        entityManager.EnsureComponent<RadiationReceiverComponent>(uid);
         var timer = entityManager.EnsureComponent<RadiationReceiverTimerComponent>(uid);
         timer.TimerExpiresAt = timing.CurTime + TimerDuration;
+        timer.AddedReceiver = true;
 
-        return hadReceiver ? receiver.CurrentRadiation : 0f;
+        return 0f;
     }
 }
 
@@ -86,6 +89,8 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
 public sealed partial class RadiationReceiverTimerComponent : Component
 {
     public TimeSpan TimerExpiresAt { get; set; } = TimeSpan.Zero;
+
+    public bool AddedReceiver { get; set; }
 }
 
 public sealed partial class RadiationTimerSystem : EntitySystem
@@ -96,13 +101,15 @@ public sealed partial class RadiationTimerSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<RadiationReceiverTimerComponent, RadiationReceiverComponent>();
-        while (query.MoveNext(out var uid, out var timer, out _))
+        var query = EntityQueryEnumerator<RadiationReceiverTimerComponent>();
+        while (query.MoveNext(out var uid, out var timer))
         {
             if (_timing.CurTime < timer.TimerExpiresAt)
                 continue;
 
-            RemComp<RadiationReceiverComponent>(uid);
+            if (timer.AddedReceiver)
+                RemComp<RadiationReceiverComponent>(uid);
+
             RemComp<RadiationReceiverTimerComponent>(uid);
         }
     }
