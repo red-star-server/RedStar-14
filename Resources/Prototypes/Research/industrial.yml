@@ -278,6 +278,8 @@
   recipeUnlocks:
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
+  # RS14
+  - ElectrolyzerMachineCircuitboard
   - HolofanProjector
   # RS14-start
   - MechModuleFan

@@ -45,6 +45,13 @@ namespace Content.Server.Atmos.Portable
             Gas.BZ, // Assmos - /tg/ gases
             Gas.Healium, // Assmos - /tg/ gases
             Gas.Nitrium, // Assmos - /tg/ gases
+            // RS14-start
+            Gas.Hydrogen,
+            Gas.ProtoNitrate,
+            Gas.Zauker,
+            Gas.Halon,
+            Gas.AntiNoblium,
+            // RS14-end
         };
 
         [ViewVariables(VVAccess.ReadWrite)]

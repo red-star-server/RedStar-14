@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/ss14Starlight/space-station-14/tree/starlight-dev/Resources/Textures/_Starlight/Structures/Storage/canister.rsi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    { "name": "can-connector" },
+    { "name": "locked" },
+    { "name": "unlocked" },
+    {
+      "name": "can-o0",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    { "name": "can-o1" },
+    { "name": "can-o2" },
+    { "name": "can-o3" },
+    { "name": "can-open" },
+    { "name": "hydrogen" },
+    { "name": "hydrogen_broken" },
+    { "name": "hyper_noblium" },
+    { "name": "hyper_noblium_broken" },
+    { "name": "proto_nitrate" },
+    { "name": "proto_nitrate_broken" },
+    { "name": "zauker" },
+    { "name": "zauker_broken" },
+    { "name": "halon" },
+    { "name": "halon_broken" },
+    { "name": "helium" },
+    { "name": "helium_broken" },
+    { "name": "anti_noblium" },
+    { "name": "anti_noblium_broken" }
+  ]
+}

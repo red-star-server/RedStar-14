@@ -44,6 +44,13 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             Gas.BZ, // Assmos - /tg/ gases
             Gas.Healium, // Assmos - /tg/ gases
             Gas.Nitrium, // Assmos - /tg/ gases
+            // RS14-start
+            Gas.Hydrogen,
+            Gas.ProtoNitrate,
+            Gas.Zauker,
+            Gas.Halon,
+            Gas.AntiNoblium,
+            // RS14-end
         };
 
         // Presets for 'dumb' air alarm modes

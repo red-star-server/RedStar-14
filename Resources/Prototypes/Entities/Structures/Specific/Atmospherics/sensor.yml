@@ -108,6 +108,15 @@
         Nitrium: danger
         Pluoxium: ignore
         # </Goobstation>
+        # RS14-start
+        Hydrogen: danger
+        HyperNoblium: ignore
+        ProtoNitrate: danger
+        Zauker: danger
+        Halon: danger
+        Helium: ignore
+        AntiNoblium: danger
+        # RS14-end
     - type: Tag
       tags:
         - AirSensor
