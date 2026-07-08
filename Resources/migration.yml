@@ -145,14 +145,6 @@
 # WallSolid: Window
 # Table: null
 
-# RS14 - bio hoods are now built into bio suits.
-ClothingHeadHatHoodBioGeneral: null
-ClothingHeadHatHoodBioCmo: null
-ClothingHeadHatHoodBioJanitor: null
-ClothingHeadHatHoodBioScientist: null
-ClothingHeadHatHoodBioSecurity: null
-ClothingHeadHatHoodBioVirology: null
-
 # Corvax-Goob
 DresserCaptainFilled: CaptainDrobe
 # ClothingNeckMantleHOSShoulder: ClothingNeckMantleHOS #Corvax-Goob HOS shoulder mantle
@@ -1163,6 +1155,12 @@ BookMBS2: null
 BookImplants: null
 CrateServiceLoreBooks: null
 
+##2026-06-30 CorvaxGoob
+AshBush: FloraAshBush
+
+#2026-07-05 CorvaxGoob
+ClothingNeckMantleCE: null
+
 # 2026-05-29 RedStar
 BriefcaseIAAFilled: BriefcaseBrownFilled
 SpawnPointNanotrasenRepresentative: SpawnPointNanotrasenCareerTrainer
@@ -1206,3 +1204,11 @@ ClothingHeadHatHoodGoliathCloak: null
 MechEquipmentHorn: MechModuleHorn
 MechAirTank: MechModuleAirTank
 MechThruster: null
+
+# RS14 - bio hoods are now built into bio suits.
+ClothingHeadHatHoodBioGeneral: null
+ClothingHeadHatHoodBioCmo: null
+ClothingHeadHatHoodBioJanitor: null
+ClothingHeadHatHoodBioScientist: null
+ClothingHeadHatHoodBioSecurity: null
+ClothingHeadHatHoodBioVirology: null
