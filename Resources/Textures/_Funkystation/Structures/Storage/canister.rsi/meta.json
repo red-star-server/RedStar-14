@@ -3,8 +3,8 @@
   "license": "CC-BY-SA-3.0",
   "copyright": "Taken from https://github.com/ss14Starlight/space-station-14/tree/starlight-dev/Resources/Textures/_Starlight/Structures/Storage/canister.rsi",
   "size": {
-    "x": 64,
-    "y": 64
+    "x": 32,
+    "y": 32
   },
   "states": [
     { "name": "can-connector" },
