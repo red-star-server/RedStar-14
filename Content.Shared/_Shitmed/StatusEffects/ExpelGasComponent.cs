@@ -27,5 +27,11 @@ public sealed partial class ExpelGasComponent : Component
         Gas.BZ, ///tg/ gases
         Gas.Healium, ///tg/ gases
         Gas.Nitrium, ///tg/ gases
+        Gas.Hydrogen, // RS14 - Funkystation gases
+        Gas.ProtoNitrate, // RS14 - Funkystation gases
+        Gas.Zauker, // RS14 - Funkystation gases
+        Gas.Halon, // RS14 - Funkystation gases
+        Gas.Helium, // RS14 - Funkystation gases
+        Gas.AntiNoblium, // RS14 - Funkystation gases
     };
 }

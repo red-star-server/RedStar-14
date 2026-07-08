@@ -54,3 +54,16 @@ jobs:
             --fail \
             --silent \
             --show-error
+
+      - name: Ping changelog waiters
+        if: steps.render.outputs.should_send == 'true'
+        env:
+          WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d '{"content":"<@&1514108753794830496>","allowed_mentions":{"parse":[],"roles":["1514108753794830496"]}}' \
+            "$WEBHOOK_URL" \
+            --fail \
+            --silent \
+            --show-error

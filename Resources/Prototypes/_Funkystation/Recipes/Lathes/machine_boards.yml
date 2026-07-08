@@ -1,0 +1,6 @@
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: ElectrolyzerMachineCircuitboard
+  icon: { sprite: _Funkystation/Structures/Machines/electrolyzer.rsi, state: electrolyzerOff }
+  result: ElectrolyzerMachineCircuitboard
+

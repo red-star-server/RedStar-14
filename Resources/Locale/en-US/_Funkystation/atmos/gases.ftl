@@ -1,0 +1,19 @@
+gases-hydrogen = Hydrogen
+gases-hyper-noblium = Hyper-noblium
+gases-proto-nitrate = Proto-nitrate
+gases-zauker = Zauker
+gases-halon = Halon
+gases-helium = Helium
+gases-anti-noblium = Anti-noblium
+
+gas-bz-abbreviation = BZ
+gas-healium-abbreviation = He
+gas-nitrium-abbreviation = Ni
+gas-pluoxium-abbreviation = Plu
+gas-hydrogen-abbreviation = H₂
+gas-hyper-noblium-abbreviation = Hn
+gas-proto-nitrate-abbreviation = PN
+gas-zauker-abbreviation = Za
+gas-halon-abbreviation = Ha
+gas-helium-abbreviation = He
+gas-anti-noblium-abbreviation = An

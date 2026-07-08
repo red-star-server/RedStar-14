@@ -292,6 +292,19 @@ namespace Content.Shared.Atmos
             [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
             [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
             [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
+            // RS14-start: Funkystation gases
+            [Gas.BZ] = Loc.GetString("gas-bz-abbreviation"),
+            [Gas.Healium] = Loc.GetString("gas-healium-abbreviation"),
+            [Gas.Nitrium] = Loc.GetString("gas-nitrium-abbreviation"),
+            [Gas.Pluoxium] = Loc.GetString("gas-pluoxium-abbreviation"),
+            [Gas.Hydrogen] = Loc.GetString("gas-hydrogen-abbreviation"),
+            [Gas.HyperNoblium] = Loc.GetString("gas-hyper-noblium-abbreviation"),
+            [Gas.ProtoNitrate] = Loc.GetString("gas-proto-nitrate-abbreviation"),
+            [Gas.Zauker] = Loc.GetString("gas-zauker-abbreviation"),
+            [Gas.Halon] = Loc.GetString("gas-halon-abbreviation"),
+            [Gas.Helium] = Loc.GetString("gas-helium-abbreviation"),
+            [Gas.AntiNoblium] = Loc.GetString("gas-anti-noblium-abbreviation"),
+            // RS14-end
         };
 
         #region Excited Groups
@@ -321,7 +334,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 13; // Assmos - /tg/ gases
+        public const int TotalNumberOfGases = 20; // RS14-value: 13 -> 20, Funkystation gases
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -355,6 +368,7 @@ namespace Content.Shared.Atmos
 
         public const float TritiumBurnOxyFactor = 100f;
         public const float TritiumBurnTritFactor = 10f;
+        public const float TritiumBurnFuelRatio = 2f; // RS14: Funkystation hydrogen fire
 
         public const float FrezonCoolLowerTemperature = 23.15f;
 
@@ -423,6 +437,22 @@ namespace Content.Shared.Atmos
         ///     The amount of energy 1 mol of Nitrium decomposing into nitrogen and water vapor releases.
         /// </summary>
         public const float NitriumDecompositionEnergy = 30e3f; // Assmos - /tg/ gases
+
+        // RS14-start: Funkystation gases
+        public const float MinimumHydrogenOxyburnEnergy = 143000f;
+        public const float HydrogenBurnOxyFactor = 100f;
+        public const float HydrogenBurnH2Factor = 10f;
+        public const float HyperNobliumProductionEnergy = 2e7f;
+        public const float HalonProductionEnergy = 91232.1f;
+        public const float HalonCombustionEnergy = -2500f;
+        public const float ZaukerProductionEnergy = 5000f;
+        public const float ZaukerTemperatureScale = 5e-6f;
+        public const float ZaukerDecompositionEnergy = 460f;
+        public const float ZaukerDecompositionMaxRate = 20f;
+        public const float ProtoNitrateProductionEnergy = 650f;
+        public const float ProtoNitrateTemperatureScale = 5e-3f;
+        public const float ProtoNitrateBZConversionEnergy = -10000f;
+        // RS14-end
 
         /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
@@ -514,5 +544,14 @@ namespace Content.Shared.Atmos
         Healium = 10, // Assmos - /tg/ gases
         Nitrium = 11, // Assmos - /tg/ gases
         Pluoxium = 12, // Assmos - /tg/ gases
+        // RS14-start: Funkystation gases
+        Hydrogen = 13,
+        HyperNoblium = 14,
+        ProtoNitrate = 15,
+        Zauker = 16,
+        Halon = 17,
+        Helium = 18,
+        AntiNoblium = 19,
+        // RS14-end
     }
 }
