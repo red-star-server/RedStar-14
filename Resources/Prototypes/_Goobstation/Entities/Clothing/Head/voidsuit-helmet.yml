@@ -70,7 +70,7 @@
   - type: Clothing
     sprite: _Goobstation/Clothing/Head/Hardsuits/bso.rsi
   - type: PointLight
-    color: "#4d7ae3"
+    color: "#8B0000" #RS14
     rotation: 30
     energy: 10
     radius: 5
@@ -351,7 +351,7 @@
     - HeadTop
     - HeadSide
     - FacialHair
-  
+
 # Detective's Hardsuit
 
 - type: entity

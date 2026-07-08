@@ -115,18 +115,18 @@
     - state: icon-base
       color: "#404040"
     - state: icon-sling
-      color: "#004281"
+      color: "#23070c" #RS14
     - state: icon-clasp
-      color: "#005DBF"
+      color: "#3f0202" #RS14
   - type: Clothing
     clothingVisuals:
       back:
       - state: base-equipped-BACKPACK
         color: "#404040"
       - state: sling-equipped-BACKPACK
-        color: "#004281"
+        color: "#23070c" #RS14
       - state: clasp-equipped-BACKPACK
-        color: "#005DBF"
+        color: "#3f0202" #RS14
   - type: Item
     inhandVisuals:
       left:
