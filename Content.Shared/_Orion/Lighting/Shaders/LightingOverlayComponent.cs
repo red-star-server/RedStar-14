@@ -20,14 +20,17 @@ public sealed partial class LightingOverlayComponent : Component
     public bool? Enabled;
 
     [DataField]
-    public SpriteSpecifier Sprite = new Texture(new ResPath("_Orion/Effects/LightMasks/lightmask_lamp.png"));
+    public SpriteSpecifier Sprite = new Rsi(new ResPath("_Orion/Effects/LightMasks/128.rsi"), "light_cone");
 
     [DataField]
-    public float OffsetX;
+    public float OffsetX = 0.0625f;
 
     [DataField]
     public float OffsetY = 0.5f;
 
     [DataField]
     public Color? Color;
+
+    [DataField]
+    public float Strength = 0.35f;
 }

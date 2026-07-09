@@ -159,12 +159,18 @@
       shader: unshaded
     state: base
   - type: PointLight
-    color: "#c9c7c2" # RS14-value: #FFC183 -> #c9c7c2
+    color: "#E6D8C5" # RS14-value: #FFE4CE -> #E6D8C5
     energy: 1.5 # RS14-value: 0.8 -> 1.5
     radius: 6 # RS14-value: 10 -> 6
     softness: 1
     offset: "0, -0.5"
   - type: LightingOverlay # RS14
+    sprite:
+      sprite: _Orion/Effects/LightMasks/128.rsi
+      state: light_cone
+    offsetX: 0.0625
+    offsetY: 0.0
+    strength: 0.35
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -399,6 +405,11 @@
       radius: 4 # RS14-value: 6 -> 4
       softness: 1 # RS14-value: 1.1 -> 1
       enabled: true
+    - type: LightingOverlay # RS14
+      sprite: _Orion/Effects/LightMasks/lightmask_lamp.png
+      offsetX: 0
+      offsetY: 0.5
+      strength: 0.35
     - type: Physics
       bodyType: Static
     - type: Fixtures

@@ -4,12 +4,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
-using Content.Shared._Orion.CCVar;
-using Content.Shared._Orion.Lighting.Shaders;
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
@@ -17,76 +14,56 @@ namespace Content.Client._Orion.Lighting.Shaders;
 
 public sealed class LightingOverlay : Overlay
 {
-    private readonly EntityManager _entityManager;
-    private readonly SpriteSystem _spriteSystem;
-    private readonly TransformSystem _transformSystem;
-    private readonly IConfigurationManager _cfg;
     private readonly ShaderInstance _shader;
-    private readonly Action<bool> _lightCvarChanged;
-    private bool _enableGlowing;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceEntities;
-    public override bool RequestScreenTexture => true;
 
     private static readonly ProtoId<ShaderPrototype> LightingOverlayShader = "LightingOverlay";
+    public readonly List<PreparedLightOverlay> PreparedLights = [];
+    public bool Enabled;
 
-    public LightingOverlay(EntityManager entityManager, IPrototypeManager prototypeManager)
+    public LightingOverlay(IPrototypeManager prototypeManager)
     {
-        _entityManager = entityManager;
-        _spriteSystem = entityManager.EntitySysManager.GetEntitySystem<SpriteSystem>();
-        _transformSystem = entityManager.EntitySysManager.GetEntitySystem<TransformSystem>();
-        _cfg = IoCManager.Resolve<IConfigurationManager>();
-        _lightCvarChanged = value => _enableGlowing = value;
-        _cfg.OnValueChanged(OrionCCVars.EnableLightsGlowing, _lightCvarChanged, true);
-
         _shader = prototypeManager.Index(LightingOverlayShader).InstanceUnique();
         ZIndex = (int) DrawDepth.Overdoors;
     }
 
+    protected override bool BeforeDraw(in OverlayDrawArgs args)
+    {
+        return Enabled && PreparedLights.Count > 0;
+    }
+
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (!_enableGlowing || ScreenTexture == null)
-            return;
-
-        var xformQuery = _entityManager.GetEntityQuery<TransformComponent>();
         var handle = args.WorldHandle;
         var bounds = args.WorldAABB.Enlarged(5f);
 
-        _shader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
         handle.UseShader(_shader);
 
-        var query = _entityManager.AllEntityQueryEnumerator<LightingOverlayComponent, PointLightComponent, TransformComponent>();
-        while (query.MoveNext(out _, out var component, out var pointLight, out var xform))
+        foreach (var light in PreparedLights)
         {
-            if (xform.MapID != args.MapId)
+            if (light.MapId != args.MapId)
                 continue;
 
-            if (component.Enabled is false || !pointLight.Enabled)
+            if (!bounds.Contains(light.WorldPosition))
                 continue;
 
-            var worldPos = _transformSystem.GetWorldPosition(xform, xformQuery);
-            if (!bounds.Contains(worldPos))
-                continue;
+            _shader.SetParameter("overlay_strength", light.Strength);
 
-            var color = component.Color ?? pointLight.Color;
-            var (_, _, worldMatrix) = _transformSystem.GetWorldPositionRotationMatrix(xform, xformQuery);
-            handle.SetTransform(worldMatrix);
-
-            var mask = _spriteSystem.Frame0(component.Sprite);
-            var xOffset = component.OffsetX - mask.Width / 2f / EyeManager.PixelsPerMeter;
-            var yOffset = component.OffsetY - mask.Height / 2f / EyeManager.PixelsPerMeter;
-            var textureVector = new Vector2(xOffset, yOffset);
-
-            handle.DrawTexture(mask, textureVector, color);
+            handle.SetTransform(light.WorldMatrix);
+            handle.DrawTexture(light.Texture, light.Offset, light.Color);
         }
 
         handle.UseShader(null);
         handle.SetTransform(Matrix3x2.Identity);
     }
-
-    protected override void DisposeBehavior()
-    {
-        _cfg.UnsubValueChanged(OrionCCVars.EnableLightsGlowing, _lightCvarChanged);
-        base.DisposeBehavior();
-    }
 }
+
+public readonly record struct PreparedLightOverlay(
+    MapId MapId,
+    Vector2 WorldPosition,
+    Matrix3x2 WorldMatrix,
+    Texture Texture,
+    Vector2 Offset,
+    Color Color,
+    float Strength);

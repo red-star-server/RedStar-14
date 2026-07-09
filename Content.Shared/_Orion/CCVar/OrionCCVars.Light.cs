@@ -12,5 +12,5 @@ namespace Content.Shared._Orion.CCVar;
 public sealed partial class OrionCCVars : CVars
 {
     public static readonly CVarDef<bool> EnableLightsGlowing =
-        CVarDef.Create("light.light.enable_lights_glowing", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("light.enable_lights_glowing", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

@@ -108,7 +108,7 @@
     state: base
   - type: PointLight
     mask: /Textures/Effects/LightMasks/double_cone.png
-    color: "#e2dedb" # RS14-value: #FFE4CE -> #e2dedb
+    color: "#FFE4CE"
     energy: 8 # RS14-value: 5 -> 8
     radius: 10
     softness: 1
