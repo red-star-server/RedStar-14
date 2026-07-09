@@ -98,27 +98,29 @@
       # doesn't spawn anything for probably obvious reasons
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Food
-    solution: food
-    delay: 1
-    forceFeedDelay: 1
-  - type: FlavorProfile
-    flavors:
-    - paper
-  - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 1
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 1
-  - type: Tag       # Goob Balloon Edit
-    tags:           # Just so it can be picked up by ore bag
-    - Ore
-    - Paper         # Moth food
-  # </Goobstation>
-
+  # RS14-start
+  # - type: Food
+  #   solution: food
+  #   delay: 1
+  #   forceFeedDelay: 1
+  # - type: FlavorProfile
+  #   flavors:
+  #   - paper
+  # - type: BadFood
+  # - type: SolutionContainerManager
+  #   solutions:
+  #     food:
+  #       maxVol: 1
+  #       reagents:
+  #       - ReagentId: Fiber
+  #         Quantity: 1
+  # - type: Tag       # Goob Balloon Edit
+  #   tags:           # Just so it can be picked up by ore bag
+  #   - Ore
+  #   - Paper         # Moth food
+  # # </Goobstation>
+  # RS14-end
+  
 - type: material
   id: Credit
   name: speso

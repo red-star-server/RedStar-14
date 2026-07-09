@@ -58,8 +58,10 @@
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
     materialComposition:
       Cloth: 150
-  - type: Food
+  # RS14-start
+  - type: Edible
     requiresSpecialDigestion: true
+  # RS14-end
   - type: SolutionContainerManager
     solutions:
       food:

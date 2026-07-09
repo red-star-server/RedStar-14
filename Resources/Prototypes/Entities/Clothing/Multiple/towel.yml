@@ -26,8 +26,10 @@
   - type: Spillable
     solution: absorbed
     spillWhenThrown: false
-  - type: DrainableSolution
-    solution: absorbed
+  # RS14-start
+  # - type: DrainableSolution
+  #   solution: absorbed
+  # RS14-end
   - type: Absorbent
     pickupAmount: 15
   - type: SolutionContainerManager
