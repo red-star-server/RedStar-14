@@ -117,10 +117,8 @@
   - type: Item
     size: Small
     storedRotation: -90
-  # RS14-start
-  - type: Edible
+  - type: Food
     requiresSpecialDigestion: true
-  # RS14-end
   - type: SolutionContainerManager
     solutions:
       food:
