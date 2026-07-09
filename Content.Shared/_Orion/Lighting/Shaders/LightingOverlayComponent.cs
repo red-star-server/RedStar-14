@@ -12,25 +12,24 @@ namespace Content.Shared._Orion.Lighting.Shaders;
 /// <summary>
 /// Adds a client-side glow mask that is composited over matching point lights.
 /// </summary>
-[RegisterComponent]
-[NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LightingOverlayComponent : Component
 {
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool? Enabled;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public SpriteSpecifier Sprite = new Rsi(new ResPath("_Orion/Effects/LightMasks/128.rsi"), "light_cone");
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float OffsetX = 0.0625f;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float OffsetY = 0.5f;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public Color? Color;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float Strength = 0.35f;
 }
