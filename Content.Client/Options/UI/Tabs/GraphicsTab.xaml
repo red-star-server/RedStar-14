@@ -33,6 +33,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <ui:OptionDropDown Name="DropDownParticleQuality" Title="{Loc 'ui-options-particles-label'}" /> <!-- Starfall: Particles -->
                 <CheckBox Name="ViewportLowResCheckBox" Text="{Loc 'ui-options-vp-low-res'}" />
                 <CheckBox Name="ParallaxLowQualityCheckBox" Text="{Loc 'ui-options-parallax-low-quality'}" />
+                <!-- RS14-start -->
+                <CheckBox Name="LightingShaderCheckBox" Text="{Loc 'ui-options-lighting-shader'}" />
+                <!-- RS14-end -->
                 <CheckBox Name="AmbientOcclusionCheckBox" Text="{Loc 'ui-options-ambient-occlusion'}" />
 
                 <!-- Interface -->
