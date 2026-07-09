@@ -1,0 +1,17 @@
+// SPDX-FileCopyrightText: 2026 PuroSlavKing <puroslavking@yahoo.com>
+// SPDX-FileCopyrightText: 2026 ThereDrD <88589686+theredrd0@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+uniform highp float overlay_strength;
+
+void fragment() {
+    highp vec4 sprite = zTexture(UV);
+
+    if (sprite.a == 0.0) {
+        discard;
+    }
+
+    sprite.a *= clamp(overlay_strength, 0.0, 1.0);
+    COLOR = sprite * VtxModulate;
+}

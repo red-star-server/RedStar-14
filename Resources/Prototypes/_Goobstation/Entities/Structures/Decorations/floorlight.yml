@@ -27,6 +27,13 @@
           - Impassable
         layer:
           - Opaque
+  - type: LightingOverlay # RS14
+    sprite:
+      sprite: _Orion/Effects/LightMasks/64.rsi
+      state: light_point
+    offsetX: 0
+    offsetY: 0
+    strength: 0.24
 
 - type: entity
   id: PoweredFloorLightEmpty
@@ -54,6 +61,13 @@
           - Impassable
         layer:
           - Opaque
+  - type: LightingOverlay # RS14
+    sprite:
+      sprite: _Orion/Effects/LightMasks/64.rsi
+      state: light_point
+    offsetX: 0
+    offsetY: 0
+    strength: 0.24
 
 - type: entity
   id: PoweredFloorLight
@@ -83,3 +97,10 @@
           - Impassable
         layer:
           - Opaque
+  - type: LightingOverlay # RS14
+    sprite:
+      sprite: _Orion/Effects/LightMasks/64.rsi
+      state: light_point
+    offsetX: 0
+    offsetY: 0
+    strength: 0.24
