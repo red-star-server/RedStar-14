@@ -118,7 +118,7 @@
     - Ore
     - Paper         # Moth food
   # </Goobstation>
-  
+
 - type: material
   id: Credit
   name: speso
