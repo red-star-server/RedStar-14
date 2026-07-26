@@ -1,6 +1,6 @@
 ent-ClothingMaskGas = противогаз
     .desc = Закрывающая лицо маска, которую можно подключить к дыхательному баллону.
-ent-ClothingMaskGasSecurity = противогаз СБ
+ent-ClothingMaskGasSecurity = противогаз милиции
     .desc = Стандартный противогаз милиции.
 # Corvax-HiddenDesc-Start
 ent-ClothingMaskGasSyndicate = чёрный боевой противогаз
